@@ -1,12 +1,16 @@
 import { AudioCapture, inspectRecorderCapability } from "../audio/recorder.ts";
 import { localStore } from "../db/store.ts";
-import { AppError, createId, type EntryType, type JournalEntry } from "../domain/types.ts";
+import { AppError, createId, type EntryType } from "../domain/types.ts";
 import { buildJournalZip } from "../export/journalExport.ts";
-import { placeholderDayCopy } from "../progress/days.ts";
 import { inspectAndRequestPersistence, persistenceSummary } from "../storage/persistence.ts";
-import { applyTheme, readTheme, toggleTheme } from "../theme.ts";
+import { readTheme, toggleTheme } from "../theme.ts";
 import { emptyJournal, entryCard, statusBox, typeFieldset } from "./bits.ts";
-import { announce, el, formatWhen, go, routeParts, text } from "./dom.ts";
+import { announce, el, formatWhen, go } from "./dom.ts";
+import { renderDayPage, renderTodayPage } from "./pages/day.ts";
+import { renderDaysPage, renderPhasePage } from "./pages/days.ts";
+import { renderAboutPage, renderHomePage, renderMethodPage } from "./pages/home.ts";
+import { parseRoute } from "./routes.ts";
+import { renderChrome } from "./shell.ts";
 
 type CaptureState = {
   type: EntryType | null;
@@ -60,50 +64,36 @@ function microphoneBusy(): boolean {
 }
 
 export async function renderApp(root: HTMLElement): Promise<void> {
-  applyTheme();
-  const { parts } = routeParts(window.location.hash.split("?")[0]);
-  const section = parts[0] ?? "home";
-  const current = !parts[0] ? "home" : section;
+  const route = parseRoute(window.location.hash.split("?")[0]);
 
-  if (current !== "capture") {
+  if (route.name !== "capture") {
     abandonLiveMicrophone();
   }
 
-  root.replaceChildren();
-  const skip = el("a", { class: "skip-link", href: "#main" }, ["Skip to content"]);
-  const header = el("header", { class: "app-header" }, [
-    el("p", { class: "mark" }, ["PEx"]),
-    el("h1", {}, ["Psychical Excursion"]),
-    el("nav", { "aria-label": "Primary" }, [
-      nav("home", "Home", current === "home" || current === ""),
-      nav("capture", "Capture", current === "capture"),
-      nav("journal", "Journal", current === "journal"),
-      nav("days", "Days", current === "days"),
-      nav("data", "Data", current === "data"),
-    ]),
-  ]);
-  const live = el("div", { id: "live-status", class: "visually-hidden", "aria-live": "polite" });
-  const main = el("main", { id: "main", tabindex: "-1" });
-  const updateBanner = el("div", { id: "sw-banner" });
-  root.append(skip, header, live, updateBanner, main);
-  bindUpdateBanner(updateBanner);
+  const { main } = renderChrome(root, route);
 
   try {
-    if (section === "capture") await renderCapture(main);
-    else if (section === "journal" && parts[1]) await renderEntry(main, parts[1]);
-    else if (section === "journal") await renderJournal(main);
-    else if (section === "days" && parts[1]) await renderDay(main, Number(parts[1]));
-    else if (section === "days") await renderDays(main);
-    else if (section === "data") await renderData(main);
-    else await renderHome(main);
+    if (route.name === "capture") await renderCapture(main);
+    else if (route.name === "entry") await renderEntry(main, route.id);
+    else if (route.name === "journal") await renderJournal(main);
+    else if (route.name === "day") await renderDayPage(main, route.day);
+    else if (route.name === "today") await renderTodayPage(main);
+    else if (route.name === "days") await renderDaysPage(main);
+    else if (route.name === "phase") await renderPhasePage(main, route.phaseId);
+    else if (route.name === "data") await renderData(main);
+    else if (route.name === "method") await renderMethodPage(main);
+    else if (route.name === "about") await renderAboutPage(main);
+    else if (route.name === "unknown") {
+      main.append(
+        el("section", {}, [
+          el("h2", {}, ["Not found"]),
+          statusBox("error", "Unknown route", "Use the primary navigation. Capture remains one step from Home."),
+        ]),
+      );
+    } else await renderHomePage(main);
   } catch (error) {
     main.append(renderFatal(error));
   }
-}
-
-function nav(id: string, label: string, current: boolean): HTMLAnchorElement {
-  const href = id === "home" ? "#/" : `#/${id}`;
-  return el("a", { href, ...(current ? { "aria-current": "page" } : {}) }, [label]);
 }
 
 function renderFatal(error: unknown): HTMLElement {
@@ -117,34 +107,6 @@ function renderFatal(error: unknown): HTMLElement {
     ),
   ]);
   return wrap;
-}
-
-async function renderHome(main: HTMLElement): Promise<void> {
-  const entries = await safeList();
-  const latest = entries[0];
-  main.append(
-    el("section", {}, [
-      el("h2", {}, ["Home"]),
-      el("p", { class: "lede" }, [
-        "A calm, belief-optional practice space. Journal audio and notes stay on this device. They are not cloud backed up.",
-      ]),
-      el("p", {}, [
-        el("a", { href: "#/capture", class: "button primary", id: "home-capture" }, ["Capture"]),
-      ]),
-      el("p", { class: "hint" }, ["Returning path: open the app, then Capture. That is one intentional action."]),
-      latest
-        ? el("p", { class: "meta" }, [`Latest local entry: ${formatWhen(latest.createdAt)}`])
-        : el("p", { class: "meta" }, ["Journal is empty on this device."]),
-    ]),
-  );
-}
-
-async function safeList(): Promise<JournalEntry[]> {
-  try {
-    return await localStore.listEntries();
-  } catch {
-    return [];
-  }
 }
 
 async function renderCapture(main: HTMLElement): Promise<void> {
@@ -465,45 +427,6 @@ async function renderEntry(main: HTMLElement, id: string): Promise<void> {
   );
 }
 
-async function renderDays(main: HTMLElement): Promise<void> {
-  const rows = await localStore.listProgress();
-  const list = el("ol", { class: "day-list" });
-  for (const row of rows) {
-    const item = el("li", {}, [
-      el("a", { href: `#/days/${row.day}` }, [
-        `Day ${row.day}`,
-        text(row.visitedAt ? " · opened" : " · available"),
-      ]),
-    ]);
-    list.append(item);
-  }
-  main.append(
-    el("section", {}, [
-      el("h2", {}, ["Days 1–60"]),
-      el("p", { class: "lede" }, [
-        "All days stay unlocked. There are no streaks and no penalties. Titles below are placeholders, not curriculum.",
-      ]),
-      list,
-    ]),
-  );
-}
-
-async function renderDay(main: HTMLElement, day: number): Promise<void> {
-  if (!Number.isInteger(day) || day < 1 || day > 60) {
-    main.append(el("h2", {}, ["Day"]), statusBox("error", "Unknown day", "Choose a day from 1 to 60."));
-    return;
-  }
-  await localStore.markDayVisited(day);
-  const copy = placeholderDayCopy(day);
-  main.append(
-    el("section", {}, [
-      el("h2", {}, [copy.title]),
-      el("p", { class: "lede" }, [copy.body]),
-      el("p", {}, [el("a", { href: "#/capture" }, ["Capture from this day"]), text(" · "), el("a", { href: "#/days" }, ["All days"])]),
-    ]),
-  );
-}
-
 async function renderData(main: HTMLElement): Promise<void> {
   const existing = await localStore.loadPersistenceReport();
   const host = el("div", { id: "persist-status" });
@@ -600,13 +523,3 @@ async function renderData(main: HTMLElement): Promise<void> {
   );
 }
 
-function bindUpdateBanner(host: HTMLElement): void {
-  document.addEventListener("pex-sw-update", () => {
-    const button = el("button", { type: "button" }, ["Reload for update"]);
-    button.addEventListener("click", () => window.location.reload());
-    host.replaceChildren(
-      statusBox("info", "App update ready", "A newer application shell is waiting. Reload to use it. Journal data in IndexedDB is not in the service worker cache."),
-      button,
-    );
-  });
-}

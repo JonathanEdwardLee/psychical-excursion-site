@@ -1,4 +1,4 @@
-export const APP_VERSION = "0.1.0";
+export const APP_VERSION = "0.2.0";
 export const SCHEMA_VERSION = 1;
 export const DB_NAME = "pex-local";
 export const DB_VERSION = 1;
@@ -44,6 +44,7 @@ export type DayProgress = {
   day: number;
   unlocked: true;
   visitedAt: number | null;
+  completedAt: number | null;
 };
 
 export type PersistenceReport = {
@@ -94,4 +95,17 @@ export function createId(prefix: string): string {
     return `${prefix}-${crypto.randomUUID()}`;
   }
   return `${prefix}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+}
+
+export function emptyDayProgress(day: number): DayProgress {
+  return { day, unlocked: true, visitedAt: null, completedAt: null };
+}
+
+export function normalizeDayProgress(row: Partial<DayProgress> & { day: number }): DayProgress {
+  return {
+    day: row.day,
+    unlocked: true,
+    visitedAt: typeof row.visitedAt === "number" ? row.visitedAt : null,
+    completedAt: typeof row.completedAt === "number" ? row.completedAt : null,
+  };
 }

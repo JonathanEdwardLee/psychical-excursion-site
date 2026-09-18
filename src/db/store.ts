@@ -6,6 +6,8 @@ import {
   DB_VERSION,
   SCHEMA_VERSION,
   STORES,
+  emptyDayProgress,
+  normalizeDayProgress,
   type DayProgress,
   type JournalEntry,
   type MediaRecord,
@@ -90,12 +92,11 @@ export class LocalStore {
     const progress = tx.objectStore(STORES.progress);
     const settings = tx.objectStore(STORES.settings);
     for (let day = 1; day <= DAY_COUNT; day += 1) {
-      const existing = await requestToPromise(progress.get(day));
+      const existing = (await requestToPromise(progress.get(day))) as Partial<DayProgress> | undefined;
       if (!existing) {
-        const record: DayProgress = { day, unlocked: true, visitedAt: null };
-        progress.put(record);
-      } else if (existing.unlocked !== true) {
-        progress.put({ ...existing, unlocked: true });
+        progress.put(emptyDayProgress(day));
+      } else {
+        progress.put(normalizeDayProgress(existing as DayProgress));
       }
     }
     const schema = await requestToPromise(settings.get("schema"));
@@ -231,24 +232,38 @@ export class LocalStore {
       const tx = db.transaction(STORES.progress, "readonly");
       const rows = (await requestToPromise(tx.objectStore(STORES.progress).getAll())) as DayProgress[];
       await transactionDone(tx);
-      return rows.sort((a, b) => a.day - b.day);
+      return rows.map((row) => normalizeDayProgress(row)).sort((a, b) => a.day - b.day);
     } finally {
       db.close();
     }
   }
 
-  async markDayVisited(day: number): Promise<DayProgress> {
+  async getDayProgress(day: number): Promise<DayProgress> {
     const db = await this.open();
     try {
-      const tx = db.transaction(STORES.progress, "readwrite");
+      const tx = db.transaction(STORES.progress, "readonly");
+      const existing = (await requestToPromise(tx.objectStore(STORES.progress).get(day))) as DayProgress | undefined;
+      await transactionDone(tx);
+      return existing ? normalizeDayProgress(existing) : emptyDayProgress(day);
+    } finally {
+      db.close();
+    }
+  }
+
+  private async writeDayProgress(
+    day: number,
+    patch: (existing: DayProgress) => DayProgress,
+  ): Promise<DayProgress> {
+    const db = await this.open();
+    try {
+      const tx = db.transaction([STORES.progress, STORES.settings], "readwrite");
       const store = tx.objectStore(STORES.progress);
-      const existing = ((await requestToPromise(store.get(day))) as DayProgress | undefined) ?? {
-        day,
-        unlocked: true as const,
-        visitedAt: null,
-      };
-      const next: DayProgress = { ...existing, unlocked: true, visitedAt: Date.now() };
+      const existing = normalizeDayProgress(
+        ((await requestToPromise(store.get(day))) as DayProgress | undefined) ?? emptyDayProgress(day),
+      );
+      const next = patch(existing);
       store.put(next);
+      tx.objectStore(STORES.settings).put({ key: "resumeDay", value: day });
       await transactionDone(tx);
       return next;
     } catch (error) {
@@ -256,6 +271,35 @@ export class LocalStore {
     } finally {
       db.close();
     }
+  }
+
+  async markDayVisited(day: number): Promise<DayProgress> {
+    return this.writeDayProgress(day, (existing) => ({
+      ...existing,
+      unlocked: true,
+      visitedAt: Date.now(),
+    }));
+  }
+
+  async completeDay(day: number): Promise<DayProgress> {
+    return this.writeDayProgress(day, (existing) => ({
+      ...existing,
+      unlocked: true,
+      visitedAt: existing.visitedAt ?? Date.now(),
+      completedAt: Date.now(),
+    }));
+  }
+
+  async undoDayCompletion(day: number): Promise<DayProgress> {
+    return this.writeDayProgress(day, (existing) => ({
+      ...existing,
+      unlocked: true,
+      completedAt: null,
+    }));
+  }
+
+  async loadResumeDay(): Promise<number | undefined> {
+    return this.getSetting<number>("resumeDay");
   }
 
   async getSetting<T>(key: string): Promise<T | undefined> {

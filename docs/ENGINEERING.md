@@ -1,22 +1,24 @@
-# PEx Core Engineering
+# PEx Engineering
 
-Status of this document: engineering notes for the local-first foundation. It does not replace PEx Primary or any control-plane process.
+Status of this document: engineering notes for the local-first foundation and complete product surface. It does not replace PEx Primary or any control-plane process.
 
 ## Purpose
 
-Prove a trustworthy browser-native foundation:
+Keep a trustworthy browser-native product:
 
 - Capture (Dream / Experience / Sensation)
 - Local audio + text journal
 - Chronological journal with delete
 - Manual ZIP export
-- Days 1–60 progress storage (placeholders, all unlocked)
-- PWA install + offline-after-load
+- Days 1–60 routes, eight phases, Today resume, explicit complete/undo
+- Local content packet renderer for Primary-transported Days 1–60
+- Method, About, evidence/safety/source copy
+- PWA install + offline-after-load, including hashed app-shell + bundled day renderer
 - Honest storage-persistence reporting
-- Warm light + bedtime mode
+- Soft Instrument presentation (warm light default, optional bedtime mode)
 - Accessibility baseline
 
-Canonical curriculum text is intentionally absent.
+CloudDev must not invent or rewrite canonical curriculum. Days 1–60 are loaded from `src/content/canonical.ts` as transported by PEx Primary.
 
 ## Architecture
 
@@ -25,7 +27,8 @@ Canonical curriculum text is intentionally absent.
 | Language | TypeScript | Typed domain/storage boundary |
 | Bundler | Vite | Small SPA, hashed assets |
 | UI | Semantic HTML + plain CSS | No component framework required |
-| Routing | `location.hash` | Works from static hosting and `index.html` fallback |
+| Routing | `location.hash` (`#/today`, `#/day/n`, `#/phase/id`, …) | Works from static hosting and `index.html` fallback |
+| Content | Bundled TypeScript packet | Offline after a successful load; no lesson API |
 | Storage | IndexedDB (`pex-local`) | Journal, blobs, progress, settings |
 | Audio | `MediaRecorder` + `getUserMedia` | On-device only |
 | Export | Store-only ZIP (no compression lib) | Multi-file recovery without a paid service |
@@ -49,7 +52,7 @@ See the root README. Commands:
 
 - Database name: `pex-local`
 - IndexedDB version: `1`
-- App/schema constants: `APP_VERSION` (`0.1.0`), `SCHEMA_VERSION` (`1`)
+- App/schema constants: `APP_VERSION` (`0.2.0`), `SCHEMA_VERSION` (`1`)
 
 ### Object stores
 
@@ -83,18 +86,20 @@ Index: `entryId` (unique).
 
 **progress** (keyPath `day`)
 
-| Field | Type |
-| --- | --- |
-| day | 1–60 |
-| unlocked | always `true` |
-| visitedAt | number \| null |
+| Field | Type | Notes |
+| --- | --- | --- |
+| day | 1–60 | |
+| unlocked | always `true` | |
+| visitedAt | number \| null | Opening a day is not completion |
+| completedAt | number \| null | Set only by Complete Day; cleared by undo |
 
-No streaks. No lock flags.
+No streaks. No lock flags. Scroll depth is not stored.
 
 **settings** (keyPath `key`)
 
 - `schema` — `{ schemaVersion, appVersion, createdAt }`
 - `persistenceReport` — last actual persistence probe (`{ key, value }`)
+- `resumeDay` — last opened day number so `#/today` can resume. If that day is complete, Today uses the first incomplete day.
 
 Writes that create an entry plus audio use one `readwrite` transaction. The UI does not show a successful save until that transaction completes. Failed writes surface an error; the in-memory draft remains so it is not silently discarded.
 
@@ -168,6 +173,8 @@ This is a manual recovery file, not a cloud backup.
 
 Default: warm light (`data-theme` omitted / `light`). Optional bedtime mode persisted in `localStorage` key `pex-theme`. `prefers-reduced-motion` and `prefers-contrast: more` are respected in CSS. Missing `localStorage` (some private modes) still applies the in-memory theme.
 
+Day screens are typography-led continuous surfaces. Primary navigation on narrow viewports is a fixed bottom bar: Today, Capture, Journal, Days. Capture remains reachable in one action from Home and from that bar.
+
 ## Accessibility baseline
 
 Semantic landmarks, skip link, labeled controls, visible `:focus-visible`, 44px-class tap targets, type labels in text (not color-only), reduced-motion, fluid layout for ordinary mobile widths. Zoom and contrast should be re-checked in a real browser.
@@ -198,33 +205,12 @@ Development dependencies (Vite, TypeScript, Vitest, jsdom, fake-indexeddb, ESLin
 
 ## Tested facts vs limitations (this worker pass)
 
-Recorded separately from product claims. Environment: Chromium in a cloud VM, viewport ~390×844, `npm run preview` at `http://127.0.0.1:4173/`. Not a real Android/iPhone device.
+Recorded separately from product claims after the complete-product-surface implementation. Environment notes belong on the pull request.
 
-### Tested
+### Core engineering invariants retained
 
-- Typecheck, ESLint, Vitest (25), production build.
-- Home → Capture in one click; Dream / Experience / Sensation present.
-- Text-only save shows success only after IndexedDB; journal list/edit/delete with confirmation.
-- Persistence probe reported **`persist granted (actual): false`** and the UI did not claim a grant.
-- Local-only / not cloud-backed-up copy is visible on Data.
-- Bedtime mode toggles and persists in `localStorage`.
-- Days 1–60 listed as available/unlocked; Day 1 is placeholder-only.
-- Manual export downloaded `pex-journal-*.zip` containing `manifest.json` + `journal.json` (text-only sample; 1 entry, 0 recordings).
-- DevTools Network during journal save: requests were same-origin static assets to `127.0.0.1` only; no journal POST to an external host (inspection limited to Chromium Network panel in this VM).
-- Service worker activated on the production preview; DevTools offline checkbox still allowed in-app navigation after the shell had loaded.
-- After a second production preview deploy, the UI showed **App update ready** / Reload for update.
-- Record with no capture device: **No microphone was found. Text capture still works.** Text save still succeeded.
-
-### Not verified / limited
-
-- **Live microphone record → stop → replay** was not completed: this VM did not surface a usable mic permission prompt or recording blob. Automated tests cover MIME selection, permission-denied mapping, hung `getUserMedia` timeout, and blob save/replay via fake-indexeddb.
-- Quota-exceeded at the OS disk layer was not injected; `QuotaExceededError` classification is unit-tested.
-- Private/incognito eviction was characterized from known browser behavior, not by running a separate incognito profile in this pass.
-- Service worker *update* across two deploys: **App update ready** was shown; a full skipWaiting/reload cycle was not separately timed beyond that banner.
-- First-ever visit without a completed load is **not** claimed offline.
-
-Use export as the recovery path. This is not production verification.
+Capture, journal, export, microphone lifecycle, persist reporting, and no-journal-network behavior remain as specified in the accepted Core Engineering baseline.
 
 ## Out of scope (stop conditions honored)
 
-Canonical Days 1–60, health/sleep advice, Google services, AI, astronomy, donations, payments, analytics, backends, remote sync, public DNS/deployment, tester communications.
+Inventing canonical Days 1–60, health/sleep treatment advice, Google services, AI, astronomy, donations, payments, analytics, backends, remote sync, public DNS/deployment, tester communications.
