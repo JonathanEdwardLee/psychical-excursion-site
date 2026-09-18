@@ -112,6 +112,8 @@ Capability-driven. Candidates, in order:
 
 Microphone permission is requested only inside the Record action (`getUserMedia`). Denial is mapped to a non-looping error. Stop/interrupt (track `ended`, recorder error) is handled; empty interrupted recordings are not auto-saved.
 
+**Microphone lifecycle:** Save is disabled while a recording is starting or active. Save during recording does not complete and does not drop the live stream. Leaving Capture, a successful save after Stop, reset, timeout, recorder error, and explicit `release()` all stop the recorder and every acquired media track. A `getUserMedia()` result that arrives after timeout or abandon is stopped immediately.
+
 ## PWA / offline boundary
 
 - Manifest: `/manifest.webmanifest`
@@ -218,7 +220,7 @@ Recorded separately from product claims. Environment: Chromium in a cloud VM, vi
 - **Live microphone record → stop → replay** was not completed: this VM did not surface a usable mic permission prompt or recording blob. Automated tests cover MIME selection, permission-denied mapping, hung `getUserMedia` timeout, and blob save/replay via fake-indexeddb.
 - Quota-exceeded at the OS disk layer was not injected; `QuotaExceededError` classification is unit-tested.
 - Private/incognito eviction was characterized from known browser behavior, not by running a separate incognito profile in this pass.
-- Service worker *update* across two deploys was not fully timed in the GUI (new builds mint a new cache name; activate deletes old caches).
+- Service worker *update* across two deploys: **App update ready** was shown; a full skipWaiting/reload cycle was not separately timed beyond that banner.
 - First-ever visit without a completed load is **not** claimed offline.
 
 Use export as the recovery path. This is not production verification.

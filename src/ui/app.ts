@@ -14,6 +14,7 @@ type CaptureState = {
   recording: { blob: Blob; mimeType: string } | null;
   recorder: AudioCapture | null;
   recordingActive: boolean;
+  starting: boolean;
   permissionDenied: boolean;
   recorderUnavailable: boolean;
   mimeUnsupported: boolean;
@@ -28,6 +29,7 @@ const capture: CaptureState = {
   recording: null,
   recorder: null,
   recordingActive: false,
+  starting: false,
   permissionDenied: false,
   recorderUnavailable: false,
   mimeUnsupported: false,
@@ -36,11 +38,25 @@ const capture: CaptureState = {
   saving: false,
 };
 
-function resetCaptureMedia(): void {
-  capture.recording = null;
+export function isCaptureMicrophoneHeld(): boolean {
+  return capture.starting || capture.recordingActive || Boolean(capture.recorder?.isLive());
+}
+
+export function abandonLiveMicrophone(): void {
+  capture.recorder?.release();
   capture.recorder = null;
   capture.recordingActive = false;
+  capture.starting = false;
+}
+
+function resetCaptureMedia(): void {
+  abandonLiveMicrophone();
+  capture.recording = null;
   capture.interrupted = false;
+}
+
+function microphoneBusy(): boolean {
+  return capture.starting || capture.recordingActive;
 }
 
 export async function renderApp(root: HTMLElement): Promise<void> {
@@ -48,6 +64,10 @@ export async function renderApp(root: HTMLElement): Promise<void> {
   const { parts } = routeParts(window.location.hash.split("?")[0]);
   const section = parts[0] ?? "home";
   const current = !parts[0] ? "home" : section;
+
+  if (current !== "capture") {
+    abandonLiveMicrophone();
+  }
 
   root.replaceChildren();
   const skip = el("a", { class: "skip-link", href: "#main" }, ["Skip to content"]);
@@ -162,6 +182,7 @@ async function renderCapture(main: HTMLElement): Promise<void> {
     capture.recordingActive ? "Stop" : "Record",
   ]);
   const saveBtn = el("button", { type: "button", id: "save-btn" }, ["Save locally"]);
+  saveBtn.disabled = microphoneBusy();
   recordRow.append(recordBtn, saveBtn);
 
   const statusHost = el("div", { id: "capture-status" });
@@ -173,6 +194,8 @@ async function renderCapture(main: HTMLElement): Promise<void> {
         try {
           const result = await capture.recorder?.stop();
           capture.recordingActive = false;
+          capture.starting = false;
+          saveBtn.disabled = false;
           recordBtn.textContent = "Record";
           if (result) {
             capture.recording = { blob: result.blob, mimeType: result.mimeType };
@@ -180,8 +203,12 @@ async function renderCapture(main: HTMLElement): Promise<void> {
           }
         } catch (error) {
           capture.recordingActive = false;
+          capture.starting = false;
+          capture.recorder?.release();
+          capture.recorder = null;
+          saveBtn.disabled = false;
           recordBtn.textContent = "Record";
-          capture.saveError = error instanceof AppError ? error.message : "Recording failed.";
+          capture.saveError = error instanceof AppError ? error.message : "Recording failed. The microphone is off.";
         }
         paintCaptureStatus(statusHost, capability);
         return;
@@ -190,13 +217,25 @@ async function renderCapture(main: HTMLElement): Promise<void> {
         capture.saveError = null;
         capture.permissionDenied = false;
         capture.interrupted = false;
+        capture.starting = true;
+        saveBtn.disabled = true;
         paintCaptureStatus(statusHost, capability, "Waiting for microphone permission…");
         capture.recorder = new AudioCapture(capability);
         await capture.recorder.start();
+        if (capture.recorder === null) return;
+        capture.starting = false;
         capture.recordingActive = true;
+        saveBtn.disabled = true;
         recordBtn.textContent = "Stop";
-        announce("Recording");
+        announce("Recording. The microphone is on.");
+        paintCaptureStatus(statusHost, capability);
+        return;
       } catch (error) {
+        capture.starting = false;
+        capture.recordingActive = false;
+        capture.recorder?.release();
+        capture.recorder = null;
+        saveBtn.disabled = false;
         if (error instanceof AppError && error.code === "permission-denied") {
           capture.permissionDenied = true;
         } else if (error instanceof AppError && error.code === "mime-unsupported") {
@@ -214,6 +253,12 @@ async function renderCapture(main: HTMLElement): Promise<void> {
   saveBtn.addEventListener("click", () => {
     void (async () => {
       if (capture.saving) return;
+      if (microphoneBusy()) {
+        saveBtn.disabled = true;
+        capture.saveError = "Recording is still on. Stop first. The microphone has not been released.";
+        paintCaptureStatus(statusHost, capability);
+        return;
+      }
       if (!capture.type) {
         capture.saveError = "Choose Dream, Experience, or Sensation before saving.";
         paintCaptureStatus(statusHost, capability);
@@ -269,8 +314,17 @@ function paintCaptureStatus(
   pending?: string,
 ): void {
   host.replaceChildren();
+  if (capture.recordingActive) {
+    host.append(
+      statusBox(
+        "info",
+        "Recording",
+        "The microphone is on. Stop before saving or leaving Capture. Leaving this page turns the microphone off.",
+      ),
+    );
+  }
   if (pending) {
-    host.append(statusBox("info", "Saving", pending));
+    host.append(statusBox("info", pending, "The microphone is not saved as an entry until you stop and then save."));
     return;
   }
   if (capture.saveError) host.append(statusBox("error", "Not saved", capture.saveError));

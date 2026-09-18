@@ -8,6 +8,8 @@ export const RECORDING_CANDIDATES = [
   "audio/ogg",
 ] as const;
 
+export const GET_USER_MEDIA_TIMEOUT_MS = 12_000;
+
 export type RecorderCapability = {
   mediaDevices: boolean;
   getUserMedia: boolean;
@@ -59,20 +61,15 @@ export type RecordingResult = {
   interrupted: boolean;
 };
 
-function withTimeout<T>(promise: Promise<T>, ms: number, onTimeout: () => Error): Promise<T> {
-  return new Promise((resolve, reject) => {
-    const timer = setTimeout(() => reject(onTimeout()), ms);
-    promise.then(
-      (value) => {
-        clearTimeout(timer);
-        resolve(value);
-      },
-      (error: unknown) => {
-        clearTimeout(timer);
-        reject(error);
-      },
-    );
-  });
+export function stopAllTracks(stream: MediaStream | null | undefined): void {
+  if (!stream) return;
+  for (const track of stream.getTracks()) {
+    try {
+      track.stop();
+    } catch {
+      // already ended
+    }
+  }
 }
 
 export class AudioCapture {
@@ -81,24 +78,62 @@ export class AudioCapture {
   private chunks: Blob[] = [];
   private interrupted = false;
   private stopPromise: Promise<RecordingResult> | null = null;
+  private timeoutId: ReturnType<typeof setTimeout> | null = null;
+  private abandoned = false;
+  private pendingMedia: Promise<MediaStream> | null = null;
 
   constructor(private readonly capability = inspectRecorderCapability()) {}
 
+  isLive(): boolean {
+    if (this.recorder && this.recorder.state !== "inactive") return true;
+    if (this.pendingMedia) return true;
+    if (!this.stream) return false;
+    return this.stream.getTracks().some((track) => track.readyState !== "ended");
+  }
+
   async start(): Promise<void> {
-    assertCanRecord(this.capability);
+    this.release();
+    this.abandoned = false;
     this.chunks = [];
     this.interrupted = false;
+    assertCanRecord(this.capability);
+
+    const mediaRequest = navigator.mediaDevices.getUserMedia({ audio: true });
+    this.pendingMedia = mediaRequest;
+    const discardIfNotKept = (stream: MediaStream) => {
+      if (this.stream !== stream) stopAllTracks(stream);
+    };
+
+    let stream: MediaStream;
     try {
-      this.stream = await withTimeout(
-        navigator.mediaDevices.getUserMedia({ audio: true }),
-        12000,
-        () =>
-          new AppError(
-            "recorder-failed",
-            "The microphone did not become available. No permission loop was started. Text capture still works.",
-          ),
-      );
+      stream = await new Promise<MediaStream>((resolve, reject) => {
+        this.timeoutId = setTimeout(() => {
+          this.timeoutId = null;
+          reject(
+            new AppError(
+              "recorder-failed",
+              "The microphone did not become available. No permission loop was started. Text capture still works.",
+            ),
+          );
+        }, GET_USER_MEDIA_TIMEOUT_MS);
+        mediaRequest.then(
+          (value) => {
+            this.clearTimeoutId();
+            resolve(value);
+          },
+          (error: unknown) => {
+            this.clearTimeoutId();
+            reject(error);
+          },
+        );
+      });
     } catch (error) {
+      this.clearTimeoutId();
+      this.pendingMedia = null;
+      void mediaRequest.then(discardIfNotKept, () => undefined);
+      if (this.abandoned) {
+        throw new AppError("recorder-failed", "Recording was cancelled. The microphone is off.");
+      }
       if (error instanceof AppError) throw error;
       const name = error instanceof DOMException ? error.name : "";
       if (name === "NotAllowedError" || name === "PermissionDeniedError") {
@@ -113,11 +148,18 @@ export class AudioCapture {
       throw new AppError("recorder-failed", "The microphone could not be opened. Text capture still works.");
     }
 
+    this.pendingMedia = null;
+    if (this.abandoned) {
+      stopAllTracks(stream);
+      throw new AppError("recorder-failed", "Recording was cancelled. The microphone is off.");
+    }
+
+    this.stream = stream;
     const mimeType = this.capability.selectedMimeType ?? "";
     try {
       this.recorder = mimeType ? new MediaRecorder(this.stream, { mimeType }) : new MediaRecorder(this.stream);
     } catch {
-      this.cleanupStream();
+      this.release();
       throw new AppError("mime-unsupported", "Recording could not start with an available format. Text capture still works.");
     }
 
@@ -128,21 +170,33 @@ export class AudioCapture {
       };
       recorder.onerror = () => {
         this.interrupted = true;
-        reject(new AppError("recorder-failed", "Recording failed. Nothing was saved automatically."));
+        stopAllTracks(this.stream);
+        this.stream = null;
+        this.recorder = null;
+        this.stopPromise = null;
+        reject(new AppError("recorder-failed", "Recording failed. The microphone is off. Nothing was saved automatically."));
       };
       recorder.onstop = () => {
         const type = recorder.mimeType || mimeType || "application/octet-stream";
         const blob = new Blob(this.chunks, { type });
-        this.cleanupStream();
+        stopAllTracks(this.stream);
+        this.stream = null;
         resolve({ blob, mimeType: type, interrupted: this.interrupted });
       };
     });
+    void this.stopPromise.catch(() => undefined);
 
     for (const track of this.stream.getTracks()) {
       track.addEventListener("ended", () => {
         this.interrupted = true;
         if (this.recorder && this.recorder.state !== "inactive") {
-          this.recorder.stop();
+          try {
+            this.recorder.stop();
+          } catch {
+            this.release();
+          }
+        } else {
+          this.release();
         }
       });
     }
@@ -150,38 +204,68 @@ export class AudioCapture {
     try {
       recorder.start(250);
     } catch {
-      this.cleanupStream();
-      throw new AppError("recorder-failed", "Recording could not start.");
+      this.release();
+      throw new AppError("recorder-failed", "Recording could not start. The microphone is off.");
     }
   }
 
   async stop(): Promise<RecordingResult> {
     if (!this.recorder || !this.stopPromise) {
+      this.release();
       throw new AppError("recorder-failed", "There is no active recording to stop.");
     }
     if (this.recorder.state !== "inactive") {
-      this.recorder.stop();
+      try {
+        this.recorder.stop();
+      } catch {
+        this.release();
+        throw new AppError("recorder-failed", "Recording could not be stopped cleanly. The microphone is off.");
+      }
     }
-    const result = await this.stopPromise;
+    try {
+      const result = await this.stopPromise;
+      this.recorder = null;
+      this.stopPromise = null;
+      stopAllTracks(this.stream);
+      this.stream = null;
+      if (result.interrupted && result.blob.size === 0) {
+        throw new AppError("recording-interrupted", "Recording was interrupted before any audio was captured. The microphone is off.");
+      }
+      return result;
+    } catch (error) {
+      this.release();
+      throw error;
+    }
+  }
+
+  release(): void {
+    this.abandoned = true;
+    this.clearTimeoutId();
+    const pending = this.pendingMedia;
+    this.pendingMedia = null;
+    if (pending) {
+      void pending.then((stream) => {
+        if (this.stream !== stream) stopAllTracks(stream);
+      }, () => undefined);
+    }
+    const recorder = this.recorder;
     this.recorder = null;
     this.stopPromise = null;
-    if (result.interrupted && result.blob.size === 0) {
-      throw new AppError("recording-interrupted", "Recording was interrupted before any audio was captured.");
+    if (recorder && recorder.state !== "inactive") {
+      try {
+        recorder.stop();
+      } catch {
+        // already stopping
+      }
     }
-    return result;
-  }
-
-  interruptFromOutside(): void {
-    this.interrupted = true;
-    if (this.recorder && this.recorder.state !== "inactive") {
-      this.recorder.stop();
-    }
-  }
-
-  private cleanupStream(): void {
-    if (this.stream) {
-      for (const track of this.stream.getTracks()) track.stop();
-    }
+    stopAllTracks(this.stream);
     this.stream = null;
+  }
+
+  private clearTimeoutId(): void {
+    if (this.timeoutId !== null) {
+      clearTimeout(this.timeoutId);
+      this.timeoutId = null;
+    }
   }
 }
