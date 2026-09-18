@@ -7,6 +7,7 @@ function listFiles(dir: string, prefix = ""): string[] {
   const files: string[] = [];
   for (const entry of entries) {
     if (entry.name === "sw.js") continue;
+    if (entry.name.endsWith(".map")) continue;
     const rel = prefix ? `${prefix}/${entry.name}` : entry.name;
     if (entry.isDirectory()) {
       files.push(...listFiles(join(dir, entry.name), rel));

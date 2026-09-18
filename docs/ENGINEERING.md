@@ -42,7 +42,7 @@ See the root README. Commands:
 
 - `npm install`
 - `npm run dev` — development server, **no service worker**
-- `npm run build` — icons + typecheck + production bundle + `dist/sw.js`
+- `npm run build` — verify founder brand files + typecheck + production bundle + `dist/sw.js`
 - `npm run preview` — production preview (service worker registers)
 - `npm test` — Vitest (jsdom + fake-indexeddb)
 - `npm run typecheck`
@@ -122,7 +122,8 @@ Microphone permission is requested only inside the Record action (`getUserMedia`
 ## PWA / offline boundary
 
 - Manifest: `/manifest.webmanifest`
-- Icons: original neutral mark (circle + stem), SVG + 192/512 PNG
+- Icons: founder pack copied into `public/` (not generated). Header uses `pex-logo-primary.svg`; bedtime uses `pex-logo-primary-reverse.svg`. PWA icons are the supplied dark/light 180/192/512 PNGs. Favicon uses `pex-favicon.ico` plus the symbol/dark PNG set.
+- `scripts/generate-icons.mjs` verifies those files exist and refuses to invent a substitute mark.
 - Service worker: generated at **production build** into `dist/sw.js`
 - Precaches the built application shell (HTML, hashed assets, manifest, icons)
 - Navigation: network first, fallback to cached `index.html`
@@ -205,11 +206,9 @@ Development dependencies (Vite, TypeScript, Vitest, jsdom, fake-indexeddb, ESLin
 
 ## Tested facts vs limitations (this worker pass)
 
-Recorded separately from product claims after the complete-product-surface implementation. Environment notes belong on the pull request.
+Issue #4 brand + predeployment QA was exercised on Chromium in a cloud VM against `npm run preview` at `http://127.0.0.1:4173/`. Not a real Android/iPhone device and not an external HTTPS host.
 
-### Core engineering invariants retained
-
-Capture, journal, export, microphone lifecycle, persist reporting, and no-journal-network behavior remain as specified in the accepted Core Engineering baseline.
+See the Issue #4 pull request for the current evidence packet (routes, logos, bundle sizes, offline, privacy).
 
 ## Out of scope (stop conditions honored)
 

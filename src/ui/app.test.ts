@@ -1,6 +1,16 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { abandonLiveMicrophone, isCaptureMicrophoneHeld, renderApp } from "./app.ts";
 import { localStore } from "../db/store.ts";
+import { DB_NAME } from "../domain/types.ts";
+
+async function resetLocalDatabase(): Promise<void> {
+  await new Promise<void>((resolve, reject) => {
+    const request = indexedDB.deleteDatabase(DB_NAME);
+    request.onsuccess = () => resolve();
+    request.onerror = () => reject(request.error ?? new Error("could not reset indexeddb"));
+    request.onblocked = () => resolve();
+  });
+}
 
 async function mount(hash: string): Promise<HTMLElement> {
   window.location.hash = hash;
@@ -11,9 +21,10 @@ async function mount(hash: string): Promise<HTMLElement> {
 }
 
 describe("core UI flows", () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     localStorage.clear();
     sessionStorage.clear();
+    await resetLocalDatabase();
   });
 
   it("reaches Capture in one intentional action from Home", async () => {
@@ -76,6 +87,30 @@ describe("core UI flows", () => {
     expect(root.querySelector("legend")?.textContent).toBe("Capture type");
     expect(root.querySelector('label[for="capture-note"]')).toBeTruthy();
     expect(root.querySelector("h2")).toBeTruthy();
+  });
+
+  it("uses the founder primary mark in the header without a hero lockup", async () => {
+    const root = await mount("#/");
+    const light = root.querySelector(".brand-logo-light") as HTMLImageElement;
+    const reverse = root.querySelector(".brand-logo-reverse") as HTMLImageElement;
+    expect(light.getAttribute("src")).toBe("/brand/pex-logo-primary.svg");
+    expect(reverse.getAttribute("src")).toBe("/brand/pex-logo-primary-reverse.svg");
+    expect(root.querySelector("h1")?.textContent).toBe("Psychical Excursion");
+    expect(root.querySelector("h1")?.classList.contains("visually-hidden")).toBe(true);
+    expect(root.textContent).not.toMatch(/DEVELOPMENT FIXTURE/);
+  });
+
+  it("renders all 60 canonical days without fixture copy", async () => {
+    const { loadCurriculumPacket } = await import("../content/load.ts");
+    const packet = loadCurriculumPacket();
+    expect(packet.source).toBe("canonical-packet");
+    expect(packet.days).toHaveLength(60);
+    for (const document of packet.days) {
+      const root = await mount(`#/day/${document.day}`);
+      expect(root.querySelector("h2")?.textContent).toBe(document.title);
+      expect(root.textContent).not.toMatch(/DEVELOPMENT FIXTURE/);
+      expect(root.textContent).not.toMatch(/placeholder day/i);
+    }
   });
 
   it("renders required local product surfaces", async () => {

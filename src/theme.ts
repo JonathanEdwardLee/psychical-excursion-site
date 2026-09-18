@@ -15,7 +15,7 @@ export function readTheme(): ThemeMode {
 export function applyTheme(mode: ThemeMode = readTheme()): ThemeMode {
   const root = document.documentElement;
   root.dataset.theme = mode;
-  const themeColor = mode === "bedtime" ? "#16120e" : "#f4ead8";
+  const themeColor = mode === "bedtime" ? "#14110e" : "#f3e6cf";
   const meta = document.querySelector('meta[name="theme-color"]');
   if (meta) meta.setAttribute("content", themeColor);
   try {

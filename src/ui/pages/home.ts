@@ -13,7 +13,7 @@ export async function renderHomePage(main: HTMLElement): Promise<void> {
   main.append(
     el("article", { class: "surface home-surface" }, [
       el("p", { class: "eyebrow" }, ["Local practice"]),
-      el("h2", {}, ["Psychical Excursion"]),
+      el("h2", {}, ["A quiet 60-day instrument"]),
       el("p", { class: "lede" }, [
         "A 60-day, belief-optional reading and journal instrument. Notes and recordings stay on this device. They are not cloud backed up.",
       ]),
