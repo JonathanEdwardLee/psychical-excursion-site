@@ -54,10 +54,22 @@ export async function renderDayPage(
     );
   }
   reading.append(renderSections(document));
+  const ticks = document.sections.map((section) =>
+    el("li", { class: "read-tick", "data-section": section.heading }, [section.heading]),
+  );
   const rail = el("aside", { class: "day-rail-panel" }, [
     el("p", { class: "eyebrow" }, [phase ? `${phase.name}` : "Phase"]),
     el("p", { class: "day-rail-index" }, [
       phase ? `${phase.index} of ${phase.length} in this phase` : `Day ${day}`,
+    ]),
+    el("div", {
+      class: "read-progress",
+      role: "img",
+      "aria-label": "Reading position in this day",
+    }, [
+      el("div", { class: "read-axis" }, [el("span", { class: "read-bead" })]),
+      el("p", { class: "read-place", id: "read-place" }, ["Start"]),
+      el("ol", { class: "read-ticks" }, ticks),
     ]),
     phaseNav(document.phaseId),
   ]);

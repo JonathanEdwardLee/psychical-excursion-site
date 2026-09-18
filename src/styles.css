@@ -571,9 +571,94 @@ input {
   text-transform: uppercase;
 }
 
-.phase-nav-link[aria-current="page"] {
+.phase-nav-link[aria-current="page"],
+.phase-nav-link.is-scroll-current {
   box-shadow: none;
   border-bottom-color: var(--ink);
+}
+
+.journey-live {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  margin: 0;
+  padding: 0.55rem 0 0.6rem;
+  background: var(--bg);
+  font-family: var(--font-ui);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  border-bottom: 1px solid var(--ink);
+}
+
+.phase-chapter.is-active .day-rail::before {
+  opacity: 1;
+  width: 2px;
+}
+
+.phase-chapter.is-active .phase-index {
+  box-shadow: inset 0 -2px 0 var(--ink);
+}
+
+.read-progress {
+  display: grid;
+  gap: 0.45rem;
+  --read: 0;
+}
+
+.read-axis {
+  position: relative;
+  width: 1px;
+  height: 4.8rem;
+  background: var(--line);
+  margin-left: 0.32rem;
+}
+
+.read-bead {
+  position: absolute;
+  left: -3px;
+  top: 0;
+  width: 0.45rem;
+  height: 0.45rem;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  background: var(--bg);
+  transform: translateY(calc((4.8rem - 0.45rem) * var(--read, 0)));
+  transition: transform var(--ease), background var(--ease);
+}
+
+.read-progress[data-read="100"] .read-bead {
+  background: var(--ink);
+}
+
+.read-place {
+  margin: 0;
+  font-family: var(--font-ui);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+.read-ticks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.2rem;
+}
+
+.read-tick {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.read-tick.is-current {
+  color: var(--ink);
+  box-shadow: inset 2px 0 0 var(--ink);
+  padding-left: 0.45rem;
 }
 
 .days-surface {

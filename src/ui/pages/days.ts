@@ -44,6 +44,11 @@ export async function renderDaysPage(main: HTMLElement): Promise<void> {
         el("p", { class: "meta" }, [`${done} of 60 marked complete on this device.`]),
         phaseNav(),
       ]),
+        el("p", {
+          class: "journey-live",
+          id: "journey-live",
+          hidden: true,
+        }, [" "]),
       journey,
     ]),
   );

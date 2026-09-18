@@ -10,6 +10,7 @@ import { renderDayPage, renderTodayPage } from "./pages/day.ts";
 import { renderDaysPage, renderPhasePage } from "./pages/days.ts";
 import { renderAboutPage, renderHomePage, renderMethodPage } from "./pages/home.ts";
 import { parseRoute } from "./routes.ts";
+import { bindDayReading, bindPhaseJourney, stopScrollPresence } from "./scrollPresence.ts";
 import { renderChrome } from "./shell.ts";
 
 type CaptureState = {
@@ -70,6 +71,7 @@ export async function renderApp(root: HTMLElement): Promise<void> {
     abandonLiveMicrophone();
   }
 
+  stopScrollPresence();
   const { main } = renderChrome(root, route);
 
   try {
@@ -90,10 +92,12 @@ export async function renderApp(root: HTMLElement): Promise<void> {
           statusBox("error", "Unknown route", "Use the primary navigation. Capture remains one step from Home."),
         ]),
       );
-    } else await renderHomePage(main);
+    }     else await renderHomePage(main);
   } catch (error) {
     main.append(renderFatal(error));
   }
+  if (route.name === "days") bindPhaseJourney(root);
+  if (route.name === "day" || route.name === "today") bindDayReading(root);
 }
 
 function renderFatal(error: unknown): HTMLElement {
