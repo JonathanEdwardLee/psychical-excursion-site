@@ -16,7 +16,8 @@ The project is designed to be useful without requiring a spiritual belief system
 - Installable PWA with application-shell offline behavior after a successful load
 - Founder-approved PEx mark in the header (restrained); bedtime uses the reverse lockup on dark surfaces
 - Private journal text and audio are not transmitted to a server, analytics service, or external API
-- No AI, Google identity/Drive/Docs, astronomy, donations, payments, backend, or public launch infrastructure
+- No AI, Google identity/Drive/Docs, astronomy, donations, payments, or backend services
+- Production hosting is a static Hostinger document root published from the `hostinger-deploy` artifact branch (see [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md))
 
 ## Local development
 
@@ -43,6 +44,11 @@ npm test
 npm run typecheck
 npm run lint
 npm run build
+npm run package:release
+npm run verify:release
+npm run verify:canonical
+npm run verify:brand
+npm run verify:privacy
 ```
 
 ## Architecture (short)
@@ -51,6 +57,6 @@ Vanilla TypeScript + Vite. Hash routes (`#/`, `#/today`, `#/day/1`–`#/day/60`,
 
 ## Status
 
-Worker maximum for this pass: `CODE_COMPLETE / PRIMARY_REVIEW_REQUIRED`. This is not production verification and is not a public launch.
+Worker maximum for this pass: `CODE_COMPLETE / DEPLOYMENT_READY / PRIMARY_REVIEW_REQUIRED`. This is not independent live-domain verification.
 
 Website design and development: [Hoopsnake Designs](https://hoopsnakedesigns.com/)

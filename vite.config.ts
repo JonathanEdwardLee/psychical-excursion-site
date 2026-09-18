@@ -107,6 +107,10 @@ self.addEventListener("fetch", (event) => {
 export default defineConfig({
   plugins: [pexServiceWorker()],
   build: {
-    sourcemap: true,
+    // Production artifact is public on the real domain. Do not ship source maps.
+    sourcemap: false,
+    // Single hashed app chunk; skip Vite's modulepreload polyfill so application JS
+    // does not contain a fetch() helper.
+    modulePreload: { polyfill: false },
   },
 });

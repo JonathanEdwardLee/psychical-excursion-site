@@ -42,7 +42,8 @@ See the root README. Commands:
 
 - `npm install`
 - `npm run dev` — development server, **no service worker**
-- `npm run build` — verify founder brand files + typecheck + production bundle + `dist/sw.js`
+- `npm run build` — verify founder brand files + typecheck + production bundle + `dist/sw.js` (no source maps)
+- `npm run package:release` — copy runtime files into `release/` with `.htaccess` and `SOURCE_SHA.txt`
 - `npm run preview` — production preview (service worker registers)
 - `npm test` — Vitest (jsdom + fake-indexeddb)
 - `npm run typecheck`
@@ -124,7 +125,7 @@ Microphone permission is requested only inside the Record action (`getUserMedia`
 - Manifest: `/manifest.webmanifest`
 - Icons: founder pack copied into `public/` (not generated). Header uses `pex-logo-primary.svg`; bedtime uses `pex-logo-primary-reverse.svg`. PWA icons are the supplied dark/light 180/192/512 PNGs. Favicon uses `pex-favicon.ico` plus the symbol/dark PNG set.
 - `scripts/generate-icons.mjs` verifies those files exist and refuses to invent a substitute mark.
-- Service worker: generated at **production build** into `dist/sw.js`
+- Service worker: generated at **production build** into `dist/sw.js`. Production source maps are disabled so the public artifact does not ship original TypeScript.
 - Precaches the built application shell (HTML, hashed assets, manifest, icons)
 - Navigation: network first, fallback to cached `index.html`
 - Other same-origin GET: cache, then network, then cache
@@ -212,4 +213,6 @@ See the Issue #4 pull request for the current evidence packet (routes, logos, bu
 
 ## Out of scope (stop conditions honored)
 
-Inventing canonical Days 1–60, health/sleep treatment advice, Google services, AI, astronomy, donations, payments, analytics, backends, remote sync, public DNS/deployment, tester communications.
+Inventing canonical Days 1–60, health/sleep treatment advice, Google services, AI, astronomy, donations, payments, analytics, backends, remote sync, tester communications.
+
+Static Hostinger publication of the verified runtime artifact is in scope for PEX-PUBLIC-RELEASE-004. See [DEPLOYMENT.md](DEPLOYMENT.md).

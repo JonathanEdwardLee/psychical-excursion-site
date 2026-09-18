@@ -12,7 +12,17 @@
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "icons": "node scripts/generate-icons.mjs"
+    "icons": "node scripts/generate-icons.mjs",
+    "package:release": "node scripts/package-release.mjs",
+    "verify:release": "bash scripts/verify-release-artifact.sh",
+    "verify:canonical": "node scripts/verify-canonical-artifact.mjs",
+    "verify:brand": "bash scripts/verify-brand-pwa.sh",
+    "verify:privacy": "node scripts/verify-runtime-privacy.mjs",
+    "test:publish": "bash scripts/test-publish-hostinger-deploy.sh",
+    "report:release": "node scripts/report-release-tree.mjs"
+  },
+  "engines": {
+    "node": ">=22.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.35.0",
