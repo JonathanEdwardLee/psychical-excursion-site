@@ -59,7 +59,7 @@ export function bindPhaseJourney(root: HTMLElement): void {
 
   let current: HTMLElement | null = null;
   const paint = () => {
-    const next = closestInView(chapters) ?? current ?? chapters[0] ?? null;
+    const next = closestInView(chapters, 0.12, 0.82) ?? current ?? chapters[0] ?? null;
     if (!next) return;
     current = next;
     for (const chapter of chapters) {
