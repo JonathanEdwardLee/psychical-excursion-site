@@ -14,6 +14,7 @@ The project is designed to be useful without requiring a spiritual belief system
 - Explicit Complete Day / undo (no scroll-depth completion, no streak punishment)
 - Optional local audio capture (MediaRecorder)
 - Installable PWA with application-shell offline behavior after a successful load
+- Founder-approved PEx mark in the header (restrained); bedtime uses the reverse lockup on dark surfaces
 - Private journal text and audio are not transmitted to a server, analytics service, or external API
 - No AI, Google identity/Drive/Docs, astronomy, donations, payments, backend, or public launch infrastructure
 

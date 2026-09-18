@@ -1,0 +1,14 @@
+Founder-approved PEx brand pack used in this build.
+
+Pack: Psychical-Excursion-Brand-Pack.zip
+Issue: #4 (PEX-INTERNAL-RELEASE-QA-003)
+Mapping: PEx Primary comment on Issue #4
+
+Integrated (copied, not redrawn):
+- Website header: svg/pex-logo-primary.svg → public/brand/pex-logo-primary.svg
+- Reverse on bedtime (dark) surfaces: svg/pex-logo-primary-reverse.svg → public/brand/pex-logo-primary-reverse.svg
+- Favicon: icons/pex-favicon.ico + symbol 16/32/48/64 and dark 16/32/48/64
+- PWA / Apple: supplied dark and light 180/192/512 PNGs (no resampling)
+
+Not shipped in the web shell (kept out of the service-worker precache):
+- brand sheet, large PNG lockups, 1024 app icons, unused compact/initials/wordmark/symbol SVGs

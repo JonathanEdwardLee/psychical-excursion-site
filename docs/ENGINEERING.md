@@ -42,7 +42,7 @@ See the root README. Commands:
 
 - `npm install`
 - `npm run dev` — development server, **no service worker**
-- `npm run build` — icons + typecheck + production bundle + `dist/sw.js`
+- `npm run build` — verify founder brand files + typecheck + production bundle + `dist/sw.js`
 - `npm run preview` — production preview (service worker registers)
 - `npm test` — Vitest (jsdom + fake-indexeddb)
 - `npm run typecheck`
@@ -122,7 +122,8 @@ Microphone permission is requested only inside the Record action (`getUserMedia`
 ## PWA / offline boundary
 
 - Manifest: `/manifest.webmanifest`
-- Icons: original neutral mark (circle + stem), SVG + 192/512 PNG
+- Icons: founder pack copied into `public/` (not generated). Header uses `pex-logo-primary.svg`; bedtime uses `pex-logo-primary-reverse.svg`. PWA icons are the supplied dark/light 180/192/512 PNGs. Favicon uses `pex-favicon.ico` plus the symbol/dark PNG set.
+- `scripts/generate-icons.mjs` verifies those files exist and refuses to invent a substitute mark.
 - Service worker: generated at **production build** into `dist/sw.js`
 - Precaches the built application shell (HTML, hashed assets, manifest, icons)
 - Navigation: network first, fallback to cached `index.html`

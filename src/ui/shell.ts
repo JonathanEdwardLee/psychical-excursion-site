@@ -41,9 +41,24 @@ export function renderChrome(
   const moreCurrent = MORE_ITEMS.some((item) => item.id === current);
   const header = el("header", { class: "app-header" }, [
     el("div", { class: "brand-row" }, [
-      el("a", { href: "#/", class: "brand-link" }, [
-        el("p", { class: "mark" }, ["PEx"]),
-        el("h1", {}, ["Psychical Excursion"]),
+      el("a", { href: "#/", class: "brand-link", "aria-label": "Psychical Excursion home" }, [
+        el("img", {
+          class: "brand-logo brand-logo-light",
+          src: "/brand/pex-logo-primary.svg",
+          alt: "",
+          width: "220",
+          height: "52",
+          decoding: "async",
+        }),
+        el("img", {
+          class: "brand-logo brand-logo-reverse",
+          src: "/brand/pex-logo-primary-reverse.svg",
+          alt: "",
+          width: "220",
+          height: "52",
+          decoding: "async",
+        }),
+        el("h1", { class: "visually-hidden" }, ["Psychical Excursion"]),
       ]),
       themeToggle(),
     ]),
@@ -79,12 +94,20 @@ export function renderChrome(
 }
 
 function themeToggle(): HTMLButtonElement {
-  const button = el("button", { type: "button", id: "theme-toggle-header", class: "quiet" }, [
-    readTheme() === "bedtime" ? "Warm light" : "Bedtime",
-  ]);
+  const bedtime = readTheme() === "bedtime";
+  const button = el("button", {
+    type: "button",
+    id: "theme-toggle-header",
+    class: "quiet",
+    "aria-pressed": bedtime ? "true" : "false",
+    "aria-label": bedtime ? "Switch to warm light" : "Switch to bedtime mode",
+  }, [bedtime ? "Warm light" : "Bedtime"]);
   button.addEventListener("click", () => {
     const mode = toggleTheme();
-    button.textContent = mode === "bedtime" ? "Warm light" : "Bedtime";
+    const nowBedtime = mode === "bedtime";
+    button.textContent = nowBedtime ? "Warm light" : "Bedtime";
+    button.setAttribute("aria-pressed", nowBedtime ? "true" : "false");
+    button.setAttribute("aria-label", nowBedtime ? "Switch to warm light" : "Switch to bedtime mode");
   });
   return button;
 }

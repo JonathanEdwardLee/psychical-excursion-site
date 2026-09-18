@@ -319,11 +319,13 @@ function paintCaptureStatus(
   if (capture.recording) {
     const player = el("audio", { controls: "true" }) as HTMLAudioElement;
     player.src = URL.createObjectURL(capture.recording.blob);
-    host.append(el("p", { class: "meta" }, [` unsaved recording (${capture.recording.mimeType})`]), player);
+    host.append(el("p", { class: "meta" }, [`Unsaved recording (${capture.recording.mimeType})`]), player);
   }
   host.append(
     el("p", { class: "hint" }, [
-      `Format probe: ${capability.selectedMimeType ?? "none selected"}. Save stays disabled from claiming success until IndexedDB confirms.`,
+      capability.selectedMimeType
+        ? `This browser can record as ${capability.selectedMimeType}. A save is shown only after IndexedDB confirms.`
+        : "This browser did not report a usable recording format. Text notes still save locally after IndexedDB confirms.",
     ]),
   );
 }
@@ -491,6 +493,13 @@ async function renderData(main: HTMLElement): Promise<void> {
   themeBtn.addEventListener("click", () => {
     const mode = toggleTheme();
     themeBtn.textContent = mode === "bedtime" ? "Use warm light" : "Use bedtime mode";
+    const headerBtn = document.getElementById("theme-toggle-header");
+    if (headerBtn) {
+      const bedtime = mode === "bedtime";
+      headerBtn.textContent = bedtime ? "Warm light" : "Bedtime";
+      headerBtn.setAttribute("aria-pressed", bedtime ? "true" : "false");
+      headerBtn.setAttribute("aria-label", bedtime ? "Switch to warm light" : "Switch to bedtime mode");
+    }
   });
 
   const schema = await localStore.getSchemaInfo();

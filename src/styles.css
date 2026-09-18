@@ -43,6 +43,10 @@ body {
   line-height: 1.62;
 }
 
+html {
+  overflow-x: clip;
+}
+
 body {
   min-height: 100dvh;
 }
@@ -78,24 +82,38 @@ body {
 
 .brand-row {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .brand-link {
   text-decoration: none;
   color: inherit;
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  max-width: min(16.5rem, calc(100% - 7rem));
 }
 
-.mark {
-  margin: 0;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  font-family: var(--font-ui);
-  font-size: 0.78rem;
-  color: var(--muted);
+.brand-logo {
+  display: block;
+  height: 1.85rem;
+  width: auto;
+  max-width: 100%;
+}
+
+.brand-logo-reverse {
+  display: none;
+}
+
+:root[data-theme="bedtime"] .brand-logo-light {
+  display: none;
+}
+
+:root[data-theme="bedtime"] .brand-logo-reverse {
+  display: block;
 }
 
 h1,
@@ -189,6 +207,7 @@ nav a[aria-current="page"] {
 .prose p {
   margin: 0 0 1rem;
   max-width: 40rem;
+  overflow-wrap: break-word;
 }
 
 .day-prose {
@@ -265,6 +284,7 @@ input {
   color: var(--ink);
   border: 1px solid var(--line);
   padding: 0.7rem;
+  overflow-wrap: break-word;
 }
 
 .status {
@@ -296,6 +316,7 @@ input {
   color: inherit;
   display: block;
   padding: 0.4rem 0;
+  overflow-wrap: anywhere;
 }
 
 .day-list {
@@ -304,6 +325,9 @@ input {
 
 .day-list a {
   min-height: var(--tap);
+  overflow-wrap: anywhere;
+  align-items: flex-start;
+  padding-block: 0.35rem;
 }
 
 .phase-block {
@@ -316,7 +340,8 @@ input {
 
 .site-footer {
   margin-top: 2.4rem;
-  padding-top: 0.4rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
 }
 
 .complete-panel {
@@ -375,6 +400,10 @@ input {
   #app {
     padding-inline: 0.9rem;
     padding-bottom: 6.25rem;
+  }
+
+  .brand-link {
+    max-width: min(18rem, 100%);
   }
 
   .nav-primary {
