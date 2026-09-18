@@ -127,6 +127,9 @@ describe("core UI flows", () => {
     const days = await mount("#/days");
     expect(days.textContent).toMatch(/REMEMBER/);
     expect(days.textContent).toMatch(/LEARN YOUR DOOR/);
+    expect(days.querySelectorAll(".day-row")).toHaveLength(60);
+    expect(days.querySelectorAll(".phase-chapter")).toHaveLength(8);
+    expect(days.querySelector(".day-row-link")?.querySelector(".day-title")?.textContent).toBe("CATCH THE DREAM");
     const phase = await mount("#/phase/feel");
     expect(phase.querySelector("h2")?.textContent).toBe("FEEL");
     const method = await mount("#/method");
@@ -144,6 +147,7 @@ describe("core UI flows", () => {
     (root.querySelector("#complete-day") as HTMLButtonElement).click();
     await vi.waitFor(() => {
       expect(root.querySelector("#undo-day")).toBeTruthy();
+      expect(root.querySelector(".complete-panel.is-complete")).toBeTruthy();
     });
     (root.querySelector("#undo-day") as HTMLButtonElement).click();
     await vi.waitFor(() => {

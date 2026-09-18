@@ -85,8 +85,8 @@ export async function renderApp(root: HTMLElement): Promise<void> {
     else if (route.name === "about") await renderAboutPage(main);
     else if (route.name === "unknown") {
       main.append(
-        el("section", {}, [
-          el("h2", {}, ["Not found"]),
+        el("section", { class: "editorial-page" }, [
+          el("h2", { class: "display-title" }, ["Not found"]),
           statusBox("error", "Unknown route", "Use the primary navigation. Capture remains one step from Home."),
         ]),
       );
@@ -114,7 +114,7 @@ async function renderCapture(main: HTMLElement): Promise<void> {
   if (!capability.mediaRecorder || !capability.getUserMedia) capture.recorderUnavailable = true;
   if (capability.mediaRecorder && !capability.selectedMimeType) capture.mimeUnsupported = true;
 
-  const heading = el("h2", {}, ["Capture"]);
+  const heading = el("h2", { class: "display-title" }, ["Capture"]);
   const lede = el("p", { class: "lede" }, [
     "Choose Dream, Experience, or Sensation. These are organizational labels, not interpretations. Microphone access is requested only if you tap Record.",
   ]);
@@ -267,7 +267,9 @@ async function renderCapture(main: HTMLElement): Promise<void> {
     recordRow,
     statusHost,
   );
-  main.append(heading, lede, form);
+  main.append(
+    el("article", { class: "surface capture-surface" }, [heading, lede, form]),
+  );
 }
 
 function paintCaptureStatus(
@@ -336,8 +338,9 @@ async function renderJournal(main: HTMLElement): Promise<void> {
   if (entries.length === 0) list.append(emptyJournal());
   else entries.forEach((entry) => list.append(entryCard(entry)));
   main.append(
-    el("section", {}, [
-      el("h2", {}, ["Journal"]),
+    el("section", { class: "journal-surface" }, [
+      el("p", { class: "eyebrow" }, ["On this device"]),
+      el("h2", { class: "display-title" }, ["Journal"]),
       el("p", { class: "lede" }, ["Chronological local entries. Newest first. Replay and delete live only on this device."]),
       list,
     ]),
@@ -353,7 +356,7 @@ async function renderEntry(main: HTMLElement, id: string): Promise<void> {
     return;
   }
   const { entry, media } = found;
-  const heading = el("h2", {}, ["Entry"]);
+  const heading = el("h2", { class: "display-title" }, ["Entry"]);
   const meta = el("p", { class: "meta" }, [
     `${entry.type} · `,
     el("time", { datetime: new Date(entry.createdAt).toISOString() }, [formatWhen(entry.createdAt)]),
@@ -488,25 +491,26 @@ async function renderData(main: HTMLElement): Promise<void> {
   });
 
   const themeBtn = el("button", { type: "button", id: "theme-toggle" }, [
-    readTheme() === "bedtime" ? "Use warm light" : "Use bedtime mode",
+    readTheme() === "bedtime" ? "Use light" : "Use bedtime mode",
   ]);
   themeBtn.addEventListener("click", () => {
     const mode = toggleTheme();
-    themeBtn.textContent = mode === "bedtime" ? "Use warm light" : "Use bedtime mode";
+    themeBtn.textContent = mode === "bedtime" ? "Use light" : "Use bedtime mode";
     const headerBtn = document.getElementById("theme-toggle-header");
     if (headerBtn) {
       const bedtime = mode === "bedtime";
-      headerBtn.textContent = bedtime ? "Warm light" : "Bedtime";
+      headerBtn.textContent = bedtime ? "Light" : "Bedtime";
       headerBtn.setAttribute("aria-pressed", bedtime ? "true" : "false");
-      headerBtn.setAttribute("aria-label", bedtime ? "Switch to warm light" : "Switch to bedtime mode");
+      headerBtn.setAttribute("aria-label", bedtime ? "Switch to light" : "Switch to bedtime mode");
     }
   });
 
   const schema = await localStore.getSchemaInfo();
 
   main.append(
-    el("section", { class: "stack" }, [
-      el("h2", {}, ["Data on this device"]),
+    el("section", { class: "stack editorial-page" }, [
+      el("p", { class: "eyebrow" }, ["Local storage"]),
+      el("h2", { class: "display-title" }, ["Data on this device"]),
       el("p", { class: "lede" }, [
         "Journal text, recordings, and progress live in this browser on this device. They are not sent to a server in this architecture. They are not cloud backed up. Browser or device data may be lost. Export is the recovery mechanism in this phase.",
       ]),
@@ -519,7 +523,7 @@ async function renderData(main: HTMLElement): Promise<void> {
       exportBtn,
       exportStatus,
       el("h3", {}, ["Appearance"]),
-      el("p", {}, ["Warm light is the default. Bedtime mode is a quieter dark surface. The choice is stored locally."]),
+      el("p", {}, ["Light is the default. Bedtime mode is a quieter dark surface. The choice is stored locally."]),
       themeBtn,
       el("h3", {}, ["Offline"]),
       el("p", {}, [
