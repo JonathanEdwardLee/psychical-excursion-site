@@ -35,6 +35,12 @@ describe("LocalStore", () => {
     expect(visited.day).toBe(12);
     expect(visited.unlocked).toBe(true);
     expect(visited.visitedAt).toBeTypeOf("number");
+    expect(visited.completedAt).toBeNull();
+    const completed = await store.completeDay(12);
+    expect(completed.completedAt).toBeTypeOf("number");
+    const undone = await store.undoDayCompletion(12);
+    expect(undone.completedAt).toBeNull();
+    expect(await store.loadResumeDay()).toBe(12);
   });
 
   it("refuses to open without IndexedDB", () => {

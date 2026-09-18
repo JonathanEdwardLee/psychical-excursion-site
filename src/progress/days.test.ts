@@ -5,7 +5,8 @@ import { DAY_COUNT } from "../domain/types.ts";
 describe("progress placeholders", () => {
   it("does not invent curriculum copy", () => {
     const copy = placeholderDayCopy(3);
-    expect(copy.body).toMatch(/not included/i);
+    expect(copy.body).toMatch(/DEVELOPMENT FIXTURE/);
+    expect(copy.body).toMatch(/not invented/i);
     expect(copy.body.toLowerCase()).not.toMatch(/breathe in for four/);
   });
 
@@ -14,6 +15,7 @@ describe("progress placeholders", () => {
       day: i + 1,
       unlocked: true as const,
       visitedAt: null,
+      completedAt: null,
     }));
     expect(allDaysUnlocked(rows)).toBe(true);
   });

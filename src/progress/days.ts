@@ -2,8 +2,8 @@ import { DAY_COUNT, type DayProgress } from "../domain/types.ts";
 
 export function placeholderDayCopy(day: number): { title: string; body: string } {
   return {
-    title: `Day ${day}`,
-    body: "Placeholder identifier only. Canonical lesson content is not included in this engineering build and will arrive through a later Primary-reviewed transport. This screen exists to prove local progress storage and navigation.",
+    title: `Day ${day} — DEVELOPMENT FIXTURE`,
+    body: "DEVELOPMENT FIXTURE — not canonical curriculum. Placeholder identifier only. Canonical lesson content is transported by PEx Primary and is not invented here.",
   };
 }
 

@@ -21,6 +21,7 @@ describe("core UI flows", () => {
     const cta = root.querySelector("#home-capture") as HTMLAnchorElement;
     expect(cta).toBeTruthy();
     expect(cta.getAttribute("href")).toBe("#/capture");
+    expect(root.querySelector('.nav-primary a[href="#/capture"]')).toBeTruthy();
     window.location.hash = "#/capture";
     await renderApp(root);
     expect(root.querySelector("h2")?.textContent).toBe("Capture");
@@ -75,6 +76,44 @@ describe("core UI flows", () => {
     expect(root.querySelector("legend")?.textContent).toBe("Capture type");
     expect(root.querySelector('label[for="capture-note"]')).toBeTruthy();
     expect(root.querySelector("h2")).toBeTruthy();
+  });
+
+  it("renders required local product surfaces", async () => {
+    const today = await mount("#/today");
+    expect(today.textContent).toMatch(/Today/);
+    expect(today.textContent).toMatch(/DEVELOPMENT FIXTURE/);
+    const day1 = await mount("#/day/1");
+    expect(day1.querySelector("h2")?.textContent).toMatch(/Day 1/);
+    expect(day1.querySelector("#complete-day")).toBeTruthy();
+    const day60 = await mount("#/day/60");
+    expect(day60.querySelector("h2")?.textContent).toMatch(/Day 60/);
+    const days = await mount("#/days");
+    expect(days.textContent).toMatch(/REMEMBER/);
+    expect(days.textContent).toMatch(/LEARN YOUR DOOR/);
+    const phase = await mount("#/phase/feel");
+    expect(phase.querySelector("h2")?.textContent).toBe("FEEL");
+    const method = await mount("#/method");
+    expect(method.querySelector("h2")?.textContent).toBe("Method");
+    const about = await mount("#/about");
+    expect(about.textContent).toMatch(/Evidence, safety, source/);
+    expect(about.textContent).toMatch(/Hoopsnake Designs/);
+    const fiftyOne = await mount("#/day/51");
+    expect(fiftyOne.textContent).toMatch(/Optional/);
+  });
+
+  it("completes and undoes a day without using scroll depth", async () => {
+    const root = await mount("#/day/2");
+    expect(root.querySelector("#complete-day")).toBeTruthy();
+    (root.querySelector("#complete-day") as HTMLButtonElement).click();
+    await vi.waitFor(() => {
+      expect(root.querySelector("#undo-day")).toBeTruthy();
+    });
+    (root.querySelector("#undo-day") as HTMLButtonElement).click();
+    await vi.waitFor(() => {
+      expect(root.querySelector("#complete-day")).toBeTruthy();
+    });
+    const listed = await localStore.listProgress();
+    expect(listed.find((row) => row.day === 2)?.completedAt).toBeNull();
   });
 });
 
