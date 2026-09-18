@@ -206,11 +206,9 @@ Development dependencies (Vite, TypeScript, Vitest, jsdom, fake-indexeddb, ESLin
 
 ## Tested facts vs limitations (this worker pass)
 
-Recorded separately from product claims after the complete-product-surface implementation. Environment notes belong on the pull request.
+Issue #4 brand + predeployment QA was exercised on Chromium in a cloud VM against `npm run preview` at `http://127.0.0.1:4173/`. Not a real Android/iPhone device and not an external HTTPS host.
 
-### Core engineering invariants retained
-
-Capture, journal, export, microphone lifecycle, persist reporting, and no-journal-network behavior remain as specified in the accepted Core Engineering baseline.
+See the Issue #4 pull request for the current evidence packet (routes, logos, bundle sizes, offline, privacy).
 
 ## Out of scope (stop conditions honored)
 
