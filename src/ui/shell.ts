@@ -68,12 +68,10 @@ export function renderChrome(
         ),
       ),
     ]),
-    el("div", { class: "header-tools" }, [
-      el("nav", { class: "nav-more", "aria-label": "More" }, [
-        ...MORE_ITEMS.map((item) => navAnchor(item.href, item.label, item.id === current)),
-      ]),
-      themeToggle(),
+    el("nav", { class: "nav-more", "aria-label": "More" }, [
+      ...MORE_ITEMS.map((item) => navAnchor(item.href, item.label, item.id === current)),
     ]),
+    themeToggle(),
   ]);
   if (moreCurrent) {
     header.querySelector(".nav-more")?.classList.add("is-open");

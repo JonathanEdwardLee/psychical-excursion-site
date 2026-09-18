@@ -4,7 +4,6 @@ import { completedCount, resumeDay } from "../../progress/progress.ts";
 import { ABOUT_PARAGRAPHS, EVIDENCE_PARAGRAPHS, METHOD_PARAGRAPHS } from "../copy.ts";
 import { el, formatWhen, text } from "../dom.ts";
 import { PHASE_INDEX_MARKS, padDay } from "../motif.ts";
-import { phaseNav } from "../shell.ts";
 
 export async function renderHomePage(main: HTMLElement): Promise<void> {
   const entries = await safeList();
@@ -68,7 +67,6 @@ export async function renderHomePage(main: HTMLElement): Promise<void> {
         ]),
       ]),
       dial,
-      phaseNav(),
     ]),
   );
 }
