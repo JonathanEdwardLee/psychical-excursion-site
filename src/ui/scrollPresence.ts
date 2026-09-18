@@ -91,9 +91,8 @@ export function bindDayReading(root: HTMLElement): void {
   if (!column || !meter) return;
 
   const paint = () => {
-    const rect = column.getBoundingClientRect();
-    const span = Math.max(1, rect.height - window.innerHeight * 0.4);
-    const progress = Math.min(1, Math.max(0, (window.innerHeight * 0.28 - rect.top) / span));
+    const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    const progress = Math.min(1, Math.max(0, window.scrollY / max));
     meter.style.setProperty("--read", String(progress));
     meter.dataset.read = `${Math.round(progress * 100)}`;
     const active = closestInView(sections, 0.18, 0.62);
