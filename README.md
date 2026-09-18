@@ -2,56 +2,53 @@
 
 **Psychical Excursion (PEx)** is a free, local-first 60-day practice guide for dream recall, lucid dreaming, body-sensory attention, sleep-edge awareness, and OBE-style experiences.
 
-The project is designed to be useful without requiring a spiritual belief system or making claims that consciousness literally leaves the body. The emphasis is on practical exercises, careful observation, privacy, and letting users interpret unusual experiences for themselves.
+This repository currently contains the **Core Engineering foundation** (local storage, capture, journal, export, progress shell, PWA, accessibility baseline). Canonical Days 1–60 content is not in this build.
 
-## Project goals
+The project is designed to be useful without requiring a spiritual belief system or making claims that consciousness literally leaves the body.
 
-- Free access with no ads or paywall
-- No account required
-- All 60 days available
-- Local-first journal and progress
-- Optional local audio capture
-- Installable PWA
-- Useful offline behavior
-- Mobile-first responsive design
-- Accessible, calm, low-friction interaction
-- No private journal content sent to a server
+## Product constraints
 
-## Design direction
+- Free, no ads, no paywall, no required account
+- All 60 days unlocked (placeholder day identifiers only in this pass)
+- Local-first journal and progress (IndexedDB)
+- Optional local audio capture (MediaRecorder)
+- Installable PWA with application-shell offline behavior after a successful load
+- Private journal text and audio are not transmitted to a server, analytics service, or external API
+- No AI, Google identity/Drive/Docs, astronomy, donations, payments, backend, or public launch infrastructure
 
-PEx follows a **Soft Instrument** visual direction: warm, quiet, typography-led, and subtly strange without falling into generic mystical or wellness aesthetics.
+## Local development
 
-The interface should feel finished, focused, and easy to use—especially at night and on a phone.
+```bash
+npm install
+npm run dev
+```
 
-## Technical direction
+Open the printed local URL. Service worker registration is **disabled in `npm run dev`** so that Vite’s module graph is not cached aggressively. Use a production preview to exercise offline/install behavior.
 
-The initial implementation favors a small browser-native stack:
+## Build and preview
 
-- TypeScript
-- Vite
-- semantic HTML
-- plain CSS
-- IndexedDB
-- MediaRecorder
-- Web App Manifest
-- Service Worker
+```bash
+npm run build
+npm run preview
+```
 
-Additional dependencies should earn their maintenance cost.
+`preview` serves the production assets, including the generated `sw.js`.
 
-## Privacy
+## Tests and checks
 
-The Phase 1 architecture is local-first. Journal text, recordings, and progress are intended to remain on the user's device.
+```bash
+npm test
+npm run typecheck
+npm run lint
+npm run build
+```
 
-Browser storage is not guaranteed permanent, so the product will provide clear storage status and a manual export path rather than pretending local data is automatically backed up.
+## Architecture (short)
+
+Vanilla TypeScript + Vite. Hash routes (`#/`, `#/capture`, `#/journal`, `#/days`, `#/data`). IndexedDB database `pex-local`. See [docs/ENGINEERING.md](docs/ENGINEERING.md) for schema, export format, privacy, PWA boundary, and known limitations.
 
 ## Status
 
-Early development.
-
-The first engineering milestone is the local PWA foundation: storage, capture, journal, export, progress, offline behavior, and accessibility before the complete 60-day experience is integrated.
-
-## About
-
-Psychical Excursion is created by Jonathan Edward Lee as a free public project and developer portfolio piece.
+`CODE_COMPLETE / PRIMARY_REVIEW_REQUIRED` for the foundation pass when the pull request is opened. This is not production verification.
 
 Website design and development: [Hoopsnake Designs](https://hoopsnakedesigns.com/)
