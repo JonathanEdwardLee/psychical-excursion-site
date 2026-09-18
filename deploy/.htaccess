@@ -1,0 +1,22 @@
+# Psychical Excursion — Hostinger document-root helpers.
+# Routing is hash-based (#/day/1). Do not add SPA fallback rewrites.
+
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Force HTTPS while preserving the requested host, then canonicalize www → apex.
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  RewriteCond %{HTTP_HOST} ^www\.psychicalexcursion\.com$ [NC]
+  RewriteRule ^ https://psychicalexcursion.com%{REQUEST_URI} [L,R=301]
+
+  RewriteRule ^(src|node_modules|tests|scripts|coverage)(/|$) - [F,L]
+  RewriteRule \.map$ - [F,L]
+</IfModule>
+
+<FilesMatch "\.(?:env|pem|key|php|ts|tsx)$">
+  Require all denied
+</FilesMatch>
