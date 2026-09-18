@@ -1,6 +1,16 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { abandonLiveMicrophone, isCaptureMicrophoneHeld, renderApp } from "./app.ts";
 import { localStore } from "../db/store.ts";
+import { DB_NAME } from "../domain/types.ts";
+
+async function resetLocalDatabase(): Promise<void> {
+  await new Promise<void>((resolve, reject) => {
+    const request = indexedDB.deleteDatabase(DB_NAME);
+    request.onsuccess = () => resolve();
+    request.onerror = () => reject(request.error ?? new Error("could not reset indexeddb"));
+    request.onblocked = () => resolve();
+  });
+}
 
 async function mount(hash: string): Promise<HTMLElement> {
   window.location.hash = hash;
@@ -11,9 +21,10 @@ async function mount(hash: string): Promise<HTMLElement> {
 }
 
 describe("core UI flows", () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     localStorage.clear();
     sessionStorage.clear();
+    await resetLocalDatabase();
   });
 
   it("reaches Capture in one intentional action from Home", async () => {

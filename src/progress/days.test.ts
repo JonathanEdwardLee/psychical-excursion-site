@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { allDaysUnlocked } from "./days.ts";
 import { DAY_COUNT } from "../domain/types.ts";
 
-describe("progress placeholders", () => {
+describe("progress rows", () => {
   it("requires sixty unlocked days in order", () => {
     const rows = Array.from({ length: DAY_COUNT }, (_, i) => ({
       day: i + 1,
