@@ -1,7 +1,5 @@
-import { packetStatus } from "../../content/load.ts";
 import { localStore } from "../../db/store.ts";
 import { completedCount, resumeDay } from "../../progress/progress.ts";
-import { statusBox } from "../bits.ts";
 import { ABOUT_PARAGRAPHS, EVIDENCE_PARAGRAPHS, METHOD_PARAGRAPHS } from "../copy.ts";
 import { el, formatWhen, text } from "../dom.ts";
 import { phaseNav } from "../shell.ts";
@@ -12,7 +10,6 @@ export async function renderHomePage(main: HTMLElement): Promise<void> {
   const resume = resumeDay(rows, await localStore.loadResumeDay());
   const done = completedCount(rows);
   const latest = entries[0];
-  const fixture = !packetStatus().readyForAcceptance;
   main.append(
     el("article", { class: "surface home-surface" }, [
       el("p", { class: "eyebrow" }, ["Local practice"]),
@@ -20,13 +17,6 @@ export async function renderHomePage(main: HTMLElement): Promise<void> {
       el("p", { class: "lede" }, [
         "A 60-day, belief-optional reading and journal instrument. Notes and recordings stay on this device. They are not cloud backed up.",
       ]),
-      fixture
-        ? statusBox(
-            "info",
-            "DEVELOPMENT FIXTURE",
-            "Day pages currently render structural fixtures. Canonical Days 1–60 are not invented here and are not yet integrated.",
-          )
-        : el("span"),
       el("p", { class: "meta" }, [`${done} of 60 days marked complete on this device.`]),
       el("div", { class: "actions" }, [
         el("a", { href: "#/capture", class: "button primary", id: "home-capture" }, ["Capture"]),

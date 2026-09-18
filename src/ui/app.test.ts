@@ -81,12 +81,14 @@ describe("core UI flows", () => {
   it("renders required local product surfaces", async () => {
     const today = await mount("#/today");
     expect(today.textContent).toMatch(/Today/);
-    expect(today.textContent).toMatch(/DEVELOPMENT FIXTURE/);
+    expect(today.textContent).toMatch(/CATCH THE DREAM/);
+    expect(today.textContent).not.toMatch(/DEVELOPMENT FIXTURE/);
     const day1 = await mount("#/day/1");
-    expect(day1.querySelector("h2")?.textContent).toMatch(/Day 1/);
+    expect(day1.querySelector("h2")?.textContent).toBe("CATCH THE DREAM");
+    expect(day1.textContent).toMatch(/Start with recall/);
     expect(day1.querySelector("#complete-day")).toBeTruthy();
     const day60 = await mount("#/day/60");
-    expect(day60.querySelector("h2")?.textContent).toMatch(/Day 60/);
+    expect(day60.querySelector("h2")?.textContent).toBe("INDEPENDENT ATTEMPT");
     const days = await mount("#/days");
     expect(days.textContent).toMatch(/REMEMBER/);
     expect(days.textContent).toMatch(/LEARN YOUR DOOR/);

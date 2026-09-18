@@ -11,14 +11,14 @@ Keep a trustworthy browser-native product:
 - Chronological journal with delete
 - Manual ZIP export
 - Days 1–60 routes, eight phases, Today resume, explicit complete/undo
-- Local content packet renderer (canonical packet when present; otherwise marked development fixtures)
+- Local content packet renderer for Primary-transported Days 1–60
 - Method, About, evidence/safety/source copy
 - PWA install + offline-after-load, including hashed app-shell + bundled day renderer
 - Honest storage-persistence reporting
 - Soft Instrument presentation (warm light default, optional bedtime mode)
 - Accessibility baseline
 
-CloudDev must not invent canonical curriculum. `src/content/canonical.ts` stays `null` until the Primary-transported packet is integrated. Fixture copy is labeled `DEVELOPMENT FIXTURE` and is not eligible for Complete Product acceptance.
+CloudDev must not invent or rewrite canonical curriculum. Days 1–60 are loaded from `src/content/canonical.ts` as transported by PEx Primary.
 
 ## Architecture
 

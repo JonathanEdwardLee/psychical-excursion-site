@@ -1,4 +1,3 @@
-import { packetStatus } from "../content/load.ts";
 import { PHASES } from "../content/phases.ts";
 import { applyTheme, readTheme, toggleTheme } from "../theme.ts";
 import { el, text } from "./dom.ts";
@@ -68,7 +67,7 @@ export function renderChrome(
   const main = el("main", { id: "main", tabindex: "-1" });
   const updateBanner = el("div", { id: "sw-banner" });
   const footer = el("footer", { class: "site-footer" }, [
-    fixtureNotice(),
+    el("p", { class: "meta" }, ["Local practice guide. Journal entries stay on this device."]),
     el("p", { class: "attribution" }, [
       text("Website by "),
       el("a", { href: "https://hoopsnakedesigns.com/", rel: "noreferrer" }, ["Hoopsnake Designs"]),
@@ -88,16 +87,6 @@ function themeToggle(): HTMLButtonElement {
     button.textContent = mode === "bedtime" ? "Warm light" : "Bedtime";
   });
   return button;
-}
-
-function fixtureNotice(): HTMLElement {
-  const status = packetStatus();
-  if (status.readyForAcceptance) {
-    return el("p", { class: "meta" }, ["Local practice guide. Journal entries stay on this device."]);
-  }
-  return el("p", { class: "fixture-banner", role: "status" }, [
-    "DEVELOPMENT FIXTURE CONTENT is in use. The locked Days 1–60 packet has not been integrated. This notice must not remain when requesting Complete Product acceptance.",
-  ]);
 }
 
 let updateBannerBound = false;

@@ -1,21 +1,14 @@
 import { CANONICAL_PACKET } from "./canonical.ts";
-import { developmentFixturePacket } from "./fixtures.ts";
-import { isCanonicalPacket, validatePacket, type CurriculumPacket } from "./model.ts";
+import { isCanonicalPacket, type CurriculumPacket } from "./model.ts";
 
 let cached: CurriculumPacket | null = null;
 
 export function loadCurriculumPacket(): CurriculumPacket {
   if (cached) return cached;
-  if (CANONICAL_PACKET && isCanonicalPacket(CANONICAL_PACKET)) {
-    cached = CANONICAL_PACKET;
-    return cached;
+  if (!isCanonicalPacket(CANONICAL_PACKET)) {
+    throw new Error("Canonical Days 1–60 packet is missing or invalid.");
   }
-  const fixtures = developmentFixturePacket();
-  const issues = validatePacket(fixtures);
-  if (issues.length > 0) {
-    throw new Error(`Fixture packet failed validation: ${issues.map((issue) => issue.detail).join(" ")}`);
-  }
-  cached = fixtures;
+  cached = CANONICAL_PACKET;
   return cached;
 }
 
@@ -31,6 +24,6 @@ export function packetStatus(packet = loadCurriculumPacket()): {
   return {
     source: packet.source,
     revision: packet.revision,
-    readyForAcceptance: packet.source === "canonical-packet" && packet.revision !== null,
+    readyForAcceptance: isCanonicalPacket(packet),
   };
 }

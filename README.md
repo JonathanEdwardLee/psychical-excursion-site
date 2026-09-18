@@ -2,7 +2,7 @@
 
 **Psychical Excursion (PEx)** is a free, local-first 60-day practice guide for dream recall, lucid dreaming, body-sensory attention, sleep-edge awareness, and OBE-style experiences.
 
-This repository contains the **Complete Product Surface** built on the accepted Core Engineering foundation (local storage, capture, journal, export, PWA). Canonical Days 1–60 are rendered from a local content packet. Until PEx Primary transports that locked packet, day screens show unmistakably marked **DEVELOPMENT FIXTURE** copy and must not be treated as curriculum.
+This repository contains the **Complete Product Surface** built on the accepted Core Engineering foundation (local storage, capture, journal, export, PWA). Canonical Days 1–60 are rendered from the Primary-transported local packet in `src/content/canonical.ts`.
 
 The project is designed to be useful without requiring a spiritual belief system or making claims that consciousness literally leaves the body.
 
@@ -50,6 +50,6 @@ Vanilla TypeScript + Vite. Hash routes (`#/`, `#/today`, `#/day/1`–`#/day/60`,
 
 ## Status
 
-Worker maximum for this pass: `CODE_COMPLETE / PRIMARY_REVIEW_REQUIRED`. Complete Product acceptance still requires the locked 60-day packet and removal of all development fixtures. This is not production verification and is not a public launch.
+Worker maximum for this pass: `CODE_COMPLETE / PRIMARY_REVIEW_REQUIRED`. This is not production verification and is not a public launch.
 
 Website design and development: [Hoopsnake Designs](https://hoopsnakedesigns.com/)

@@ -30,24 +30,13 @@ export async function renderDayPage(
   const neighbors = neighboringDays(day);
   const phase = phasePosition(day);
   const article = el("article", { class: "surface day-surface" });
-  if (options.today) {
-    article.append(el("p", { class: "eyebrow" }, ["Today"]));
-  }
-  article.append(
-    el("p", { class: "eyebrow" }, [
-      phase ? `${phase.name} · ${phase.index} of ${phase.length}` : "Day",
-    ]),
-  );
+  const labels = [
+    options.today ? "Today" : null,
+    `Day ${day}`,
+    phase ? `${phase.name} · ${phase.index} of ${phase.length}` : null,
+  ].filter((item): item is string => Boolean(item));
+  article.append(el("p", { class: "eyebrow" }, [labels.join(" · ")]));
   article.append(el("h2", { id: "day-title" }, [document.title]));
-  if (document.source === "development-fixture") {
-    article.append(
-      statusBox(
-        "info",
-        "DEVELOPMENT FIXTURE",
-        "This is not canonical curriculum. Exact meaning and section order of the locked packet will replace this scaffold. Fixture copy must not remain when requesting Complete Product acceptance.",
-      ),
-    );
-  }
   if (document.optional) {
     article.append(
       statusBox(

@@ -74,7 +74,7 @@ function dayItem(day: number, row: DayProgress | undefined, title?: string): HTM
   const label = state === "complete" ? "complete" : state === "opened" ? "opened" : "available";
   return el("li", {}, [
     el("a", { href: dayHref(day) }, [
-      title && !title.includes("DEVELOPMENT FIXTURE") ? title : `Day ${day}`,
+      `Day ${day}${title ? ` · ${title}` : ""}`,
       text(` · ${label}`),
     ]),
   ]);
