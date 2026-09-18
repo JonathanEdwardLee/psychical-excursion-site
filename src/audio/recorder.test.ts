@@ -73,6 +73,17 @@ describe("AudioCapture", () => {
     expect(result.blob.size).toBeGreaterThan(0);
   });
 
+  it("times out a hung getUserMedia without retrying", async () => {
+    vi.useFakeTimers();
+    (navigator.mediaDevices.getUserMedia as ReturnType<typeof vi.fn>).mockReturnValueOnce(new Promise(() => undefined));
+    const capture = new AudioCapture(inspectRecorderCapability());
+    const start = capture.start();
+    const assertion = expect(start).rejects.toMatchObject({ code: "recorder-failed" });
+    await vi.advanceTimersByTimeAsync(12000);
+    await assertion;
+    vi.useRealTimers();
+  });
+
   it("maps permission denial without retrying", async () => {
     (navigator.mediaDevices.getUserMedia as ReturnType<typeof vi.fn>).mockRejectedValueOnce(
       new DOMException("denied", "NotAllowedError"),

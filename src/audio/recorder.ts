@@ -59,6 +59,22 @@ export type RecordingResult = {
   interrupted: boolean;
 };
 
+function withTimeout<T>(promise: Promise<T>, ms: number, onTimeout: () => Error): Promise<T> {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => reject(onTimeout()), ms);
+    promise.then(
+      (value) => {
+        clearTimeout(timer);
+        resolve(value);
+      },
+      (error: unknown) => {
+        clearTimeout(timer);
+        reject(error);
+      },
+    );
+  });
+}
+
 export class AudioCapture {
   private recorder: MediaRecorder | null = null;
   private stream: MediaStream | null = null;
@@ -73,14 +89,26 @@ export class AudioCapture {
     this.chunks = [];
     this.interrupted = false;
     try {
-      this.stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      this.stream = await withTimeout(
+        navigator.mediaDevices.getUserMedia({ audio: true }),
+        12000,
+        () =>
+          new AppError(
+            "recorder-failed",
+            "The microphone did not become available. No permission loop was started. Text capture still works.",
+          ),
+      );
     } catch (error) {
+      if (error instanceof AppError) throw error;
       const name = error instanceof DOMException ? error.name : "";
       if (name === "NotAllowedError" || name === "PermissionDeniedError") {
         throw new AppError(
           "permission-denied",
           "Microphone access was not granted. Text capture still works. This app will not ask again until you tap Record.",
         );
+      }
+      if (name === "NotFoundError" || name === "DevicesNotFoundError") {
+        throw new AppError("recorder-failed", "No microphone was found. Text capture still works.");
       }
       throw new AppError("recorder-failed", "The microphone could not be opened. Text capture still works.");
     }

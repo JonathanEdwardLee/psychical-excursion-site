@@ -194,6 +194,35 @@ Runtime dependencies: **none**.
 
 Development dependencies (Vite, TypeScript, Vitest, jsdom, fake-indexeddb, ESLint) are local toolchain only. No paid or recurring service.
 
+## Tested facts vs limitations (this worker pass)
+
+Recorded separately from product claims. Environment: Chromium in a cloud VM, viewport ~390×844, `npm run preview` at `http://127.0.0.1:4173/`. Not a real Android/iPhone device.
+
+### Tested
+
+- Typecheck, ESLint, Vitest (25), production build.
+- Home → Capture in one click; Dream / Experience / Sensation present.
+- Text-only save shows success only after IndexedDB; journal list/edit/delete with confirmation.
+- Persistence probe reported **`persist granted (actual): false`** and the UI did not claim a grant.
+- Local-only / not cloud-backed-up copy is visible on Data.
+- Bedtime mode toggles and persists in `localStorage`.
+- Days 1–60 listed as available/unlocked; Day 1 is placeholder-only.
+- Manual export downloaded `pex-journal-*.zip` containing `manifest.json` + `journal.json` (text-only sample; 1 entry, 0 recordings).
+- DevTools Network during journal save: requests were same-origin static assets to `127.0.0.1` only; no journal POST to an external host (inspection limited to Chromium Network panel in this VM).
+- Service worker activated on the production preview; DevTools offline checkbox still allowed in-app navigation after the shell had loaded.
+- After a second production preview deploy, the UI showed **App update ready** / Reload for update.
+- Record with no capture device: **No microphone was found. Text capture still works.** Text save still succeeded.
+
+### Not verified / limited
+
+- **Live microphone record → stop → replay** was not completed: this VM did not surface a usable mic permission prompt or recording blob. Automated tests cover MIME selection, permission-denied mapping, hung `getUserMedia` timeout, and blob save/replay via fake-indexeddb.
+- Quota-exceeded at the OS disk layer was not injected; `QuotaExceededError` classification is unit-tested.
+- Private/incognito eviction was characterized from known browser behavior, not by running a separate incognito profile in this pass.
+- Service worker *update* across two deploys was not fully timed in the GUI (new builds mint a new cache name; activate deletes old caches).
+- First-ever visit without a completed load is **not** claimed offline.
+
+Use export as the recovery path. This is not production verification.
+
 ## Out of scope (stop conditions honored)
 
 Canonical Days 1–60, health/sleep advice, Google services, AI, astronomy, donations, payments, analytics, backends, remote sync, public DNS/deployment, tester communications.

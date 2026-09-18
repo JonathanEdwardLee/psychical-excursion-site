@@ -190,6 +190,7 @@ async function renderCapture(main: HTMLElement): Promise<void> {
         capture.saveError = null;
         capture.permissionDenied = false;
         capture.interrupted = false;
+        paintCaptureStatus(statusHost, capability, "Waiting for microphone permission…");
         capture.recorder = new AudioCapture(capability);
         await capture.recorder.start();
         capture.recordingActive = true;
