@@ -69,11 +69,19 @@ describe("core UI flows", () => {
     expect(journal.textContent).toMatch(/fixture-ui-note/);
   });
 
+  it("shows first-time landing with Start Day 1", async () => {
+    const home = await mount("#/");
+    expect(home.textContent).toMatch(/60-day personal practice/i);
+    expect(home.querySelector("#home-today")?.textContent).toMatch(/Start Day 1/i);
+    expect(home.textContent).toMatch(/How this works/i);
+    expect(home.textContent).not.toMatch(/REMEMBER/);
+  });
+
   it("shows an empty journal state", async () => {
     const existing = await localStore.listEntries();
     for (const entry of existing) await localStore.deleteEntry(entry.id);
     const root = await mount("#/journal");
-    expect(root.textContent).toMatch(/No entries yet/);
+    expect(root.textContent).toMatch(/Journal is where saved captures live/i);
   });
 
   it("persists bedtime mode locally", async () => {
@@ -128,17 +136,23 @@ describe("core UI flows", () => {
     const day60 = await mount("#/day/60");
     expect(day60.querySelector("h2")?.textContent).toBe("INDEPENDENT ATTEMPT");
     const days = await mount("#/days");
-    expect(days.textContent).toMatch(/REMEMBER/);
-    expect(days.textContent).toMatch(/LEARN YOUR DOOR/);
+    expect(days.textContent).toMatch(/Week 1/);
+    expect(days.textContent).toMatch(/Week 9/);
+    expect(days.textContent).not.toMatch(/LEARN YOUR DOOR/);
+    expect(days.textContent).not.toMatch(/\bFEEL\b/);
     expect(days.querySelectorAll(".day-row")).toHaveLength(60);
-    expect(days.querySelectorAll(".phase-chapter")).toHaveLength(8);
+    expect(days.querySelectorAll(".week-chapter")).toHaveLength(9);
     expect(days.querySelector("#journey-live")).toBeTruthy();
     await vi.waitFor(() => {
       expect(days.querySelector(".phase-chapter.is-active")).toBeTruthy();
     });
     expect(days.querySelector(".day-row-link")?.querySelector(".day-title")?.textContent).toBe("CATCH THE DREAM");
+    expect(day1.textContent).toMatch(/Do this/);
+    expect(day1.textContent).toMatch(/Before you begin/);
+    const week2 = await mount("#/week/2");
+    expect(week2.querySelector("h2")?.textContent).toBe("Week 2");
     const phase = await mount("#/phase/feel");
-    expect(phase.querySelector("h2")?.textContent).toBe("FEEL");
+    expect(phase.querySelector("h2")?.textContent).toMatch(/Days 05–14/);
     const method = await mount("#/method");
     expect(method.querySelector("h2")?.textContent).toBe("Method");
     const about = await mount("#/about");
@@ -164,7 +178,6 @@ describe("core UI flows", () => {
 
   it("completes and undoes a day without using scroll depth", async () => {
     const root = await mount("#/day/2");
-    expect(root.querySelector("#complete-day")).toBeTruthy();
     (root.querySelector("#complete-day") as HTMLButtonElement).click();
     await vi.waitFor(() => {
       expect(root.querySelector("#undo-day")).toBeTruthy();
@@ -324,7 +337,7 @@ describe("capture microphone lifecycle", () => {
     await startRecording(root, "#night-record-btn");
     (root.querySelector("#night-record-btn") as HTMLButtonElement).click();
     await vi.waitFor(() => {
-      expect(root.textContent).toMatch(/Locally safe/i);
+      expect(root.textContent).toMatch(/Saved on this device/i);
     });
     const entryLink = root.querySelector('a[href^="#/journal/entry-"]') as HTMLAnchorElement;
     expect(entryLink).toBeTruthy();
@@ -332,11 +345,36 @@ describe("capture microphone lifecycle", () => {
     expect(reloaded.querySelector("#entry-audio")).toBeTruthy();
   });
 
+  it("uses plain backup labels on journal entries", async () => {
+    await localStore.saveCapture({
+      id: "sync-label-entry",
+      type: "dream",
+      note: "label test",
+      createdAt: Date.now(),
+      audio: null,
+      syncState: "PENDING_SYNC",
+    });
+    const root = await mount("#/journal");
+    expect(root.textContent).toMatch(/Waiting to back up/);
+  });
+
+  it("hides developer jargon on participant routes", async () => {
+    const routes = ["#/", "#/today", "#/capture", "#/journal", "#/account", "#/astronomy", "#/days"];
+    for (const hash of routes) {
+      const root = await mount(hash);
+      const text = root.textContent ?? "";
+      expect(text).not.toMatch(/IndexedDB/i);
+      expect(text).not.toMatch(/OAuth/i);
+      expect(text).not.toMatch(/drive\.file/i);
+    }
+  });
+
   it("renders account storage distinction without requiring Google", async () => {
     const root = await mount("#/account");
     expect(root.textContent).toMatch(/Google account/i);
     expect(root.textContent).toMatch(/Connect Google Drive/i);
-    expect(root.textContent).toMatch(/Not configured|Local only|fully usable without Google/i);
+    expect(root.textContent).toMatch(/Backup not set up|works fully without Google|Not signed in/i);
+    expect(root.textContent).toMatch(/Connect Google Drive for backup/i);
   });
 
   it("saves audio to Journal after review and lists recording on the entry row", async () => {

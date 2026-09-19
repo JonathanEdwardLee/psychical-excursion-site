@@ -66,15 +66,14 @@ export function bindPhaseJourney(root: HTMLElement): void {
       const active = chapter === next;
       chapter.classList.toggle("is-active", active);
     }
-    const phaseId = next.id.replace(/^phase-/, "");
-    for (const link of root.querySelectorAll<HTMLAnchorElement>(".phase-nav-link")) {
+    const weekId = next.id.replace(/^week-/, "");
+    for (const link of root.querySelectorAll<HTMLAnchorElement>(".phase-nav-link, .week-nav-link")) {
       const href = link.getAttribute("href") ?? "";
-      link.classList.toggle("is-scroll-current", href === `#/phase/${phaseId}`);
+      link.classList.toggle("is-scroll-current", href === `#/week/${weekId}`);
     }
     if (live) {
-      const mark = next.querySelector(".phase-index")?.textContent?.trim() ?? "";
       const name = next.querySelector("h3")?.textContent?.trim() ?? "";
-      live.textContent = [mark, name].filter(Boolean).join(" · ");
+      live.textContent = name;
       live.hidden = false;
     }
   };

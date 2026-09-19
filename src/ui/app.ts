@@ -1,6 +1,6 @@
 import { AudioCapture } from "../audio/recorder.ts";
 import { localStore } from "../db/store.ts";
-import { AppError } from "../domain/types.ts";
+import { AppError, ENTRY_TYPE_LABEL } from "../domain/types.ts";
 import { buildJournalZip } from "../export/journalExport.ts";
 import { inspectAndRequestPersistence, persistenceSummary } from "../storage/persistence.ts";
 import { readTheme, toggleTheme } from "../theme.ts";
@@ -17,7 +17,7 @@ import { emptyJournal, entryCard, statusBox, syncStateLabel, typeFieldset } from
 import { announce, el, formatWhen, go, text } from "./dom.ts";
 import { renderAccountPage } from "./pages/account.ts";
 import { renderDayPage, renderTodayPage } from "./pages/day.ts";
-import { renderDaysPage, renderPhasePage } from "./pages/days.ts";
+import { renderDaysPage, renderPhasePage, renderWeekPage } from "./pages/days.ts";
 import { renderAstronomyPage, stopAstronomyClock } from "./pages/astronomy.ts";
 import { renderAboutPage, renderHomePage, renderMethodPage } from "./pages/home.ts";
 import { renderNightCapturePage } from "./pages/nightCapture.ts";
@@ -59,6 +59,7 @@ export async function renderApp(root: HTMLElement): Promise<void> {
     else if (route.name === "day") await renderDayPage(main, route.day);
     else if (route.name === "today") await renderTodayPage(main);
     else if (route.name === "days") await renderDaysPage(main);
+    else if (route.name === "week") await renderWeekPage(main, route.week);
     else if (route.name === "phase") await renderPhasePage(main, route.phaseId);
     else if (route.name === "data") await renderData(main);
     else if (route.name === "method") await renderMethodPage(main);
@@ -85,7 +86,7 @@ function renderFatal(error: unknown): HTMLElement {
     statusBox(
       "error",
       "Nothing was silently discarded",
-      `${message} Text you typed on this screen is still in the form until you leave. Try again, or use another browser that supports IndexedDB.`,
+      `${message} Text you typed on this screen is still in the form until you leave. Try again, or use another browser that allows on-device storage.`,
     ),
   ]);
   return wrap;
@@ -233,7 +234,7 @@ async function renderCapture(main: HTMLElement, route: Extract<AppRoute, { name:
     types,
     el("label", { for: noteId }, ["Text note (optional if you record)"]),
     note,
-    el("p", { id: "note-hint", class: "hint" }, ["Notes never leave this browser in this build."]),
+    el("p", { id: "note-hint", class: "hint" }, ["Notes stay on this device unless you export or back up to Google Drive."]),
     recordRow,
     statusHost,
   );
@@ -275,7 +276,7 @@ function paintCaptureStatus(
         "info",
         pending,
         inReview || capture.recording
-          ? "Nothing is in the Journal until IndexedDB confirms Save to Journal."
+          ? "Nothing is in the Journal until you tap Save to Journal and the save finishes."
           : "Choose a type and add text or a recording, then save to the Journal.",
       ),
     );
@@ -336,8 +337,8 @@ function paintCaptureStatus(
     host.append(
       el("p", { class: "hint" }, [
         capability.selectedMimeType
-          ? `Recordings stay on this device. Save to Journal writes to IndexedDB; the Journal is where you replay and export later.`
-          : "This browser did not report a usable recording format. Text notes still save to the Journal after IndexedDB confirms.",
+          ? `Recordings stay on this device. Save to Journal adds them to your Journal list for replay and export.`
+          : "This browser did not report a usable recording format. Text notes still save to the Journal when you tap Save.",
       ]),
     );
   }
@@ -352,7 +353,9 @@ async function renderJournal(main: HTMLElement): Promise<void> {
     el("section", { class: "journal-surface" }, [
       el("p", { class: "eyebrow" }, ["On this device"]),
       el("h2", { class: "display-title" }, ["Journal"]),
-      el("p", { class: "lede" }, ["Chronological local entries. Newest first. Replay and delete live only on this device."]),
+      el("p", { class: "lede" }, [
+        "Everything you saved from Capture — newest first. Replay recordings, edit notes, or delete entries on this device.",
+      ]),
       list,
     ]),
   );
@@ -369,7 +372,7 @@ async function renderEntry(main: HTMLElement, id: string): Promise<void> {
   const { entry, media } = found;
   const heading = el("h2", { class: "display-title" }, ["Entry"]);
   const meta = el("p", { class: "meta" }, [
-    `${entry.type} · `,
+    `${ENTRY_TYPE_LABEL[entry.type]} · `,
     el("time", { datetime: new Date(entry.createdAt).toISOString() }, [formatWhen(entry.createdAt)]),
     text(" · "),
     el("span", { class: "sync-state-label" }, [syncStateLabel(entry.syncState)]),
@@ -382,7 +385,7 @@ async function renderEntry(main: HTMLElement, id: string): Promise<void> {
     void (async () => {
       try {
         await localStore.updateNote(entry.id, note.value);
-        noteStatus.replaceChildren(statusBox("ok", "Saved", "The note update was confirmed in IndexedDB."));
+        noteStatus.replaceChildren(statusBox("ok", "Saved", "The note update was saved on this device."));
         announce("Note saved");
       } catch (error) {
         noteStatus.replaceChildren(
@@ -441,7 +444,7 @@ async function renderEntry(main: HTMLElement, id: string): Promise<void> {
       ? statusBox(
           "ok",
           "Saved to Journal",
-          "IndexedDB confirmed the write on this device. Replay the recording below or return to the Journal list. This is not a cloud backup.",
+          "Saved on this device. Replay the recording below or open your Journal list. Google backup is separate if you connected Drive.",
         )
       : el("span"),
     meta,
@@ -535,7 +538,7 @@ async function renderData(main: HTMLElement): Promise<void> {
       el("p", { class: "eyebrow" }, ["Local storage"]),
       el("h2", { class: "display-title" }, ["Data on this device"]),
       el("p", { class: "lede" }, [
-        "Journal text, recordings, and progress live in this browser on this device. They are not sent to a server in this architecture. They are not cloud backed up. Browser or device data may be lost. Export is the recovery mechanism in this phase.",
+        "Journal text, recordings, and day progress stay in this browser on this device unless you export or use Google backup. Clearing browser data can remove them. Export downloads a ZIP you can keep.",
       ]),
       host,
       probeBtn,

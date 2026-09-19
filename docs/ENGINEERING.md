@@ -53,7 +53,7 @@ See the root README. Commands:
 
 - Database name: `pex-local`
 - IndexedDB version: `3`
-- App/schema constants: `APP_VERSION` (`0.5.0`), `SCHEMA_VERSION` (`3`)
+- App/schema constants: `APP_VERSION` (`0.6.0`), `SCHEMA_VERSION` (`3`)
 
 ### Object stores
 

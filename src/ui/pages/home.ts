@@ -1,9 +1,9 @@
 import { localStore } from "../../db/store.ts";
-import { PHASES, phaseForDay } from "../../content/phases.ts";
+import { allWeekNumbers, daysInWeek, weekDayRange, weekLabel, weekLabelForDay } from "../../content/weeks.ts";
 import { completedCount, resumeDay } from "../../progress/progress.ts";
 import { ABOUT_PARAGRAPHS, EVIDENCE_PARAGRAPHS, METHOD_PARAGRAPHS } from "../copy.ts";
 import { el, formatWhen, text } from "../dom.ts";
-import { PHASE_INDEX_MARKS, padDay } from "../motif.ts";
+import { padDay } from "../motif.ts";
 
 export async function renderHomePage(main: HTMLElement): Promise<void> {
   const entries = await safeList();
@@ -11,40 +11,46 @@ export async function renderHomePage(main: HTMLElement): Promise<void> {
   const resume = resumeDay(rows, await localStore.loadResumeDay());
   const done = completedCount(rows);
   const latest = entries[0];
-  const phase = phaseForDay(resume);
-  const phaseIndex = phase ? PHASES.findIndex((item) => item.id === phase.id) : 0;
-  const dial = el("ol", { class: "phase-dial", "aria-label": "Eight-phase journey" });
-  PHASES.forEach((item, index) => {
-    const inPhase = rows.filter((row) => row.day >= item.start && row.day <= item.end);
-    const complete = inPhase.filter((row) => row.completedAt).length;
-    const total = item.end - item.start + 1;
-    const current = item.id === phase?.id;
-    dial.append(
-      el("li", { class: `phase-dial-item${current ? " is-current" : ""}${complete === total ? " is-complete" : ""}` }, [
-        el("a", { href: `#/phase/${item.id}` }, [
-          el("span", { class: "phase-dial-mark" }, [PHASE_INDEX_MARKS[index] ?? ""]),
-          el("span", { class: "phase-dial-name" }, [item.name]),
-          el("span", { class: "phase-dial-range" }, [`${padDay(item.start)}–${padDay(item.end)}`]),
+  const isNew = done === 0 && !latest;
+  const ctaLabel = isNew ? "Start Day 1" : "Continue today's practice";
+  const weekStrip = el("ol", { class: "phase-dial week-dial", "aria-label": "Weeks in the 60-day practice" });
+  for (const week of allWeekNumbers()) {
+    const days = daysInWeek(week);
+    const { start, end } = weekDayRange(week);
+    const inWeek = rows.filter((row) => row.day >= start && row.day <= end);
+    const complete = inWeek.filter((row) => row.completedAt).length;
+    const current = resume >= start && resume <= end;
+    weekStrip.append(
+      el("li", { class: `phase-dial-item${current ? " is-current" : ""}${complete === days.length ? " is-complete" : ""}` }, [
+        el("a", { href: `#/week/${week}` }, [
+          el("span", { class: "phase-dial-name" }, [weekLabel(week)]),
+          el("span", { class: "phase-dial-range" }, [`Days ${padDay(start)}–${padDay(end)}`]),
         ]),
       ]),
     );
-  });
+  }
   main.append(
     el("article", { class: "home-surface" }, [
       el("div", { class: "home-hero" }, [
         el("div", { class: "home-identity" }, [
           el("p", { class: "eyebrow" }, ["Psychical Excursion"]),
-          el("h2", { class: "display-title" }, ["A quiet 60-day instrument"]),
+          el("h2", { class: "display-title" }, ["60-day personal practice"]),
           el("p", { class: "lede" }, [
-            "A 60-day, belief-optional practice: read one day at a time, capture what you notice in Dream / Experience / Sensation, and build a local Journal on this device. Progress is stored here only — no outcome is required, and nothing is cloud backed up.",
+            "One guided day at a time for 60 days. Read today's practice, capture dreams or experiences in your Journal, and mark days complete when you're ready. No account required. Google backup and Astronomy are optional extras.",
+          ]),
+          el("details", { class: "home-orientation" }, [
+            el("summary", {}, ["How this works"]),
+            el("ul", { class: "plain home-how-list" }, [
+              el("li", {}, ["Open ", el("strong", {}, ["Today"]), " for the current day's practice."]),
+              el("li", {}, ["Use ", el("strong", {}, ["Capture"]), " to save text or voice notes to your Journal."]),
+              el("li", {}, ["Browse ", el("strong", {}, ["Days"]), " by week (Week 1, Week 2, …)."]),
+              el("li", {}, ["Optional: connect Google Drive on ", el("a", { href: "#/account" }, ["Account"]), " for backup."]),
+            ]),
           ]),
         ]),
         el("aside", { class: "home-now", "aria-label": "Resume" }, [
           el("p", { class: "eyebrow" }, ["Now"]),
-          el("p", { class: "home-now-day" }, [`Day ${padDay(resume)}`]),
-          el("p", { class: "home-now-phase" }, [
-            phase ? `${PHASE_INDEX_MARKS[phaseIndex]} · ${phase.name}` : "Journey",
-          ]),
+          el("p", { class: "home-now-day" }, [`Day ${padDay(resume)} of 60 · ${weekLabelForDay(resume)}`]),
           el("p", { class: "meta home-progress-copy" }, [`${done} of 60 days marked complete on this device.`]),
           el("div", {
             class: "axis-meter",
@@ -57,19 +63,21 @@ export async function renderHomePage(main: HTMLElement): Promise<void> {
             }),
           ]),
           el("div", { class: "actions" }, [
-            el("a", { href: "#/today", class: "button primary", id: "home-today" }, [`Continue · Day ${resume}`]),
-            el("a", { href: "#/capture", class: "button", id: "home-capture" }, ["Capture"]),
+            el("a", { href: "#/today", class: "button primary", id: "home-today" }, [ctaLabel]),
+            el("a", { href: "#/capture", class: "button", id: "home-capture" }, ["Capture to Journal"]),
             el("a", { href: "#/capture/night/dream", class: "button quiet", id: "home-night-capture" }, ["Night capture"]),
           ]),
           el("p", { class: "hint" }, [
-            "Loop: Today or a day reading → Capture → review → Save to Journal → return anytime from Journal or Home.",
+            isNew
+              ? "After practice, capture anything you want to remember, then return tomorrow for the next day."
+              : "Your Journal holds saved entries. Today always opens your current practice day.",
           ]),
           latest
-            ? el("p", { class: "meta" }, [`Latest local entry: ${formatWhen(latest.createdAt)}`])
-            : el("p", { class: "meta" }, ["Journal is empty on this device."]),
+            ? el("p", { class: "meta" }, [`Latest Journal entry: ${formatWhen(latest.createdAt)}`])
+            : el("p", { class: "meta" }, ["Journal is empty — Capture saves your first entry here."]),
         ]),
       ]),
-      dial,
+      weekStrip,
     ]),
   );
 }
