@@ -1,7 +1,7 @@
 {
   "name": "psychical-excursion",
   "private": true,
-  "version": "0.5.0",
+  "version": "0.6.0",
   "type": "module",
   "description": "Local-first installable web app foundation for Psychical Excursion.",
   "scripts": {

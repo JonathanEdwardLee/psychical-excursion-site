@@ -1,5 +1,5 @@
 import { loadCurriculumPacket } from "../content/load.ts";
-import { phaseForDay } from "../content/phases.ts";
+import { positionInWeek, weekLabelForDay } from "../content/weeks.ts";
 import { DAY_COUNT, type DayProgress } from "../domain/types.ts";
 
 export { allDaysUnlocked } from "./days.ts";
@@ -34,14 +34,22 @@ export function resumeDay(rows: DayProgress[], storedResume: number | undefined)
   return firstIncompleteDay(rows);
 }
 
-export function phasePosition(day: number): { name: string; index: number; length: number } | null {
-  const phase = phaseForDay(day);
-  if (!phase) return null;
+export function weekPosition(day: number): { label: string; index: number; length: number; week: number } | null {
+  if (!isDayNumber(day)) return null;
+  const pos = positionInWeek(day);
   return {
-    name: phase.name,
-    index: day - phase.start + 1,
-    length: phase.end - phase.start + 1,
+    label: weekLabelForDay(day),
+    week: pos.week,
+    index: pos.index,
+    length: pos.length,
   };
+}
+
+/** @deprecated Internal phase ranges only — use weekPosition in UI. */
+export function phasePosition(day: number): { name: string; index: number; length: number } | null {
+  const week = weekPosition(day);
+  if (!week) return null;
+  return { name: week.label, index: week.index, length: week.length };
 }
 
 export function neighboringDays(day: number): { previous: number | null; next: number | null } {

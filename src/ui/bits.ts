@@ -4,21 +4,24 @@ import { el, formatWhen, go, text } from "./dom.ts";
 export function syncStateLabel(state: SyncState): string {
   switch (state) {
     case "LOCAL":
-      return "Local";
+      return "Saved on this device";
     case "PENDING_SYNC":
-      return "Pending sync";
+      return "Waiting to back up";
     case "SYNCED":
-      return "Synced";
+      return "Backed up to Google Drive";
     case "SYNC_ERROR":
-      return "Sync error";
+      return "Backup needs attention";
     default:
       return state;
   }
 }
 
 export function emptyJournal(): HTMLElement {
-  return el("p", { class: "lede" }, [
-    "No entries yet. Capture is one step from here. Nothing is stored until a save confirms.",
+  return el("div", { class: "journal-empty" }, [
+    el("p", { class: "lede" }, [
+      "Your Journal is where saved captures live — dreams, experiences, sensations, and notes.",
+    ]),
+    el("p", {}, ["Nothing here yet. Tap ", el("a", { href: "#/capture" }, ["Capture"]), " to save your first entry."]),
   ]);
 }
 

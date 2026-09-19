@@ -53,7 +53,7 @@ See the root README. Commands:
 
 - Database name: `pex-local`
 - IndexedDB version: `3`
-- App/schema constants: `APP_VERSION` (`0.5.0`), `SCHEMA_VERSION` (`3`)
+- App/schema constants: `APP_VERSION` (`0.6.0`), `SCHEMA_VERSION` (`3`)
 
 ### Object stores
 
@@ -131,6 +131,13 @@ No streaks. No lock flags. Scroll depth is not stored.
 - Sign-in (`openid email profile`) and Drive connect (`drive.file`) are separate UI actions on `#/account`.
 - Real upload via `driveUpload.ts`; reconciliation via `reconcile.ts`; minimal progress file `pex-progress.json`.
 - Founder setup: `docs/GOOGLE_OAUTH_SETUP.md` and `VITE_GOOGLE_OAUTH_CLIENT_ID` at build time.
+
+## Usability / first-time clarity (V2 usability pass)
+
+- Participant navigation uses **Week 1–9** (7-day blocks) and **Day 1–60**; internal `phaseId` ranges remain for validation only.
+- Day pages use `src/content/participantLayer.ts` + authored `src/content/participantDoThis.ts`: plain display titles and speakable **Do this** paragraphs (canonical source text remains in `canonical.ts` only).
+- Home includes a short **How this works** orientation; CTAs **Start Day 1** / **Continue today's practice**.
+- Journal backup states use plain language (`Saved on this device`, `Waiting to back up`, etc.).
 
 ## Astronomy instrument (V2C)
 

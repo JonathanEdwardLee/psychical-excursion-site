@@ -1,12 +1,13 @@
 import { loadCurriculumPacket } from "../../content/load.ts";
-import { PHASES } from "../../content/phases.ts";
+import { participantViewFor } from "../../content/participantLayer.ts";
 import { localStore } from "../../db/store.ts";
-import type { DayDocument } from "../../content/model.ts";
-import { dayHref, isDayNumber, neighboringDays, phasePosition, resumeDay } from "../../progress/progress.ts";
+import type { DayDocument, DaySection } from "../../content/model.ts";
+import { dayHref, isDayNumber, neighboringDays, resumeDay, weekPosition } from "../../progress/progress.ts";
 import { statusBox } from "../bits.ts";
+import { sectionDisplayHeading, sectionKind } from "../instructionDisplay.ts";
 import { announce, el } from "../dom.ts";
-import { PHASE_INDEX_MARKS, opticMark, padDay } from "../motif.ts";
-import { phaseNav } from "../shell.ts";
+import { opticMark, padDay } from "../motif.ts";
+import { weekNav } from "../shell.ts";
 
 export async function renderTodayPage(main: HTMLElement): Promise<void> {
   const rows = await localStore.listProgress();
@@ -28,20 +29,21 @@ export async function renderDayPage(
     main.append(el("h2", {}, ["Day"]), statusBox("error", "Missing day", "That day is not in the local content packet."));
     return;
   }
-  const progress = await localStore.markDayVisited(day);
+  const participant = participantViewFor(document);
+  await localStore.markDayVisited(day);
+  const progress = await localStore.getDayProgress(day);
   const neighbors = neighboringDays(day);
-  const phase = phasePosition(day);
-  const phaseIndex = PHASES.findIndex((item) => item.id === document.phaseId);
+  const week = weekPosition(day);
   const article = el("article", { class: "day-surface" });
   const reading = el("div", { class: "day-read" });
   reading.append(
     el("p", { class: "eyebrow" }, [
       options.today ? "Today · " : "",
-      `Day ${padDay(day)}`,
-      phase ? ` · ${PHASE_INDEX_MARKS[phaseIndex] ?? ""} ${phase.name}` : "",
+      `Day ${padDay(day)} of 60`,
+      week ? ` · ${week.label}` : "",
     ]),
   );
-  reading.append(el("h2", { id: "day-title", class: "display-title" }, [document.title]));
+  reading.append(el("h2", { id: "day-title", class: "display-title" }, [participant.displayTitle]));
   if (document.optional) {
     reading.append(
       el("div", { class: "optional-callout" }, [
@@ -53,14 +55,16 @@ export async function renderDayPage(
       ]),
     );
   }
-  reading.append(renderSections(document));
-  const ticks = document.sections.map((section) =>
-    el("li", { class: "read-tick", "data-section": section.heading }, [section.heading]),
-  );
+  reading.append(renderParticipantContent(participant, document));
+  const ticks = [
+    ...(participant.setup.length ? ["Before you begin"] : []),
+    "Do this",
+    ...participant.supporting.map((section) => sectionDisplayHeading(section.heading)),
+  ].map((label) => el("li", { class: "read-tick", "data-section": label }, [label]));
   const rail = el("aside", { class: "day-rail-panel" }, [
-    el("p", { class: "eyebrow" }, [phase ? `${phase.name}` : "Phase"]),
+    el("p", { class: "eyebrow" }, [week ? week.label : "Week"]),
     el("p", { class: "day-rail-index" }, [
-      phase ? `${phase.index} of ${phase.length} in this phase` : `Day ${day}`,
+      week ? `Day ${week.index} of ${week.length} this week` : `Day ${day}`,
     ]),
     el("div", {
       class: "read-progress",
@@ -71,30 +75,30 @@ export async function renderDayPage(
       el("p", { class: "read-place", id: "read-place" }, ["Start"]),
       el("ol", { class: "read-ticks" }, ticks),
     ]),
-    phaseNav(document.phaseId),
+    weekNav(week?.week),
   ]);
   const completeHost = el("div", { class: "complete-panel" });
-  paintComplete(completeHost, day, progress.completedAt !== null);
+  paintComplete(completeHost, day, progress.completedAt !== null, neighbors.next);
   rail.append(completeHost);
   rail.append(
     el("nav", { class: "day-pager", "aria-label": "Day sequence" }, [
       neighbors.previous
-        ? el("a", { href: dayHref(neighbors.previous), rel: "prev" }, [`Previous · ${padDay(neighbors.previous)}`])
+        ? el("a", { href: dayHref(neighbors.previous), rel: "prev" }, [`Previous · Day ${padDay(neighbors.previous)}`])
         : el("span", { class: "meta" }, ["No previous day"]),
       neighbors.next
-        ? el("a", { href: dayHref(neighbors.next), rel: "next" }, [`Next · ${padDay(neighbors.next)}`])
+        ? el("a", { href: dayHref(neighbors.next), rel: "next" }, [`Next · Day ${padDay(neighbors.next)}`])
         : el("span", { class: "meta" }, ["No next day"]),
     ]),
   );
   rail.append(
     el("p", { class: "hint capture-day-hint" }, [
-      "Capture is your local journal for this practice — text or voice notes become Journal entries on this device, separate from marking the day complete.",
+      "When something stands out, use Capture to save it to your Journal on this device.",
     ]),
   );
   rail.append(
     el("p", { class: "actions" }, [
-      el("a", { href: "#/capture", class: "button primary" }, ["Capture"]),
-      el("a", { href: "#/journal", class: "text-link" }, ["Journal"]),
+      el("a", { href: "#/capture", class: "button primary" }, ["Capture to Journal"]),
+      el("a", { href: "#/journal", class: "text-link" }, ["Open Journal"]),
       el("a", { href: "#/days", class: "text-link" }, ["All days"]),
     ]),
   );
@@ -102,42 +106,96 @@ export async function renderDayPage(
   main.append(article);
 }
 
-function renderSections(document: DayDocument): HTMLElement {
+function renderParticipantContent(
+  participant: ReturnType<typeof participantViewFor>,
+  document: DayDocument,
+): HTMLElement {
   const wrap = el("div", { class: "prose day-prose" });
-  for (const section of document.sections) {
-    const research = /research/i.test(section.heading);
-    const block = el("section", { class: research ? "day-section is-research" : "day-section" });
-    block.append(el("h3", {}, [section.heading]));
-    for (const paragraph of section.paragraphs) {
+  if (participant.setup.length) {
+    const block = el("section", { class: "day-section is-setup" });
+    block.append(el("h3", {}, ["Before you begin"]));
+    for (const paragraph of participant.setup) {
       block.append(el("p", {}, [paragraph]));
     }
     wrap.append(block);
   }
+  const action = el("section", { class: "day-section is-practice day-do-this" });
+  action.append(el("h3", { class: "day-instruction-title" }, ["Do this"]));
+  for (const paragraph of participant.doThis) {
+    action.append(el("p", { class: "day-instruction-line" }, [paragraph]));
+  }
+  wrap.append(action);
+  for (const section of participant.supporting) {
+    wrap.append(renderSupportingSection(section));
+  }
+  if (participant.doThis.some((line) => /record|journal|capture|write/i.test(line))) {
+    wrap.append(
+      el("p", { class: "hint day-capture-cue" }, [
+        "Save anything you want to keep in ",
+        el("a", { href: "#/capture" }, ["Capture"]),
+        ".",
+      ]),
+    );
+  } else if (document.day <= 14 || /dream|wake|remember/i.test(participant.displayTitle)) {
+    wrap.append(
+      el("p", { class: "hint day-capture-cue" }, [
+        "If something stands out, note it in ",
+        el("a", { href: "#/capture" }, ["Capture"]),
+        " after you finish.",
+      ]),
+    );
+  }
   return wrap;
 }
 
-function paintComplete(host: HTMLElement, day: number, completed: boolean): void {
+function renderSupportingSection(section: DaySection): HTMLElement {
+  const kind = sectionKind(section.heading);
+  const display = sectionDisplayHeading(section.heading);
+  if (kind === "research") {
+    const block = el("details", { class: "day-section is-research" });
+    block.append(el("summary", {}, [display]));
+    for (const paragraph of section.paragraphs) {
+      block.append(el("p", {}, [paragraph]));
+    }
+    return block;
+  }
+  const block = el("section", { class: `day-section is-${kind}` });
+  block.append(el("h3", {}, [display]));
+  for (const paragraph of section.paragraphs) {
+    block.append(el("p", {}, [paragraph]));
+  }
+  return block;
+}
+
+function paintComplete(host: HTMLElement, day: number, completed: boolean, nextDay: number | null): void {
   host.replaceChildren();
   host.classList.toggle("is-complete", completed);
   host.prepend(opticMark(completed ? "is-lit" : ""));
   if (completed) {
     host.append(
-      statusBox("ok", "Day complete on this device", "Completion is stored locally. It is not a streak and can be undone."),
+      statusBox("ok", "Day marked complete", "Stored on this device only. You can undo this anytime."),
     );
     const undo = el("button", { type: "button", id: "undo-day" }, ["Undo completion"]);
     undo.addEventListener("click", () => {
       void (async () => {
         await localStore.undoDayCompletion(day);
         announce(`Day ${day} marked incomplete`);
-        paintComplete(host, day, false);
+        paintComplete(host, day, false, nextDay);
       })();
     });
     host.append(undo);
+    host.append(
+      el("p", { class: "actions" }, [
+        el("a", { href: "#/today", class: "button" }, ["Back to today"]),
+        nextDay ? el("a", { href: dayHref(nextDay), class: "button primary" }, [`Start Day ${nextDay}`]) : el("span"),
+        el("a", { href: "#/journal", class: "text-link" }, ["Journal"]),
+      ]),
+    );
     return;
   }
   host.append(
     el("p", { class: "hint" }, [
-      "Opening or scrolling this page does not complete the day. Use Complete Day when you want that mark.",
+      "Opening this page does not mark the day complete. Tap Complete Day when you are done with today's practice.",
     ]),
   );
   const complete = el("button", { type: "button", id: "complete-day", class: "primary" }, ["Complete Day"]);
@@ -145,7 +203,7 @@ function paintComplete(host: HTMLElement, day: number, completed: boolean): void
     void (async () => {
       await localStore.completeDay(day);
       announce(`Day ${day} marked complete`);
-      paintComplete(host, day, true);
+      paintComplete(host, day, true, nextDay);
     })();
   });
   host.append(complete);

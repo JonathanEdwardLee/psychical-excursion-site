@@ -3,19 +3,19 @@ import type { ConnectionKind } from "../domain/sync.ts";
 export function connectionHeadline(kind: ConnectionKind): string {
   switch (kind) {
     case "local_only":
-      return "Local only";
+      return "Saved on this device";
     case "not_configured":
-      return "Google not configured";
+      return "Google backup not available here";
     case "google_signed_in":
-      return "Signed in · Drive disconnected";
+      return "Signed in · Drive not connected";
     case "drive_connected":
-      return "Drive connected";
+      return "Google Drive connected";
     case "auth_expired":
-      return "Authorization expired";
+      return "Sign in again";
     case "sync_error":
-      return "Pending sync";
+      return "Backup waiting";
     case "disconnected":
-      return "Drive disconnected";
+      return "Google Drive disconnected";
     default:
       return "Connection";
   }
