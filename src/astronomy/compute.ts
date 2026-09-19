@@ -13,14 +13,7 @@ import {
   SearchRiseSet,
   type FlexibleDateTime,
 } from "astronomy-engine";
-import {
-  constellationAlongEcliptic,
-  MOON_GLYPH,
-  moonPhaseName,
-  PLANET_BAND,
-  PRIMARY_MOON_PHASES,
-  SUN_GLYPH,
-} from "./constants.ts";
+import { MOON_GLYPH, moonPhaseName, PLANET_BAND, PRIMARY_MOON_PHASES, SUN_GLYPH } from "./constants.ts";
 
 export type ObserverLocation = {
   latitude: number;
@@ -47,7 +40,6 @@ export type MoonSnapshot = {
   illuminationPercent: number;
   phaseAngleDeg: number;
   eclipticLongitudeDeg: number;
-  constellation: string;
   nextPrimaryPhase: { name: string; at: string } | null;
   horizon: HorizonSnapshot | null;
   riseSet: RiseSetSnapshot | null;
@@ -57,7 +49,6 @@ export type SunSnapshot = {
   glyph: string;
   accessibleLabel: string;
   eclipticLongitudeDeg: number;
-  constellation: string;
   horizon: HorizonSnapshot | null;
   riseSet: RiseSetSnapshot | null;
 };
@@ -67,7 +58,6 @@ export type PlanetSnapshot = {
   name: string;
   accessibleLabel: string;
   eclipticLongitudeDeg: number;
-  constellation: string;
   motion: "direct" | "retrograde" | "unknown";
   horizon: HorizonSnapshot | null;
   riseSet: RiseSetSnapshot | null;
@@ -169,7 +159,6 @@ export function computeAstronomySnapshot(at: Date, location?: ObserverLocation |
     glyph: SUN_GLYPH,
     accessibleLabel: "Sun",
     eclipticLongitudeDeg: sunLon,
-    constellation: constellationAlongEcliptic(sunLon),
     horizon: observer ? bodyHorizon(Body.Sun, time, observer) : null,
     riseSet: observer ? bodyRiseSet(Body.Sun, time, observer) : null,
   };
@@ -184,7 +173,6 @@ export function computeAstronomySnapshot(at: Date, location?: ObserverLocation |
     illuminationPercent: Math.round(moonIllum.phase_fraction * 1000) / 10,
     phaseAngleDeg: Math.round(moonIllum.phase_angle * 10) / 10,
     eclipticLongitudeDeg: Math.round(moonLon * 100) / 100,
-    constellation: constellationAlongEcliptic(moonLon),
     nextPrimaryPhase: nextMoonPrimaryPhase(time),
     horizon: observer ? bodyHorizon(Body.Moon, time, observer) : null,
     riseSet: observer ? bodyRiseSet(Body.Moon, time, observer) : null,
@@ -197,7 +185,6 @@ export function computeAstronomySnapshot(at: Date, location?: ObserverLocation |
       name: planet.name,
       accessibleLabel: planet.name,
       eclipticLongitudeDeg: Math.round(lon * 100) / 100,
-      constellation: constellationAlongEcliptic(lon),
       motion: apparentMotion(planet.body, time),
       horizon: observer ? bodyHorizon(planet.body, time, observer) : null,
       riseSet: observer ? bodyRiseSet(planet.body, time, observer) : null,

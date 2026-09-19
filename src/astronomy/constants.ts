@@ -15,30 +15,6 @@ export const PLANET_BAND = [
   { body: Body.Neptune, glyph: "♆", name: "Neptune" },
 ] as const;
 
-const ECLIPTIC_CONSTELLATIONS: Array<{ start: number; name: string }> = [
-  { start: 0, name: "Pisces" },
-  { start: 30, name: "Aries" },
-  { start: 60, name: "Taurus" },
-  { start: 90, name: "Gemini" },
-  { start: 120, name: "Cancer" },
-  { start: 150, name: "Leo" },
-  { start: 180, name: "Virgo" },
-  { start: 210, name: "Libra" },
-  { start: 240, name: "Scorpius" },
-  { start: 270, name: "Sagittarius" },
-  { start: 300, name: "Capricornus" },
-  { start: 330, name: "Aquarius" },
-];
-
-export function constellationAlongEcliptic(longitudeDeg: number): string {
-  const lon = ((longitudeDeg % 360) + 360) % 360;
-  let name = ECLIPTIC_CONSTELLATIONS[0]!.name;
-  for (const row of ECLIPTIC_CONSTELLATIONS) {
-    if (lon >= row.start) name = row.name;
-  }
-  return name;
-}
-
 export function moonPhaseName(moonPhaseAngleDeg: number): string {
   const a = ((moonPhaseAngleDeg % 360) + 360) % 360;
   if (a < 22.5 || a >= 337.5) return "New Moon";

@@ -136,7 +136,7 @@ No streaks. No lock flags. Scroll depth is not stored.
 
 - Route: `#/astronomy` under **More** (tertiary; not promoted above Today/Capture/Journal/Days).
 - Calculations: `astronomy-engine` (MIT) in `src/astronomy/` — local only, no astronomy HTTP API.
-- **No location required:** local/UTC time, Sun/Moon phase and illumination, seven-planet ecliptic longitudes, constellation labels (factual), apparent direct/retrograde, upcoming moon-phase events when computable.
+- **No location required:** local/UTC time, Sun/Moon phase and illumination, seven-planet ecliptic longitudes (no IAU constellation labels in this pass), apparent direct/retrograde, upcoming moon-phase events when computable.
 - **Optional location:** user taps “Use my location for local sky times” (no prompt on load). Coordinates stay in `sessionStorage` (`pex-astronomy-observer`) for the session only; not logged or URL-encoded. Denial leaves the core clock usable.
 - Updates every 60s (120s when `prefers-reduced-motion: reduce`); refresh on tab visibility; timer cleared when leaving the route.
 - Validation note: [ASTRONOMY_VALIDATION.md](ASTRONOMY_VALIDATION.md).

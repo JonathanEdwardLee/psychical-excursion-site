@@ -38,7 +38,7 @@ function renderSnapshot(host: HTMLElement, snap: AstronomySnapshot): void {
           el("p", { class: "astro-glyph", "aria-hidden": "true" }, [snap.sun.glyph]),
           el("h3", {}, ["Sun"]),
           el("p", { class: "meta" }, [
-            `Ecliptic longitude ${snap.sun.eclipticLongitudeDeg.toFixed(2)}° · ${snap.sun.constellation}`,
+            `Ecliptic longitude ${snap.sun.eclipticLongitudeDeg.toFixed(2)}°`,
           ]),
           snap.locationUsed && snap.sun.riseSet
             ? el("p", { class: "hint" }, [
@@ -56,7 +56,7 @@ function renderSnapshot(host: HTMLElement, snap: AstronomySnapshot): void {
           el("h3", {}, ["Moon"]),
           el("p", {}, [`${snap.moon.phaseName} · ${snap.moon.illuminationPercent}% lit`]),
           el("p", { class: "meta" }, [
-            `Phase angle ${snap.moon.phaseAngleDeg}° · ecliptic ${snap.moon.eclipticLongitudeDeg.toFixed(2)}° · ${snap.moon.constellation}`,
+            `Phase angle ${snap.moon.phaseAngleDeg}° · ecliptic longitude ${snap.moon.eclipticLongitudeDeg.toFixed(2)}°`,
           ]),
           snap.moon.nextPrimaryPhase
             ? el("p", { class: "hint" }, [
@@ -79,11 +79,11 @@ function renderSnapshot(host: HTMLElement, snap: AstronomySnapshot): void {
           el("details", {}, [
             el("summary", {}, [
               el("span", { class: "astro-glyph-inline", "aria-hidden": "true" }, [planet.glyph]),
-              el("span", {}, [` ${planet.name} · ${planet.eclipticLongitudeDeg.toFixed(2)}° · ${planet.constellation}`]),
+              el("span", {}, [` ${planet.name} · ${planet.eclipticLongitudeDeg.toFixed(2)}° ecliptic`]),
               el("span", { class: "meta" }, [` · ${planet.motion === "retrograde" ? "apparent retrograde" : "direct"}`]),
             ]),
             el("p", { class: "meta" }, [
-              `${planet.accessibleLabel}: ecliptic longitude ${planet.eclipticLongitudeDeg.toFixed(2)} degrees in ${planet.constellation}. Motion: ${planet.motion}.`,
+              `${planet.accessibleLabel}: ecliptic longitude ${planet.eclipticLongitudeDeg.toFixed(2)} degrees. Motion: ${planet.motion}.`,
             ]),
             planet.horizon && snap.locationUsed
               ? el("p", { class: "hint" }, [

@@ -22,6 +22,8 @@ These checks are implemented in `src/astronomy/astronomy.test.ts` with fixed tim
 
 PEx displays Astronomy Engine outputs for educational instrument use. This is **not** navigation-grade ephemeris. Observer-dependent values (rise/set, azimuth) require explicit user location and are labeled as location-dependent in the UI.
 
+This pass shows **ecliptic longitude only** — not IAU constellation names (equal 30° zodiac sectors are not used).
+
 ## Manual references
 
 - USNO Astronomical Applications (Moon phase, rise/set tables): https://aa.usno.navy.mil/
