@@ -4,14 +4,23 @@ export { SYNC_STATES, type SyncState } from "./types.ts";
 
 export const DRIVE_FILE_SCOPE = "https://www.googleapis.com/auth/drive.file";
 
-export type ConnectionKind = "local_only" | "not_configured" | "disconnected" | "ready" | "auth_expired";
+export type ConnectionKind =
+  | "local_only"
+  | "not_configured"
+  | "google_signed_in"
+  | "disconnected"
+  | "drive_connected"
+  | "auth_expired"
+  | "sync_error";
 
 export type ConnectionSnapshot = {
   kind: ConnectionKind;
   googleAccountLabel: string | null;
+  googleSignedIn: boolean;
   driveAuthorized: boolean;
   driveScope: typeof DRIVE_FILE_SCOPE;
   message: string;
+  pendingSyncCount: number;
 };
 
 export type RemoteJournalMetadata = {
@@ -29,8 +38,12 @@ export type RemoteJournalMetadata = {
 };
 
 export type SyncAttemptResult =
-  | { ok: true; remoteFileId: string; remoteVersion: number }
-  | { ok: false; code: "not-configured" | "not-authorized" | "network" | "provider"; retryable: boolean };
+  | { ok: true; remoteFileId: string; remoteMediaFileId: string | null; remoteVersion: number }
+  | {
+      ok: false;
+      code: "not-configured" | "not-authorized" | "network" | "provider" | "conflict";
+      retryable: boolean;
+    };
 
 /**
  * Cross-device conflict model (preparation only — not live multi-device sync in V2A):

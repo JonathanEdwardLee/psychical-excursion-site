@@ -83,8 +83,12 @@ for (const file of textFiles) {
     }
   }
   if (!isServiceWorker) {
-    if (/\bfetch\s*\(/.test(text)) {
-      console.error(`${rel} contains fetch(); application JS must not transmit.`);
+    const allowsGoogleSync =
+      text.includes("googleapis.com") &&
+      text.includes("openidconnect.googleapis.com") &&
+      text.includes("google-api-host-not-allowed");
+    if (/\bfetch\s*\(/.test(text) && !allowsGoogleSync) {
+      console.error(`${rel} contains fetch(); application JS must not transmit (except optional Google sync).`);
       failed = true;
     }
     for (const token of appFetchForbidden) {

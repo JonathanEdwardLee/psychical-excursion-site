@@ -13,17 +13,21 @@ export class MockSyncProvider implements SyncProvider {
       return {
         kind: "auth_expired",
         googleAccountLabel: "mock@example.com",
+        googleSignedIn: true,
         driveAuthorized: false,
         driveScope: DRIVE_FILE_SCOPE,
         message: "Mock auth expired",
+        pendingSyncCount: 0,
       };
     }
     return {
-      kind: "ready",
+      kind: "drive_connected",
       googleAccountLabel: "mock@example.com",
+      googleSignedIn: true,
       driveAuthorized: true,
       driveScope: DRIVE_FILE_SCOPE,
       message: "Mock provider ready",
+      pendingSyncCount: 0,
     };
   }
 
@@ -37,11 +41,21 @@ export class MockSyncProvider implements SyncProvider {
     }
     if (this.uploaded.has(entry.id)) {
       const version = this.uploaded.get(entry.id)!;
-      return { ok: true, remoteFileId: `mock-file-${entry.id}`, remoteVersion: version };
+      return {
+        ok: true,
+        remoteFileId: `mock-file-${entry.id}`,
+        remoteMediaFileId: entry.audioId ? `mock-media-${entry.id}` : null,
+        remoteVersion: version,
+      };
     }
     const version = entry.syncVersion;
     this.uploaded.set(entry.id, version);
-    return { ok: true, remoteFileId: `mock-file-${entry.id}`, remoteVersion: version };
+    return {
+      ok: true,
+      remoteFileId: `mock-file-${entry.id}`,
+      remoteMediaFileId: entry.audioId ? `mock-media-${entry.id}` : null,
+      remoteVersion: version,
+    };
   }
 
   async disconnect(): Promise<void> {

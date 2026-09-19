@@ -52,8 +52,8 @@ See the root README. Commands:
 ## IndexedDB schema
 
 - Database name: `pex-local`
-- IndexedDB version: `2`
-- App/schema constants: `APP_VERSION` (`0.3.0`), `SCHEMA_VERSION` (`2`)
+- IndexedDB version: `3`
+- App/schema constants: `APP_VERSION` (`0.4.0`), `SCHEMA_VERSION` (`3`)
 
 ### Object stores
 
@@ -73,7 +73,8 @@ See the root README. Commands:
 | localSafeAt | number \| null | IndexedDB-confirmed safe timestamp |
 | syncVersion | number | Increments on local edits |
 | remoteVersion | number \| null | Last known remote version |
-| remoteFileId | string \| null | Provider file id when synced |
+| remoteFileId | string \| null | Drive metadata JSON file id |
+| remoteMediaFileId | string \| null | Drive media file id when present |
 | syncErrorCode | string \| null | Last retryable/non-retryable code |
 | pexDay | number \| null | Practice day at capture |
 | phaseId | string \| null | Phase id at capture |
@@ -122,6 +123,14 @@ No streaks. No lock flags. Scroll depth is not stored.
 - Provider boundary: `src/sync/provider.ts` with `GoogleDriveAdapter` (path/metadata preparation) and test `MockSyncProvider`.
 - Planned Drive layout: `Psychical Excursion/Journal/YYYY/<timestamp> — Dream.<ext>` plus sidecar metadata JSON (`schema_version`, `entry_id`, `capture_type`, `pex_day`, `phase`, sync fields).
 - Cross-device conflict preparation (`src/domain/sync.ts`): stable `entry_id`, monotonic `sync_version`, append-safe journal; local copy is never silently overwritten in this phase.
+
+## Google sync (V2B)
+
+- GIS OAuth token client in-browser; tokens in `sessionStorage` only (never logged, never in URLs).
+- Network egress isolated to `src/sync/googleApiClient.ts` (`googleapis.com`, `openidconnect.googleapis.com` only).
+- Sign-in (`openid email profile`) and Drive connect (`drive.file`) are separate UI actions on `#/account`.
+- Real upload via `driveUpload.ts`; reconciliation via `reconcile.ts`; minimal progress file `pex-progress.json`.
+- Founder setup: `docs/GOOGLE_OAUTH_SETUP.md` and `VITE_GOOGLE_OAUTH_CLIENT_ID` at build time.
 
 ## Night capture
 
