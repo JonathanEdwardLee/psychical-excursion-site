@@ -322,7 +322,7 @@ describe("capture microphone lifecycle", () => {
     const root = await mount("#/account");
     expect(root.textContent).toMatch(/Google account/i);
     expect(root.textContent).toMatch(/Connect Google Drive/i);
-    expect(root.textContent).toMatch(/not configured|local-only mode/i);
+    expect(root.textContent).toMatch(/Not configured|Local only|fully usable without Google/i);
   });
 
   it("saves audio to Journal after review and lists recording on the entry row", async () => {

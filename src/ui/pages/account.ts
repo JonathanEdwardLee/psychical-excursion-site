@@ -1,69 +1,109 @@
 import { DRIVE_FILE_SCOPE } from "../../domain/sync.ts";
 import { isGoogleSyncConfigured } from "../../sync/config.ts";
 import {
+  connectDriveForSync,
   disconnectDrive,
   getConnectionSnapshot,
+  reconcileFromDrive,
   retryPendingSync,
+  signInGoogleAccount,
+  signOutGoogleAccount,
 } from "../../sync/syncEngine.ts";
-import { localStore } from "../../db/store.ts";
+import { connectionHeadline } from "../../sync/connectionLabels.ts";
 import { statusBox } from "../bits.ts";
 import { announce, el } from "../dom.ts";
 
 export async function renderAccountPage(main: HTMLElement): Promise<void> {
   const connectionHost = el("div", { id: "account-connection" });
   const syncHost = el("div", { id: "account-sync" });
+  const statusHost = el("div", { id: "account-status" });
 
   const paint = async () => {
     const connection = await getConnectionSnapshot();
-    const entries = await localStore.listEntries();
-    const pending = entries.filter((e) => e.syncState === "PENDING_SYNC" || e.syncState === "SYNC_ERROR").length;
     const configured = isGoogleSyncConfigured();
+    const headline = connectionHeadline(connection.kind);
 
     connectionHost.replaceChildren(
       el("h3", {}, ["Google account"]),
       el("p", {}, [
-        "Your Google account is identity only in this architecture. It does not replace local capture or IndexedDB storage on this device.",
+        "Identity only — signing in does not upload your journal. Local IndexedDB remains authoritative for capture safety.",
       ]),
       statusBox(
-        configured ? "info" : "info",
-        configured ? "Sign-in not active in this build" : "Google sign-in not configured",
-        configured
-          ? "OAuth client configuration is required before Google identity can appear here. Local journal use is unchanged."
-          : "This deployment has no Google OAuth client ID. The app remains fully useful in local-only mode.",
+        connection.googleSignedIn ? "ok" : "info",
+        connection.googleSignedIn ? "Signed in" : configured ? "Local only" : "Not configured",
+        connection.googleSignedIn
+          ? `${connection.googleAccountLabel ?? "Google account"} on this device. Sign out anytime; local journal stays.`
+          : configured
+            ? "Optional. Sign in when you want Google-connected features."
+            : "No OAuth client ID in this deployment. PEx is fully usable without Google.",
       ),
       el("h3", {}, ["Connect Google Drive"]),
       el("p", {}, [
-        "Drive connection uses the narrow ",
+        "Separate from sign-in. Uses ",
         el("code", {}, ["drive.file"]),
-        " scope so PEx can write user-owned journal files you choose — not your entire Drive.",
+        " so PEx can create/update journal files it owns — not read your entire Drive.",
       ]),
       statusBox(
         connection.driveAuthorized ? "ok" : "info",
-        connection.driveAuthorized ? "Drive prepared" : "Drive not connected",
+        headline,
         `${connection.message} Scope: ${DRIVE_FILE_SCOPE}.`,
       ),
       el("p", { class: "meta" }, [
-        connection.googleAccountLabel ? `Account label: ${connection.googleAccountLabel}` : "No Google account linked on this device.",
+        connection.pendingSyncCount
+          ? `${connection.pendingSyncCount} pending sync (local copies safe).`
+          : "No pending sync items.",
       ]),
     );
 
     syncHost.replaceChildren(
       el("h3", {}, ["Journal sync"]),
       el("p", {}, [
-        "Recordings and notes are written to IndexedDB first. Sync runs only after local-safe confirmation and never removes local entries on failure.",
+        "Record → IndexedDB local-safe → optional Drive upload. Failures never delete local entries. Retry is idempotent.",
       ]),
-      el("p", { class: "meta" }, [`${pending} entr${pending === 1 ? "y" : "ies"} pending or retrying sync on this device.`]),
     );
   };
 
   await paint();
 
-  const retryBtn = el("button", { type: "button", class: "primary", id: "retry-sync-btn" }, ["Retry pending sync"]);
-  retryBtn.addEventListener("click", () => {
+  const signInBtn = el("button", { type: "button", class: "primary", id: "google-sign-in-btn" }, ["Sign in with Google"]);
+  signInBtn.disabled = !isGoogleSyncConfigured();
+  signInBtn.addEventListener("click", () => {
     void (async () => {
-      const count = await retryPendingSync();
+      try {
+        await signInGoogleAccount();
+        statusHost.replaceChildren(statusBox("ok", "Signed in", "Journal remains local until Drive is connected."));
+        await paint();
+      } catch {
+        statusHost.replaceChildren(statusBox("error", "Sign-in failed", "Local journal is unchanged."));
+      }
+    })();
+  });
+
+  const signOutBtn = el("button", { type: "button", id: "google-sign-out-btn" }, ["Sign out"]);
+  signOutBtn.addEventListener("click", () => {
+    void (async () => {
+      await signOutGoogleAccount();
       await paint();
-      announce(count ? `${count} entries synced` : "Retry finished");
+      announce("Signed out. Local journal unchanged.");
+    })();
+  });
+
+  const connectBtn = el("button", { type: "button", class: "primary", id: "connect-drive-btn" }, ["Connect Google Drive"]);
+  connectBtn.disabled = !isGoogleSyncConfigured();
+  connectBtn.addEventListener("click", () => {
+    void (async () => {
+      try {
+        await connectDriveForSync();
+        statusHost.replaceChildren(
+          statusBox("ok", "Drive connected", "Pending items will sync when authorized. Local journal was not deleted."),
+        );
+        await paint();
+      } catch (error) {
+        const message = error instanceof Error ? error.message : "Connection failed";
+        statusHost.replaceChildren(
+          statusBox("error", "Drive not connected", `${message}. Local journal is unchanged.`),
+        );
+      }
     })();
   });
 
@@ -76,20 +116,51 @@ export async function renderAccountPage(main: HTMLElement): Promise<void> {
     })();
   });
 
-  const connectBtn = el("button", { type: "button", disabled: true }, ["Connect Google Drive"]);
-  connectBtn.title = isGoogleSyncConfigured()
-    ? "Authorization UI activates when founder OAuth is configured for production."
-    : "Google OAuth is not configured for this deployment.";
+  const retryBtn = el("button", { type: "button", id: "retry-sync-btn" }, ["Retry pending sync"]);
+  retryBtn.addEventListener("click", () => {
+    void (async () => {
+      const count = await retryPendingSync();
+      await paint();
+      announce(count ? `${count} entries synced` : "Retry finished");
+    })();
+  });
+
+  const reconcileBtn = el("button", { type: "button", id: "reconcile-drive-btn" }, ["Reconcile from Drive"]);
+  reconcileBtn.addEventListener("click", () => {
+    void (async () => {
+      try {
+        const summary = await reconcileFromDrive();
+        statusHost.replaceChildren(
+          statusBox(
+            "ok",
+            "Reconciliation finished",
+            `Imported ${summary.imported}, skipped ${summary.skipped}, conflicts ${summary.conflicts}. Local copies were not silently overwritten.`,
+          ),
+        );
+        await paint();
+      } catch {
+        statusHost.replaceChildren(statusBox("error", "Reconciliation failed", "Local journal is unchanged."));
+      }
+    })();
+  });
 
   main.append(
     el("section", { class: "stack editorial-page account-surface" }, [
       el("p", { class: "eyebrow" }, ["Optional cloud"]),
       el("h2", { class: "display-title" }, ["Account & storage"]),
       el("p", { class: "lede" }, [
-        "Local journal and progress stay on this device first. Google account and Google Drive are separate, optional layers for a future connected pass.",
+        "Local-first always. Google account and Google Drive are separate optional layers. No cloud backup is implied until sync succeeds.",
       ]),
+      statusHost,
       connectionHost,
-      el("div", { class: "actions" }, [connectBtn, disconnectBtn, retryBtn]),
+      el("div", { class: "actions account-actions" }, [
+        signInBtn,
+        signOutBtn,
+        connectBtn,
+        disconnectBtn,
+        retryBtn,
+        reconcileBtn,
+      ]),
       syncHost,
       el("p", {}, [el("a", { href: "#/data" }, ["Data export and persistence on this device"])]),
     ]),

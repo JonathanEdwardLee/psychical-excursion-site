@@ -1,20 +1,17 @@
 import { DRIVE_FILE_SCOPE, type ConnectionSnapshot, type SyncAttemptResult } from "../domain/sync.ts";
 import type { JournalEntry, MediaRecord } from "../domain/types.ts";
+import { localStore } from "../db/store.ts";
 import { readGoogleOAuthConfig } from "./config.ts";
-import { buildRemoteMetadata } from "./driveMetadata.ts";
-import { driveEntryFolderPath, driveMediaFileName, driveMetadataFileName } from "./drivePaths.ts";
+import { uploadJournalEntryToDrive } from "./driveUpload.ts";
+import { loadGoogleIdentityState } from "./googleAuth.ts";
 import type { SyncProvider } from "./provider.ts";
 
 export type DriveAdapterState = {
   accountEmail: string | null;
-  authorized: boolean;
+  driveAuthorized: boolean;
   authExpired: boolean;
 };
 
-/**
- * Browser-side Drive adapter preparation for drive.file scope.
- * Real OAuth token exchange is activated in a later pass when founder OAuth is configured.
- */
 export class GoogleDriveAdapter implements SyncProvider {
   readonly name = "google-drive";
 
@@ -27,67 +24,82 @@ export class GoogleDriveAdapter implements SyncProvider {
   }): GoogleDriveAdapter {
     return new GoogleDriveAdapter({
       accountEmail: settings.accountEmail ?? null,
-      authorized: Boolean(settings.driveAuthorized),
+      driveAuthorized: Boolean(settings.driveAuthorized),
       authExpired: Boolean(settings.authExpired),
     });
   }
 
   async getConnection(): Promise<ConnectionSnapshot> {
     const config = readGoogleOAuthConfig();
+    const entries = await localStore.listEntries();
+    const pendingSyncCount = entries.filter(
+      (entry) => entry.syncState === "PENDING_SYNC" || entry.syncState === "SYNC_ERROR",
+    ).length;
+    const identity = await loadGoogleIdentityState();
+
     if (!config) {
       return {
         kind: "not_configured",
         googleAccountLabel: null,
+        googleSignedIn: false,
         driveAuthorized: false,
         driveScope: DRIVE_FILE_SCOPE,
         message: "Google OAuth client ID is not configured for this deployment.",
+        pendingSyncCount,
       };
     }
     if (this.state.authExpired) {
       return {
         kind: "auth_expired",
-        googleAccountLabel: this.state.accountEmail,
+        googleAccountLabel: this.state.accountEmail ?? identity.email,
+        googleSignedIn: identity.signedIn,
         driveAuthorized: false,
         driveScope: DRIVE_FILE_SCOPE,
         message: "Google Drive authorization expired. Local journal entries remain on this device.",
+        pendingSyncCount,
       };
     }
-    if (!this.state.authorized) {
+    if (!identity.signedIn) {
       return {
-        kind: "disconnected",
-        googleAccountLabel: this.state.accountEmail,
+        kind: "local_only",
+        googleAccountLabel: null,
+        googleSignedIn: false,
         driveAuthorized: false,
         driveScope: DRIVE_FILE_SCOPE,
-        message: "Google account identity and Drive file access are separate. Connect Drive when you are ready.",
+        message: "Local-only mode. Sign in with Google only if you want optional sync.",
+        pendingSyncCount,
+      };
+    }
+    if (!this.state.driveAuthorized) {
+      return {
+        kind: "google_signed_in",
+        googleAccountLabel: identity.email,
+        googleSignedIn: true,
+        driveAuthorized: false,
+        driveScope: DRIVE_FILE_SCOPE,
+        message: "Signed in to Google. Journal stays on this device until you connect Drive separately.",
+        pendingSyncCount,
+      };
+    }
+    if (pendingSyncCount > 0) {
+      return {
+        kind: "sync_error",
+        googleAccountLabel: identity.email,
+        googleSignedIn: true,
+        driveAuthorized: true,
+        driveScope: DRIVE_FILE_SCOPE,
+        message: `${pendingSyncCount} entr${pendingSyncCount === 1 ? "y" : "ies"} waiting to sync. Local copies are safe.`,
+        pendingSyncCount,
       };
     }
     return {
-      kind: "ready",
-      googleAccountLabel: this.state.accountEmail,
+      kind: "drive_connected",
+      googleAccountLabel: identity.email,
+      googleSignedIn: true,
       driveAuthorized: true,
       driveScope: DRIVE_FILE_SCOPE,
-      message: "Drive.file scope is prepared. Upload activation completes in the next pass.",
-    };
-  }
-
-  plannedUploadPaths(entry: JournalEntry, media: MediaRecord | null): { folder: string; media: string | null; metadata: string } {
-    const folder = driveEntryFolderPath(entry);
-    return {
-      folder,
-      media: media ? `${folder}/${driveMediaFileName(entry, media.mimeType)}` : null,
-      metadata: `${folder}/${driveMetadataFileName(entry)}`,
-    };
-  }
-
-  buildUploadPayload(entry: JournalEntry, media: MediaRecord | null): {
-    metadataJson: string;
-    mediaMime: string | null;
-    mediaByteLength: number | null;
-  } {
-    return {
-      metadataJson: `${JSON.stringify(buildRemoteMetadata(entry), null, 2)}\n`,
-      mediaMime: media?.mimeType ?? null,
-      mediaByteLength: media?.byteLength ?? null,
+      message: "Drive connected with drive.file scope. Sync runs after each local-safe save.",
+      pendingSyncCount,
     };
   }
 
@@ -96,18 +108,14 @@ export class GoogleDriveAdapter implements SyncProvider {
     if (!config) {
       return { ok: false, code: "not-configured", retryable: false };
     }
-    if (this.state.authExpired || !this.state.authorized) {
+    if (this.state.authExpired || !this.state.driveAuthorized) {
       return { ok: false, code: "not-authorized", retryable: true };
     }
-    // Upload wiring lands in the next pass; path + metadata contract is deterministic today.
-    void this.plannedUploadPaths(entry, media);
-    void this.buildUploadPayload(entry, media);
-    return { ok: false, code: "provider", retryable: true };
+    return uploadJournalEntryToDrive(entry, media);
   }
 
   async disconnect(): Promise<void> {
-    this.state.authorized = false;
+    this.state.driveAuthorized = false;
     this.state.authExpired = false;
-    this.state.accountEmail = null;
   }
 }

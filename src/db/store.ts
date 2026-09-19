@@ -197,6 +197,10 @@ export class LocalStore {
     pexDay?: number | null;
     phaseId?: string | null;
     syncState?: SyncState;
+    syncVersion?: number;
+    remoteVersion?: number | null;
+    remoteFileId?: string | null;
+    remoteMediaFileId?: string | null;
   }): Promise<JournalEntry> {
     const db = await this.open();
     const now = input.createdAt;
@@ -211,9 +215,10 @@ export class LocalStore {
       audioByteLength: input.audio ? input.audio.blob.size : null,
       syncState: input.syncState ?? "LOCAL",
       localSafeAt: now,
-      syncVersion: 1,
-      remoteVersion: null,
-      remoteFileId: null,
+      syncVersion: input.syncVersion ?? 1,
+      remoteVersion: input.remoteVersion ?? null,
+      remoteFileId: input.remoteFileId ?? null,
+      remoteMediaFileId: input.remoteMediaFileId ?? null,
       syncErrorCode: null,
       pexDay: input.pexDay ?? null,
       phaseId: input.phaseId ?? null,
@@ -277,7 +282,13 @@ export class LocalStore {
     patch: Partial<
       Pick<
         JournalEntry,
-        "syncState" | "remoteFileId" | "remoteVersion" | "syncErrorCode" | "localSafeAt" | "syncVersion"
+        | "syncState"
+        | "remoteFileId"
+        | "remoteMediaFileId"
+        | "remoteVersion"
+        | "syncErrorCode"
+        | "localSafeAt"
+        | "syncVersion"
       >
     >,
   ): Promise<JournalEntry> {

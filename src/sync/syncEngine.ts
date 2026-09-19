@@ -2,8 +2,18 @@ import { localStore } from "../db/store.ts";
 import type { SyncAttemptResult } from "../domain/sync.ts";
 import type { JournalEntry } from "../domain/types.ts";
 import { isGoogleSyncConfigured } from "./config.ts";
+import {
+  connectGoogleDrive,
+  disconnectGoogleDriveOnly,
+  loadGoogleIdentityState,
+  signInWithGoogle,
+  signOutGoogle,
+} from "./googleAuth.ts";
 import { GoogleDriveAdapter } from "./googleDriveAdapter.ts";
+import { reconcileJournalFromDrive, type ReconcileSummary } from "./reconcile.ts";
+import { reconcileProgressFromDrive, uploadProgressToDrive } from "./progressSync.ts";
 import type { SyncProvider } from "./provider.ts";
+import { enqueueSyncMutation } from "./syncQueue.ts";
 import { UnconfiguredSyncProvider } from "./unconfiguredProvider.ts";
 
 let providerOverride: SyncProvider | null = null;
@@ -46,11 +56,11 @@ export async function afterLocalSave(entryId: string): Promise<JournalEntry | nu
   if (!found) return null;
   const provider = await resolveSyncProvider();
   const connection = await provider.getConnection();
-  if (connection.kind === "not_configured") {
+  if (connection.kind === "not_configured" || connection.kind === "local_only" || connection.kind === "google_signed_in") {
     return found.entry;
   }
   await localStore.updateSyncState(entryId, { syncState: "PENDING_SYNC", syncErrorCode: null });
-  return attemptSync(entryId, provider);
+  return enqueueSyncMutation(() => attemptSync(entryId, provider));
 }
 
 async function attemptSync(entryId: string, provider: SyncProvider): Promise<JournalEntry | null> {
@@ -63,12 +73,15 @@ async function attemptSync(entryId: string, provider: SyncProvider): Promise<Jou
     result = { ok: false, code: "network", retryable: true };
   }
   if (result.ok) {
-    return localStore.updateSyncState(entryId, {
+    const updated = await localStore.updateSyncState(entryId, {
       syncState: "SYNCED",
       remoteFileId: result.remoteFileId,
+      remoteMediaFileId: result.remoteMediaFileId,
       remoteVersion: result.remoteVersion,
       syncErrorCode: null,
     });
+    void enqueueSyncMutation(() => uploadProgressToDrive().catch(() => undefined));
+    return updated;
   }
   const nextState = result.retryable ? "PENDING_SYNC" : "SYNC_ERROR";
   return localStore.updateSyncState(entryId, {
@@ -83,18 +96,39 @@ export async function retryPendingSync(): Promise<number> {
   const pending = entries.filter((entry) => entry.syncState === "PENDING_SYNC" || entry.syncState === "SYNC_ERROR");
   let synced = 0;
   for (const entry of pending) {
-    const updated = await attemptSync(entry.id, provider);
+    const updated = await enqueueSyncMutation(() => attemptSync(entry.id, provider));
     if (updated?.syncState === "SYNCED") synced += 1;
   }
   return synced;
 }
 
 export async function disconnectDrive(): Promise<void> {
-  const provider = await resolveSyncProvider();
-  await provider.disconnect();
-  await localStore.setSetting("driveConnection", {
-    accountEmail: null,
-    driveAuthorized: false,
-    authExpired: false,
+  await disconnectGoogleDriveOnly();
+}
+
+export async function signInGoogleAccount(): Promise<void> {
+  await signInWithGoogle();
+}
+
+export async function signOutGoogleAccount(): Promise<void> {
+  await signOutGoogle();
+}
+
+export async function connectDriveForSync(): Promise<void> {
+  await connectGoogleDrive();
+  await retryPendingSync();
+  await enqueueSyncMutation(() => reconcileProgressFromDrive().then(() => uploadProgressToDrive()));
+}
+
+export async function reconcileFromDrive(): Promise<ReconcileSummary> {
+  return enqueueSyncMutation(async () => {
+    const summary = await reconcileJournalFromDrive();
+    await reconcileProgressFromDrive();
+    return summary;
   });
+}
+
+export async function isGoogleSignedIn(): Promise<boolean> {
+  const identity = await loadGoogleIdentityState();
+  return identity.signedIn;
 }

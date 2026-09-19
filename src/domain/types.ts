@@ -1,7 +1,7 @@
-export const APP_VERSION = "0.3.0";
-export const SCHEMA_VERSION = 2;
+export const APP_VERSION = "0.4.0";
+export const SCHEMA_VERSION = 3;
 export const DB_NAME = "pex-local";
-export const DB_VERSION = 2;
+export const DB_VERSION = 3;
 export const DAY_COUNT = 60;
 
 export const STORES = {
@@ -37,6 +37,7 @@ export type JournalEntry = {
   syncVersion: number;
   remoteVersion: number | null;
   remoteFileId: string | null;
+  remoteMediaFileId: string | null;
   syncErrorCode: string | null;
   pexDay: number | null;
   phaseId: string | null;
@@ -58,6 +59,7 @@ export function normalizeJournalEntry(row: Partial<JournalEntry> & Pick<JournalE
     syncVersion: typeof row.syncVersion === "number" ? row.syncVersion : 1,
     remoteVersion: row.remoteVersion ?? null,
     remoteFileId: row.remoteFileId ?? null,
+    remoteMediaFileId: row.remoteMediaFileId ?? null,
     syncErrorCode: row.syncErrorCode ?? null,
     pexDay: row.pexDay ?? null,
     phaseId: row.phaseId ?? null,
