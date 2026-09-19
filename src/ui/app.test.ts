@@ -122,11 +122,20 @@ describe("core UI flows", () => {
     expect(day1.querySelector("h2")?.textContent).toBe("CATCH THE DREAM");
     expect(day1.textContent).toMatch(/Start with recall/);
     expect(day1.querySelector("#complete-day")).toBeTruthy();
+    expect(day1.querySelector(".read-progress")).toBeTruthy();
+    expect(day1.querySelector("#read-place")).toBeTruthy();
     const day60 = await mount("#/day/60");
     expect(day60.querySelector("h2")?.textContent).toBe("INDEPENDENT ATTEMPT");
     const days = await mount("#/days");
     expect(days.textContent).toMatch(/REMEMBER/);
     expect(days.textContent).toMatch(/LEARN YOUR DOOR/);
+    expect(days.querySelectorAll(".day-row")).toHaveLength(60);
+    expect(days.querySelectorAll(".phase-chapter")).toHaveLength(8);
+    expect(days.querySelector("#journey-live")).toBeTruthy();
+    await vi.waitFor(() => {
+      expect(days.querySelector(".phase-chapter.is-active")).toBeTruthy();
+    });
+    expect(days.querySelector(".day-row-link")?.querySelector(".day-title")?.textContent).toBe("CATCH THE DREAM");
     const phase = await mount("#/phase/feel");
     expect(phase.querySelector("h2")?.textContent).toBe("FEEL");
     const method = await mount("#/method");
@@ -144,6 +153,7 @@ describe("core UI flows", () => {
     (root.querySelector("#complete-day") as HTMLButtonElement).click();
     await vi.waitFor(() => {
       expect(root.querySelector("#undo-day")).toBeTruthy();
+      expect(root.querySelector(".complete-panel.is-complete")).toBeTruthy();
     });
     (root.querySelector("#undo-day") as HTMLButtonElement).click();
     await vi.waitFor(() => {

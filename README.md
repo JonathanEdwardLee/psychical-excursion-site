@@ -57,6 +57,6 @@ Vanilla TypeScript + Vite. Hash routes (`#/`, `#/today`, `#/day/1`–`#/day/60`,
 
 ## Status
 
-Worker maximum for this pass: `CODE_COMPLETE / DEPLOYMENT_READY / PRIMARY_REVIEW_REQUIRED`. This is not independent live-domain verification.
+Worker maximum for this pass: `CODE_COMPLETE / VISUAL_PRIMARY_REVIEW_REQUIRED`. Visual identity is not self-accepted.
 
 Website design and development: [Hoopsnake Designs](https://hoopsnakedesigns.com/)

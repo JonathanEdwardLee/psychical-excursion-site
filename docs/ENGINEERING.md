@@ -15,7 +15,7 @@ Keep a trustworthy browser-native product:
 - Method, About, evidence/safety/source copy
 - PWA install + offline-after-load, including hashed app-shell + bundled day renderer
 - Honest storage-persistence reporting
-- Soft Instrument presentation (warm light default, optional bedtime mode)
+- Soft Instrument presentation (logo-derived off-white / near-black, geometric type, optional bedtime mode)
 - Accessibility baseline
 
 CloudDev must not invent or rewrite canonical curriculum. Days 1–60 are loaded from `src/content/canonical.ts` as transported by PEx Primary.
@@ -173,7 +173,7 @@ This is a manual recovery file, not a cloud backup.
 
 ## Bedtime mode
 
-Default: warm light (`data-theme` omitted / `light`). Optional bedtime mode persisted in `localStorage` key `pex-theme`. `prefers-reduced-motion` and `prefers-contrast: more` are respected in CSS. Missing `localStorage` (some private modes) still applies the in-memory theme.
+Default: light (`data-theme` omitted / `light`) using logo off-white `#F7F5EF` and ink `#11110F`. Optional bedtime mode persisted in `localStorage` key `pex-theme`. `prefers-reduced-motion` and `prefers-contrast: more` are respected in CSS. Missing `localStorage` (some private modes) still applies the in-memory theme.
 
 Day screens are typography-led continuous surfaces. Primary navigation on narrow viewports is a fixed bottom bar: Today, Capture, Journal, Days. Capture remains reachable in one action from Home and from that bar.
 

@@ -40,27 +40,24 @@ export function renderChrome(
   const skip = el("a", { class: "skip-link", href: "#main" }, ["Skip to content"]);
   const moreCurrent = MORE_ITEMS.some((item) => item.id === current);
   const header = el("header", { class: "app-header" }, [
-    el("div", { class: "brand-row" }, [
-      el("a", { href: "#/", class: "brand-link", "aria-label": "Psychical Excursion home" }, [
-        el("img", {
-          class: "brand-logo brand-logo-light",
-          src: "/brand/pex-logo-primary.svg",
-          alt: "",
-          width: "220",
-          height: "52",
-          decoding: "async",
-        }),
-        el("img", {
-          class: "brand-logo brand-logo-reverse",
-          src: "/brand/pex-logo-primary-reverse.svg",
-          alt: "",
-          width: "220",
-          height: "52",
-          decoding: "async",
-        }),
-        el("h1", { class: "visually-hidden" }, ["Psychical Excursion"]),
-      ]),
-      themeToggle(),
+    el("a", { href: "#/", class: "brand-link", "aria-label": "Psychical Excursion home" }, [
+      el("img", {
+        class: "brand-logo brand-logo-light",
+        src: "/brand/pex-logo-primary.svg",
+        alt: "",
+        width: "220",
+        height: "52",
+        decoding: "async",
+      }),
+      el("img", {
+        class: "brand-logo brand-logo-reverse",
+        src: "/brand/pex-logo-primary-reverse.svg",
+        alt: "",
+        width: "220",
+        height: "52",
+        decoding: "async",
+      }),
+      el("h1", { class: "visually-hidden" }, ["Psychical Excursion"]),
     ]),
     el("nav", { class: "nav-primary", "aria-label": "Primary" }, [
       ...PRIMARY_ITEMS.map((item) =>
@@ -74,12 +71,13 @@ export function renderChrome(
     el("nav", { class: "nav-more", "aria-label": "More" }, [
       ...MORE_ITEMS.map((item) => navAnchor(item.href, item.label, item.id === current)),
     ]),
+    themeToggle(),
   ]);
   if (moreCurrent) {
     header.querySelector(".nav-more")?.classList.add("is-open");
   }
   const live = el("div", { id: "live-status", class: "visually-hidden", "aria-live": "polite" });
-  const main = el("main", { id: "main", tabindex: "-1" });
+  const main = el("main", { id: "main", class: "main-stage", tabindex: "-1" });
   const updateBanner = el("div", { id: "sw-banner" });
   const footer = el("footer", { class: "site-footer" }, [
     el("p", { class: "meta" }, ["Local practice guide. Journal entries stay on this device."]),
@@ -88,7 +86,8 @@ export function renderChrome(
       el("a", { href: "https://hoopsnakedesigns.com/", rel: "noreferrer" }, ["Hoopsnake Designs"]),
     ]),
   ]);
-  root.append(skip, header, live, updateBanner, main, footer);
+  const frame = el("div", { class: "app-frame" }, [header, live, updateBanner, main, footer]);
+  root.append(skip, frame);
   bindUpdateBanner(updateBanner);
   return { main };
 }
@@ -100,14 +99,14 @@ function themeToggle(): HTMLButtonElement {
     id: "theme-toggle-header",
     class: "quiet",
     "aria-pressed": bedtime ? "true" : "false",
-    "aria-label": bedtime ? "Switch to warm light" : "Switch to bedtime mode",
-  }, [bedtime ? "Warm light" : "Bedtime"]);
+    "aria-label": bedtime ? "Switch to light" : "Switch to bedtime mode",
+  }, [bedtime ? "Light" : "Bedtime"]);
   button.addEventListener("click", () => {
     const mode = toggleTheme();
     const nowBedtime = mode === "bedtime";
-    button.textContent = nowBedtime ? "Warm light" : "Bedtime";
+    button.textContent = nowBedtime ? "Light" : "Bedtime";
     button.setAttribute("aria-pressed", nowBedtime ? "true" : "false");
-    button.setAttribute("aria-label", nowBedtime ? "Switch to warm light" : "Switch to bedtime mode");
+    button.setAttribute("aria-label", nowBedtime ? "Switch to light" : "Switch to bedtime mode");
   });
   return button;
 }
@@ -139,17 +138,21 @@ function bindUpdateBanner(host: HTMLElement): void {
 
 export function phaseNav(activeId?: string): HTMLElement {
   const nav = el("nav", { class: "phase-nav", "aria-label": "Phases" });
-  for (const phase of PHASES) {
+  PHASES.forEach((phase, index) => {
     nav.append(
       el(
         "a",
         {
           href: `#/phase/${phase.id}`,
+          class: "phase-nav-link",
           ...(activeId === phase.id ? { "aria-current": "page" } : {}),
         },
-        [phase.name],
+        [
+          el("span", { class: "phase-nav-index" }, [String(index + 1).padStart(2, "0")]),
+          el("span", { class: "phase-nav-name" }, [phase.name]),
+        ],
       ),
     );
-  }
+  });
   return nav;
 }
