@@ -134,6 +134,25 @@ export async function ensurePexJournalFolder(accessToken: string, year: number):
   return root;
 }
 
+/** Lists existing Journal year folders only — does not create empty historical folders. */
+export async function listPexJournalYearFolders(
+  accessToken: string,
+): Promise<Array<{ year: number; folderId: string }>> {
+  const pexRoot = await driveFindByName(accessToken, "root", "Psychical Excursion");
+  if (!pexRoot) return [];
+  const journalRoot = await driveFindByName(accessToken, pexRoot.id, "Journal");
+  if (!journalRoot) return [];
+  const children = await driveListChildren(accessToken, journalRoot.id);
+  return children
+    .filter(
+      (file) =>
+        file.mimeType === "application/vnd.google-apps.folder" && /^\d{4}$/.test(file.name),
+    )
+    .map((file) => ({ year: Number(file.name), folderId: file.id }))
+    .filter((row) => row.year >= 1970 && row.year <= 9999)
+    .sort((a, b) => a.year - b.year);
+}
+
 async function ensureFolderPath(accessToken: string, segments: string[]): Promise<string> {
   let parent: string | undefined;
   for (const segment of segments) {
