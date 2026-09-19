@@ -1,71 +1,42 @@
-import { AudioCapture, inspectRecorderCapability } from "../audio/recorder.ts";
+import { AudioCapture } from "../audio/recorder.ts";
 import { localStore } from "../db/store.ts";
-import { AppError, createId, type EntryType } from "../domain/types.ts";
+import { AppError } from "../domain/types.ts";
 import { buildJournalZip } from "../export/journalExport.ts";
 import { inspectAndRequestPersistence, persistenceSummary } from "../storage/persistence.ts";
 import { readTheme, toggleTheme } from "../theme.ts";
-import { emptyJournal, entryCard, statusBox, typeFieldset } from "./bits.ts";
-import { announce, el, formatWhen, go } from "./dom.ts";
+import {
+  abandonLiveMicrophone,
+  capture,
+  commitCaptureToJournal,
+  initRecorderFlags,
+  microphoneBusy,
+  resetCaptureMedia,
+} from "./captureSession.ts";
+import { loadCapturePracticeContext } from "./captureContext.ts";
+import { emptyJournal, entryCard, statusBox, syncStateLabel, typeFieldset } from "./bits.ts";
+import { announce, el, formatWhen, go, text } from "./dom.ts";
+import { renderAccountPage } from "./pages/account.ts";
 import { renderDayPage, renderTodayPage } from "./pages/day.ts";
 import { renderDaysPage, renderPhasePage } from "./pages/days.ts";
 import { renderAboutPage, renderHomePage, renderMethodPage } from "./pages/home.ts";
-import { parseRoute } from "./routes.ts";
+import { renderNightCapturePage } from "./pages/nightCapture.ts";
+import { parseRoute, type AppRoute } from "./routes.ts";
 import { bindDayReading, bindPhaseJourney, stopScrollPresence } from "./scrollPresence.ts";
 import { renderChrome } from "./shell.ts";
 
-type CaptureState = {
-  type: EntryType | null;
-  note: string;
-  recording: { blob: Blob; mimeType: string } | null;
-  recorder: AudioCapture | null;
-  recordingActive: boolean;
-  starting: boolean;
-  permissionDenied: boolean;
-  recorderUnavailable: boolean;
-  mimeUnsupported: boolean;
-  interrupted: boolean;
-  saveError: string | null;
-  saving: boolean;
-};
+export { abandonLiveMicrophone, isCaptureMicrophoneHeld } from "./captureSession.ts";
 
-const capture: CaptureState = {
-  type: null,
-  note: "",
-  recording: null,
-  recorder: null,
-  recordingActive: false,
-  starting: false,
-  permissionDenied: false,
-  recorderUnavailable: false,
-  mimeUnsupported: false,
-  interrupted: false,
-  saveError: null,
-  saving: false,
-};
-
-export function isCaptureMicrophoneHeld(): boolean {
-  return capture.starting || capture.recordingActive || Boolean(capture.recorder?.isLive());
-}
-
-export function abandonLiveMicrophone(): void {
-  capture.recorder?.release();
-  capture.recorder = null;
-  capture.recordingActive = false;
-  capture.starting = false;
-}
-
-function resetCaptureMedia(): void {
-  abandonLiveMicrophone();
-  capture.recording = null;
-  capture.interrupted = false;
-}
-
-function microphoneBusy(): boolean {
-  return capture.starting || capture.recordingActive;
+function applyCaptureRouteTheme(route: AppRoute): void {
+  if (route.name === "capture" && route.variant === "night") {
+    document.documentElement.dataset.captureMode = "night";
+  } else {
+    delete document.documentElement.dataset.captureMode;
+  }
 }
 
 export async function renderApp(root: HTMLElement): Promise<void> {
   const route = parseRoute(window.location.hash.split("?")[0]);
+  applyCaptureRouteTheme(route);
 
   if (route.name !== "capture") {
     abandonLiveMicrophone();
@@ -75,7 +46,9 @@ export async function renderApp(root: HTMLElement): Promise<void> {
   const { main } = renderChrome(root, route);
 
   try {
-    if (route.name === "capture") await renderCapture(main);
+    if (route.name === "capture" && route.variant === "night") await renderNightCapturePage(main, route);
+    else if (route.name === "capture") await renderCapture(main, route);
+    else if (route.name === "account") await renderAccountPage(main);
     else if (route.name === "entry") await renderEntry(main, route.id);
     else if (route.name === "journal") await renderJournal(main);
     else if (route.name === "day") await renderDayPage(main, route.day);
@@ -113,10 +86,9 @@ function renderFatal(error: unknown): HTMLElement {
   return wrap;
 }
 
-async function renderCapture(main: HTMLElement): Promise<void> {
-  const capability = inspectRecorderCapability();
-  if (!capability.mediaRecorder || !capability.getUserMedia) capture.recorderUnavailable = true;
-  if (capability.mediaRecorder && !capability.selectedMimeType) capture.mimeUnsupported = true;
+async function renderCapture(main: HTMLElement, route: Extract<AppRoute, { name: "capture" }>): Promise<void> {
+  const capability = initRecorderFlags();
+  if (route.presetType && !capture.type) capture.type = route.presetType;
 
   const heading = el("h2", { class: "display-title" }, ["Capture"]);
   const lede = el("p", { class: "lede" }, [
@@ -243,31 +215,12 @@ async function renderCapture(main: HTMLElement): Promise<void> {
         syncCaptureChrome();
         return;
       }
-      capture.saving = true;
       saveBtn.disabled = true;
       syncCaptureChrome("Saving to Journal…");
-      try {
-        const saved = await localStore.saveCapture({
-          id: createId("entry"),
-          type: capture.type,
-          note: capture.note,
-          createdAt: Date.now(),
-          audio: capture.recording
-            ? { id: createId("audio"), blob: capture.recording.blob, mimeType: capture.recording.mimeType }
-            : null,
-        });
-        capture.saving = false;
-        capture.note = "";
-        resetCaptureMedia();
-        announce("Saved locally");
-        sessionStorage.setItem("pex-just-saved", saved.id);
-        go(`/journal/${saved.id}`);
-      } catch (error) {
-        capture.saving = false;
-        saveBtn.disabled = false;
-        capture.saveError = error instanceof AppError ? error.message : "Save failed. The entry was not marked saved.";
-        syncCaptureChrome();
-      }
+      const practice = await loadCapturePracticeContext();
+      const savedId = await commitCaptureToJournal(practice);
+      saveBtn.disabled = false;
+      if (!savedId) syncCaptureChrome();
     })();
   });
 
@@ -293,7 +246,7 @@ function discardUnsavedRecording(repaint: () => void): void {
 
 function paintCaptureStatus(
   host: HTMLElement,
-  capability: ReturnType<typeof inspectRecorderCapability>,
+  capability: ReturnType<typeof initRecorderFlags>,
   saveBtn: HTMLButtonElement,
   recordBtn: HTMLButtonElement,
   repaint: (pending?: string) => void,
@@ -413,6 +366,8 @@ async function renderEntry(main: HTMLElement, id: string): Promise<void> {
   const meta = el("p", { class: "meta" }, [
     `${entry.type} · `,
     el("time", { datetime: new Date(entry.createdAt).toISOString() }, [formatWhen(entry.createdAt)]),
+    text(" · "),
+    el("span", { class: "sync-state-label" }, [syncStateLabel(entry.syncState)]),
   ]);
   const note = el("textarea", { id: "entry-note", rows: "6" });
   note.value = entry.note;

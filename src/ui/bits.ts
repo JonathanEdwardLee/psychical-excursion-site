@@ -1,5 +1,20 @@
-import { ENTRY_TYPE_LABEL, type EntryType, type JournalEntry } from "../domain/types.ts";
+import { ENTRY_TYPE_LABEL, type EntryType, type JournalEntry, type SyncState } from "../domain/types.ts";
 import { el, formatWhen, go, text } from "./dom.ts";
+
+export function syncStateLabel(state: SyncState): string {
+  switch (state) {
+    case "LOCAL":
+      return "Local";
+    case "PENDING_SYNC":
+      return "Pending sync";
+    case "SYNCED":
+      return "Synced";
+    case "SYNC_ERROR":
+      return "Sync error";
+    default:
+      return state;
+  }
+}
 
 export function emptyJournal(): HTMLElement {
   return el("p", { class: "lede" }, [
@@ -15,6 +30,9 @@ export function entryCard(entry: JournalEntry): HTMLElement {
   ];
   if (entry.audioId) {
     metaParts.push(text(" · "), el("span", { class: "entry-audio-badge" }, ["Recording"]));
+  }
+  if (entry.syncState !== "LOCAL") {
+    metaParts.push(text(" · "), el("span", { class: "entry-sync-badge" }, [syncStateLabel(entry.syncState)]));
   }
   const excerpt = entry.note
     ? entry.note

@@ -10,7 +10,13 @@ describe("hash routes", () => {
     expect(parseRoute("#/day/60")).toEqual({ name: "day", day: 60 });
     expect(parseRoute("#/days/12")).toEqual({ name: "day", day: 12 });
     expect(parseRoute("#/phase/remember")).toEqual({ name: "phase", phaseId: "remember" });
-    expect(parseRoute("#/capture")).toEqual({ name: "capture" });
+    expect(parseRoute("#/capture")).toEqual({ name: "capture", variant: "standard" });
+    expect(parseRoute("#/capture/night/dream")).toEqual({
+      name: "capture",
+      variant: "night",
+      presetType: "dream",
+    });
+    expect(parseRoute("#/account")).toEqual({ name: "account" });
     expect(parseRoute("#/journal")).toEqual({ name: "journal" });
     expect(parseRoute("#/journal/entry-1")).toEqual({ name: "entry", id: "entry-1" });
     expect(parseRoute("#/method")).toEqual({ name: "method" });

@@ -22,6 +22,9 @@ export type ExportJournalFile = {
     createdAt: string;
     updatedAt: string;
     note: string;
+    sync_state: JournalEntry["syncState"];
+    pex_day: number | null;
+    phase: string | null;
     recording: { file: string; mimeType: string; byteLength: number } | null;
   }>;
 };
@@ -75,6 +78,9 @@ export async function buildJournalZip(
       createdAt: new Date(entry.createdAt).toISOString(),
       updatedAt: new Date(entry.updatedAt).toISOString(),
       note: entry.note,
+      sync_state: entry.syncState,
+      pex_day: entry.pexDay,
+      phase: entry.phaseId,
       recording,
     });
   }

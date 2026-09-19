@@ -8,10 +8,12 @@ import {
   STORES,
   emptyDayProgress,
   normalizeDayProgress,
+  normalizeJournalEntry,
   type DayProgress,
   type JournalEntry,
   type MediaRecord,
   type PersistenceReport,
+  type SyncState,
 } from "../domain/types.ts";
 
 export type DatabaseFactory = typeof indexedDB;
@@ -60,12 +62,19 @@ export class LocalStore {
     this.assertAvailable();
     try {
       const request = this.factory!.open(DB_NAME, DB_VERSION);
-      request.onupgradeneeded = () => {
+      request.onupgradeneeded = (event) => {
         const db = request.result;
+        const tx = request.transaction!;
         if (!db.objectStoreNames.contains(STORES.entries)) {
           const entries = db.createObjectStore(STORES.entries, { keyPath: "id" });
           entries.createIndex("createdAt", "createdAt");
           entries.createIndex("type", "type");
+          entries.createIndex("syncState", "syncState");
+        } else if (event.oldVersion < 2) {
+          const entries = tx.objectStore(STORES.entries);
+          if (!entries.indexNames.contains("syncState")) {
+            entries.createIndex("syncState", "syncState");
+          }
         }
         if (!db.objectStoreNames.contains(STORES.media)) {
           const media = db.createObjectStore(STORES.media, { keyPath: "id" });
@@ -79,7 +88,11 @@ export class LocalStore {
         }
       };
       const db = await requestToPromise(request);
-      await this.ensureSeed(db);
+      const needsEntryMigration = await this.ensureSeed(db);
+      if (needsEntryMigration) {
+        await this.migrateLegacyEntries(db);
+        await this.bumpSchemaRecord(db);
+      }
       return db;
     } catch (error) {
       if (error instanceof AppError) throw error;
@@ -87,7 +100,7 @@ export class LocalStore {
     }
   }
 
-  private async ensureSeed(db: IDBDatabase): Promise<void> {
+  private async ensureSeed(db: IDBDatabase): Promise<boolean> {
     const tx = db.transaction([STORES.progress, STORES.settings], "readwrite");
     const progress = tx.objectStore(STORES.progress);
     const settings = tx.objectStore(STORES.settings);
@@ -99,7 +112,10 @@ export class LocalStore {
         progress.put(normalizeDayProgress(existing as DayProgress));
       }
     }
-    const schema = await requestToPromise(settings.get("schema"));
+    const schema = (await requestToPromise(settings.get("schema"))) as
+      | { key: string; schemaVersion: number; appVersion: string; createdAt: number }
+      | undefined;
+    let needsEntryMigration = false;
     if (!schema) {
       settings.put({
         key: "schema",
@@ -107,6 +123,33 @@ export class LocalStore {
         appVersion: APP_VERSION,
         createdAt: Date.now(),
       });
+    } else if (schema.schemaVersion < SCHEMA_VERSION) {
+      needsEntryMigration = true;
+    }
+    await transactionDone(tx);
+    return needsEntryMigration;
+  }
+
+  private async bumpSchemaRecord(db: IDBDatabase): Promise<void> {
+    const tx = db.transaction(STORES.settings, "readwrite");
+    const settings = tx.objectStore(STORES.settings);
+    const schema = (await requestToPromise(settings.get("schema"))) as
+      | { key: string; schemaVersion: number; appVersion: string; createdAt: number }
+      | undefined;
+    if (schema) {
+      settings.put({ ...schema, schemaVersion: SCHEMA_VERSION, appVersion: APP_VERSION });
+    }
+    await transactionDone(tx);
+  }
+
+  private async migrateLegacyEntries(db: IDBDatabase): Promise<void> {
+    const tx = db.transaction(STORES.entries, "readwrite");
+    const store = tx.objectStore(STORES.entries);
+    const rows = (await requestToPromise(store.getAll())) as Partial<JournalEntry>[];
+    for (const row of rows) {
+      if (row.syncState === undefined) {
+        store.put(normalizeJournalEntry(row as JournalEntry));
+      }
     }
     await transactionDone(tx);
   }
@@ -118,7 +161,7 @@ export class LocalStore {
       const store = tx.objectStore(STORES.entries);
       const rows = (await requestToPromise(store.getAll())) as JournalEntry[];
       await transactionDone(tx);
-      return rows.sort((a, b) => b.createdAt - a.createdAt);
+      return rows.map((row) => normalizeJournalEntry(row)).sort((a, b) => b.createdAt - a.createdAt);
     } finally {
       db.close();
     }
@@ -133,12 +176,13 @@ export class LocalStore {
         await transactionDone(tx);
         return null;
       }
+      const normalized = normalizeJournalEntry(entry);
       let media: MediaRecord | null = null;
-      if (entry.audioId) {
-        media = ((await requestToPromise(tx.objectStore(STORES.media).get(entry.audioId))) as MediaRecord | undefined) ?? null;
+      if (normalized.audioId) {
+        media = ((await requestToPromise(tx.objectStore(STORES.media).get(normalized.audioId))) as MediaRecord | undefined) ?? null;
       }
       await transactionDone(tx);
-      return { entry, media };
+      return { entry: normalized, media };
     } finally {
       db.close();
     }
@@ -150,18 +194,30 @@ export class LocalStore {
     note: string;
     createdAt: number;
     audio: { id: string; blob: Blob; mimeType: string } | null;
+    pexDay?: number | null;
+    phaseId?: string | null;
+    syncState?: SyncState;
   }): Promise<JournalEntry> {
     const db = await this.open();
-    const entry: JournalEntry = {
+    const now = input.createdAt;
+    const entry: JournalEntry = normalizeJournalEntry({
       id: input.id,
       type: input.type,
-      createdAt: input.createdAt,
-      updatedAt: input.createdAt,
+      createdAt: now,
+      updatedAt: now,
       note: input.note.trim(),
       audioId: input.audio?.id ?? null,
       audioMimeType: input.audio?.mimeType ?? null,
       audioByteLength: input.audio ? input.audio.blob.size : null,
-    };
+      syncState: input.syncState ?? "LOCAL",
+      localSafeAt: now,
+      syncVersion: 1,
+      remoteVersion: null,
+      remoteFileId: null,
+      syncErrorCode: null,
+      pexDay: input.pexDay ?? null,
+      phaseId: input.phaseId ?? null,
+    });
     try {
       const tx = db.transaction(
         input.audio ? [STORES.entries, STORES.media] : STORES.entries,
@@ -193,11 +249,51 @@ export class LocalStore {
     try {
       const tx = db.transaction(STORES.entries, "readwrite");
       const store = tx.objectStore(STORES.entries);
+      const raw = (await requestToPromise(store.get(id))) as JournalEntry | undefined;
+      if (!raw) {
+        throw new AppError("save-failed", "That entry is no longer in local storage.");
+      }
+      const existing = normalizeJournalEntry(raw);
+      const next: JournalEntry = normalizeJournalEntry({
+        ...existing,
+        note: note.trim(),
+        updatedAt: Date.now(),
+        syncVersion: existing.syncVersion + 1,
+        syncState: existing.syncState === "SYNCED" ? "PENDING_SYNC" : existing.syncState,
+      });
+      store.put(next);
+      await transactionDone(tx);
+      return next;
+    } catch (error) {
+      if (error instanceof AppError) throw error;
+      throw classifyIdbError(error);
+    } finally {
+      db.close();
+    }
+  }
+
+  async updateSyncState(
+    id: string,
+    patch: Partial<
+      Pick<
+        JournalEntry,
+        "syncState" | "remoteFileId" | "remoteVersion" | "syncErrorCode" | "localSafeAt" | "syncVersion"
+      >
+    >,
+  ): Promise<JournalEntry> {
+    const db = await this.open();
+    try {
+      const tx = db.transaction(STORES.entries, "readwrite");
+      const store = tx.objectStore(STORES.entries);
       const existing = (await requestToPromise(store.get(id))) as JournalEntry | undefined;
       if (!existing) {
         throw new AppError("save-failed", "That entry is no longer in local storage.");
       }
-      const next: JournalEntry = { ...existing, note: note.trim(), updatedAt: Date.now() };
+      const next = normalizeJournalEntry({
+        ...existing,
+        ...patch,
+        updatedAt: Date.now(),
+      });
       store.put(next);
       await transactionDone(tx);
       return next;

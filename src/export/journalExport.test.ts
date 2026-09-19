@@ -1,30 +1,26 @@
 import { describe, expect, it } from "vitest";
 import { buildJournalZip, EXPORT_FORMAT } from "./journalExport.ts";
-import type { JournalEntry, MediaRecord } from "../domain/types.ts";
+import { normalizeJournalEntry, type JournalEntry, type MediaRecord } from "../domain/types.ts";
 
 describe("journal export", () => {
   it("includes text-only entries and recordings", async () => {
     const entries: JournalEntry[] = [
-      {
+      normalizeJournalEntry({
         id: "e1",
         type: "sensation",
         createdAt: 1,
-        updatedAt: 1,
         note: "fixture-text-only",
         audioId: null,
-        audioMimeType: null,
-        audioByteLength: null,
-      },
-      {
+      }),
+      normalizeJournalEntry({
         id: "e2",
         type: "experience",
         createdAt: 2,
-        updatedAt: 2,
         note: "fixture-with-audio",
         audioId: "a2",
         audioMimeType: "audio/webm",
         audioByteLength: 4,
-      },
+      }),
     ];
     const media: MediaRecord[] = [
       {
