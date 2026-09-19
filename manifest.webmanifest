@@ -46,5 +46,31 @@
       "type": "image/png",
       "purpose": "any"
     }
+  ],
+  "shortcuts": [
+    {
+      "name": "Record Dream",
+      "short_name": "Dream",
+      "url": "/#/capture/night/dream",
+      "description": "Night capture with Dream selected"
+    },
+    {
+      "name": "Record Experience",
+      "short_name": "Experience",
+      "url": "/#/capture/night/experience",
+      "description": "Night capture with Experience selected"
+    },
+    {
+      "name": "Record Sensation",
+      "short_name": "Sensation",
+      "url": "/#/capture/night/sensation",
+      "description": "Night capture with Sensation selected"
+    },
+    {
+      "name": "Today's Practice",
+      "short_name": "Today",
+      "url": "/#/today",
+      "description": "Open today's practice day"
+    }
   ]
 }
