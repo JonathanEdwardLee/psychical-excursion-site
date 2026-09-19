@@ -6,6 +6,7 @@ export type AppRoute =
   | { name: "days" }
   | { name: "day"; day: number }
   | { name: "phase"; phaseId: string }
+  | { name: "week"; week: number }
   | { name: "capture"; variant: "standard" | "night"; presetType?: EntryType }
   | { name: "journal" }
   | { name: "entry"; id: string }
@@ -47,6 +48,10 @@ export function parseRoute(hash = window.location.hash): AppRoute {
     const day = Number(parts[1]);
     return { name: "day", day };
   }
+  if ((section === "week" || section === "weeks") && parts[1]) {
+    const week = Number(parts[1]);
+    return { name: "week", week };
+  }
   if ((section === "phase" || section === "phases") && parts[1]) {
     return { name: "phase", phaseId: parts[1] };
   }
@@ -55,7 +60,15 @@ export function parseRoute(hash = window.location.hash): AppRoute {
 
 export function routeNavKey(route: AppRoute): string {
   if (route.name === "home") return "home";
-  if (route.name === "today" || route.name === "day" || route.name === "days" || route.name === "phase") return "days";
+  if (
+    route.name === "today" ||
+    route.name === "day" ||
+    route.name === "days" ||
+    route.name === "phase" ||
+    route.name === "week"
+  ) {
+    return "days";
+  }
   if (route.name === "capture") return "capture";
   if (route.name === "journal" || route.name === "entry") return "journal";
   if (route.name === "method") return "method";

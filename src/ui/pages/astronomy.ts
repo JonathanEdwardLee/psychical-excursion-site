@@ -194,10 +194,10 @@ export function renderAstronomyPage(main: HTMLElement): void {
 
   main.append(
     el("article", { class: "surface astronomy-surface" }, [
-      el("p", { class: "eyebrow" }, ["Celestial instrument"]),
+      el("p", { class: "eyebrow" }, ["Optional · sky context"]),
       el("h2", { class: "display-title" }, ["Astronomy"]),
       el("p", { class: "lede" }, [
-        "A quiet, factual clock: Sun, Moon, and planets from local calculations. Not a horoscope, weather map, or planetarium.",
+        "A live Sun, Moon, and planet clock for curiosity — separate from your daily practice. Not a horoscope or weather app.",
       ]),
       locationHost,
       el("p", { class: "actions" }, [locationBtn]),

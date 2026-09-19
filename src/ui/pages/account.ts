@@ -1,4 +1,3 @@
-import { DRIVE_FILE_SCOPE } from "../../domain/sync.ts";
 import { isGoogleSyncConfigured } from "../../sync/config.ts";
 import {
   connectDriveForSync,
@@ -24,41 +23,45 @@ export async function renderAccountPage(main: HTMLElement): Promise<void> {
     const headline = connectionHeadline(connection.kind);
 
     connectionHost.replaceChildren(
-      el("h3", {}, ["Google account"]),
+      el("h3", {}, ["Google account (optional)"]),
       el("p", {}, [
-        "Identity only — signing in does not upload your journal. Local IndexedDB remains authoritative for capture safety.",
+        "Signing in identifies you to Google. It does not upload your Journal by itself. Your entries stay on this device until you connect Drive.",
       ]),
       statusBox(
         connection.googleSignedIn ? "ok" : "info",
-        connection.googleSignedIn ? "Signed in" : configured ? "Local only" : "Not configured",
+        connection.googleSignedIn ? "Signed in with Google" : configured ? "Not signed in" : "Backup not set up on this site",
         connection.googleSignedIn
-          ? `${connection.googleAccountLabel ?? "Google account"} on this device. Sign out anytime; local journal stays.`
+          ? `${connection.googleAccountLabel ?? "Google account"} on this device. Sign out anytime — your Journal stays here.`
           : configured
-            ? "Optional. Sign in when you want Google-connected features."
-            : "No OAuth client ID in this deployment. PEx is fully usable without Google.",
+            ? "Optional. Sign in only if you want Google-connected backup."
+            : "This copy of PEx works fully without Google. Backup is not configured on this host.",
       ),
-      el("h3", {}, ["Connect Google Drive"]),
+      el("h3", {}, ["Google Drive backup (optional)"]),
       el("p", {}, [
-        "Separate from sign-in. Uses ",
-        el("code", {}, ["drive.file"]),
-        " so PEx can create/update journal files it owns — not read your entire Drive.",
+        "Separate from sign-in. When connected, PEx can copy journal files you save into a folder on your Google Drive — not your entire Drive.",
+      ]),
+      el("details", { class: "account-permission-details" }, [
+        el("summary", {}, ["What permission is requested?"]),
+        el("p", { class: "meta" }, [
+          "Google Drive access limited to files PEx creates or updates for your journal backup.",
+        ]),
       ]),
       statusBox(
         connection.driveAuthorized ? "ok" : "info",
         headline,
-        `${connection.message} Scope: ${DRIVE_FILE_SCOPE}.`,
+        connection.message,
       ),
       el("p", { class: "meta" }, [
         connection.pendingSyncCount
-          ? `${connection.pendingSyncCount} pending sync (local copies safe).`
-          : "No pending sync items.",
+          ? `${connection.pendingSyncCount} ${connection.pendingSyncCount === 1 ? "entry" : "entries"} waiting to back up (safe on this device).`
+          : "Nothing waiting to back up.",
       ]),
     );
 
     syncHost.replaceChildren(
-      el("h3", {}, ["Journal sync"]),
+      el("h3", {}, ["How backup works"]),
       el("p", {}, [
-        "Record → IndexedDB local-safe → optional Drive upload. Failures never delete local entries. Retry is idempotent.",
+        "Capture saves to this device first. If Drive is connected, entries copy up when possible. If backup fails, nothing is deleted from your Journal here.",
       ]),
     );
   };
@@ -71,61 +74,63 @@ export async function renderAccountPage(main: HTMLElement): Promise<void> {
     void (async () => {
       try {
         await signInGoogleAccount();
-        statusHost.replaceChildren(statusBox("ok", "Signed in", "Journal remains local until Drive is connected."));
+        statusHost.replaceChildren(statusBox("ok", "Signed in", "Your Journal is still on this device until Drive is connected."));
         await paint();
       } catch {
-        statusHost.replaceChildren(statusBox("error", "Sign-in failed", "Local journal is unchanged."));
+        statusHost.replaceChildren(statusBox("error", "Sign-in failed", "Your Journal on this device is unchanged."));
       }
     })();
   });
 
-  const signOutBtn = el("button", { type: "button", id: "google-sign-out-btn" }, ["Sign out"]);
+  const signOutBtn = el("button", { type: "button", id: "google-sign-out-btn" }, ["Sign out of Google"]);
   signOutBtn.addEventListener("click", () => {
     void (async () => {
       await signOutGoogleAccount();
       await paint();
-      announce("Signed out. Local journal unchanged.");
+      announce("Signed out. Journal on this device unchanged.");
     })();
   });
 
-  const connectBtn = el("button", { type: "button", class: "primary", id: "connect-drive-btn" }, ["Connect Google Drive"]);
+  const connectBtn = el("button", { type: "button", class: "primary", id: "connect-drive-btn" }, [
+    "Connect Google Drive for backup",
+  ]);
   connectBtn.disabled = !isGoogleSyncConfigured();
   connectBtn.addEventListener("click", () => {
     void (async () => {
       try {
         await connectDriveForSync();
         statusHost.replaceChildren(
-          statusBox("ok", "Drive connected", "Pending items will sync when authorized. Local journal was not deleted."),
+          statusBox("ok", "Drive connected", "Backup will run when possible. Your Journal was not deleted."),
         );
         await paint();
       } catch (error) {
         const message = error instanceof Error ? error.message : "Connection failed";
         statusHost.replaceChildren(
-          statusBox("error", "Drive not connected", `${message}. Local journal is unchanged.`),
+          statusBox("error", "Drive not connected", `${message}. Your Journal on this device is unchanged.`),
         );
       }
     })();
   });
 
-  const disconnectBtn = el("button", { type: "button", id: "disconnect-drive-btn" }, ["Disconnect Drive"]);
+  const disconnectBtn = el("button", { type: "button", id: "disconnect-drive-btn" }, ["Disconnect Google Drive"]);
   disconnectBtn.addEventListener("click", () => {
     void (async () => {
       await disconnectDrive();
       await paint();
-      announce("Drive disconnected. Local journal unchanged.");
+      announce("Drive disconnected. Journal on this device unchanged.");
     })();
   });
 
-  const retryBtn = el("button", { type: "button", id: "retry-sync-btn" }, ["Retry pending sync"]);
+  const retryBtn = el("button", { type: "button", id: "retry-sync-btn" }, ["Retry backup"]);
   retryBtn.addEventListener("click", () => {
     void (async () => {
       const count = await retryPendingSync();
       await paint();
-      announce(count ? `${count} entries synced` : "Retry finished");
+      announce(count ? `${count} entries backed up` : "Retry finished");
     })();
   });
 
-  const reconcileBtn = el("button", { type: "button", id: "reconcile-drive-btn" }, ["Reconcile from Drive"]);
+  const reconcileBtn = el("button", { type: "button", id: "reconcile-drive-btn" }, ["Check Drive for journal files"]);
   reconcileBtn.addEventListener("click", () => {
     void (async () => {
       try {
@@ -133,23 +138,23 @@ export async function renderAccountPage(main: HTMLElement): Promise<void> {
         statusHost.replaceChildren(
           statusBox(
             "ok",
-            "Reconciliation finished",
-            `Imported ${summary.imported}, skipped ${summary.skipped}, conflicts ${summary.conflicts}. Local copies were not silently overwritten.`,
+            "Drive check finished",
+            `Added ${summary.imported} from Drive, skipped ${summary.skipped}. Your device copy was not replaced without your action.`,
           ),
         );
         await paint();
       } catch {
-        statusHost.replaceChildren(statusBox("error", "Reconciliation failed", "Local journal is unchanged."));
+        statusHost.replaceChildren(statusBox("error", "Drive check failed", "Your Journal on this device is unchanged."));
       }
     })();
   });
 
   main.append(
     el("section", { class: "stack editorial-page account-surface" }, [
-      el("p", { class: "eyebrow" }, ["Optional cloud"]),
-      el("h2", { class: "display-title" }, ["Account & storage"]),
+      el("p", { class: "eyebrow" }, ["Optional backup"]),
+      el("h2", { class: "display-title" }, ["Account & backup"]),
       el("p", { class: "lede" }, [
-        "Local-first always. Google account and Google Drive are separate optional layers. No cloud backup is implied until sync succeeds.",
+        "PEx works without Google. Sign in and connect Drive only if you want journal backup in your Google account.",
       ]),
       statusHost,
       connectionHost,
@@ -162,7 +167,7 @@ export async function renderAccountPage(main: HTMLElement): Promise<void> {
         reconcileBtn,
       ]),
       syncHost,
-      el("p", {}, [el("a", { href: "#/data" }, ["Data export and persistence on this device"])]),
+      el("p", {}, [el("a", { href: "#/data" }, ["Export and storage on this device"])]),
     ]),
   );
 }

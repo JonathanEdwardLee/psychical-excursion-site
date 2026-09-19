@@ -1,11 +1,12 @@
 import { phaseForDay } from "../content/phases.ts";
+import { weekLabelForDay } from "../content/weeks.ts";
 import { localStore } from "../db/store.ts";
 import { resumeDay } from "../progress/progress.ts";
 
 export type CapturePracticeContext = {
   day: number;
   phaseId: string | null;
-  phaseName: string;
+  weekLabel: string;
 };
 
 export async function loadCapturePracticeContext(): Promise<CapturePracticeContext> {
@@ -15,6 +16,6 @@ export async function loadCapturePracticeContext(): Promise<CapturePracticeConte
   return {
     day,
     phaseId: phase?.id ?? null,
-    phaseName: phase?.name ?? "Journey",
+    weekLabel: weekLabelForDay(day),
   };
 }

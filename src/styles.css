@@ -281,6 +281,34 @@ nav a[aria-current="page"] {
   border-left: 2px solid var(--ink);
 }
 
+.day-section.day-do-this {
+  margin-top: 1.25rem;
+  padding: 1.1rem 0 0;
+  border-top: 2px solid var(--ink);
+}
+
+.day-instruction-title {
+  font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  margin: 0 0 0.85rem;
+}
+
+.day-instruction-line {
+  font-size: clamp(1.05rem, 2.1vw, 1.2rem);
+  line-height: 1.55;
+}
+
+.home-orientation {
+  margin-top: 1rem;
+  max-width: var(--max);
+}
+
+.home-how-list {
+  margin: 0.75rem 0 0;
+  padding-left: 1.2rem;
+}
+
 fieldset {
   border: 1px solid var(--line);
   padding: 0.75rem 0.9rem;

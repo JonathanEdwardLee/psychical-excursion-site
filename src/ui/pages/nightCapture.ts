@@ -30,7 +30,7 @@ export async function renderNightCapturePage(
 
   const clock = el("p", { class: "night-clock", id: "night-clock" }, [formatWhen(Date.now())]);
   const context = el("p", { class: "meta night-context" }, [
-    `Day ${padDay(practice.day)} · ${practice.phaseName}`,
+    `Day ${padDay(practice.day)} · ${practice.weekLabel}`,
   ]);
   const timer = el("p", { class: "night-timer meta", id: "night-timer" }, ["Ready"]);
   const typeLabel = el("p", { class: "night-type-label" }, [ENTRY_TYPE_LABEL[capture.type ?? "dream"]]);
@@ -51,14 +51,14 @@ export async function renderNightCapturePage(
 
   const paintStatus = (pending?: string) => {
     statusHost.replaceChildren();
-    if (pending) statusHost.append(statusBox("info", pending, "Local save runs before any optional sync."));
+    if (pending) statusHost.append(statusBox("info", pending, "Saving to this device first. Google backup runs later if connected."));
     if (capture.saveError) statusHost.append(statusBox("error", "Not saved", capture.saveError));
     if (capture.locallySafeEntryId) {
       statusHost.append(
         statusBox(
           "ok",
-          "Locally safe",
-          "IndexedDB confirmed this recording on this device. You can close PEx and reopen from Journal.",
+          "Saved on this device",
+          "This recording is in your Journal on this device. You can close PEx and open it again from Journal.",
         ),
         el("p", { class: "actions" }, [
           el("a", { href: `#/journal/${capture.locallySafeEntryId}`, class: "button primary" }, ["Open Journal entry"]),
@@ -168,7 +168,7 @@ export async function renderNightCapturePage(
     el("article", { class: "surface night-capture-surface" }, [
       el("p", { class: "eyebrow" }, ["Night capture"]),
       el("h2", { class: "display-title night-title" }, ["Capture"]),
-      el("p", { class: "hint" }, ["Low light, local-first. Stop saves to this device before any optional sync."]),
+      el("p", { class: "hint" }, ["Low-light screen. Stop saves straight to your Journal on this device."]),
       clock,
       context,
       typeLabel,

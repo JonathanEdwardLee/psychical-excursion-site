@@ -1,4 +1,4 @@
-import { PHASES } from "../content/phases.ts";
+import { allWeekNumbers, weekLabel } from "../content/weeks.ts";
 import { applyTheme, readTheme, toggleTheme } from "../theme.ts";
 import { el, text } from "./dom.ts";
 import type { AppRoute } from "./routes.ts";
@@ -129,7 +129,7 @@ function bindUpdateBanner(host: HTMLElement): void {
           "p",
           {},
           [
-            "A newer application shell is waiting. Reload to use it. Journal data in IndexedDB is not in the service worker cache.",
+            "A newer application shell is waiting. Reload to use it. Your Journal on this device is not stored in the app cache.",
           ],
         ),
       ]),
@@ -138,23 +138,25 @@ function bindUpdateBanner(host: HTMLElement): void {
   });
 }
 
-export function phaseNav(activeId?: string): HTMLElement {
-  const nav = el("nav", { class: "phase-nav", "aria-label": "Phases" });
-  PHASES.forEach((phase, index) => {
+export function weekNav(activeWeek?: number): HTMLElement {
+  const nav = el("nav", { class: "phase-nav week-nav", "aria-label": "Weeks" });
+  for (const week of allWeekNumbers()) {
     nav.append(
       el(
         "a",
         {
-          href: `#/phase/${phase.id}`,
-          class: "phase-nav-link",
-          ...(activeId === phase.id ? { "aria-current": "page" } : {}),
+          href: `#/week/${week}`,
+          class: "phase-nav-link week-nav-link",
+          ...(activeWeek === week ? { "aria-current": "page" } : {}),
         },
-        [
-          el("span", { class: "phase-nav-index" }, [String(index + 1).padStart(2, "0")]),
-          el("span", { class: "phase-nav-name" }, [phase.name]),
-        ],
+        [el("span", { class: "phase-nav-name" }, [weekLabel(week)])],
       ),
     );
-  });
+  }
   return nav;
+}
+
+/** @deprecated Use weekNav — phase IDs remain for legacy URLs only. */
+export function phaseNav(activeWeek?: number): HTMLElement {
+  return weekNav(activeWeek);
 }
