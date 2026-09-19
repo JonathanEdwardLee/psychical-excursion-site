@@ -1,4 +1,5 @@
 import { CANONICAL_PACKET } from "./canonical.ts";
+import { guidedDoThisForDay } from "./participantDoThis.ts";
 import type { DayDocument, DaySection } from "./model.ts";
 
 /** Participant-facing plain titles (canonical source titles remain internal). */
@@ -73,38 +74,6 @@ function findSection(document: DayDocument, heading: string): DaySection | undef
   return document.sections.find((section) => section.heading === heading);
 }
 
-/** Merge short fragment lines into speakable sentences for guided instruction. */
-export function rewriteGuidance(paragraphs: string[]): string[] {
-  const out: string[] = [];
-  let fragment: string[] = [];
-  const flush = () => {
-    if (fragment.length) {
-      out.push(fragment.join(" "));
-      fragment = [];
-    }
-  };
-  for (const raw of paragraphs) {
-    const paragraph = raw.trim();
-    if (!paragraph || paragraph === "Ask:" || paragraph === "For example:" || paragraph === "Choose your own:") {
-      flush();
-      continue;
-    }
-    if (paragraph.endsWith(":") && paragraph.length < 36) {
-      flush();
-      out.push(paragraph);
-      continue;
-    }
-    if (paragraph.length <= 32 && !/[.!?]$/.test(paragraph)) {
-      fragment.push(paragraph);
-      continue;
-    }
-    flush();
-    out.push(paragraph);
-  }
-  flush();
-  return out;
-}
-
 export type ParticipantDayView = {
   displayTitle: string;
   setup: string[];
@@ -116,8 +85,7 @@ export function participantViewFor(document: DayDocument): ParticipantDayView {
   const setup = findSection(document, "TODAY")?.paragraphs ?? [];
   const practice = findSection(document, "PRACTICE");
   const tonight = findSection(document, "TONIGHT");
-  const actionSource = practice ?? tonight;
-  const doThis = rewriteGuidance(actionSource?.paragraphs ?? []);
+  const doThis = [...guidedDoThisForDay(document.day)];
   const supporting: DaySection[] = [];
   if (practice && tonight) supporting.push(tonight);
   for (const heading of ["AFFIRMATION", "RESEARCH NOTE"] as const) {
