@@ -17,6 +17,7 @@ describe("hash routes", () => {
       presetType: "dream",
     });
     expect(parseRoute("#/account")).toEqual({ name: "account" });
+    expect(parseRoute("#/astronomy")).toEqual({ name: "astronomy" });
     expect(parseRoute("#/journal")).toEqual({ name: "journal" });
     expect(parseRoute("#/journal/entry-1")).toEqual({ name: "entry", id: "entry-1" });
     expect(parseRoute("#/method")).toEqual({ name: "method" });

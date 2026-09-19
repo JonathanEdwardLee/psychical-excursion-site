@@ -14,6 +14,7 @@ const PRIMARY_ITEMS = [
 const MORE_ITEMS = [
   { id: "method", href: "#/method", label: "Method" },
   { id: "account", href: "#/account", label: "Account" },
+  { id: "astronomy", href: "#/astronomy", label: "Astronomy" },
   { id: "about", href: "#/about", label: "About" },
   { id: "data", href: "#/data", label: "Data" },
 ] as const;

@@ -18,6 +18,7 @@ import { announce, el, formatWhen, go, text } from "./dom.ts";
 import { renderAccountPage } from "./pages/account.ts";
 import { renderDayPage, renderTodayPage } from "./pages/day.ts";
 import { renderDaysPage, renderPhasePage } from "./pages/days.ts";
+import { renderAstronomyPage, stopAstronomyClock } from "./pages/astronomy.ts";
 import { renderAboutPage, renderHomePage, renderMethodPage } from "./pages/home.ts";
 import { renderNightCapturePage } from "./pages/nightCapture.ts";
 import { parseRoute, type AppRoute } from "./routes.ts";
@@ -41,6 +42,9 @@ export async function renderApp(root: HTMLElement): Promise<void> {
   if (route.name !== "capture") {
     abandonLiveMicrophone();
   }
+  if (route.name !== "astronomy") {
+    stopAstronomyClock();
+  }
 
   stopScrollPresence();
   const { main } = renderChrome(root, route);
@@ -49,6 +53,7 @@ export async function renderApp(root: HTMLElement): Promise<void> {
     if (route.name === "capture" && route.variant === "night") await renderNightCapturePage(main, route);
     else if (route.name === "capture") await renderCapture(main, route);
     else if (route.name === "account") await renderAccountPage(main);
+    else if (route.name === "astronomy") renderAstronomyPage(main);
     else if (route.name === "entry") await renderEntry(main, route.id);
     else if (route.name === "journal") await renderJournal(main);
     else if (route.name === "day") await renderDayPage(main, route.day);

@@ -1,4 +1,4 @@
-export const APP_VERSION = "0.4.0";
+export const APP_VERSION = "0.5.0";
 export const SCHEMA_VERSION = 3;
 export const DB_NAME = "pex-local";
 export const DB_VERSION = 3;
