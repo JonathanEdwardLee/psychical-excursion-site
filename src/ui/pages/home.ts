@@ -36,7 +36,7 @@ export async function renderHomePage(main: HTMLElement): Promise<void> {
           el("p", { class: "eyebrow" }, ["Psychical Excursion"]),
           el("h2", { class: "display-title" }, ["A quiet 60-day instrument"]),
           el("p", { class: "lede" }, [
-            "A 60-day, belief-optional reading and journal instrument. Notes and recordings stay on this device. They are not cloud backed up.",
+            "A 60-day, belief-optional practice: read one day at a time, capture what you notice in Dream / Experience / Sensation, and build a local Journal on this device. Progress is stored here only — no outcome is required, and nothing is cloud backed up.",
           ]),
         ]),
         el("aside", { class: "home-now", "aria-label": "Resume" }, [
@@ -60,7 +60,9 @@ export async function renderHomePage(main: HTMLElement): Promise<void> {
             el("a", { href: "#/today", class: "button primary", id: "home-today" }, [`Continue · Day ${resume}`]),
             el("a", { href: "#/capture", class: "button", id: "home-capture" }, ["Capture"]),
           ]),
-          el("p", { class: "hint" }, ["Returning capture: open the app, then Capture. That is one intentional action."]),
+          el("p", { class: "hint" }, [
+            "Loop: Today or a day reading → Capture → review → Save to Journal → return anytime from Journal or Home.",
+          ]),
           latest
             ? el("p", { class: "meta" }, [`Latest local entry: ${formatWhen(latest.createdAt)}`])
             : el("p", { class: "meta" }, ["Journal is empty on this device."]),

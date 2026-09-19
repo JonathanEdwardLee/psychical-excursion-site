@@ -87,8 +87,14 @@ export async function renderDayPage(
     ]),
   );
   rail.append(
+    el("p", { class: "hint capture-day-hint" }, [
+      "Capture is your local journal for this practice — text or voice notes become Journal entries on this device, separate from marking the day complete.",
+    ]),
+  );
+  rail.append(
     el("p", { class: "actions" }, [
       el("a", { href: "#/capture", class: "button primary" }, ["Capture"]),
+      el("a", { href: "#/journal", class: "text-link" }, ["Journal"]),
       el("a", { href: "#/days", class: "text-link" }, ["All days"]),
     ]),
   );

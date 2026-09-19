@@ -8,14 +8,23 @@ export function emptyJournal(): HTMLElement {
 }
 
 export function entryCard(entry: JournalEntry): HTMLElement {
+  const metaParts: (HTMLElement | Text)[] = [
+    el("span", { class: "type-label" }, [ENTRY_TYPE_LABEL[entry.type]]),
+    text(" · "),
+    el("time", { datetime: new Date(entry.createdAt).toISOString() }, [formatWhen(entry.createdAt)]),
+  ];
+  if (entry.audioId) {
+    metaParts.push(text(" · "), el("span", { class: "entry-audio-badge" }, ["Recording"]));
+  }
+  const excerpt = entry.note
+    ? entry.note
+    : entry.audioId
+      ? "Recording saved — open to replay"
+      : "Empty note";
   return el("article", { class: "entry-row" }, [
     el("a", { href: `#/journal/${entry.id}`, class: "entry-link" }, [
-      el("p", { class: "meta" }, [
-        el("span", { class: "type-label" }, [ENTRY_TYPE_LABEL[entry.type]]),
-        text(" · "),
-        el("time", { datetime: new Date(entry.createdAt).toISOString() }, [formatWhen(entry.createdAt)]),
-      ]),
-      el("p", {}, [entry.note ? entry.note : entry.audioId ? "Audio entry" : "Empty note"]),
+      el("p", { class: "meta" }, metaParts),
+      el("p", {}, [excerpt]),
     ]),
   ]);
 }

@@ -120,7 +120,7 @@ async function renderCapture(main: HTMLElement): Promise<void> {
 
   const heading = el("h2", { class: "display-title" }, ["Capture"]);
   const lede = el("p", { class: "lede" }, [
-    "Choose Dream, Experience, or Sensation. These are organizational labels, not interpretations. Microphone access is requested only if you tap Record.",
+    "Record what you noticed during practice. Choose Dream, Experience, or Sensation, add text if you like, then save to your Journal on this device. Labels organize your notes — they are not interpretations. Microphone access is requested only when you tap Record.",
   ]);
 
   const form = el("form", { class: "stack", id: "capture-form" });
@@ -147,12 +147,20 @@ async function renderCapture(main: HTMLElement): Promise<void> {
   const recordBtn = el("button", { type: "button", id: "record-btn", class: "primary" }, [
     capture.recordingActive ? "Stop" : "Record",
   ]);
-  const saveBtn = el("button", { type: "button", id: "save-btn" }, ["Save locally"]);
+  const saveBtn = el("button", { type: "button", id: "save-btn" }, ["Save to Journal"]);
   saveBtn.disabled = microphoneBusy();
   recordRow.append(recordBtn, saveBtn);
 
   const statusHost = el("div", { id: "capture-status" });
-  paintCaptureStatus(statusHost, capability);
+  const syncCaptureChrome = (pending?: string) => {
+    recordBtn.textContent = capture.recordingActive ? "Stop" : "Record";
+    saveBtn.textContent = "Save to Journal";
+    const inReview = Boolean(capture.recording) && !capture.recordingActive && !microphoneBusy();
+    saveBtn.classList.toggle("primary", inReview);
+    saveBtn.disabled = microphoneBusy() || capture.saving;
+    paintCaptureStatus(statusHost, capability, saveBtn, recordBtn, syncCaptureChrome, pending);
+  };
+  syncCaptureChrome();
 
   recordBtn.addEventListener("click", () => {
     void (async () => {
@@ -176,7 +184,7 @@ async function renderCapture(main: HTMLElement): Promise<void> {
           recordBtn.textContent = "Record";
           capture.saveError = error instanceof AppError ? error.message : "Recording failed. The microphone is off.";
         }
-        paintCaptureStatus(statusHost, capability);
+        syncCaptureChrome();
         return;
       }
       try {
@@ -185,7 +193,7 @@ async function renderCapture(main: HTMLElement): Promise<void> {
         capture.interrupted = false;
         capture.starting = true;
         saveBtn.disabled = true;
-        paintCaptureStatus(statusHost, capability, "Waiting for microphone permission…");
+        syncCaptureChrome("Waiting for microphone permission…");
         capture.recorder = new AudioCapture(capability);
         await capture.recorder.start();
         if (capture.recorder === null) return;
@@ -194,7 +202,7 @@ async function renderCapture(main: HTMLElement): Promise<void> {
         saveBtn.disabled = true;
         recordBtn.textContent = "Stop";
         announce("Recording. The microphone is on.");
-        paintCaptureStatus(statusHost, capability);
+        syncCaptureChrome();
         return;
       } catch (error) {
         capture.starting = false;
@@ -212,7 +220,7 @@ async function renderCapture(main: HTMLElement): Promise<void> {
           capture.saveError = error instanceof AppError ? error.message : "Recording could not start.";
         }
       }
-      paintCaptureStatus(statusHost, capability);
+      syncCaptureChrome();
     })();
   });
 
@@ -222,22 +230,22 @@ async function renderCapture(main: HTMLElement): Promise<void> {
       if (microphoneBusy()) {
         saveBtn.disabled = true;
         capture.saveError = "Recording is still on. Stop first. The microphone has not been released.";
-        paintCaptureStatus(statusHost, capability);
+        syncCaptureChrome();
         return;
       }
       if (!capture.type) {
-        capture.saveError = "Choose Dream, Experience, or Sensation before saving.";
-        paintCaptureStatus(statusHost, capability);
+        capture.saveError = "Choose Dream, Experience, or Sensation before saving to the Journal.";
+        syncCaptureChrome();
         return;
       }
       if (!capture.note.trim() && !capture.recording) {
-        capture.saveError = "Add a short note or a recording before saving.";
-        paintCaptureStatus(statusHost, capability);
+        capture.saveError = "Add a short note or a recording before saving to the Journal.";
+        syncCaptureChrome();
         return;
       }
       capture.saving = true;
       saveBtn.disabled = true;
-      paintCaptureStatus(statusHost, capability, "Saving locally…");
+      syncCaptureChrome("Saving to Journal…");
       try {
         const saved = await localStore.saveCapture({
           id: createId("entry"),
@@ -258,7 +266,7 @@ async function renderCapture(main: HTMLElement): Promise<void> {
         capture.saving = false;
         saveBtn.disabled = false;
         capture.saveError = error instanceof AppError ? error.message : "Save failed. The entry was not marked saved.";
-        paintCaptureStatus(statusHost, capability);
+        syncCaptureChrome();
       }
     })();
   });
@@ -276,24 +284,44 @@ async function renderCapture(main: HTMLElement): Promise<void> {
   );
 }
 
+function discardUnsavedRecording(repaint: () => void): void {
+  resetCaptureMedia();
+  capture.saveError = null;
+  announce("Unsaved recording discarded. The microphone is off.");
+  repaint();
+}
+
 function paintCaptureStatus(
   host: HTMLElement,
   capability: ReturnType<typeof inspectRecorderCapability>,
+  saveBtn: HTMLButtonElement,
+  recordBtn: HTMLButtonElement,
+  repaint: (pending?: string) => void,
   pending?: string,
 ): void {
   host.replaceChildren();
+  const inReview = Boolean(capture.recording) && !capture.recordingActive && !microphoneBusy();
+
   if (capture.recordingActive) {
     host.append(
       statusBox(
         "info",
         "Recording",
-        "The microphone is on. Stop before saving or leaving Capture. Leaving this page turns the microphone off.",
+        "The microphone is on. Stop to review your recording, then save it to the Journal or discard it. Leaving Capture turns the microphone off.",
       ),
     );
   }
   if (pending) {
-    host.append(statusBox("info", pending, "The microphone is not saved as an entry until you stop and then save."));
-    return;
+    host.append(
+      statusBox(
+        "info",
+        pending,
+        inReview || capture.recording
+          ? "Nothing is in the Journal until IndexedDB confirms Save to Journal."
+          : "Choose a type and add text or a recording, then save to the Journal.",
+      ),
+    );
+    if (!capture.recordingActive && !inReview) return;
   }
   if (capture.saveError) host.append(statusBox("error", "Not saved", capture.saveError));
   if (capture.permissionDenied) {
@@ -301,7 +329,7 @@ function paintCaptureStatus(
       statusBox(
         "info",
         "Microphone not available",
-        "Permission was denied. This is not a loop: Record will only ask again if you tap it. Text notes still save locally.",
+        "Permission was denied. This is not a loop: Record will only ask again if you tap it. Text notes still save to the Journal.",
       ),
     );
   }
@@ -310,7 +338,7 @@ function paintCaptureStatus(
       statusBox(
         "info",
         "Recording unavailable",
-        "MediaRecorder or getUserMedia is missing. Use a text note.",
+        "MediaRecorder or getUserMedia is missing. Use a text note and Save to Journal.",
       ),
     );
   }
@@ -322,18 +350,39 @@ function paintCaptureStatus(
   if (capture.interrupted) {
     host.append(statusBox("info", "Recording interrupted", "You can replay what was captured if any audio arrived, or record again."));
   }
-  if (capture.recording) {
-    const player = el("audio", { controls: "true" }) as HTMLAudioElement;
+  if (inReview && capture.recording) {
+    host.append(
+      statusBox(
+        "info",
+        "Not saved yet",
+        "Replay your recording below. It is not in the Journal until you tap Save to Journal. Discard or record again without leaving stale microphone access.",
+      ),
+    );
+    const player = el("audio", { controls: "true", id: "capture-review-audio" }) as HTMLAudioElement;
     player.src = URL.createObjectURL(capture.recording.blob);
-    host.append(el("p", { class: "meta" }, [`Unsaved recording (${capture.recording.mimeType})`]), player);
+    host.append(el("p", { class: "meta" }, [`Unsaved recording · ${capture.recording.mimeType}`]), player);
+    const reviewActions = el("div", { class: "actions capture-review-actions" });
+    const reviewSave = el("button", { type: "button", class: "primary", id: "review-save-btn" }, ["Save to Journal"]);
+    reviewSave.addEventListener("click", () => saveBtn.click());
+    const recordAgain = el("button", { type: "button", id: "record-again-btn" }, ["Record again"]);
+    recordAgain.addEventListener("click", () => {
+      discardUnsavedRecording(repaint);
+      recordBtn.click();
+    });
+    const discard = el("button", { type: "button", class: "danger" }, ["Discard recording"]);
+    discard.addEventListener("click", () => discardUnsavedRecording(repaint));
+    reviewActions.append(reviewSave, recordAgain, discard);
+    host.append(reviewActions);
   }
-  host.append(
-    el("p", { class: "hint" }, [
-      capability.selectedMimeType
-        ? `This browser can record as ${capability.selectedMimeType}. A save is shown only after IndexedDB confirms.`
-        : "This browser did not report a usable recording format. Text notes still save locally after IndexedDB confirms.",
-    ]),
-  );
+  if (!inReview) {
+    host.append(
+      el("p", { class: "hint" }, [
+        capability.selectedMimeType
+          ? `Recordings stay on this device. Save to Journal writes to IndexedDB; the Journal is where you replay and export later.`
+          : "This browser did not report a usable recording format. Text notes still save to the Journal after IndexedDB confirms.",
+      ]),
+    );
+  }
 }
 
 async function renderJournal(main: HTMLElement): Promise<void> {
@@ -385,9 +434,12 @@ async function renderEntry(main: HTMLElement, id: string): Promise<void> {
 
   const mediaBlock = el("div");
   if (media) {
-    const player = el("audio", { controls: "true" }) as HTMLAudioElement;
+    const player = el("audio", { controls: "true", id: "entry-audio" }) as HTMLAudioElement;
     player.src = URL.createObjectURL(media.blob);
-    mediaBlock.append(el("p", { class: "meta" }, [`Local recording · ${media.mimeType}`]), player);
+    mediaBlock.append(
+      el("p", { class: "meta" }, [`Journal recording · ${media.mimeType} · stored on this device only`]),
+      player,
+    );
   }
 
   const deleteHost = el("div");
@@ -423,8 +475,15 @@ async function renderEntry(main: HTMLElement, id: string): Promise<void> {
   deleteHost.append(deleteBtn);
 
   main.append(
+    el("p", { class: "eyebrow" }, ["Journal entry"]),
     heading,
-    savedFlag ? statusBox("ok", "Saved locally", "IndexedDB confirmed the write. This is not a cloud backup.") : el("span"),
+    savedFlag
+      ? statusBox(
+          "ok",
+          "Saved to Journal",
+          "IndexedDB confirmed the write on this device. Replay the recording below or return to the Journal list. This is not a cloud backup.",
+        )
+      : el("span"),
     meta,
     el("label", { for: "entry-note" }, ["Text note"]),
     note,
