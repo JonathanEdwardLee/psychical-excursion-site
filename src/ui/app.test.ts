@@ -63,7 +63,7 @@ describe("core UI flows", () => {
       expect(window.location.hash).toMatch(/#\/journal\/entry-/);
     });
     const detail = await mount(window.location.hash);
-    expect(detail.textContent).toMatch(/Saved locally/);
+    expect(detail.textContent).toMatch(/Saved to Journal/);
     const journal = await mount("#/journal");
     expect(journal.textContent).toMatch(/fixture-ui-note/);
   });
@@ -285,5 +285,40 @@ describe("capture microphone lifecycle", () => {
     abandonLiveMicrophone();
     expect(trackStop).toHaveBeenCalled();
     expect(isCaptureMicrophoneHeld()).toBe(false);
+  });
+
+  it("shows review-before-save with Journal actions after Stop", async () => {
+    const root = await mount("#/capture");
+    const dream = root.querySelector("#type-dream") as HTMLInputElement;
+    dream.checked = true;
+    dream.dispatchEvent(new Event("change", { bubbles: true }));
+    await startRecording(root);
+    (root.querySelector("#record-btn") as HTMLButtonElement).click();
+    await vi.waitFor(() => {
+      expect(root.querySelector("#capture-review-audio")).toBeTruthy();
+    });
+    expect(root.textContent).toMatch(/Not saved yet/i);
+    expect(root.querySelector("#review-save-btn")).toBeTruthy();
+    expect(root.textContent).toMatch(/Discard recording/i);
+    expect(isCaptureMicrophoneHeld()).toBe(false);
+  });
+
+  it("saves audio to Journal after review and lists recording on the entry row", async () => {
+    const root = await mount("#/capture");
+    const dream = root.querySelector("#type-dream") as HTMLInputElement;
+    dream.checked = true;
+    dream.dispatchEvent(new Event("change", { bubbles: true }));
+    await startRecording(root);
+    (root.querySelector("#record-btn") as HTMLButtonElement).click();
+    await vi.waitFor(() => expect(root.querySelector("#review-save-btn")).toBeTruthy());
+    (root.querySelector("#review-save-btn") as HTMLButtonElement).click();
+    await vi.waitFor(async () => {
+      expect(window.location.hash).toMatch(/#\/journal\/entry-/);
+    });
+    const detail = await mount(window.location.hash);
+    expect(detail.textContent).toMatch(/Saved to Journal/);
+    expect(detail.querySelector("#entry-audio")).toBeTruthy();
+    const journal = await mount("#/journal");
+    expect(journal.textContent).toMatch(/Recording/);
   });
 });
