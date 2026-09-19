@@ -294,6 +294,11 @@ nav a[aria-current="page"] {
   margin: 0 0 0.85rem;
 }
 
+.day-instruction-line {
+  font-size: clamp(1.05rem, 2.1vw, 1.2rem);
+  line-height: 1.55;
+}
+
 .home-orientation {
   margin-top: 1rem;
   max-width: var(--max);

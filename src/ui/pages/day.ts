@@ -1,6 +1,7 @@
 import { loadCurriculumPacket } from "../../content/load.ts";
+import { participantViewFor } from "../../content/participantLayer.ts";
 import { localStore } from "../../db/store.ts";
-import type { DayDocument } from "../../content/model.ts";
+import type { DayDocument, DaySection } from "../../content/model.ts";
 import { dayHref, isDayNumber, neighboringDays, resumeDay, weekPosition } from "../../progress/progress.ts";
 import { statusBox } from "../bits.ts";
 import { sectionDisplayHeading, sectionKind } from "../instructionDisplay.ts";
@@ -28,6 +29,7 @@ export async function renderDayPage(
     main.append(el("h2", {}, ["Day"]), statusBox("error", "Missing day", "That day is not in the local content packet."));
     return;
   }
+  const participant = participantViewFor(document);
   await localStore.markDayVisited(day);
   const progress = await localStore.getDayProgress(day);
   const neighbors = neighboringDays(day);
@@ -41,7 +43,7 @@ export async function renderDayPage(
       week ? ` · ${week.label}` : "",
     ]),
   );
-  reading.append(el("h2", { id: "day-title", class: "display-title" }, [document.title]));
+  reading.append(el("h2", { id: "day-title", class: "display-title" }, [participant.displayTitle]));
   if (document.optional) {
     reading.append(
       el("div", { class: "optional-callout" }, [
@@ -53,12 +55,12 @@ export async function renderDayPage(
       ]),
     );
   }
-  reading.append(renderSections(document));
-  const ticks = document.sections.map((section) =>
-    el("li", { class: "read-tick", "data-section": sectionDisplayHeading(section.heading) }, [
-      sectionDisplayHeading(section.heading),
-    ]),
-  );
+  reading.append(renderParticipantContent(participant, document));
+  const ticks = [
+    ...(participant.setup.length ? ["Before you begin"] : []),
+    "Do this",
+    ...participant.supporting.map((section) => sectionDisplayHeading(section.heading)),
+  ].map((label) => el("li", { class: "read-tick", "data-section": label }, [label]));
   const rail = el("aside", { class: "day-rail-panel" }, [
     el("p", { class: "eyebrow" }, [week ? week.label : "Week"]),
     el("p", { class: "day-rail-index" }, [
@@ -90,7 +92,7 @@ export async function renderDayPage(
   );
   rail.append(
     el("p", { class: "hint capture-day-hint" }, [
-      "Capture saves dreams, experiences, or sensations to your Journal on this device. Marking the day complete is separate.",
+      "When something stands out, use Capture to save it to your Journal on this device.",
     ]),
   );
   rail.append(
@@ -104,42 +106,65 @@ export async function renderDayPage(
   main.append(article);
 }
 
-function renderSections(document: DayDocument): HTMLElement {
+function renderParticipantContent(
+  participant: ReturnType<typeof participantViewFor>,
+  document: DayDocument,
+): HTMLElement {
   const wrap = el("div", { class: "prose day-prose" });
-  const ordered = [...document.sections].sort((a, b) => sectionSortRank(a.heading) - sectionSortRank(b.heading));
-  for (const section of ordered) {
-    const kind = sectionKind(section.heading);
-    const display = sectionDisplayHeading(section.heading);
-    if (kind === "research") {
-      const block = el("details", { class: "day-section is-research" });
-      block.append(el("summary", {}, [display]));
-      for (const paragraph of section.paragraphs) {
-        block.append(el("p", {}, [paragraph]));
-      }
-      wrap.append(block);
-      continue;
-    }
-    const block = el("section", {
-      class: `day-section is-${kind}${kind === "practice" ? " day-do-this" : ""}`,
-    });
-    const headingTag = kind === "practice" ? "h3" : "h3";
-    block.append(el(headingTag, { class: kind === "practice" ? "day-instruction-title" : "" }, [display]));
-    for (const paragraph of section.paragraphs) {
+  if (participant.setup.length) {
+    const block = el("section", { class: "day-section is-setup" });
+    block.append(el("h3", {}, ["Before you begin"]));
+    for (const paragraph of participant.setup) {
       block.append(el("p", {}, [paragraph]));
     }
     wrap.append(block);
   }
+  const action = el("section", { class: "day-section is-practice day-do-this" });
+  action.append(el("h3", { class: "day-instruction-title" }, ["Do this"]));
+  for (const paragraph of participant.doThis) {
+    action.append(el("p", { class: "day-instruction-line" }, [paragraph]));
+  }
+  wrap.append(action);
+  for (const section of participant.supporting) {
+    wrap.append(renderSupportingSection(section));
+  }
+  if (participant.doThis.some((line) => /record|journal|capture|write/i.test(line))) {
+    wrap.append(
+      el("p", { class: "hint day-capture-cue" }, [
+        "Save anything you want to keep in ",
+        el("a", { href: "#/capture" }, ["Capture"]),
+        ".",
+      ]),
+    );
+  } else if (document.day <= 14 || /dream|wake|remember/i.test(participant.displayTitle)) {
+    wrap.append(
+      el("p", { class: "hint day-capture-cue" }, [
+        "If something stands out, note it in ",
+        el("a", { href: "#/capture" }, ["Capture"]),
+        " after you finish.",
+      ]),
+    );
+  }
   return wrap;
 }
 
-function sectionSortRank(heading: string): number {
-  const key = heading.trim().toUpperCase();
-  if (key === "TODAY") return 0;
-  if (key === "PRACTICE") return 1;
-  if (key === "TONIGHT") return 2;
-  if (key === "AFFIRMATION") return 3;
-  if (key === "RESEARCH NOTE") return 4;
-  return 5;
+function renderSupportingSection(section: DaySection): HTMLElement {
+  const kind = sectionKind(section.heading);
+  const display = sectionDisplayHeading(section.heading);
+  if (kind === "research") {
+    const block = el("details", { class: "day-section is-research" });
+    block.append(el("summary", {}, [display]));
+    for (const paragraph of section.paragraphs) {
+      block.append(el("p", {}, [paragraph]));
+    }
+    return block;
+  }
+  const block = el("section", { class: `day-section is-${kind}` });
+  block.append(el("h3", {}, [display]));
+  for (const paragraph of section.paragraphs) {
+    block.append(el("p", {}, [paragraph]));
+  }
+  return block;
 }
 
 function paintComplete(host: HTMLElement, day: number, completed: boolean, nextDay: number | null): void {

@@ -116,7 +116,9 @@ describe("core UI flows", () => {
     expect(packet.days).toHaveLength(60);
     for (const document of packet.days) {
       const root = await mount(`#/day/${document.day}`);
-      expect(root.querySelector("h2")?.textContent).toBe(document.title);
+      const title = root.querySelector("h2")?.textContent ?? "";
+      expect(title).not.toBe(document.title);
+      expect(title).not.toMatch(/^[A-Z0-9 /–-]{10,}$/);
       expect(root.textContent).not.toMatch(/DEVELOPMENT FIXTURE/);
       expect(root.textContent).not.toMatch(/placeholder day/i);
     }
@@ -125,16 +127,19 @@ describe("core UI flows", () => {
   it("renders required local product surfaces", async () => {
     const today = await mount("#/today");
     expect(today.textContent).toMatch(/Today/);
-    expect(today.textContent).toMatch(/CATCH THE DREAM/);
+    expect(today.textContent).not.toMatch(/CATCH THE DREAM/);
+    expect(today.querySelector("h2")?.textContent).toMatch(/dream/i);
     expect(today.textContent).not.toMatch(/DEVELOPMENT FIXTURE/);
     const day1 = await mount("#/day/1");
-    expect(day1.querySelector("h2")?.textContent).toBe("CATCH THE DREAM");
+    expect(day1.querySelector("h2")?.textContent).toMatch(/remember.*dream/i);
+    expect(day1.textContent).toMatch(/Do this/);
     expect(day1.textContent).toMatch(/Start with recall/);
     expect(day1.querySelector("#complete-day")).toBeTruthy();
     expect(day1.querySelector(".read-progress")).toBeTruthy();
     expect(day1.querySelector("#read-place")).toBeTruthy();
     const day60 = await mount("#/day/60");
-    expect(day60.querySelector("h2")?.textContent).toBe("INDEPENDENT ATTEMPT");
+    expect(day60.querySelector("h2")?.textContent).toMatch(/simple attempt/i);
+    expect(day60.textContent).toMatch(/Do this/);
     const days = await mount("#/days");
     expect(days.textContent).toMatch(/Week 1/);
     expect(days.textContent).toMatch(/Week 9/);
@@ -146,7 +151,7 @@ describe("core UI flows", () => {
     await vi.waitFor(() => {
       expect(days.querySelector(".phase-chapter.is-active")).toBeTruthy();
     });
-    expect(days.querySelector(".day-row-link")?.querySelector(".day-title")?.textContent).toBe("CATCH THE DREAM");
+    expect(days.querySelector(".day-row-link")?.querySelector(".day-title")?.textContent).toMatch(/dream/i);
     expect(day1.textContent).toMatch(/Do this/);
     expect(day1.textContent).toMatch(/Before you begin/);
     const week2 = await mount("#/week/2");

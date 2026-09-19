@@ -1,4 +1,5 @@
 import { loadCurriculumPacket } from "../../content/load.ts";
+import { participantViewFor } from "../../content/participantLayer.ts";
 import { daysInPhase, phaseById } from "../../content/phases.ts";
 import { allWeekNumbers, daysInWeek, weekDayRange, weekLabel } from "../../content/weeks.ts";
 import { localStore } from "../../db/store.ts";
@@ -21,7 +22,9 @@ export async function renderDaysPage(main: HTMLElement): Promise<void> {
     const complete = days.filter((day) => byDay.get(day)?.completedAt).length;
     const list = el("ol", { class: "day-rail", start: String(start) });
     for (const day of days) {
-      list.append(dayItem(day, byDay.get(day), packet.days.find((item) => item.day === day)?.title));
+      const doc = packet.days.find((item) => item.day === day);
+      const label = doc ? participantViewFor(doc).displayTitle : undefined;
+      list.append(dayItem(day, byDay.get(day), label));
     }
     journey.append(
       el("section", { class: "week-chapter phase-chapter", id: `week-${week}` }, [
@@ -69,7 +72,9 @@ export async function renderWeekPage(main: HTMLElement, week: number): Promise<v
   const { start, end } = weekDayRange(week);
   const list = el("ol", { class: "day-rail", start: String(start) });
   for (const day of days) {
-    list.append(dayItem(day, byDay.get(day), packet.days.find((item) => item.day === day)?.title));
+    const doc = packet.days.find((item) => item.day === day);
+    const label = doc ? participantViewFor(doc).displayTitle : undefined;
+    list.append(dayItem(day, byDay.get(day), label));
   }
   const index = weeks.indexOf(week);
   const prev = weeks[index - 1];
@@ -102,7 +107,9 @@ export async function renderPhasePage(main: HTMLElement, phaseId: string): Promi
   const packet = loadCurriculumPacket();
   const list = el("ol", { class: "day-rail", start: String(phase.start) });
   for (const day of daysInPhase(phase)) {
-    list.append(dayItem(day, byDay.get(day), packet.days.find((item) => item.day === day)?.title));
+    const doc = packet.days.find((item) => item.day === day);
+    const label = doc ? participantViewFor(doc).displayTitle : undefined;
+    list.append(dayItem(day, byDay.get(day), label));
   }
   main.append(
     el("article", { class: "days-surface phase-surface" }, [

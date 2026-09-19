@@ -132,6 +132,13 @@ No streaks. No lock flags. Scroll depth is not stored.
 - Real upload via `driveUpload.ts`; reconciliation via `reconcile.ts`; minimal progress file `pex-progress.json`.
 - Founder setup: `docs/GOOGLE_OAUTH_SETUP.md` and `VITE_GOOGLE_OAUTH_CLIENT_ID` at build time.
 
+## Usability / first-time clarity (V2 usability pass)
+
+- Participant navigation uses **Week 1–9** (7-day blocks) and **Day 1–60**; internal `phaseId` ranges remain for validation only.
+- Day pages use `src/content/participantLayer.ts`: plain display titles, **Before you begin** / **Do this** guided copy derived from the canonical packet (source titles remain in `canonical.ts` only).
+- Home includes a short **How this works** orientation; CTAs **Start Day 1** / **Continue today's practice**.
+- Journal backup states use plain language (`Saved on this device`, `Waiting to back up`, etc.).
+
 ## Astronomy instrument (V2C)
 
 - Route: `#/astronomy` under **More** (tertiary; not promoted above Today/Capture/Journal/Days).
