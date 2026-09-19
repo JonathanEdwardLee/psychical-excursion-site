@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { abandonLiveMicrophone, isCaptureMicrophoneHeld, renderApp } from "./app.ts";
+import { renderApp } from "./app.ts";
+import { abandonLiveMicrophone, isCaptureMicrophoneHeld } from "./captureSession.ts";
 import { localStore } from "../db/store.ts";
 import { DB_NAME } from "../domain/types.ts";
 
@@ -239,10 +240,10 @@ describe("capture microphone lifecycle", () => {
     abandonLiveMicrophone();
   });
 
-  async function startRecording(root: HTMLElement): Promise<void> {
-    (root.querySelector("#record-btn") as HTMLButtonElement).click();
+  async function startRecording(root: HTMLElement, selector = "#record-btn"): Promise<void> {
+    (root.querySelector(selector) as HTMLButtonElement).click();
     await vi.waitFor(() => {
-      expect(root.querySelector("#record-btn")?.textContent).toBe("Stop");
+      expect(root.querySelector(selector)?.textContent).toBe("Stop");
     });
   }
 
@@ -301,6 +302,27 @@ describe("capture microphone lifecycle", () => {
     expect(root.querySelector("#review-save-btn")).toBeTruthy();
     expect(root.textContent).toMatch(/Discard recording/i);
     expect(isCaptureMicrophoneHeld()).toBe(false);
+  });
+
+  it("persists night capture locally on Stop and survives reopen", async () => {
+    const root = await mount("#/capture/night/dream");
+    expect(root.querySelector(".night-capture-surface")).toBeTruthy();
+    await startRecording(root, "#night-record-btn");
+    (root.querySelector("#night-record-btn") as HTMLButtonElement).click();
+    await vi.waitFor(() => {
+      expect(root.textContent).toMatch(/Locally safe/i);
+    });
+    const entryLink = root.querySelector('a[href^="#/journal/entry-"]') as HTMLAnchorElement;
+    expect(entryLink).toBeTruthy();
+    const reloaded = await mount(entryLink.getAttribute("href")!);
+    expect(reloaded.querySelector("#entry-audio")).toBeTruthy();
+  });
+
+  it("renders account storage distinction without requiring Google", async () => {
+    const root = await mount("#/account");
+    expect(root.textContent).toMatch(/Google account/i);
+    expect(root.textContent).toMatch(/Connect Google Drive/i);
+    expect(root.textContent).toMatch(/not configured|local-only mode/i);
   });
 
   it("saves audio to Journal after review and lists recording on the entry row", async () => {

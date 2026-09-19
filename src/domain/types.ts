@@ -1,7 +1,7 @@
-export const APP_VERSION = "0.2.0";
-export const SCHEMA_VERSION = 1;
+export const APP_VERSION = "0.3.0";
+export const SCHEMA_VERSION = 2;
 export const DB_NAME = "pex-local";
-export const DB_VERSION = 1;
+export const DB_VERSION = 2;
 export const DAY_COUNT = 60;
 
 export const STORES = {
@@ -20,6 +20,9 @@ export const ENTRY_TYPE_LABEL: Record<EntryType, string> = {
   sensation: "Sensation",
 };
 
+export const SYNC_STATES = ["LOCAL", "PENDING_SYNC", "SYNCED", "SYNC_ERROR"] as const;
+export type SyncState = (typeof SYNC_STATES)[number];
+
 export type JournalEntry = {
   id: string;
   type: EntryType;
@@ -29,7 +32,37 @@ export type JournalEntry = {
   audioId: string | null;
   audioMimeType: string | null;
   audioByteLength: number | null;
+  syncState: SyncState;
+  localSafeAt: number | null;
+  syncVersion: number;
+  remoteVersion: number | null;
+  remoteFileId: string | null;
+  syncErrorCode: string | null;
+  pexDay: number | null;
+  phaseId: string | null;
 };
+
+export function normalizeJournalEntry(row: Partial<JournalEntry> & Pick<JournalEntry, "id" | "type" | "createdAt">): JournalEntry {
+  const updatedAt = typeof row.updatedAt === "number" ? row.updatedAt : row.createdAt;
+  return {
+    id: row.id,
+    type: row.type,
+    createdAt: row.createdAt,
+    updatedAt,
+    note: typeof row.note === "string" ? row.note : "",
+    audioId: row.audioId ?? null,
+    audioMimeType: row.audioMimeType ?? null,
+    audioByteLength: row.audioByteLength ?? null,
+    syncState: row.syncState ?? "LOCAL",
+    localSafeAt: row.localSafeAt ?? updatedAt,
+    syncVersion: typeof row.syncVersion === "number" ? row.syncVersion : 1,
+    remoteVersion: row.remoteVersion ?? null,
+    remoteFileId: row.remoteFileId ?? null,
+    syncErrorCode: row.syncErrorCode ?? null,
+    pexDay: row.pexDay ?? null,
+    phaseId: row.phaseId ?? null,
+  };
+}
 
 export type MediaRecord = {
   id: string;

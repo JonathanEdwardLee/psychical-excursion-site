@@ -59,6 +59,7 @@ export async function renderHomePage(main: HTMLElement): Promise<void> {
           el("div", { class: "actions" }, [
             el("a", { href: "#/today", class: "button primary", id: "home-today" }, [`Continue · Day ${resume}`]),
             el("a", { href: "#/capture", class: "button", id: "home-capture" }, ["Capture"]),
+            el("a", { href: "#/capture/night/dream", class: "button quiet", id: "home-night-capture" }, ["Night capture"]),
           ]),
           el("p", { class: "hint" }, [
             "Loop: Today or a day reading → Capture → review → Save to Journal → return anytime from Journal or Home.",

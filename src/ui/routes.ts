@@ -1,16 +1,26 @@
+import { isEntryType, type EntryType } from "../domain/types.ts";
+
 export type AppRoute =
   | { name: "home" }
   | { name: "today" }
   | { name: "days" }
   | { name: "day"; day: number }
   | { name: "phase"; phaseId: string }
-  | { name: "capture" }
+  | { name: "capture"; variant: "standard" | "night"; presetType?: EntryType }
   | { name: "journal" }
   | { name: "entry"; id: string }
   | { name: "method" }
   | { name: "about" }
   | { name: "data" }
+  | { name: "account" }
   | { name: "unknown"; path: string };
+
+function parseCaptureRoute(parts: string[]): Extract<AppRoute, { name: "capture" }> {
+  const variant = parts[1] === "night" ? "night" : "standard";
+  const typePart = variant === "night" ? parts[2] : parts[1];
+  const presetType = typePart && isEntryType(typePart) ? typePart : undefined;
+  return { name: "capture", variant, presetType };
+}
 
 export function parseRoute(hash = window.location.hash): AppRoute {
   const raw = hash.replace(/^#/, "") || "/";
@@ -19,10 +29,11 @@ export function parseRoute(hash = window.location.hash): AppRoute {
   const section = parts[0];
   if (!section) return { name: "home" };
   if (section === "today") return { name: "today" };
-  if (section === "capture") return { name: "capture" };
+  if (section === "capture") return parseCaptureRoute(parts);
   if (section === "method") return { name: "method" };
   if (section === "about") return { name: "about" };
   if (section === "data") return { name: "data" };
+  if (section === "account") return { name: "account" };
   if (section === "journal" && parts[1]) return { name: "entry", id: parts[1] };
   if (section === "journal") return { name: "journal" };
   if (section === "days" && parts[1]) {
@@ -48,5 +59,6 @@ export function routeNavKey(route: AppRoute): string {
   if (route.name === "method") return "method";
   if (route.name === "about") return "about";
   if (route.name === "data") return "data";
+  if (route.name === "account") return "account";
   return "";
 }

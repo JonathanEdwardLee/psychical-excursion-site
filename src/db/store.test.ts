@@ -14,6 +14,8 @@ describe("LocalStore", () => {
       audio: { id: "audio-fixture-1", blob, mimeType: "audio/webm" },
     });
     expect(saved.audioId).toBe("audio-fixture-1");
+    expect(saved.syncState).toBe("LOCAL");
+    expect(saved.localSafeAt).toBeTypeOf("number");
     const listed = await store.listEntries();
     expect(listed[0]?.id).toBe("entry-fixture-1");
     const loaded = await store.getEntry("entry-fixture-1");

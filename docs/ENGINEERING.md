@@ -52,8 +52,8 @@ See the root README. Commands:
 ## IndexedDB schema
 
 - Database name: `pex-local`
-- IndexedDB version: `1`
-- App/schema constants: `APP_VERSION` (`0.2.0`), `SCHEMA_VERSION` (`1`)
+- IndexedDB version: `2`
+- App/schema constants: `APP_VERSION` (`0.3.0`), `SCHEMA_VERSION` (`2`)
 
 ### Object stores
 
@@ -69,8 +69,18 @@ See the root README. Commands:
 | audioId | string \| null | FK to `media.id` |
 | audioMimeType | string \| null | Recorded MIME |
 | audioByteLength | number \| null | Size in bytes |
+| syncState | `"LOCAL" \| "PENDING_SYNC" \| "SYNCED" \| "SYNC_ERROR"` | Local-first sync model |
+| localSafeAt | number \| null | IndexedDB-confirmed safe timestamp |
+| syncVersion | number | Increments on local edits |
+| remoteVersion | number \| null | Last known remote version |
+| remoteFileId | string \| null | Provider file id when synced |
+| syncErrorCode | string \| null | Last retryable/non-retryable code |
+| pexDay | number \| null | Practice day at capture |
+| phaseId | string \| null | Phase id at capture |
 
-Indexes: `createdAt`, `type`.
+Indexes: `createdAt`, `type`, `syncState`.
+
+Legacy entries without sync fields are normalized on read and migrated on first open after upgrade.
 
 **media** (keyPath `id`)
 
@@ -101,6 +111,23 @@ No streaks. No lock flags. Scroll depth is not stored.
 - `schema` — `{ schemaVersion, appVersion, createdAt }`
 - `persistenceReport` — last actual persistence probe (`{ key, value }`)
 - `resumeDay` — last opened day number so `#/today` can resume. If that day is complete, Today uses the first incomplete day.
+- `driveConnection` — optional `{ accountEmail, driveAuthorized, authExpired }` for Drive.file preparation (no journal content).
+
+## Optional Google Drive sync (V2A foundation)
+
+- Scope: `https://www.googleapis.com/auth/drive.file` only.
+- Google **account** (identity) and **Connect Google Drive** (file permission) are separate UI concepts on `#/account`.
+- Without `VITE_GOOGLE_OAUTH_CLIENT_ID`, the app stays local-only with honest “not configured” copy.
+- Flow: Stop → IndexedDB write → `localSafeAt` → optional sync enqueue. Network/auth failure never deletes local rows.
+- Provider boundary: `src/sync/provider.ts` with `GoogleDriveAdapter` (path/metadata preparation) and test `MockSyncProvider`.
+- Planned Drive layout: `Psychical Excursion/Journal/YYYY/<timestamp> — Dream.<ext>` plus sidecar metadata JSON (`schema_version`, `entry_id`, `capture_type`, `pex_day`, `phase`, sync fields).
+- Cross-device conflict preparation (`src/domain/sync.ts`): stable `entry_id`, monotonic `sync_version`, append-safe journal; local copy is never silently overwritten in this phase.
+
+## Night capture
+
+- Route: `#/capture/night` (Dream default) or `#/capture/night/{dream|experience|sensation}`.
+- PWA shortcuts in `manifest.webmanifest` for night capture types and Today.
+- Stop persists audio locally immediately (before optional sync). Standard `#/capture` keeps explicit review + Save to Journal.
 
 Writes that create an entry plus audio use one `readwrite` transaction. The UI does not show a successful save until that transaction completes. Failed writes surface an error; the in-memory draft remains so it is not silently discarded.
 
