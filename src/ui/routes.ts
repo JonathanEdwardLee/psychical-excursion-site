@@ -13,6 +13,7 @@ export type AppRoute =
   | { name: "about" }
   | { name: "data" }
   | { name: "account" }
+  | { name: "astronomy" }
   | { name: "unknown"; path: string };
 
 function parseCaptureRoute(parts: string[]): Extract<AppRoute, { name: "capture" }> {
@@ -34,6 +35,7 @@ export function parseRoute(hash = window.location.hash): AppRoute {
   if (section === "about") return { name: "about" };
   if (section === "data") return { name: "data" };
   if (section === "account") return { name: "account" };
+  if (section === "astronomy") return { name: "astronomy" };
   if (section === "journal" && parts[1]) return { name: "entry", id: parts[1] };
   if (section === "journal") return { name: "journal" };
   if (section === "days" && parts[1]) {
@@ -60,5 +62,6 @@ export function routeNavKey(route: AppRoute): string {
   if (route.name === "about") return "about";
   if (route.name === "data") return "data";
   if (route.name === "account") return "account";
+  if (route.name === "astronomy") return "astronomy";
   return "";
 }

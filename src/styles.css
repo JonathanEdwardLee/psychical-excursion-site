@@ -1035,3 +1035,67 @@ audio {
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
+
+.astronomy-surface {
+  max-width: 44rem;
+}
+
+.astro-instrument {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.astro-sun-moon {
+  display: grid;
+  gap: 1rem;
+}
+
+.astro-body-card {
+  border: 1px solid var(--line);
+  padding: 1rem 1.1rem;
+}
+
+.astro-glyph {
+  font-size: 2rem;
+  line-height: 1;
+  margin: 0;
+}
+
+.astro-glyph-inline {
+  font-family: var(--font-display);
+}
+
+.astro-planet-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.astro-planet-item details summary {
+  cursor: pointer;
+  min-height: var(--tap);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+@media (min-width: 720px) {
+  .astro-sun-moon {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .astro-dial {
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 1.25rem 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .astro-dial {
+    border-radius: 0;
+  }
+}

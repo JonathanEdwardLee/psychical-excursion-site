@@ -148,6 +148,20 @@ describe("core UI flows", () => {
     expect(fiftyOne.textContent).toMatch(/Optional/);
   });
 
+  it("renders astronomy without prompting for geolocation on load", async () => {
+    const getCurrentPosition = vi.fn();
+    vi.stubGlobal("navigator", {
+      ...navigator,
+      geolocation: { getCurrentPosition },
+    });
+    const root = await mount("#/astronomy");
+    expect(root.textContent).toMatch(/Astronomy/i);
+    expect(root.textContent).toMatch(/Sun/);
+    expect(root.textContent).toMatch(/Moon/);
+    expect(root.querySelector("#astro-instrument")).toBeTruthy();
+    expect(getCurrentPosition).not.toHaveBeenCalled();
+  });
+
   it("completes and undoes a day without using scroll depth", async () => {
     const root = await mount("#/day/2");
     expect(root.querySelector("#complete-day")).toBeTruthy();

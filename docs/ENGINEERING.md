@@ -53,7 +53,7 @@ See the root README. Commands:
 
 - Database name: `pex-local`
 - IndexedDB version: `3`
-- App/schema constants: `APP_VERSION` (`0.4.0`), `SCHEMA_VERSION` (`3`)
+- App/schema constants: `APP_VERSION` (`0.5.0`), `SCHEMA_VERSION` (`3`)
 
 ### Object stores
 
@@ -131,6 +131,15 @@ No streaks. No lock flags. Scroll depth is not stored.
 - Sign-in (`openid email profile`) and Drive connect (`drive.file`) are separate UI actions on `#/account`.
 - Real upload via `driveUpload.ts`; reconciliation via `reconcile.ts`; minimal progress file `pex-progress.json`.
 - Founder setup: `docs/GOOGLE_OAUTH_SETUP.md` and `VITE_GOOGLE_OAUTH_CLIENT_ID` at build time.
+
+## Astronomy instrument (V2C)
+
+- Route: `#/astronomy` under **More** (tertiary; not promoted above Today/Capture/Journal/Days).
+- Calculations: `astronomy-engine` (MIT) in `src/astronomy/` — local only, no astronomy HTTP API.
+- **No location required:** local/UTC time, Sun/Moon phase and illumination, seven-planet ecliptic longitudes, constellation labels (factual), apparent direct/retrograde, upcoming moon-phase events when computable.
+- **Optional location:** user taps “Use my location for local sky times” (no prompt on load). Coordinates stay in `sessionStorage` (`pex-astronomy-observer`) for the session only; not logged or URL-encoded. Denial leaves the core clock usable.
+- Updates every 60s (120s when `prefers-reduced-motion: reduce`); refresh on tab visibility; timer cleared when leaving the route.
+- Validation note: [ASTRONOMY_VALIDATION.md](ASTRONOMY_VALIDATION.md).
 
 ## Night capture
 
@@ -237,9 +246,9 @@ Semantic landmarks, skip link, labeled controls, visible `:focus-visible`, 44px-
 
 ## Dependencies
 
-Runtime dependencies: **none**.
+Runtime dependencies: **`astronomy-engine`** (MIT, bundled; local ephemeris only).
 
-Development dependencies (Vite, TypeScript, Vitest, jsdom, fake-indexeddb, ESLint) are local toolchain only. No paid or recurring service.
+Development dependencies (Vite, TypeScript, Vitest, jsdom, fake-indexeddb, ESLint) are local toolchain only. No paid or recurring astronomy API or recurring service.
 
 ## Tested facts vs limitations (this worker pass)
 
@@ -249,6 +258,6 @@ See the Issue #4 pull request for the current evidence packet (routes, logos, bu
 
 ## Out of scope (stop conditions honored)
 
-Inventing canonical Days 1–60, health/sleep treatment advice, Google services, AI, astronomy, donations, payments, analytics, backends, remote sync, tester communications.
+Inventing canonical Days 1–60, health/sleep treatment advice, horoscope/astrology personality systems, donations, payments, analytics, backends, tester communications. (Optional Google Drive sync and factual astronomy instrument are in scope per shipped phases.)
 
 Static Hostinger publication of the verified runtime artifact is in scope for PEX-PUBLIC-RELEASE-004. See [DEPLOYMENT.md](DEPLOYMENT.md).
