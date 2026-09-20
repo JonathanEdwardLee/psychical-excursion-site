@@ -13,10 +13,9 @@ import {
   resetCaptureMedia,
 } from "./captureSession.ts";
 import { loadCapturePracticeContext } from "./captureContext.ts";
-import { isGoogleSyncConfigured } from "../sync/config.ts";
-import { loadGoogleIdentityState } from "../sync/googleAuth.ts";
-import { signInGoogleAccount } from "../sync/syncEngine.ts";
-import { emptyJournal, entryCard, signedOutJournalInvite, statusBox, syncStateLabel, typeFieldset } from "./bits.ts";
+import { personalToolsUnlocked } from "./personalTools.ts";
+import { signedOutPersonalToolsGate } from "./personalToolsGate.ts";
+import { emptyJournal, entryCard, statusBox, syncStateLabel, typeFieldset } from "./bits.ts";
 import { announce, el, formatWhen, go, text } from "./dom.ts";
 import { renderAccountPage } from "./pages/account.ts";
 import { renderDayPage, renderTodayPage } from "./pages/day.ts";
@@ -53,7 +52,17 @@ export async function renderApp(root: HTMLElement): Promise<void> {
   const { main } = renderChrome(root, route);
 
   try {
-    if (route.name === "capture" && route.variant === "night") await renderNightCapturePage(main, route);
+    if (route.name === "capture" && !(await personalToolsUnlocked())) {
+      main.append(
+        signedOutPersonalToolsGate({
+          title: "Dream Journal",
+          lede: "Sign in with Google to record dreams and keep them on this device, with optional backup.",
+          onSignedIn: () => {
+            void renderApp(root);
+          },
+        }),
+      );
+    } else if (route.name === "capture" && route.variant === "night") await renderNightCapturePage(main, route);
     else if (route.name === "capture") await renderCapture(main, route);
     else if (route.name === "account") await renderAccountPage(main);
     else if (route.name === "astronomy") renderAstronomyPage(main);
@@ -344,24 +353,19 @@ function paintCaptureStatus(
 }
 
 async function renderJournal(main: HTMLElement): Promise<void> {
-  const entries = await localStore.listEntries();
-  const identity = await loadGoogleIdentityState();
-  const inviteHost = el("div", { id: "journal-invite-host" });
-  if (!identity.signedIn) {
-    const invite = signedOutJournalInvite();
-    inviteHost.append(invite);
-    invite.querySelector("#journal-sign-in-btn")?.addEventListener("click", () => {
-      void (async () => {
-        if (!isGoogleSyncConfigured()) return;
-        try {
-          await signInGoogleAccount();
-          await renderApp(document.getElementById("app")!);
-        } catch {
-          inviteHost.append(statusBox("error", "Sign-in did not finish", "Your dreams on this device are unchanged."));
-        }
-      })();
-    });
+  if (!(await personalToolsUnlocked())) {
+    main.append(
+      signedOutPersonalToolsGate({
+        title: "Dream Journal",
+        lede: "Sign in with Google to save dreams on this device, replay recordings, and optionally back up to your Google account.",
+        onSignedIn: () => {
+          void renderApp(document.getElementById("app")!);
+        },
+      }),
+    );
+    return;
   }
+  const entries = await localStore.listEntries();
   const list = el("div", { class: "stack" });
   if (entries.length === 0) list.append(emptyJournal());
   else entries.forEach((entry) => list.append(entryCard(entry)));
@@ -372,17 +376,35 @@ async function renderJournal(main: HTMLElement): Promise<void> {
       el("p", { class: "lede" }, [
         "Dreams you saved — newest first. Replay recordings, edit notes, or delete entries on this device.",
       ]),
+      entries.length
+        ? statusBox(
+            "info",
+            "Your dreams on this device",
+            `${entries.length} ${entries.length === 1 ? "entry is" : "entries are"} available here, including anything saved before you signed in.`,
+          )
+        : el("span"),
       el("p", { class: "actions" }, [
         el("a", { href: "#/capture/dream", class: "button primary", id: "journal-new-dream" }, ["New Dream Entry"]),
         el("a", { href: "#/capture/dream", class: "button", id: "journal-record-dream" }, ["Record a Dream"]),
       ]),
-      inviteHost,
       list,
     ]),
   );
 }
 
 async function renderEntry(main: HTMLElement, id: string): Promise<void> {
+  if (!(await personalToolsUnlocked())) {
+    main.append(
+      signedOutPersonalToolsGate({
+        title: "Dream Journal",
+        lede: "Sign in with Google to open dream entries on this device.",
+        onSignedIn: () => {
+          void renderApp(document.getElementById("app")!);
+        },
+      }),
+    );
+    return;
+  }
   const savedFlag = sessionStorage.getItem("pex-just-saved") === id;
   if (savedFlag) sessionStorage.removeItem("pex-just-saved");
   const found = await localStore.getEntry(id);
@@ -543,13 +565,6 @@ async function renderData(main: HTMLElement): Promise<void> {
   themeBtn.addEventListener("click", () => {
     const mode = toggleTheme();
     themeBtn.textContent = mode === "bedtime" ? "Use light" : "Use bedtime mode";
-    const headerBtn = document.getElementById("theme-toggle-header");
-    if (headerBtn) {
-      const bedtime = mode === "bedtime";
-      headerBtn.textContent = bedtime ? "Light" : "Bedtime";
-      headerBtn.setAttribute("aria-pressed", bedtime ? "true" : "false");
-      headerBtn.setAttribute("aria-label", bedtime ? "Switch to light" : "Switch to bedtime mode");
-    }
   });
 
   const schema = await localStore.getSchemaInfo();

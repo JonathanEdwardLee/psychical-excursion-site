@@ -2,7 +2,7 @@ import { loadCurriculumPacket } from "../../content/load.ts";
 import { participantViewFor } from "../../content/participantLayer.ts";
 import { daysInPhase, phaseById } from "../../content/phases.ts";
 import { allWeekNumbers, daysInWeek, weekDayRange, weekLabel } from "../../content/weeks.ts";
-import { localStore } from "../../db/store.ts";
+import { personalToolsUnlocked, progressForParticipantUI } from "../personalTools.ts";
 import type { DayProgress } from "../../domain/types.ts";
 import { completedCount, dayHref } from "../../progress/progress.ts";
 import { statusBox } from "../bits.ts";
@@ -11,7 +11,8 @@ import { padDay } from "../motif.ts";
 import { weekNav } from "../shell.ts";
 
 export async function renderDaysPage(main: HTMLElement): Promise<void> {
-  const rows = await localStore.listProgress();
+  const signedIn = await personalToolsUnlocked();
+  const rows = await progressForParticipantUI();
   const byDay = new Map(rows.map((row) => [row.day, row]));
   const packet = loadCurriculumPacket();
   const done = completedCount(rows);
@@ -32,7 +33,9 @@ export async function renderDaysPage(main: HTMLElement): Promise<void> {
           el("p", { class: "phase-index week-index" }, [weekLabel(week)]),
           el("h3", {}, [el("a", { href: `#/week/${week}` }, [weekLabel(week)])]),
           el("p", { class: "phase-range" }, [`Days ${padDay(start)}–${padDay(end)}`]),
-          el("p", { class: "phase-count meta" }, [`${complete} of ${days.length} complete`]),
+          signedIn
+            ? el("p", { class: "phase-count meta" }, [`${complete} of ${days.length} complete`])
+            : el("span"),
         ]),
         list,
       ]),
@@ -46,7 +49,9 @@ export async function renderDaysPage(main: HTMLElement): Promise<void> {
         el("p", { class: "lede" }, [
           "One practice per day, grouped by week. Every day stays unlocked. Skip or return anytime — no streaks and no penalties.",
         ]),
-        el("p", { class: "meta" }, [`${done} of 60 marked complete on this device.`]),
+        signedIn
+          ? el("p", { class: "meta", id: "days-progress-summary" }, [`${done} of 60 marked complete on this device.`])
+          : el("p", { class: "meta" }, ["Sign in to mark days complete and keep your place in the guide."]),
         weekNav(),
       ]),
       el("p", {
@@ -65,7 +70,7 @@ export async function renderWeekPage(main: HTMLElement, week: number): Promise<v
     main.append(el("h2", {}, ["Week"]), statusBox("error", "Unknown week", "Choose a week from the day list."));
     return;
   }
-  const rows = await localStore.listProgress();
+  const rows = await progressForParticipantUI();
   const byDay = new Map(rows.map((row) => [row.day, row]));
   const packet = loadCurriculumPacket();
   const days = daysInWeek(week);
@@ -102,7 +107,7 @@ export async function renderPhasePage(main: HTMLElement, phaseId: string): Promi
     main.append(el("h2", {}, ["Days"]), statusBox("error", "Unknown section", "Choose a week from the day list."));
     return;
   }
-  const rows = await localStore.listProgress();
+  const rows = await progressForParticipantUI();
   const byDay = new Map(rows.map((row) => [row.day, row]));
   const packet = loadCurriculumPacket();
   const list = el("ol", { class: "day-rail", start: String(phase.start) });

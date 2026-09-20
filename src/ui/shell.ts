@@ -1,6 +1,6 @@
 import { snapshotAt } from "../astronomy/clock.ts";
 import { allWeekNumbers, weekLabel } from "../content/weeks.ts";
-import { applyTheme, readTheme, toggleTheme } from "../theme.ts";
+import { applyTheme } from "../theme.ts";
 import { el, text } from "./dom.ts";
 import type { AppRoute } from "./routes.ts";
 import { routeNavKey } from "./routes.ts";
@@ -46,7 +46,6 @@ export function renderChrome(
   const current = routeNavKey(route);
   const skip = el("a", { class: "skip-link", href: "#main" }, ["Skip to content"]);
   const toolsWrap = el("div", { class: "header-tools" }, [
-    themeToggle(),
     settingsMenuTrigger(),
     settingsMenuPanel(),
   ]);
@@ -100,30 +99,6 @@ export function renderChrome(
   resetSettingsMenuBinding();
   bindSettingsMenu(root);
   return { main };
-}
-
-function themeToggle(): HTMLButtonElement {
-  const bedtime = readTheme() === "bedtime";
-  const button = el("button", {
-    type: "button",
-    id: "theme-toggle-header",
-    class: "quiet theme-toggle-header",
-    "aria-pressed": bedtime ? "true" : "false",
-    "aria-label": bedtime ? "Switch to light" : "Switch to bedtime mode",
-  }, [bedtime ? "Light" : "Bedtime"]);
-  button.addEventListener("click", () => {
-    const mode = toggleTheme();
-    const nowBedtime = mode === "bedtime";
-    button.textContent = nowBedtime ? "Light" : "Bedtime";
-    button.setAttribute("aria-pressed", nowBedtime ? "true" : "false");
-    button.setAttribute("aria-label", nowBedtime ? "Switch to light" : "Switch to bedtime mode");
-    const settingsBtn = document.getElementById("settings-theme-toggle");
-    if (settingsBtn) {
-      settingsBtn.textContent = nowBedtime ? "Switch to light" : "Switch to bedtime mode";
-      settingsBtn.setAttribute("aria-pressed", nowBedtime ? "true" : "false");
-    }
-  });
-  return button;
 }
 
 let updateBannerBound = false;

@@ -187,10 +187,18 @@ h3 {
 .settings-menu-trigger {
   min-height: var(--tap);
   min-width: var(--tap);
-  font-family: var(--font-ui);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-size: 0.82rem;
+  padding: 0.35rem;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.settings-gear-icon {
+  display: block;
 }
 
 .settings-menu-panel {

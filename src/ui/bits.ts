@@ -31,10 +31,11 @@ export function emptyJournal(): HTMLElement {
   ]);
 }
 
-export function signedOutJournalInvite(): HTMLElement {
+export function signedOutJournalInvite(lede?: string): HTMLElement {
   return el("div", { class: "journal-signed-out", id: "journal-signed-out" }, [
     el("p", { class: "lede" }, [
-      "Sign in with Google to keep saved guide progress and optional Dream Journal backup. You can still read every day without signing in.",
+      lede ??
+        "Sign in with Google to open your Dream Journal, mark day progress, and optionally back up to your Google account. Reading the full guide stays free without signing in.",
     ]),
     el("p", { class: "actions" }, [
       el("button", { type: "button", class: "primary", id: "journal-sign-in-btn" }, ["Sign in with Google"]),

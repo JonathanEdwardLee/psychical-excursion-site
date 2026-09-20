@@ -3,6 +3,7 @@ import { renderApp } from "./app.ts";
 import { abandonLiveMicrophone, isCaptureMicrophoneHeld } from "./captureSession.ts";
 import { localStore } from "../db/store.ts";
 import { DB_NAME } from "../domain/types.ts";
+import { fixtureSignIn, fixtureSignOut } from "./testFixtures.ts";
 
 async function resetLocalDatabase(): Promise<void> {
   await new Promise<void>((resolve, reject) => {
@@ -26,9 +27,11 @@ describe("core UI flows", () => {
     localStorage.clear();
     sessionStorage.clear();
     await resetLocalDatabase();
+    await fixtureSignOut();
   });
 
-  it("reaches Dream Journal recording from home tools", async () => {
+  it("reaches Dream Journal recording when signed in", async () => {
+    await fixtureSignIn();
     const root = await mount("#/");
     const cta = root.querySelector("#home-dream-journal") as HTMLAnchorElement;
     expect(cta).toBeTruthy();
@@ -39,6 +42,7 @@ describe("core UI flows", () => {
   });
 
   it("does not call getUserMedia until Record is used", async () => {
+    await fixtureSignIn();
     const getUserMedia = vi.fn();
     vi.stubGlobal("navigator", {
       ...navigator,
@@ -50,6 +54,7 @@ describe("core UI flows", () => {
   });
 
   it("saves a text-only entry only after IndexedDB confirmation and lists it", async () => {
+    await fixtureSignIn();
     const root = await mount("#/capture");
     const dream = root.querySelector("#type-dream") as HTMLInputElement;
     dream.checked = true;
@@ -75,7 +80,8 @@ describe("core UI flows", () => {
     expect(home.textContent).not.toMatch(/REMEMBER/);
   });
 
-  it("shows an empty journal state", async () => {
+  it("shows an empty journal state when signed in", async () => {
+    await fixtureSignIn();
     const existing = await localStore.listEntries();
     for (const entry of existing) await localStore.deleteEntry(entry.id);
     const root = await mount("#/journal");
@@ -90,6 +96,7 @@ describe("core UI flows", () => {
   });
 
   it("labels dream entry controls for assistive tech", async () => {
+    await fixtureSignIn();
     const root = await mount("#/capture/dream");
     expect(root.querySelector('label[for="capture-note"]')).toBeTruthy();
     expect(root.querySelector("h2")?.textContent).toBe("Record a Dream");
@@ -122,16 +129,19 @@ describe("core UI flows", () => {
   });
 
   it("renders required local product surfaces", async () => {
+    const day1 = await mount("#/day/1");
+    expect(day1.querySelector("h2")?.textContent).toMatch(/remember.*dream/i);
+    expect(day1.textContent).toMatch(/Do this/);
+    expect(day1.textContent).toMatch(/Start with recall/);
+    expect(day1.querySelector("#complete-day")).toBeNull();
+    await fixtureSignIn();
     const today = await mount("#/today");
     expect(today.textContent).toMatch(/Today/);
     expect(today.textContent).not.toMatch(/CATCH THE DREAM/);
     expect(today.querySelector("h2")?.textContent).toMatch(/dream/i);
     expect(today.textContent).not.toMatch(/DEVELOPMENT FIXTURE/);
-    const day1 = await mount("#/day/1");
-    expect(day1.querySelector("h2")?.textContent).toMatch(/remember.*dream/i);
-    expect(day1.textContent).toMatch(/Do this/);
-    expect(day1.textContent).toMatch(/Start with recall/);
-    expect(day1.querySelector("#complete-day")).toBeTruthy();
+    const day1SignedIn = await mount("#/day/1");
+    expect(day1SignedIn.querySelector("#complete-day")).toBeTruthy();
     expect(day1.querySelector(".read-progress")).toBeTruthy();
     expect(day1.querySelector("#read-place")).toBeTruthy();
     const day60 = await mount("#/day/60");
@@ -179,6 +189,7 @@ describe("core UI flows", () => {
   });
 
   it("completes and undoes a day without using scroll depth", async () => {
+    await fixtureSignIn();
     const root = await mount("#/day/2");
     (root.querySelector("#complete-day") as HTMLButtonElement).click();
     await vi.waitFor(() => {
@@ -245,9 +256,11 @@ class FakeMediaRecorder {
 describe("capture microphone lifecycle", () => {
   let trackStop: ReturnType<typeof vi.fn>;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     localStorage.clear();
     sessionStorage.clear();
+    await resetLocalDatabase();
+    await fixtureSignIn();
     trackStop = vi.fn();
     const track = {
       readyState: "live",
@@ -306,7 +319,7 @@ describe("capture microphone lifecycle", () => {
     await renderApp(root);
     expect(trackStop).toHaveBeenCalled();
     expect(isCaptureMicrophoneHeld()).toBe(false);
-    expect(root.querySelector("h2")?.textContent).toBe("Dream Journal");
+    expect(root.querySelector("h2")?.textContent).toMatch(/Dream Journal|Sign in/);
   });
 
   it("stops acquired tracks when the capture session is abandoned", async () => {
@@ -348,6 +361,7 @@ describe("capture microphone lifecycle", () => {
   });
 
   it("uses plain backup labels on journal entries", async () => {
+    await fixtureSignIn();
     await localStore.saveCapture({
       id: "sync-label-entry",
       type: "dream",

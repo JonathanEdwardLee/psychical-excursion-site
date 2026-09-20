@@ -1,6 +1,14 @@
 import { loadCurriculumPacket } from "../../content/load.ts";
 import { participantViewFor } from "../../content/participantLayer.ts";
 import { localStore } from "../../db/store.ts";
+import {
+  personalToolsUnlocked,
+  progressForParticipantUI,
+  resumeDaySettingForParticipantUI,
+} from "../personalTools.ts";
+import { signedOutJournalInvite } from "../bits.ts";
+import { wireSignInInvite } from "../personalToolsGate.ts";
+import { go } from "../dom.ts";
 import type { DayDocument, DaySection } from "../../content/model.ts";
 import { dayHref, isDayNumber, neighboringDays, resumeDay, weekPosition } from "../../progress/progress.ts";
 import { statusBox } from "../bits.ts";
@@ -11,8 +19,8 @@ import { calendarAffirmationPanel } from "../calendarAffirmation.ts";
 import { weekNav } from "../shell.ts";
 
 export async function renderTodayPage(main: HTMLElement): Promise<void> {
-  const rows = await localStore.listProgress();
-  const day = resumeDay(rows, await localStore.loadResumeDay());
+  const rows = await progressForParticipantUI();
+  const day = resumeDay(rows, await resumeDaySettingForParticipantUI());
   await renderDayPage(main, day, { today: true });
 }
 
@@ -31,8 +39,9 @@ export async function renderDayPage(
     return;
   }
   const participant = participantViewFor(document);
-  await localStore.markDayVisited(day);
-  const progress = await localStore.getDayProgress(day);
+  const signedIn = await personalToolsUnlocked();
+  if (signedIn) await localStore.markDayVisited(day);
+  const progress = signedIn ? await localStore.getDayProgress(day) : null;
   const neighbors = neighboringDays(day);
   const week = weekPosition(day);
   const article = el("article", { class: "day-surface" });
@@ -79,7 +88,7 @@ export async function renderDayPage(
     weekNav(week?.week),
   ]);
   const completeHost = el("div", { class: "complete-panel" });
-  paintComplete(completeHost, day, progress.completedAt !== null, neighbors.next);
+  paintComplete(completeHost, day, Boolean(progress?.completedAt), neighbors.next, signedIn);
   rail.append(completeHost);
   rail.append(
     el("nav", { class: "day-pager", "aria-label": "Day sequence" }, [
@@ -100,7 +109,7 @@ export async function renderDayPage(
   );
   rail.append(
     el("p", { class: "actions day-rail-actions" }, [
-      el("a", { href: "#/capture/dream", class: "button primary" }, ["Record a Dream"]),
+      el("a", { href: "#/journal", class: "button primary" }, ["Dream Journal"]),
       el("a", { href: "#/journal", class: "text-link" }, ["Dream Journal"]),
       el("a", { href: "#/days", class: "text-link" }, ["All days"]),
     ]),
@@ -170,8 +179,29 @@ function renderSupportingSection(section: DaySection): HTMLElement {
   return block;
 }
 
-function paintComplete(host: HTMLElement, day: number, completed: boolean, nextDay: number | null): void {
+function paintComplete(
+  host: HTMLElement,
+  day: number,
+  completed: boolean,
+  nextDay: number | null,
+  signedIn: boolean,
+): void {
   host.replaceChildren();
+  if (!signedIn) {
+    const invite = signedOutJournalInvite(
+      "Sign in with Google to mark days complete and keep your place in the 60-day guide.",
+    );
+    host.append(
+      el("p", { class: "hint" }, [
+        "Marking days complete is saved when you sign in. Reading stays free without an account.",
+      ]),
+      invite,
+    );
+    wireSignInInvite(host, () => {
+      go(`/day/${day}`);
+    });
+    return;
+  }
   host.classList.toggle("is-complete", completed);
   host.prepend(opticMark(completed ? "is-lit" : ""));
   if (completed) {
@@ -183,7 +213,7 @@ function paintComplete(host: HTMLElement, day: number, completed: boolean, nextD
       void (async () => {
         await localStore.undoDayCompletion(day);
         announce(`Day ${day} marked incomplete`);
-        paintComplete(host, day, false, nextDay);
+        paintComplete(host, day, false, nextDay, signedIn);
       })();
     });
     host.append(undo);
@@ -206,7 +236,7 @@ function paintComplete(host: HTMLElement, day: number, completed: boolean, nextD
     void (async () => {
       await localStore.completeDay(day);
       announce(`Day ${day} marked complete`);
-      paintComplete(host, day, true, nextDay);
+      paintComplete(host, day, true, nextDay, signedIn);
     })();
   });
   host.append(complete);

@@ -6,14 +6,15 @@ import { statusBox } from "./bits.ts";
 import { announce, el } from "./dom.ts";
 
 let menuBound = false;
+let globalListenersBound = false;
+let open = false;
+let focusReturn: HTMLElement | null = null;
 
 export function resetSettingsMenuBinding(): void {
   menuBound = false;
   open = false;
   focusReturn = null;
 }
-let open = false;
-let focusReturn: HTMLElement | null = null;
 
 export function isSettingsMenuOpen(): boolean {
   return open;
@@ -32,7 +33,67 @@ export function closeSettingsMenu(): void {
   }
 }
 
+function focusableIn(panel: HTMLElement): HTMLElement[] {
+  return [...panel.querySelectorAll<HTMLElement>("a[href], button:not([disabled])")].filter(
+    (node) => !node.closest("[hidden]"),
+  );
+}
+
+function themeToggleLabel(bedtime: boolean): string {
+  return bedtime ? "Sun appearance (switch to light)" : "Moon appearance (switch to bedtime)";
+}
+
+function syncThemeToggleButton(): void {
+  const bedtime = readTheme() === "bedtime";
+  const btn = document.getElementById("settings-theme-toggle");
+  if (!btn) return;
+  btn.textContent = themeToggleLabel(bedtime);
+  btn.setAttribute("aria-pressed", bedtime ? "true" : "false");
+  btn.setAttribute(
+    "aria-label",
+    bedtime ? "Sun appearance — switch to light reading mode" : "Moon appearance — switch to bedtime reading mode",
+  );
+}
+
+function ensureGlobalListeners(): void {
+  if (globalListenersBound) return;
+  globalListenersBound = true;
+  document.addEventListener("keydown", (event) => {
+    if (!open) return;
+    const panel = document.getElementById("settings-menu-panel");
+    const trigger = document.getElementById("settings-menu-trigger");
+    if (!panel || !trigger) return;
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeSettingsMenu();
+      return;
+    }
+    if (event.key !== "Tab") return;
+    const items = focusableIn(panel);
+    if (items.length === 0) return;
+    const first = items[0]!;
+    const last = items[items.length - 1]!;
+    const active = document.activeElement as HTMLElement | null;
+    if (event.shiftKey && active === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && active === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+  document.addEventListener("focusin", (event) => {
+    if (!open) return;
+    const panel = document.getElementById("settings-menu-panel");
+    const trigger = document.getElementById("settings-menu-trigger");
+    const target = event.target as Node;
+    if (panel?.contains(target) || target === trigger) return;
+    closeSettingsMenu();
+  });
+}
+
 export function bindSettingsMenu(root: HTMLElement): void {
+  ensureGlobalListeners();
   if (menuBound) return;
   const trigger = root.querySelector("#settings-menu-trigger") as HTMLButtonElement | null;
   const panel = root.querySelector("#settings-menu-panel") as HTMLElement | null;
@@ -59,7 +120,7 @@ export function bindSettingsMenu(root: HTMLElement): void {
         void (async () => {
           await signOutGoogleAccount();
           statusHost.replaceChildren(
-            statusBox("ok", "Signed out", "The guide and Astronomy Clock still work. Your Dream Journal on this device is unchanged."),
+            statusBox("ok", "Signed out", "The guide and Astronomy Clock still work. Your saved progress on this device stays stored safely."),
           );
           await paintIdentity();
           announce("Signed out");
@@ -82,7 +143,7 @@ export function bindSettingsMenu(root: HTMLElement): void {
     }
     identityHost.append(
       el("p", { class: "meta" }, [
-        "Sign in for saved guide progress, Dream Journal backup, and Calendar reminders. Signing in does not turn on backup by itself.",
+        "Sign in for saved guide progress, Dream Journal, and Calendar reminders. Signing in does not turn on backup by itself.",
       ]),
       signIn,
     );
@@ -109,10 +170,9 @@ export function bindSettingsMenu(root: HTMLElement): void {
     panel.hidden = false;
     trigger.setAttribute("aria-expanded", "true");
     void paintIdentity();
-    const first = panel.querySelector<HTMLElement>(
-      'a[href], button:not([disabled]), [tabindex="0"]',
-    );
-    first?.focus();
+    syncThemeToggleButton();
+    const items = focusableIn(panel);
+    items[0]?.focus();
   };
 
   trigger.addEventListener("click", () => {
@@ -120,41 +180,34 @@ export function bindSettingsMenu(root: HTMLElement): void {
     else openMenu();
   });
 
-  document.addEventListener("keydown", (event) => {
-    if (!open) return;
-    if (event.key === "Escape") {
-      event.preventDefault();
-      closeSettingsMenu();
-    }
-  });
-
-  document.addEventListener("focusin", (event) => {
-    if (!open || !panel.contains(event.target as Node) && event.target !== trigger) {
-      if (open && !panel.contains(event.target as Node) && event.target !== trigger) {
-        // allow focus to move outside only via Escape or trigger
-      }
-    }
-  });
-
   panel.querySelector("#settings-theme-toggle")?.addEventListener("click", () => {
-    const mode = toggleTheme();
-    const bedtime = mode === "bedtime";
-    const btn = panel.querySelector("#settings-theme-toggle") as HTMLButtonElement;
-    btn.textContent = bedtime ? "Switch to light" : "Switch to bedtime mode";
-    btn.setAttribute("aria-pressed", bedtime ? "true" : "false");
-    const headerBtn = document.getElementById("theme-toggle-header");
-    if (headerBtn) {
-      headerBtn.textContent = bedtime ? "Light" : "Bedtime";
-      headerBtn.setAttribute("aria-pressed", bedtime ? "true" : "false");
-      headerBtn.setAttribute("aria-label", bedtime ? "Switch to light" : "Switch to bedtime mode");
-    }
-    announce(bedtime ? "Bedtime mode" : "Light mode");
+    toggleTheme();
+    syncThemeToggleButton();
+    announce(readTheme() === "bedtime" ? "Bedtime mode" : "Light mode");
   });
 
   panel.addEventListener("click", (event) => {
     const target = event.target as HTMLElement;
     if (target.closest("a")) closeSettingsMenu();
   });
+}
+
+function gearIcon(): SVGSVGElement {
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("class", "settings-gear-icon");
+  svg.setAttribute("width", "22");
+  svg.setAttribute("height", "22");
+  svg.setAttribute("viewBox", "0 0 24 24");
+  svg.setAttribute("aria-hidden", "true");
+  svg.setAttribute("focusable", "false");
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute(
+    "d",
+    "M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm8.94 4.55l-1.2-.98a7.2 7.2 0 0 0 0-2.14l1.2-.98a1 1 0 0 0 .23-1.39l-1.14-1.98a1 1 0 0 0-1.28-.44l-1.42.58a7.3 7.3 0 0 0-1.85-1.07l-.22-1.52A1 1 0 0 0 14.2 2h-2.4a1 1 0 0 0-.99.86l-.22 1.52c-.67.24-1.3.6-1.85 1.07l-1.42-.58a1 1 0 0 0-1.28.44L3.9 7.3a1 1 0 0 0 .23 1.39l1.2.98a7.2 7.2 0 0 0 0 2.14l-1.2.98a1 1 0 0 0-.23 1.39l1.14 1.98a1 1 0 0 0 1.28.44l1.42-.58c.55.47 1.18.83 1.85 1.07l.22 1.52c.08.52.5.9.99.9h2.4c.49 0 .91-.38.99-.86l.22-1.52a7.3 7.3 0 0 0 1.85-1.07l1.42.58a1 1 0 0 0 1.28-.44l1.14-1.98a1 1 0 0 0-.23-1.39Z",
+  );
+  path.setAttribute("fill", "currentColor");
+  svg.append(path);
+  return svg as SVGSVGElement;
 }
 
 export function settingsMenuPanel(): HTMLElement {
@@ -184,12 +237,15 @@ export function settingsMenuPanel(): HTMLElement {
       class: "settings-menu-item",
       role: "menuitem",
       "aria-pressed": bedtime ? "true" : "false",
-    }, [bedtime ? "Switch to light" : "Switch to bedtime mode"]),
+      "aria-label": bedtime
+        ? "Sun appearance — switch to light reading mode"
+        : "Moon appearance — switch to bedtime reading mode",
+    }, [themeToggleLabel(bedtime)]),
   ]);
 }
 
 export function settingsMenuTrigger(): HTMLButtonElement {
-  return el("button", {
+  const button = el("button", {
     type: "button",
     id: "settings-menu-trigger",
     class: "settings-menu-trigger",
@@ -197,5 +253,7 @@ export function settingsMenuTrigger(): HTMLButtonElement {
     "aria-expanded": "false",
     "aria-controls": "settings-menu-panel",
     "aria-label": "Settings and tools",
-  }, ["Settings"]);
+  }, []);
+  button.append(gearIcon());
+  return button;
 }
