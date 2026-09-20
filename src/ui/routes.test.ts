@@ -26,8 +26,8 @@ describe("hash routes", () => {
     expect(parseRoute("#/data")).toEqual({ name: "data" });
   });
 
-  it("keeps capture on the primary nav key", () => {
-    expect(routeNavKey(parseRoute("#/capture"))).toBe("capture");
+  it("maps capture routes to Dream Journal nav key", () => {
+    expect(routeNavKey(parseRoute("#/capture"))).toBe("journal");
     expect(routeNavKey(parseRoute("#/today"))).toBe("days");
   });
 });

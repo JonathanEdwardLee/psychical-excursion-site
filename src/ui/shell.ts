@@ -1,22 +1,19 @@
+import { snapshotAt } from "../astronomy/clock.ts";
 import { allWeekNumbers, weekLabel } from "../content/weeks.ts";
 import { applyTheme, readTheme, toggleTheme } from "../theme.ts";
 import { el, text } from "./dom.ts";
 import type { AppRoute } from "./routes.ts";
 import { routeNavKey } from "./routes.ts";
+import {
+  bindSettingsMenu,
+  resetSettingsMenuBinding,
+  settingsMenuPanel,
+  settingsMenuTrigger,
+} from "./settingsMenu.ts";
 
-const PRIMARY_ITEMS = [
+const GUIDE_ITEMS = [
   { id: "today", href: "#/today", label: "Today" },
-  { id: "capture", href: "#/capture", label: "Capture" },
-  { id: "journal", href: "#/journal", label: "Journal" },
   { id: "days", href: "#/days", label: "Days" },
-] as const;
-
-const MORE_ITEMS = [
-  { id: "method", href: "#/method", label: "Method" },
-  { id: "account", href: "#/account", label: "Account" },
-  { id: "astronomy", href: "#/astronomy", label: "Astronomy" },
-  { id: "about", href: "#/about", label: "About" },
-  { id: "data", href: "#/data", label: "Data" },
 ] as const;
 
 function navAnchor(
@@ -32,6 +29,14 @@ function navAnchor(
   );
 }
 
+function footerSkyClock(): HTMLElement {
+  const snap = snapshotAt(new Date(), null);
+  const link = el("a", { href: "#/astronomy", class: "footer-sky-clock" }, [
+    `${snap.moon.phaseName} · ${snap.localTimeLabel}`,
+  ]);
+  return el("p", { class: "meta footer-clock-row" }, [text("Sky clock · "), link]);
+}
+
 export function renderChrome(
   root: HTMLElement,
   route: AppRoute,
@@ -40,7 +45,11 @@ export function renderChrome(
   root.replaceChildren();
   const current = routeNavKey(route);
   const skip = el("a", { class: "skip-link", href: "#main" }, ["Skip to content"]);
-  const moreCurrent = MORE_ITEMS.some((item) => item.id === current);
+  const toolsWrap = el("div", { class: "header-tools" }, [
+    themeToggle(),
+    settingsMenuTrigger(),
+    settingsMenuPanel(),
+  ]);
   const header = el("header", { class: "app-header" }, [
     el("a", { href: "#/", class: "brand-link", "aria-label": "Psychical Excursion home" }, [
       el("img", {
@@ -61,8 +70,8 @@ export function renderChrome(
       }),
       el("h1", { class: "visually-hidden" }, ["Psychical Excursion"]),
     ]),
-    el("nav", { class: "nav-primary", "aria-label": "Primary" }, [
-      ...PRIMARY_ITEMS.map((item) =>
+    el("nav", { class: "nav-guide", "aria-label": "Guide" }, [
+      ...GUIDE_ITEMS.map((item) =>
         navAnchor(
           item.href,
           item.label,
@@ -70,19 +79,16 @@ export function renderChrome(
         ),
       ),
     ]),
-    el("nav", { class: "nav-more", "aria-label": "More" }, [
-      ...MORE_ITEMS.map((item) => navAnchor(item.href, item.label, item.id === current)),
-    ]),
-    themeToggle(),
+    toolsWrap,
   ]);
-  if (moreCurrent) {
-    header.querySelector(".nav-more")?.classList.add("is-open");
-  }
   const live = el("div", { id: "live-status", class: "visually-hidden", "aria-live": "polite" });
   const main = el("main", { id: "main", class: "main-stage", tabindex: "-1" });
   const updateBanner = el("div", { id: "sw-banner" });
   const footer = el("footer", { class: "site-footer" }, [
-    el("p", { class: "meta" }, ["Local practice guide. Journal entries stay on this device."]),
+    el("p", { class: "meta" }, [
+      "Free 60-day guide. Dream Journal stays on this device until you choose backup or export.",
+    ]),
+    footerSkyClock(),
     el("p", { class: "attribution" }, [
       text("Website by "),
       el("a", { href: "https://hoopsnakedesigns.com/", rel: "noreferrer" }, ["Hoopsnake Designs"]),
@@ -91,6 +97,8 @@ export function renderChrome(
   const frame = el("div", { class: "app-frame" }, [header, live, updateBanner, main, footer]);
   root.append(skip, frame);
   bindUpdateBanner(updateBanner);
+  resetSettingsMenuBinding();
+  bindSettingsMenu(root);
   return { main };
 }
 
@@ -99,7 +107,7 @@ function themeToggle(): HTMLButtonElement {
   const button = el("button", {
     type: "button",
     id: "theme-toggle-header",
-    class: "quiet",
+    class: "quiet theme-toggle-header",
     "aria-pressed": bedtime ? "true" : "false",
     "aria-label": bedtime ? "Switch to light" : "Switch to bedtime mode",
   }, [bedtime ? "Light" : "Bedtime"]);
@@ -109,6 +117,11 @@ function themeToggle(): HTMLButtonElement {
     button.textContent = nowBedtime ? "Light" : "Bedtime";
     button.setAttribute("aria-pressed", nowBedtime ? "true" : "false");
     button.setAttribute("aria-label", nowBedtime ? "Switch to light" : "Switch to bedtime mode");
+    const settingsBtn = document.getElementById("settings-theme-toggle");
+    if (settingsBtn) {
+      settingsBtn.textContent = nowBedtime ? "Switch to light" : "Switch to bedtime mode";
+      settingsBtn.setAttribute("aria-pressed", nowBedtime ? "true" : "false");
+    }
   });
   return button;
 }
@@ -129,7 +142,7 @@ function bindUpdateBanner(host: HTMLElement): void {
           "p",
           {},
           [
-            "A newer application shell is waiting. Reload to use it. Your Journal on this device is not stored in the app cache.",
+            "A newer application shell is waiting. Reload to use it. Your Dream Journal on this device is not stored in the app cache.",
           ],
         ),
       ]),

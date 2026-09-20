@@ -125,7 +125,7 @@ export function renderAstronomyPage(main: HTMLElement): void {
         statusBox(
           "ok",
           "Location enabled for this session",
-          "Rise, set, and horizon values are computed locally on this device. Coordinates are not sent to PEx servers.",
+          "Rise, set, and horizon values are computed locally on this device. Coordinates are not sent to this site's servers.",
         ),
         el("button", { type: "button", id: "astro-clear-location" }, ["Clear location"]),
       );
@@ -195,7 +195,7 @@ export function renderAstronomyPage(main: HTMLElement): void {
   main.append(
     el("article", { class: "surface astronomy-surface" }, [
       el("p", { class: "eyebrow" }, ["Optional · sky context"]),
-      el("h2", { class: "display-title" }, ["Astronomy"]),
+      el("h2", { class: "display-title" }, ["Astronomy Clock"]),
       el("p", { class: "lede" }, [
         "A live Sun, Moon, and planet clock for curiosity — separate from your daily practice. Not a horoscope or weather app.",
       ]),

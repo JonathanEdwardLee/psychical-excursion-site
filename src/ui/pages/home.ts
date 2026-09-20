@@ -5,6 +5,12 @@ import { ABOUT_PARAGRAPHS, EVIDENCE_PARAGRAPHS, METHOD_PARAGRAPHS } from "../cop
 import { el, formatWhen, text } from "../dom.ts";
 import { padDay } from "../motif.ts";
 
+const HOME_PROMISE =
+  "A free 60-day guide to dream recall, focused attention, lucid dreaming, and unusual sleep-edge experiences—including what some call astral projection. No particular belief required, and no outcome promised.";
+
+const HOME_PROGRESSION =
+  "Remember dreams → train attention → recognize the dream and sleep edge → explore gently → learn what works for you.";
+
 export async function renderHomePage(main: HTMLElement): Promise<void> {
   const entries = await safeList();
   const rows = await safeProgress();
@@ -12,6 +18,7 @@ export async function renderHomePage(main: HTMLElement): Promise<void> {
   const done = completedCount(rows);
   const latest = entries[0];
   const isNew = done === 0 && !latest;
+  const ctaHref = isNew ? "#/day/1" : "#/today";
   const ctaLabel = isNew ? "Start Day 1" : "Continue today's practice";
   const weekStrip = el("ol", { class: "phase-dial week-dial", "aria-label": "Weeks in the 60-day practice" });
   for (const week of allWeekNumbers()) {
@@ -34,22 +41,19 @@ export async function renderHomePage(main: HTMLElement): Promise<void> {
       el("div", { class: "home-hero" }, [
         el("div", { class: "home-identity" }, [
           el("p", { class: "eyebrow" }, ["Psychical Excursion"]),
-          el("h2", { class: "display-title" }, ["60-day personal practice"]),
-          el("p", { class: "lede" }, [
-            "One guided day at a time for 60 days. Read today's practice, capture dreams or experiences in your Journal, and mark days complete when you're ready. No account required. Google backup and Astronomy are optional extras.",
+          el("h2", { class: "display-title" }, ["60-day guide"]),
+          el("p", { class: "lede home-promise", id: "home-promise" }, [HOME_PROMISE]),
+          el("p", { class: "meta home-progression", id: "home-progression" }, [HOME_PROGRESSION]),
+          el("div", { class: "actions home-primary-actions" }, [
+            el("a", { href: ctaHref, class: "button primary", id: "home-start-day" }, [ctaLabel]),
+            el("a", { href: "#/days", class: "button", id: "home-see-path" }, ["See the 60-day path"]),
           ]),
-          el("details", { class: "home-orientation" }, [
-            el("summary", {}, ["How this works"]),
-            el("ul", { class: "plain home-how-list" }, [
-              el("li", {}, ["Open ", el("strong", {}, ["Today"]), " for the current day's practice."]),
-              el("li", {}, ["Use ", el("strong", {}, ["Capture"]), " to save text or voice notes to your Journal."]),
-              el("li", {}, ["Browse ", el("strong", {}, ["Days"]), " by week (Week 1, Week 2, …)."]),
-              el("li", {}, ["Optional: connect Google Drive on ", el("a", { href: "#/account" }, ["Account"]), " for backup."]),
-            ]),
+          el("p", { class: "hint home-without-signin" }, [
+            "Read every day and use the Astronomy Clock without signing in. Sign in when you want saved progress, Dream Journal backup, or Calendar reminders.",
           ]),
         ]),
-        el("aside", { class: "home-now", "aria-label": "Resume" }, [
-          el("p", { class: "eyebrow" }, ["Now"]),
+        el("aside", { class: "home-now", "aria-label": "Your place in the guide" }, [
+          el("p", { class: "eyebrow" }, ["Your place"]),
           el("p", { class: "home-now-day" }, [`Day ${padDay(resume)} of 60 · ${weekLabelForDay(resume)}`]),
           el("p", { class: "meta home-progress-copy" }, [`${done} of 60 days marked complete on this device.`]),
           el("div", {
@@ -63,18 +67,12 @@ export async function renderHomePage(main: HTMLElement): Promise<void> {
             }),
           ]),
           el("div", { class: "actions" }, [
-            el("a", { href: "#/today", class: "button primary", id: "home-today" }, [ctaLabel]),
-            el("a", { href: "#/capture", class: "button", id: "home-capture" }, ["Capture to Journal"]),
-            el("a", { href: "#/capture/night/dream", class: "button quiet", id: "home-night-capture" }, ["Night capture"]),
-          ]),
-          el("p", { class: "hint" }, [
-            isNew
-              ? "After practice, capture anything you want to remember, then return tomorrow for the next day."
-              : "Your Journal holds saved entries. Today always opens your current practice day.",
+            el("a", { href: "#/journal", class: "button quiet", id: "home-dream-journal" }, ["Dream Journal"]),
+            el("a", { href: "#/astronomy", class: "button quiet", id: "home-astronomy" }, ["Astronomy Clock"]),
           ]),
           latest
-            ? el("p", { class: "meta" }, [`Latest Journal entry: ${formatWhen(latest.createdAt)}`])
-            : el("p", { class: "meta" }, ["Journal is empty — Capture saves your first entry here."]),
+            ? el("p", { class: "meta" }, [`Latest dream entry: ${formatWhen(latest.createdAt)}`])
+            : el("p", { class: "meta" }, ["Dream Journal is empty until you record a dream."]),
         ]),
       ]),
       weekStrip,
@@ -101,7 +99,7 @@ export async function renderAboutPage(main: HTMLElement): Promise<void> {
       ...ABOUT_PARAGRAPHS.map((paragraph) => el("p", {}, [paragraph])),
       el("h3", {}, ["Evidence, safety, source"]),
       ...EVIDENCE_PARAGRAPHS.map((paragraph) => el("p", {}, [paragraph])),
-      el("p", {}, [el("a", { href: "#/data" }, ["Data and export on this device"])]),
+      el("p", {}, [el("a", { href: "#/data" }, ["Your data on this device"])]),
     ]),
   );
 }

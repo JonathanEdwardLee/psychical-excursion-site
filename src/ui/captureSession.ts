@@ -65,12 +65,9 @@ export async function commitCaptureToJournal(
   practice: CapturePracticeContext,
   options: { navigate?: boolean } = { navigate: true },
 ): Promise<string | null> {
-  if (!capture.type) {
-    capture.saveError = "Choose Dream, Experience, or Sensation before saving to the Journal.";
-    return null;
-  }
+  capture.type = capture.type ?? "dream";
   if (!capture.note.trim() && !capture.recording) {
-    capture.saveError = "Add a short note or a recording before saving to the Journal.";
+    capture.saveError = "Add a short note or a recording before saving to your Dream Journal.";
     return null;
   }
   capture.saving = true;

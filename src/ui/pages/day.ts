@@ -7,6 +7,7 @@ import { statusBox } from "../bits.ts";
 import { sectionDisplayHeading, sectionKind } from "../instructionDisplay.ts";
 import { announce, el } from "../dom.ts";
 import { opticMark, padDay } from "../motif.ts";
+import { calendarAffirmationPanel } from "../calendarAffirmation.ts";
 import { weekNav } from "../shell.ts";
 
 export async function renderTodayPage(main: HTMLElement): Promise<void> {
@@ -90,15 +91,17 @@ export async function renderDayPage(
         : el("span", { class: "meta" }, ["No next day"]),
     ]),
   );
+  const calendarPanel = calendarAffirmationPanel(day);
+  if (calendarPanel) rail.append(calendarPanel);
   rail.append(
-    el("p", { class: "hint capture-day-hint" }, [
-      "When something stands out, use Capture to save it to your Journal on this device.",
+    el("p", { class: "hint dream-journal-hint" }, [
+      "When a dream stands out, save it in your Dream Journal on this device.",
     ]),
   );
   rail.append(
-    el("p", { class: "actions" }, [
-      el("a", { href: "#/capture", class: "button primary" }, ["Capture to Journal"]),
-      el("a", { href: "#/journal", class: "text-link" }, ["Open Journal"]),
+    el("p", { class: "actions day-rail-actions" }, [
+      el("a", { href: "#/capture/dream", class: "button primary" }, ["Record a Dream"]),
+      el("a", { href: "#/journal", class: "text-link" }, ["Dream Journal"]),
       el("a", { href: "#/days", class: "text-link" }, ["All days"]),
     ]),
   );
@@ -128,19 +131,19 @@ function renderParticipantContent(
   for (const section of participant.supporting) {
     wrap.append(renderSupportingSection(section));
   }
-  if (participant.doThis.some((line) => /record|journal|capture|write/i.test(line))) {
+  if (participant.doThis.some((line) => /record|journal|capture|write|dream/i.test(line))) {
     wrap.append(
-      el("p", { class: "hint day-capture-cue" }, [
-        "Save anything you want to keep in ",
-        el("a", { href: "#/capture" }, ["Capture"]),
+      el("p", { class: "hint day-dream-cue" }, [
+        "Save anything you want to keep in your ",
+        el("a", { href: "#/journal" }, ["Dream Journal"]),
         ".",
       ]),
     );
   } else if (document.day <= 14 || /dream|wake|remember/i.test(participant.displayTitle)) {
     wrap.append(
-      el("p", { class: "hint day-capture-cue" }, [
-        "If something stands out, note it in ",
-        el("a", { href: "#/capture" }, ["Capture"]),
+      el("p", { class: "hint day-dream-cue" }, [
+        "If a dream stands out, note it in your ",
+        el("a", { href: "#/journal" }, ["Dream Journal"]),
         " after you finish.",
       ]),
     );

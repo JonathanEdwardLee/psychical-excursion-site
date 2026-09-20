@@ -28,16 +28,14 @@ describe("core UI flows", () => {
     await resetLocalDatabase();
   });
 
-  it("reaches Capture in one intentional action from Home", async () => {
+  it("reaches Dream Journal recording from home tools", async () => {
     const root = await mount("#/");
-    const cta = root.querySelector("#home-capture") as HTMLAnchorElement;
+    const cta = root.querySelector("#home-dream-journal") as HTMLAnchorElement;
     expect(cta).toBeTruthy();
-    expect(cta.getAttribute("href")).toBe("#/capture");
-    expect(root.querySelector('.nav-primary a[href="#/capture"]')).toBeTruthy();
-    window.location.hash = "#/capture";
+    expect(cta.getAttribute("href")).toBe("#/journal");
+    window.location.hash = "#/capture/dream";
     await renderApp(root);
-    expect(root.querySelector("h2")?.textContent).toBe("Capture");
-    expect(root.querySelectorAll('input[name="capture-type"]')).toHaveLength(3);
+    expect(root.querySelector("h2")?.textContent).toBe("Record a Dream");
   });
 
   it("does not call getUserMedia until Record is used", async () => {
@@ -71,9 +69,9 @@ describe("core UI flows", () => {
 
   it("shows first-time landing with Start Day 1", async () => {
     const home = await mount("#/");
-    expect(home.textContent).toMatch(/60-day personal practice/i);
-    expect(home.querySelector("#home-today")?.textContent).toMatch(/Start Day 1/i);
-    expect(home.textContent).toMatch(/How this works/i);
+    expect(home.textContent).toMatch(/60-day guide/i);
+    expect(home.querySelector("#home-start-day")?.textContent).toMatch(/Start Day 1/i);
+    expect(home.textContent).toMatch(/free 60-day guide/i);
     expect(home.textContent).not.toMatch(/REMEMBER/);
   });
 
@@ -81,7 +79,7 @@ describe("core UI flows", () => {
     const existing = await localStore.listEntries();
     for (const entry of existing) await localStore.deleteEntry(entry.id);
     const root = await mount("#/journal");
-    expect(root.textContent).toMatch(/Journal is where saved captures live/i);
+    expect(root.textContent).toMatch(/Dream Journal holds dreams/i);
   });
 
   it("persists bedtime mode locally", async () => {
@@ -91,11 +89,10 @@ describe("core UI flows", () => {
     expect(localStorage.getItem("pex-theme")).toBe("bedtime");
   });
 
-  it("labels capture controls for assistive tech", async () => {
-    const root = await mount("#/capture");
-    expect(root.querySelector("legend")?.textContent).toBe("Capture type");
+  it("labels dream entry controls for assistive tech", async () => {
+    const root = await mount("#/capture/dream");
     expect(root.querySelector('label[for="capture-note"]')).toBeTruthy();
-    expect(root.querySelector("h2")).toBeTruthy();
+    expect(root.querySelector("h2")?.textContent).toBe("Record a Dream");
   });
 
   it("uses the founder primary mark in the header without a hero lockup", async () => {
@@ -309,7 +306,7 @@ describe("capture microphone lifecycle", () => {
     await renderApp(root);
     expect(trackStop).toHaveBeenCalled();
     expect(isCaptureMicrophoneHeld()).toBe(false);
-    expect(root.querySelector("h2")?.textContent).toBe("Journal");
+    expect(root.querySelector("h2")?.textContent).toBe("Dream Journal");
   });
 
   it("stops acquired tracks when the capture session is abandoned", async () => {
@@ -364,7 +361,7 @@ describe("capture microphone lifecycle", () => {
   });
 
   it("hides developer jargon on participant routes", async () => {
-    const routes = ["#/", "#/today", "#/capture", "#/journal", "#/account", "#/astronomy", "#/days"];
+    const routes = ["#/", "#/today", "#/capture/dream", "#/journal", "#/account", "#/astronomy", "#/days"];
     for (const hash of routes) {
       const root = await mount(hash);
       const text = root.textContent ?? "";

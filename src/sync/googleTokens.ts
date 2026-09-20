@@ -1,5 +1,6 @@
 const DRIVE_TOKEN_KEY = "pex-google-drive-token";
 const IDENTITY_TOKEN_KEY = "pex-google-identity-token";
+const CALENDAR_TOKEN_KEY = "pex-google-calendar-token";
 
 export type StoredAccessToken = {
   accessToken: string;
@@ -51,7 +52,20 @@ export function clearIdentityAccessToken(): void {
   sessionStorage.removeItem(IDENTITY_TOKEN_KEY);
 }
 
+export function readCalendarAccessToken(): StoredAccessToken | null {
+  return read(CALENDAR_TOKEN_KEY);
+}
+
+export function writeCalendarAccessToken(token: StoredAccessToken): void {
+  write(CALENDAR_TOKEN_KEY, token);
+}
+
+export function clearCalendarAccessToken(): void {
+  sessionStorage.removeItem(CALENDAR_TOKEN_KEY);
+}
+
 export function clearAllGoogleTokens(): void {
   clearDriveAccessToken();
   clearIdentityAccessToken();
+  clearCalendarAccessToken();
 }
