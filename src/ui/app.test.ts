@@ -385,11 +385,11 @@ describe("capture microphone lifecycle", () => {
     }
   });
 
-  it("renders account storage distinction without requiring Google", async () => {
+  it("renders Google identity and Drive backup as separate account states", async () => {
     const root = await mount("#/account");
     expect(root.textContent).toMatch(/Google account/i);
     expect(root.textContent).toMatch(/Connect Google Drive/i);
-    expect(root.textContent).toMatch(/Backup not set up|works fully without Google|Not signed in/i);
+    expect(root.textContent).toMatch(/Backup not set up|works fully without Google|Not signed in|Drive not connected/i);
     expect(root.textContent).toMatch(/Connect Google Drive for backup/i);
   });
 
