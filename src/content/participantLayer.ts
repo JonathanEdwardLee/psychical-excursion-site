@@ -96,6 +96,12 @@ export function participantViewFor(document: DayDocument): ParticipantDayView {
   return { displayTitle, setup, doThis, supporting };
 }
 
+export function affirmationTextFor(document: DayDocument): string | null {
+  const section = findSection(document, "AFFIRMATION");
+  if (!section?.paragraphs.length) return null;
+  return section.paragraphs.join("\n").trim();
+}
+
 export function isOldModuleTitle(title: string): boolean {
   return OLD_MODULE_TITLE.has(title);
 }

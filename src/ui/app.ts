@@ -13,6 +13,8 @@ import {
   resetCaptureMedia,
 } from "./captureSession.ts";
 import { loadCapturePracticeContext } from "./captureContext.ts";
+import { personalToolsUnlocked } from "./personalTools.ts";
+import { signedOutPersonalToolsGate } from "./personalToolsGate.ts";
 import { emptyJournal, entryCard, statusBox, syncStateLabel, typeFieldset } from "./bits.ts";
 import { announce, el, formatWhen, go, text } from "./dom.ts";
 import { renderAccountPage } from "./pages/account.ts";
@@ -50,7 +52,17 @@ export async function renderApp(root: HTMLElement): Promise<void> {
   const { main } = renderChrome(root, route);
 
   try {
-    if (route.name === "capture" && route.variant === "night") await renderNightCapturePage(main, route);
+    if (route.name === "capture" && !(await personalToolsUnlocked())) {
+      main.append(
+        signedOutPersonalToolsGate({
+          title: "Dream Journal",
+          lede: "Sign in with Google to record dreams and keep them on this device, with optional backup.",
+          onSignedIn: () => {
+            void renderApp(root);
+          },
+        }),
+      );
+    } else if (route.name === "capture" && route.variant === "night") await renderNightCapturePage(main, route);
     else if (route.name === "capture") await renderCapture(main, route);
     else if (route.name === "account") await renderAccountPage(main);
     else if (route.name === "astronomy") renderAstronomyPage(main);
@@ -68,7 +80,7 @@ export async function renderApp(root: HTMLElement): Promise<void> {
       main.append(
         el("section", { class: "editorial-page" }, [
           el("h2", { class: "display-title" }, ["Not found"]),
-          statusBox("error", "Unknown route", "Use the primary navigation. Capture remains one step from Home."),
+          statusBox("error", "Unknown route", "Return home or open Today from the guide links."),
         ]),
       );
     }     else await renderHomePage(main);
@@ -94,11 +106,11 @@ function renderFatal(error: unknown): HTMLElement {
 
 async function renderCapture(main: HTMLElement, route: Extract<AppRoute, { name: "capture" }>): Promise<void> {
   const capability = initRecorderFlags();
-  if (route.presetType && !capture.type) capture.type = route.presetType;
+  capture.type = route.presetType ?? "dream";
 
-  const heading = el("h2", { class: "display-title" }, ["Capture"]);
+  const heading = el("h2", { class: "display-title" }, ["Record a Dream"]);
   const lede = el("p", { class: "lede" }, [
-    "Record what you noticed during practice. Choose Dream, Experience, or Sensation, add text if you like, then save to your Journal on this device. Labels organize your notes — they are not interpretations. Microphone access is requested only when you tap Record.",
+    "Add a text note, record audio, or both. Dreams stay on this device unless you export or enable Google Drive backup. The microphone is requested only when you tap Record.",
   ]);
 
   const form = el("form", { class: "stack", id: "capture-form" });
@@ -211,11 +223,7 @@ async function renderCapture(main: HTMLElement, route: Extract<AppRoute, { name:
         syncCaptureChrome();
         return;
       }
-      if (!capture.type) {
-        capture.saveError = "Choose Dream, Experience, or Sensation before saving to the Journal.";
-        syncCaptureChrome();
-        return;
-      }
+      capture.type = capture.type ?? "dream";
       if (!capture.note.trim() && !capture.recording) {
         capture.saveError = "Add a short note or a recording before saving to the Journal.";
         syncCaptureChrome();
@@ -266,7 +274,7 @@ function paintCaptureStatus(
       statusBox(
         "info",
         "Recording",
-        "The microphone is on. Stop to review your recording, then save it to the Journal or discard it. Leaving Capture turns the microphone off.",
+        "The microphone is on. Stop to review your recording, then save it to your Dream Journal or discard it. Leaving this page turns the microphone off.",
       ),
     );
   }
@@ -345,16 +353,39 @@ function paintCaptureStatus(
 }
 
 async function renderJournal(main: HTMLElement): Promise<void> {
+  if (!(await personalToolsUnlocked())) {
+    main.append(
+      signedOutPersonalToolsGate({
+        title: "Dream Journal",
+        lede: "Sign in with Google to save dreams on this device, replay recordings, and optionally back up to your Google account.",
+        onSignedIn: () => {
+          void renderApp(document.getElementById("app")!);
+        },
+      }),
+    );
+    return;
+  }
   const entries = await localStore.listEntries();
   const list = el("div", { class: "stack" });
   if (entries.length === 0) list.append(emptyJournal());
   else entries.forEach((entry) => list.append(entryCard(entry)));
   main.append(
     el("section", { class: "journal-surface" }, [
-      el("p", { class: "eyebrow" }, ["On this device"]),
-      el("h2", { class: "display-title" }, ["Journal"]),
+      el("p", { class: "eyebrow" }, ["Dream Journal"]),
+      el("h2", { class: "display-title" }, ["Dream Journal"]),
       el("p", { class: "lede" }, [
-        "Everything you saved from Capture — newest first. Replay recordings, edit notes, or delete entries on this device.",
+        "Dreams you saved — newest first. Replay recordings, edit notes, or delete entries on this device.",
+      ]),
+      entries.length
+        ? statusBox(
+            "info",
+            "Your dreams on this device",
+            `${entries.length} ${entries.length === 1 ? "entry is" : "entries are"} available here, including anything saved before you signed in.`,
+          )
+        : el("span"),
+      el("p", { class: "actions" }, [
+        el("a", { href: "#/capture/dream", class: "button primary", id: "journal-new-dream" }, ["New Dream Entry"]),
+        el("a", { href: "#/capture/dream", class: "button", id: "journal-record-dream" }, ["Record a Dream"]),
       ]),
       list,
     ]),
@@ -362,6 +393,18 @@ async function renderJournal(main: HTMLElement): Promise<void> {
 }
 
 async function renderEntry(main: HTMLElement, id: string): Promise<void> {
+  if (!(await personalToolsUnlocked())) {
+    main.append(
+      signedOutPersonalToolsGate({
+        title: "Dream Journal",
+        lede: "Sign in with Google to open dream entries on this device.",
+        onSignedIn: () => {
+          void renderApp(document.getElementById("app")!);
+        },
+      }),
+    );
+    return;
+  }
   const savedFlag = sessionStorage.getItem("pex-just-saved") === id;
   if (savedFlag) sessionStorage.removeItem("pex-just-saved");
   const found = await localStore.getEntry(id);
@@ -370,7 +413,7 @@ async function renderEntry(main: HTMLElement, id: string): Promise<void> {
     return;
   }
   const { entry, media } = found;
-  const heading = el("h2", { class: "display-title" }, ["Entry"]);
+  const heading = el("h2", { class: "display-title" }, ["Dream entry"]);
   const meta = el("p", { class: "meta" }, [
     `${ENTRY_TYPE_LABEL[entry.type]} · `,
     el("time", { datetime: new Date(entry.createdAt).toISOString() }, [formatWhen(entry.createdAt)]),
@@ -438,13 +481,13 @@ async function renderEntry(main: HTMLElement, id: string): Promise<void> {
   deleteHost.append(deleteBtn);
 
   main.append(
-    el("p", { class: "eyebrow" }, ["Journal entry"]),
+    el("p", { class: "eyebrow" }, ["Dream Journal"]),
     heading,
     savedFlag
       ? statusBox(
           "ok",
           "Saved to Journal",
-          "Saved on this device. Replay the recording below or open your Journal list. Google backup is separate if you connected Drive.",
+          "Saved on this device. Replay the recording below or open your Dream Journal. Google backup is separate if you connected Drive.",
         )
       : el("span"),
     meta,
@@ -454,7 +497,7 @@ async function renderEntry(main: HTMLElement, id: string): Promise<void> {
     noteStatus,
     mediaBlock,
     deleteHost,
-    el("p", {}, [el("a", { href: "#/journal" }, ["Back to journal"])]),
+    el("p", {}, [el("a", { href: "#/journal" }, ["Back to Dream Journal"])]),
   );
 }
 
@@ -522,13 +565,6 @@ async function renderData(main: HTMLElement): Promise<void> {
   themeBtn.addEventListener("click", () => {
     const mode = toggleTheme();
     themeBtn.textContent = mode === "bedtime" ? "Use light" : "Use bedtime mode";
-    const headerBtn = document.getElementById("theme-toggle-header");
-    if (headerBtn) {
-      const bedtime = mode === "bedtime";
-      headerBtn.textContent = bedtime ? "Light" : "Bedtime";
-      headerBtn.setAttribute("aria-pressed", bedtime ? "true" : "false");
-      headerBtn.setAttribute("aria-label", bedtime ? "Switch to light" : "Switch to bedtime mode");
-    }
   });
 
   const schema = await localStore.getSchemaInfo();

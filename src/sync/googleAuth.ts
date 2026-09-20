@@ -7,6 +7,7 @@ import {
   clearDriveAccessToken,
   readDriveAccessToken,
   writeDriveAccessToken,
+  writeIdentityAccessToken,
   type StoredAccessToken,
 } from "./googleTokens.ts";
 
@@ -96,8 +97,16 @@ export async function loadGoogleIdentityState(): Promise<GoogleIdentityState> {
   };
 }
 
+export async function requestGoogleAccessToken(
+  scope: string,
+  prompt?: "" | "consent",
+): Promise<StoredAccessToken> {
+  return requestToken(scope, prompt);
+}
+
 export async function signInWithGoogle(): Promise<GoogleIdentityState> {
   const token = await requestToken("openid email profile", "consent");
+  writeIdentityAccessToken(token);
   const email = await fetchGoogleEmail(token.accessToken);
   const identity: GoogleIdentityState = {
     email,

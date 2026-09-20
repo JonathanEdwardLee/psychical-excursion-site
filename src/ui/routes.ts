@@ -69,7 +69,7 @@ export function routeNavKey(route: AppRoute): string {
   ) {
     return "days";
   }
-  if (route.name === "capture") return "capture";
+  if (route.name === "capture") return "journal";
   if (route.name === "journal" || route.name === "entry") return "journal";
   if (route.name === "method") return "method";
   if (route.name === "about") return "about";

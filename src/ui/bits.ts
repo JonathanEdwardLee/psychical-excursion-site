@@ -19,9 +19,27 @@ export function syncStateLabel(state: SyncState): string {
 export function emptyJournal(): HTMLElement {
   return el("div", { class: "journal-empty" }, [
     el("p", { class: "lede" }, [
-      "Your Journal is where saved captures live — dreams, experiences, sensations, and notes.",
+      "Your Dream Journal holds dreams you choose to save — text notes and optional voice recordings.",
     ]),
-    el("p", {}, ["Nothing here yet. Tap ", el("a", { href: "#/capture" }, ["Capture"]), " to save your first entry."]),
+    el("p", {}, [
+      "Nothing here yet. ",
+      el("a", { href: "#/capture/dream" }, ["Record a Dream"]),
+      " or ",
+      el("a", { href: "#/capture/dream" }, ["New Dream Entry"]),
+      ".",
+    ]),
+  ]);
+}
+
+export function signedOutJournalInvite(lede?: string): HTMLElement {
+  return el("div", { class: "journal-signed-out", id: "journal-signed-out" }, [
+    el("p", { class: "lede" }, [
+      lede ??
+        "Sign in with Google to open your Dream Journal, mark day progress, and optionally back up to your Google account. Reading the full guide stays free without signing in.",
+    ]),
+    el("p", { class: "actions" }, [
+      el("button", { type: "button", class: "primary", id: "journal-sign-in-btn" }, ["Sign in with Google"]),
+    ]),
   ]);
 }
 
@@ -51,7 +69,9 @@ export function entryCard(entry: JournalEntry): HTMLElement {
 }
 
 export function typeFieldset(selected: EntryType | null, onChange: (type: EntryType) => void): HTMLElement {
-  const fieldset = el("fieldset", { class: "type-set" }, [el("legend", {}, ["Capture type"])]);
+  const fieldset = el("fieldset", { class: "type-set visually-hidden", "aria-hidden": "true" }, [
+    el("legend", {}, ["Entry type"]),
+  ]);
   (Object.keys(ENTRY_TYPE_LABEL) as EntryType[]).forEach((type) => {
     const id = `type-${type}`;
     const label = el("label", { class: "choice", for: id }, [

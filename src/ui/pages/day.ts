@@ -1,17 +1,26 @@
 import { loadCurriculumPacket } from "../../content/load.ts";
 import { participantViewFor } from "../../content/participantLayer.ts";
 import { localStore } from "../../db/store.ts";
+import {
+  personalToolsUnlocked,
+  progressForParticipantUI,
+  resumeDaySettingForParticipantUI,
+} from "../personalTools.ts";
+import { signedOutJournalInvite } from "../bits.ts";
+import { wireSignInInvite } from "../personalToolsGate.ts";
+import { go } from "../dom.ts";
 import type { DayDocument, DaySection } from "../../content/model.ts";
 import { dayHref, isDayNumber, neighboringDays, resumeDay, weekPosition } from "../../progress/progress.ts";
 import { statusBox } from "../bits.ts";
 import { sectionDisplayHeading, sectionKind } from "../instructionDisplay.ts";
 import { announce, el } from "../dom.ts";
 import { opticMark, padDay } from "../motif.ts";
+import { calendarAffirmationPanel } from "../calendarAffirmation.ts";
 import { weekNav } from "../shell.ts";
 
 export async function renderTodayPage(main: HTMLElement): Promise<void> {
-  const rows = await localStore.listProgress();
-  const day = resumeDay(rows, await localStore.loadResumeDay());
+  const rows = await progressForParticipantUI();
+  const day = resumeDay(rows, await resumeDaySettingForParticipantUI());
   await renderDayPage(main, day, { today: true });
 }
 
@@ -30,8 +39,9 @@ export async function renderDayPage(
     return;
   }
   const participant = participantViewFor(document);
-  await localStore.markDayVisited(day);
-  const progress = await localStore.getDayProgress(day);
+  const signedIn = await personalToolsUnlocked();
+  if (signedIn) await localStore.markDayVisited(day);
+  const progress = signedIn ? await localStore.getDayProgress(day) : null;
   const neighbors = neighboringDays(day);
   const week = weekPosition(day);
   const article = el("article", { class: "day-surface" });
@@ -78,7 +88,7 @@ export async function renderDayPage(
     weekNav(week?.week),
   ]);
   const completeHost = el("div", { class: "complete-panel" });
-  paintComplete(completeHost, day, progress.completedAt !== null, neighbors.next);
+  paintComplete(completeHost, day, Boolean(progress?.completedAt), neighbors.next, signedIn);
   rail.append(completeHost);
   rail.append(
     el("nav", { class: "day-pager", "aria-label": "Day sequence" }, [
@@ -90,15 +100,17 @@ export async function renderDayPage(
         : el("span", { class: "meta" }, ["No next day"]),
     ]),
   );
+  const calendarPanel = calendarAffirmationPanel(day);
+  if (calendarPanel) rail.append(calendarPanel);
   rail.append(
-    el("p", { class: "hint capture-day-hint" }, [
-      "When something stands out, use Capture to save it to your Journal on this device.",
+    el("p", { class: "hint dream-journal-hint" }, [
+      "When a dream stands out, save it in your Dream Journal on this device.",
     ]),
   );
   rail.append(
-    el("p", { class: "actions" }, [
-      el("a", { href: "#/capture", class: "button primary" }, ["Capture to Journal"]),
-      el("a", { href: "#/journal", class: "text-link" }, ["Open Journal"]),
+    el("p", { class: "actions day-rail-actions" }, [
+      el("a", { href: "#/journal", class: "button primary" }, ["Dream Journal"]),
+      el("a", { href: "#/journal", class: "text-link" }, ["Dream Journal"]),
       el("a", { href: "#/days", class: "text-link" }, ["All days"]),
     ]),
   );
@@ -128,19 +140,19 @@ function renderParticipantContent(
   for (const section of participant.supporting) {
     wrap.append(renderSupportingSection(section));
   }
-  if (participant.doThis.some((line) => /record|journal|capture|write/i.test(line))) {
+  if (participant.doThis.some((line) => /record|journal|capture|write|dream/i.test(line))) {
     wrap.append(
-      el("p", { class: "hint day-capture-cue" }, [
-        "Save anything you want to keep in ",
-        el("a", { href: "#/capture" }, ["Capture"]),
+      el("p", { class: "hint day-dream-cue" }, [
+        "Save anything you want to keep in your ",
+        el("a", { href: "#/journal" }, ["Dream Journal"]),
         ".",
       ]),
     );
   } else if (document.day <= 14 || /dream|wake|remember/i.test(participant.displayTitle)) {
     wrap.append(
-      el("p", { class: "hint day-capture-cue" }, [
-        "If something stands out, note it in ",
-        el("a", { href: "#/capture" }, ["Capture"]),
+      el("p", { class: "hint day-dream-cue" }, [
+        "If a dream stands out, note it in your ",
+        el("a", { href: "#/journal" }, ["Dream Journal"]),
         " after you finish.",
       ]),
     );
@@ -167,8 +179,29 @@ function renderSupportingSection(section: DaySection): HTMLElement {
   return block;
 }
 
-function paintComplete(host: HTMLElement, day: number, completed: boolean, nextDay: number | null): void {
+function paintComplete(
+  host: HTMLElement,
+  day: number,
+  completed: boolean,
+  nextDay: number | null,
+  signedIn: boolean,
+): void {
   host.replaceChildren();
+  if (!signedIn) {
+    const invite = signedOutJournalInvite(
+      "Sign in with Google to mark days complete and keep your place in the 60-day guide.",
+    );
+    host.append(
+      el("p", { class: "hint" }, [
+        "Marking days complete is saved when you sign in. Reading stays free without an account.",
+      ]),
+      invite,
+    );
+    wireSignInInvite(host, () => {
+      go(`/day/${day}`);
+    });
+    return;
+  }
   host.classList.toggle("is-complete", completed);
   host.prepend(opticMark(completed ? "is-lit" : ""));
   if (completed) {
@@ -180,7 +213,7 @@ function paintComplete(host: HTMLElement, day: number, completed: boolean, nextD
       void (async () => {
         await localStore.undoDayCompletion(day);
         announce(`Day ${day} marked incomplete`);
-        paintComplete(host, day, false, nextDay);
+        paintComplete(host, day, false, nextDay, signedIn);
       })();
     });
     host.append(undo);
@@ -203,7 +236,7 @@ function paintComplete(host: HTMLElement, day: number, completed: boolean, nextD
     void (async () => {
       await localStore.completeDay(day);
       announce(`Day ${day} marked complete`);
-      paintComplete(host, day, true, nextDay);
+      paintComplete(host, day, true, nextDay, signedIn);
     })();
   });
   host.append(complete);

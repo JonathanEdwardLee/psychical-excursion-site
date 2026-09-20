@@ -58,7 +58,7 @@ export async function renderNightCapturePage(
         statusBox(
           "ok",
           "Saved on this device",
-          "This recording is in your Journal on this device. You can close PEx and open it again from Journal.",
+          "This recording is in your Dream Journal on this device. You can close the site and open it again from Dream Journal.",
         ),
         el("p", { class: "actions" }, [
           el("a", { href: `#/journal/${capture.locallySafeEntryId}`, class: "button primary" }, ["Open Journal entry"]),
@@ -167,7 +167,7 @@ export async function renderNightCapturePage(
   main.append(
     el("article", { class: "surface night-capture-surface" }, [
       el("p", { class: "eyebrow" }, ["Night capture"]),
-      el("h2", { class: "display-title night-title" }, ["Capture"]),
+      el("h2", { class: "display-title night-title" }, ["Record a Dream"]),
       el("p", { class: "hint" }, ["Low-light screen. Stop saves straight to your Journal on this device."]),
       clock,
       context,

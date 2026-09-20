@@ -3,6 +3,7 @@ import type { EntryType, JournalEntry, SyncState } from "./types.ts";
 export { SYNC_STATES, type SyncState } from "./types.ts";
 
 export const DRIVE_FILE_SCOPE = "https://www.googleapis.com/auth/drive.file";
+export const CALENDAR_EVENTS_SCOPE = "https://www.googleapis.com/auth/calendar.events";
 
 export type ConnectionKind =
   | "local_only"

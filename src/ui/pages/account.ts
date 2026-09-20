@@ -34,16 +34,16 @@ export async function renderAccountPage(main: HTMLElement): Promise<void> {
           ? `${connection.googleAccountLabel ?? "Google account"} on this device. Sign out anytime — your Journal stays here.`
           : configured
             ? "Optional. Sign in only if you want Google-connected backup."
-            : "This copy of PEx works fully without Google. Backup is not configured on this host.",
+            : "This copy of the site works fully without Google. Backup is not configured on this host.",
       ),
       el("h3", {}, ["Google Drive backup (optional)"]),
       el("p", {}, [
-        "Separate from sign-in. When connected, PEx can copy journal files you save into a folder on your Google Drive — not your entire Drive.",
+        "Separate from sign-in. When connected, the app can copy Dream Journal files you save into a folder on your Google Drive — not your entire Drive.",
       ]),
       el("details", { class: "account-permission-details" }, [
         el("summary", {}, ["What permission is requested?"]),
         el("p", { class: "meta" }, [
-          "Google Drive access limited to files PEx creates or updates for your journal backup.",
+          "Google Drive access limited to files this app creates or updates for your Dream Journal backup.",
         ]),
       ]),
       statusBox(
@@ -61,7 +61,7 @@ export async function renderAccountPage(main: HTMLElement): Promise<void> {
     syncHost.replaceChildren(
       el("h3", {}, ["How backup works"]),
       el("p", {}, [
-        "Capture saves to this device first. If Drive is connected, entries copy up when possible. If backup fails, nothing is deleted from your Journal here.",
+        "Dream Journal saves to this device first. If Drive is connected, entries copy up when possible. If backup fails, nothing is deleted from your Journal here.",
       ]),
     );
   };
@@ -152,9 +152,9 @@ export async function renderAccountPage(main: HTMLElement): Promise<void> {
   main.append(
     el("section", { class: "stack editorial-page account-surface" }, [
       el("p", { class: "eyebrow" }, ["Optional backup"]),
-      el("h2", { class: "display-title" }, ["Account & backup"]),
+      el("h2", { class: "display-title" }, ["Dream Journal backup"]),
       el("p", { class: "lede" }, [
-        "PEx works without Google. Sign in and connect Drive only if you want journal backup in your Google account.",
+        "The guide works without Google. Sign in and connect Drive only if you want Dream Journal backup in your Google account.",
       ]),
       statusHost,
       connectionHost,
