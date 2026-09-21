@@ -47,14 +47,30 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(window.location.hash).toBe("#/");
   });
 
+  it("normalizes retired hash routes without moving search into the hash", async () => {
+    window.history.replaceState(null, "", "/index.html?foo=bar#/journal");
+    document.body.innerHTML = '<div id="app"></div>';
+    await renderApp(document.getElementById("app")!);
+    expect(window.location.search).toBe("?foo=bar");
+    expect(window.location.hash).toBe("#/");
+  });
+
   it("links inline citations to reference anchors and DOI destinations", async () => {
     const root = await mount("#/");
     const citation = root.querySelector('a.guidebook-citation[href="#ref-2"]');
     expect(citation).toBeTruthy();
     expect(root.querySelector("#ref-2")).toBeTruthy();
     expect(root.querySelector("ol.guidebook-references")).toBeNull();
-    const doi = root.querySelector("a.guidebook-doi") as HTMLAnchorElement;
-    expect(doi?.href).toMatch(/^https:\/\/doi\.org\/10\./);
+    const dois = [...root.querySelectorAll("a.guidebook-doi")] as HTMLAnchorElement[];
+    expect(dois.length).toBeGreaterThanOrEqual(2);
+    for (const link of dois) {
+      expect(link.href).toMatch(/^https:\/\/doi\.org\/10\.\S+$/);
+      expect(link.href.endsWith(".")).toBe(false);
+    }
+    const shambhala = root.querySelector("a.guidebook-external") as HTMLAnchorElement;
+    expect(shambhala?.href).toBe(
+      "https://www.shambhala.com/the-tibetan-yogas-of-dream-and-sleep.html",
+    );
   });
 
   it("exposes a plain Light/Dark switch and a compact sky widget", async () => {
