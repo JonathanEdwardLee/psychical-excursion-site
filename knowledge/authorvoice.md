@@ -286,11 +286,13 @@ That combination of exertion, attention, and relaxation connects naturally with 
 
 ## Tibetan dream practice
 
-I have read *The Tibetan Book of Living and Dying* and another Tibetan dream-practice book whose title I no longer remember.
+I have read *The Tibetan Book of Living and Dying* and *The Tibetan Yogas of Dream and Sleep* by Tenzin Wangyal Rinpoche, edited by Mark Dahlby.
 
-That second book made a strong impression because it suggested lucid-dream experiments I had never thought were possible: becoming multiple versions of yourself, becoming extremely large or small, becoming something else entirely, and deliberately testing the limits of identity and perception while lucid.
+*The Tibetan Yogas of Dream and Sleep* made a strong impression because it suggested lucid-dream experiments I had never thought were possible: becoming multiple versions of yourself, becoming extremely large or small, becoming something else entirely, and deliberately testing the limits of identity and perception while lucid.
 
-This material should be researched later. Do **not** guess the title. Find the likely source and verify the practices before citing them.
+The book presents dream yoga and sleep yoga from Bön and Tibetan Buddhist traditions, using lucid dreaming not only for exploration but as a setting for deeper contemplative practice and inquiry into the nature of mind. Its spiritual framework should be represented accurately as the tradition's framework, not automatically adopted as scientific fact.
+
+This is a priority source for later research and citation. Verify specific exercises and edition details against the book/publisher before quoting or attributing individual practices.
 
 Some Tibetan practices also involve sleep position, intention, visualization, and ways of approaching dreams as part of consciousness training.
 
