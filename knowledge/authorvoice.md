@@ -625,3 +625,32 @@ Maybe somebody experiences something they call astral projection or an out-of-bo
 Maybe what we discover challenges the words we started with.
 
 We won't know what happens to us unless we try.
+
+
+## Guidebook-first direction
+
+The primary product is now a **progressive guidebook**, not a fixed 60-day program.
+
+Do not force chapters into "Day 1", "Day 2", or calendar pacing while writing the core work.
+
+The book should build naturally toward deeper lucid-dream, energy-body, sleep-edge, and out-of-body practices, but readers may move at their own pace. Some practices may be worth repeating for days or weeks before moving on. The guide should feel like an interesting book with experiments embedded inside it, not coursework.
+
+A timed 60-day practice calendar, structured course, reminders, audio exercises, or similar products may be derived later **from the finished guidebook**. They should not constrain the book's structure at this stage.
+
+## Prometheus Rising as a structural influence
+
+Robert Anton Wilson's *Prometheus Rising* is an important model for form and reader relationship.
+
+What matters is not copying its content, but the way it combines ideas, sourced material, worldview questions, humor, and small experiments that let the reader investigate their own attention and beliefs.
+
+Jonathan especially remembers exercises such as deliberately thinking about quarters and then noticing quarters appearing everywhere, similar to buying a white car and suddenly seeing white cars everywhere.
+
+The lesson for *Psychical Excursion* is that experiments should sometimes reveal something about the reader's own perception, attention, expectation, or mental habits—not merely train a technical skill.
+
+Preferred chapter rhythm remains loose and literary:
+
+**Question → story or claim → research → experiment → observation → another question.**
+
+Not every chapter must use that exact order.
+
+The guidebook should be interesting and thought-provoking even for a reader who never achieves lucid dreaming or an out-of-body experience.
