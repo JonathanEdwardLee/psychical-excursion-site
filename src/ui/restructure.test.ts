@@ -1,4 +1,9 @@
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
+vi.mock("./publicSurface.ts", () => ({
+  isGuidebookPublicSurface: () => false,
+}));
+
 import { renderApp } from "./app.ts";
 import { localStore } from "../db/store.ts";
 import { DB_NAME } from "../domain/types.ts";

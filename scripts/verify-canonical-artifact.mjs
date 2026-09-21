@@ -5,6 +5,7 @@ import path from "node:path";
 const root = process.cwd();
 const releaseDir = path.join(root, "release");
 const canonicalPath = path.join(root, "src", "content", "canonical.ts");
+const publicSurfacePath = path.join(root, "src", "ui", "publicSurface.ts");
 const knownRevision =
   "ANLCKQk1sCjAcWQUDnd6ERHm2I9LDaK3RYhzPS4K_Zqk6WunObJ94DOxIwPF50TAuakdTGi39KFiFr7FK-MeRFw5D5vXdxcwyrsDKsg-9dQ";
 
@@ -16,6 +17,11 @@ function walkFiles(dir) {
     else files.push(full);
   }
   return files;
+}
+
+function isGuidebookPublicSurfaceEnabled() {
+  const source = readFileSync(publicSurfacePath, "utf8");
+  return /isGuidebookPublicSurface\(\):\s*boolean\s*{\s*return\s+true\s*;/.test(source);
 }
 
 const source = readFileSync(canonicalPath, "utf8");
@@ -45,6 +51,31 @@ const textFiles = walkFiles(releaseDir).filter((file) => {
   return /\.(html|js|css|webmanifest|txt)$/i.test(name) || name === ".htaccess";
 });
 const corpus = textFiles.map((file) => readFileSync(file, "utf8")).join("\n");
+
+const guidebookPublic = isGuidebookPublicSurfaceEnabled();
+
+if (guidebookPublic) {
+  const guidebookSnippets = [
+    "What if consciousness is capable of more than we normally ask it to do?",
+    "Let's see what happens.",
+    "What Is a Psychical Excursion?",
+  ];
+  for (const snippet of guidebookSnippets) {
+    if (!corpus.includes(snippet)) {
+      console.error(`Guidebook runtime artifact is missing manuscript snippet: ${snippet}`);
+      process.exit(1);
+    }
+  }
+  const forbiddenInGuidebook = ["DEVELOPMENT FIXTURE", "development-fixture", "https:/https://"];
+  for (const token of forbiddenInGuidebook) {
+    if (corpus.includes(token)) {
+      console.error(`Runtime artifact contains forbidden token: ${token}`);
+      process.exit(1);
+    }
+  }
+  console.log("Canonical source integrity verified; guidebook public runtime checked (legacy packet not required in bundle).");
+  process.exit(0);
+}
 
 const missingTitles = titles.filter((title) => !corpus.includes(title));
 if (missingTitles.length) {

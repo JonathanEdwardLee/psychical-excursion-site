@@ -1,4 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+
+vi.mock("./publicSurface.ts", () => ({
+  isGuidebookPublicSurface: () => false,
+}));
+
 import { renderApp } from "./app.ts";
 import { abandonLiveMicrophone, isCaptureMicrophoneHeld } from "./captureSession.ts";
 import { localStore } from "../db/store.ts";
