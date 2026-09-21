@@ -4,6 +4,9 @@ import { abandonLiveMicrophone, isCaptureMicrophoneHeld } from "./captureSession
 import { localStore } from "../db/store.ts";
 import { DB_NAME } from "../domain/types.ts";
 import { fixtureSignIn, fixtureSignOut } from "./testFixtures.ts";
+import { isGuidebookPublicSurface } from "./publicSurface.ts";
+
+const describeLegacy = isGuidebookPublicSurface() ? describe.skip : describe;
 
 async function resetLocalDatabase(): Promise<void> {
   await new Promise<void>((resolve, reject) => {
@@ -22,7 +25,7 @@ async function mount(hash: string): Promise<HTMLElement> {
   return root;
 }
 
-describe("core UI flows", () => {
+describeLegacy("core UI flows", () => {
   beforeEach(async () => {
     localStorage.clear();
     sessionStorage.clear();
@@ -253,7 +256,7 @@ class FakeMediaRecorder {
   }
 }
 
-describe("capture microphone lifecycle", () => {
+describeLegacy("capture microphone lifecycle", () => {
   let trackStop: ReturnType<typeof vi.fn>;
 
   beforeEach(async () => {

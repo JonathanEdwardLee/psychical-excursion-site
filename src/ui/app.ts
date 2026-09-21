@@ -22,6 +22,9 @@ import { renderDayPage, renderTodayPage } from "./pages/day.ts";
 import { renderDaysPage, renderPhasePage, renderWeekPage } from "./pages/days.ts";
 import { renderAstronomyPage, stopAstronomyClock } from "./pages/astronomy.ts";
 import { renderAboutPage, renderHomePage, renderMethodPage } from "./pages/home.ts";
+import { renderGuidebookHome } from "./pages/guidebookHome.ts";
+import { renderGuidebookChrome } from "./guidebookShell.ts";
+import { isGuidebookPublicSurface } from "./publicSurface.ts";
 import { renderNightCapturePage } from "./pages/nightCapture.ts";
 import { parseRoute, type AppRoute } from "./routes.ts";
 import { bindDayReading, bindPhaseJourney, stopScrollPresence } from "./scrollPresence.ts";
@@ -38,6 +41,15 @@ function applyCaptureRouteTheme(route: AppRoute): void {
 }
 
 export async function renderApp(root: HTMLElement): Promise<void> {
+  if (isGuidebookPublicSurface()) {
+    abandonLiveMicrophone();
+    stopAstronomyClock();
+    stopScrollPresence();
+    const { main } = renderGuidebookChrome(root);
+    renderGuidebookHome(main);
+    return;
+  }
+
   const route = parseRoute(window.location.hash.split("?")[0]);
   applyCaptureRouteTheme(route);
 

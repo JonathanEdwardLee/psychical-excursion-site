@@ -1234,3 +1234,139 @@ audio {
     border-radius: 0;
   }
 }
+
+.guidebook-header {
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "brand tools";
+}
+
+.guidebook-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand-link .guidebook-title {
+  display: inline;
+  margin-left: 0.65rem;
+}
+
+.guidebook-title {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.8vw, 1.3rem);
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.guidebook-main {
+  width: min(36rem, 100%);
+  margin: 0 auto;
+  padding: 1.35rem 1.15rem 3.5rem;
+}
+
+.guidebook-subtitle {
+  font-size: 1.08rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0 0 1.75rem;
+  max-width: 34rem;
+}
+
+.guidebook-section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 4.2vw, 1.85rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.12;
+  margin: 2.4rem 0 0.85rem;
+  text-wrap: balance;
+}
+
+.guidebook-article p {
+  margin: 0 0 1.05rem;
+  font-size: 1.06rem;
+  line-height: 1.62;
+  max-width: 36rem;
+}
+
+.guidebook-emphasis-line {
+  font-weight: 600;
+}
+
+.guidebook-references {
+  padding-left: 1.2rem;
+  margin: 0;
+}
+
+.guidebook-references li {
+  margin-bottom: 0.65rem;
+}
+
+.guidebook-references p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.sky-widget-compact {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+.sky-widget-glyph {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.theme-light-dark {
+  min-height: var(--tap);
+  min-width: var(--tap);
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: inherit;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+@media (max-width: 520px) {
+  .guidebook-header {
+    padding: 0.65rem 0.85rem;
+  }
+
+  .brand-link {
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+
+  .brand-logo {
+    height: 1.55rem;
+  }
+
+  .guidebook-tools {
+    gap: 0.35rem;
+  }
+
+  .sky-widget-text {
+    max-width: 5.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .guidebook-main {
+    padding: 1.1rem 0.95rem 3rem;
+  }
+}

@@ -5,6 +5,9 @@ import { DB_NAME } from "../domain/types.ts";
 import { closeSettingsMenu, isSettingsMenuOpen } from "./settingsMenu.ts";
 import { calendarAffirmationPanel } from "./calendarAffirmation.ts";
 import { fixtureSignIn, fixtureSignOut } from "./testFixtures.ts";
+import { isGuidebookPublicSurface } from "./publicSurface.ts";
+
+const describeLegacy = isGuidebookPublicSurface() ? describe.skip : describe;
 
 async function resetLocalDatabase(): Promise<void> {
   await new Promise<void>((resolve, reject) => {
@@ -25,7 +28,7 @@ async function mount(hash: string): Promise<HTMLElement> {
 
 const BLOCKED_PUBLIC = /\b(PEx Primary|Night [Cc]apture|Capture to Journal|Account & backup)\b/;
 
-describe("PEX-D076 public information architecture", () => {
+describeLegacy("PEX-D076 public information architecture", () => {
   beforeEach(async () => {
     localStorage.clear();
     sessionStorage.clear();
