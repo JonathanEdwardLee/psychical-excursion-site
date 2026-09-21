@@ -1,12 +1,14 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+
+vi.mock("./publicSurface.ts", () => ({
+  isGuidebookPublicSurface: () => false,
+}));
+
 import { renderApp } from "./app.ts";
 import { abandonLiveMicrophone, isCaptureMicrophoneHeld } from "./captureSession.ts";
 import { localStore } from "../db/store.ts";
 import { DB_NAME } from "../domain/types.ts";
 import { fixtureSignIn, fixtureSignOut } from "./testFixtures.ts";
-import { isGuidebookPublicSurface } from "./publicSurface.ts";
-
-const describeLegacy = isGuidebookPublicSurface() ? describe.skip : describe;
 
 async function resetLocalDatabase(): Promise<void> {
   await new Promise<void>((resolve, reject) => {
@@ -25,7 +27,7 @@ async function mount(hash: string): Promise<HTMLElement> {
   return root;
 }
 
-describeLegacy("core UI flows", () => {
+describe("core UI flows", () => {
   beforeEach(async () => {
     localStorage.clear();
     sessionStorage.clear();
@@ -256,7 +258,7 @@ class FakeMediaRecorder {
   }
 }
 
-describeLegacy("capture microphone lifecycle", () => {
+describe("capture microphone lifecycle", () => {
   let trackStop: ReturnType<typeof vi.fn>;
 
   beforeEach(async () => {

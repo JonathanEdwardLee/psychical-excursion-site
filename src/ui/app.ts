@@ -25,6 +25,7 @@ import { renderAboutPage, renderHomePage, renderMethodPage } from "./pages/home.
 import { renderGuidebookHome } from "./pages/guidebookHome.ts";
 import { renderGuidebookChrome } from "./guidebookShell.ts";
 import { isGuidebookPublicSurface } from "./publicSurface.ts";
+import { normalizeGuidebookPublicHash } from "./guidebookRoute.ts";
 import { renderNightCapturePage } from "./pages/nightCapture.ts";
 import { parseRoute, type AppRoute } from "./routes.ts";
 import { bindDayReading, bindPhaseJourney, stopScrollPresence } from "./scrollPresence.ts";
@@ -42,6 +43,7 @@ function applyCaptureRouteTheme(route: AppRoute): void {
 
 export async function renderApp(root: HTMLElement): Promise<void> {
   if (isGuidebookPublicSurface()) {
+    normalizeGuidebookPublicHash();
     abandonLiveMicrophone();
     stopAstronomyClock();
     stopScrollPresence();

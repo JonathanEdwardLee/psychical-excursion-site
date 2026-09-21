@@ -33,14 +33,28 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.textContent).not.toMatch(/Sign in with Google/i);
   });
 
-  it("hides feature navigation and legacy routes from the public shell", async () => {
-    for (const hash of ["#/", "#/days", "#/journal", "#/astronomy", "#/account", "#/today"]) {
-      const root = await mount(hash);
-      expect(root.querySelector("#settings-menu-trigger")).toBeNull();
-      expect(root.querySelector(".nav-guide")).toBeNull();
-      expect(root.querySelector('a[href="#/astronomy"]')).toBeNull();
-      expect(root.textContent).toMatch(/What if consciousness/);
-    }
+  it("hides feature navigation from the public shell", async () => {
+    const root = await mount("#/");
+    expect(root.querySelector("#settings-menu-trigger")).toBeNull();
+    expect(root.querySelector(".nav-guide")).toBeNull();
+    expect(root.querySelector('a[href="#/astronomy"]')).toBeNull();
+  });
+
+  it("normalizes retired hash routes to guidebook home", async () => {
+    window.location.hash = "#/journal";
+    document.body.innerHTML = '<div id="app"></div>';
+    await renderApp(document.getElementById("app")!);
+    expect(window.location.hash).toBe("#/");
+  });
+
+  it("links inline citations to reference anchors and DOI destinations", async () => {
+    const root = await mount("#/");
+    const citation = root.querySelector('a.guidebook-citation[href="#ref-2"]');
+    expect(citation).toBeTruthy();
+    expect(root.querySelector("#ref-2")).toBeTruthy();
+    expect(root.querySelector("ol.guidebook-references")).toBeNull();
+    const doi = root.querySelector("a.guidebook-doi") as HTMLAnchorElement;
+    expect(doi?.href).toMatch(/^https:\/\/doi\.org\/10\./);
   });
 
   it("exposes a plain Light/Dark switch and a compact sky widget", async () => {

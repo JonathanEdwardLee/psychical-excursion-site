@@ -3,7 +3,6 @@ import { localStore } from "./db/store.ts";
 import { registerServiceWorker } from "./pwa/register.ts";
 import { inspectAndRequestPersistence } from "./storage/persistence.ts";
 import { applyTheme } from "./theme.ts";
-import { retainCanonicalCurriculumInBundle } from "./content/canonicalRuntimeAnchor.ts";
 import { renderApp } from "./ui/app.ts";
 
 function root(): HTMLElement {
@@ -13,7 +12,6 @@ function root(): HTMLElement {
 }
 
 async function boot(): Promise<void> {
-  retainCanonicalCurriculumInBundle();
   applyTheme();
   registerServiceWorker();
   const app = root();
