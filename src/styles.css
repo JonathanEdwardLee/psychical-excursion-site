@@ -1259,6 +1259,8 @@ audio {
   justify-content: flex-end;
   gap: 0.55rem;
   min-width: 0;
+  direction: ltr;
+  unicode-bidi: isolate;
 }
 
 .guidebook-tools-rule {
@@ -1427,6 +1429,8 @@ audio {
   background: transparent;
   max-width: min(22rem, 58vw);
   line-height: 1.25;
+  direction: ltr;
+  unicode-bidi: isolate;
   font-variant-emoji: text;
 }
 
@@ -1467,6 +1471,8 @@ audio {
   justify-content: center;
   cursor: pointer;
   position: relative;
+  direction: ltr;
+  unicode-bidi: isolate;
 }
 
 .theme-switch-track {

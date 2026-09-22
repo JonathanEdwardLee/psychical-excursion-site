@@ -73,9 +73,10 @@ function themeSwitch(): HTMLButtonElement {
     id: "theme-light-dark",
     class: "theme-switch",
     role: "switch",
+    dir: "ltr",
     "aria-checked": dark ? "true" : "false",
     "aria-label": "Dark appearance",
-  }, [el("span", { class: "theme-switch-track", "aria-hidden": "true" }, [
+  }, [el("span", { class: "theme-switch-track", "aria-hidden": "true", dir: "ltr" }, [
     el("span", { class: "theme-switch-thumb" }),
   ])]);
   button.addEventListener("click", () => {
