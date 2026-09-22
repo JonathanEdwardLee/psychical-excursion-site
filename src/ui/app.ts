@@ -23,9 +23,11 @@ import { renderDaysPage, renderPhasePage, renderWeekPage } from "./pages/days.ts
 import { renderAstronomyPage, stopAstronomyClock } from "./pages/astronomy.ts";
 import { renderAboutPage, renderHomePage, renderMethodPage } from "./pages/home.ts";
 import { renderGuidebookHome } from "./pages/guidebookHome.ts";
-import { renderGuidebookChrome } from "./guidebookShell.ts";
+import { renderGuidebookChapter01 } from "./pages/guidebookChapter.ts";
+import { finalizeGuidebookPage, renderGuidebookChrome } from "./guidebookShell.ts";
 import { isGuidebookPublicSurface } from "./publicSurface.ts";
-import { normalizeGuidebookPublicHash } from "./guidebookRoute.ts";
+import { normalizeGuidebookPublicHash, parseGuidebookPublicPage } from "./guidebookRoute.ts";
+import { bindGuidebookReveals, stopGuidebookMotion } from "./guidebookMotion.ts";
 import { renderNightCapturePage } from "./pages/nightCapture.ts";
 import { parseRoute, type AppRoute } from "./routes.ts";
 import { bindDayReading, bindPhaseJourney, stopScrollPresence } from "./scrollPresence.ts";
@@ -47,8 +49,13 @@ export async function renderApp(root: HTMLElement): Promise<void> {
     abandonLiveMicrophone();
     stopAstronomyClock();
     stopScrollPresence();
-    const { main } = renderGuidebookChrome(root);
-    renderGuidebookHome(main);
+    stopGuidebookMotion();
+    const page = parseGuidebookPublicPage();
+    const { main } = renderGuidebookChrome(root, page);
+    if (page === "chapter01") renderGuidebookChapter01(main);
+    else renderGuidebookHome(main);
+    bindGuidebookReveals(main);
+    finalizeGuidebookPage(root);
     return;
   }
 
@@ -63,6 +70,7 @@ export async function renderApp(root: HTMLElement): Promise<void> {
   }
 
   stopScrollPresence();
+  stopGuidebookMotion();
   const { main } = renderChrome(root, route);
 
   try {

@@ -128,7 +128,7 @@ function apparentMotion(body: Body, time: FlexibleDateTime): "direct" | "retrogr
   return delta >= 0 ? "direct" : "retrograde";
 }
 
-function nextMoonPrimaryPhase(time: FlexibleDateTime): { name: string; at: string } | null {
+function nextMoonPrimaryPhase(time: FlexibleDateTime): { name: string; at: string; ms: number } | null {
   let best: { name: string; at: string; ms: number } | null = null;
   const start = MakeTime(time);
   for (const phase of PRIMARY_MOON_PHASES) {
@@ -140,7 +140,16 @@ function nextMoonPrimaryPhase(time: FlexibleDateTime): { name: string; at: strin
       best = { name: phase.name, at: found.date.toISOString(), ms };
     }
   }
-  return best ? { name: best.name, at: best.at } : null;
+  return best;
+}
+
+/** Next geocentric full moon (Moon phase angle 180°) from `at`. */
+export function nextFullMoon(at: Date): Date | null {
+  const start = MakeTime(at);
+  const found = SearchMoonPhase(180, start, 45);
+  if (!found) return null;
+  if (found.date.getTime() < start.date.getTime() - 1000) return null;
+  return found.date;
 }
 
 function upcomingEvents(time: FlexibleDateTime): CelestialEvent[] {

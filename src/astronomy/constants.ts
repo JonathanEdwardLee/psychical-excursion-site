@@ -4,6 +4,8 @@ export const ASTRONOMY_ENGINE_VERSION = "2.1.19";
 
 export const SUN_GLYPH = "☉";
 export const MOON_GLYPH = "☽";
+/** Force text presentation so header glyphs stay monochrome instrument marks. */
+export const TEXT_PRESENTATION = "\uFE0E";
 
 export const PLANET_BAND = [
   { body: Body.Mercury, glyph: "☿", name: "Mercury" },

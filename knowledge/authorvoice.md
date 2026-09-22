@@ -654,3 +654,27 @@ Preferred chapter rhythm remains loose and literary:
 Not every chapter must use that exact order.
 
 The guidebook should be interesting and thought-provoking even for a reader who never achieves lucid dreaming or an out-of-body experience.
+
+
+## Language, suggestion, and directed attention
+
+Jonathan's writing and personal practice favor language that points toward the experience being cultivated.
+
+This is an **authoring discipline**, not a subject that needs to be explained to the reader and not a claim that Neuro-Linguistic Programming has been scientifically established as a whole system.
+
+Default writing rules:
+
+- Prefer affirmative constructions over instructions built around avoidance.
+- Describe the desired experience directly: **Remember your dreams** rather than **Don't forget your dreams**.
+- For affirmations and intentional self-suggestion, use present-tense language.
+- Prefer process statements that a reader can inhabit now: **I remember my dreams. My dreams become clearer when I wake. I recognize the feeling of dreaming.**
+- Give attention a concrete sensory or behavioral destination: **Remain still when you wake. Notice the first image, feeling, place, person, or fragment that returns.**
+- Avoid extravagant affirmations that demand certainty the reader may not feel. Favor believable movement and present practice over absolute performance claims.
+- Preserve scientific uncertainty in explanatory prose while keeping practice language clean and directional.
+- Safety, evidence limits, historical accuracy, and ordinary factual negation remain more important than stylistic avoidance of negative words.
+
+The underlying voice principle is simple:
+
+**Point attention toward what we are practicing.**
+
+Language can itself become part of the experiment. The book does not need to claim that wording magically programs the subconscious. It can quietly use deliberate wording while inviting the reader to notice what happens.
