@@ -23,10 +23,18 @@ import { renderDaysPage, renderPhasePage, renderWeekPage } from "./pages/days.ts
 import { renderAstronomyPage, stopAstronomyClock } from "./pages/astronomy.ts";
 import { renderAboutPage, renderHomePage, renderMethodPage } from "./pages/home.ts";
 import { renderGuidebookHome } from "./pages/guidebookHome.ts";
-import { renderGuidebookChapter01 } from "./pages/guidebookChapter.ts";
+import { renderGuidebookChapterPage } from "./pages/guidebookChapter.ts";
+import { loadGuidebookChapter01 } from "../content/guidebookChapter01.ts";
+import { CHAPTER_02_HASH, CHAPTER_02_TITLE, loadGuidebookChapter02 } from "../content/guidebookChapter02.ts";
 import { finalizeGuidebookPage, renderGuidebookChrome } from "./guidebookShell.ts";
 import { isGuidebookPublicSurface } from "./publicSurface.ts";
-import { normalizeGuidebookPublicHash, parseGuidebookPublicPage } from "./guidebookRoute.ts";
+import {
+  guidebookPageChanged,
+  markGuidebookPage,
+  normalizeGuidebookPublicHash,
+  parseGuidebookPublicPage,
+  resetGuidebookWindowScroll,
+} from "./guidebookRoute.ts";
 import { bindGuidebookReveals, stopGuidebookMotion } from "./guidebookMotion.ts";
 import { renderNightCapturePage } from "./pages/nightCapture.ts";
 import { parseRoute, type AppRoute } from "./routes.ts";
@@ -51,11 +59,27 @@ export async function renderApp(root: HTMLElement): Promise<void> {
     stopScrollPresence();
     stopGuidebookMotion();
     const page = parseGuidebookPublicPage();
+    const pageChanged = guidebookPageChanged(page);
+    if (pageChanged) resetGuidebookWindowScroll();
+    markGuidebookPage(page);
     const { main } = renderGuidebookChrome(root, page);
-    if (page === "chapter01") renderGuidebookChapter01(main);
-    else renderGuidebookHome(main);
+    if (page === "chapter01") {
+      renderGuidebookChapterPage(main, loadGuidebookChapter01(), {
+        href: CHAPTER_02_HASH,
+        title: CHAPTER_02_TITLE,
+        id: "guidebook-next-chapter-2",
+      });
+    } else if (page === "chapter02") {
+      renderGuidebookChapterPage(main, loadGuidebookChapter02());
+    } else {
+      renderGuidebookHome(main);
+    }
     bindGuidebookReveals(main);
     finalizeGuidebookPage(root);
+    if (pageChanged) {
+      resetGuidebookWindowScroll();
+      requestAnimationFrame(() => resetGuidebookWindowScroll());
+    }
     return;
   }
 

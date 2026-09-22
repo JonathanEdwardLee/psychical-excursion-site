@@ -1,4 +1,5 @@
 import { CHAPTER_01_TITLE } from "../content/guidebookChapter01.ts";
+import { CHAPTER_02_TITLE } from "../content/guidebookChapter02.ts";
 import { applyTheme, readTheme, toggleTheme } from "../theme.ts";
 import { el, text } from "./dom.ts";
 import { renderAmbientLayer, type AmbientMode } from "./guidebookAmbient.ts";
@@ -6,15 +7,28 @@ import type { GuidebookPublicPage } from "./guidebookRoute.ts";
 import { bindInPageCitations } from "./guidebookRichText.ts";
 import { renderSkyWidget } from "./skyWidget.ts";
 
+function ambientFor(page: GuidebookPublicPage): AmbientMode {
+  if (page === "chapter01") return "memory";
+  if (page === "chapter02") return "notice";
+  return "orbit";
+}
+
+function documentTitleFor(page: GuidebookPublicPage): string {
+  if (page === "chapter01") return `${CHAPTER_01_TITLE} · Psychical Excursion`;
+  if (page === "chapter02") return `${CHAPTER_02_TITLE} · Psychical Excursion`;
+  return "Psychical Excursion";
+}
+
 export function renderGuidebookChrome(
   root: HTMLElement,
   page: GuidebookPublicPage,
 ): { main: HTMLElement } {
   applyTheme();
-  document.title = page === "chapter01" ? `${CHAPTER_01_TITLE} · Psychical Excursion` : "Psychical Excursion";
+  document.title = documentTitleFor(page);
   root.replaceChildren();
   const skip = el("a", { class: "skip-link", href: "#main" }, ["Skip to content"]);
-  const ambient = renderAmbientLayer(page === "chapter01" ? "memory" : "orbit");
+  const ambientMode = ambientFor(page);
+  const ambient = renderAmbientLayer(ambientMode);
   const themeBtn = themeSwitch();
   const header = el("header", { class: "app-header guidebook-header" }, [
     el("a", { href: "#/", class: "brand-link", "aria-label": "Psychical Excursion home" }, [
@@ -56,7 +70,7 @@ export function renderGuidebookChrome(
   ]);
   const frame = el("div", {
     class: "app-frame guidebook-frame",
-    "data-ambient": (page === "chapter01" ? "memory" : "orbit") satisfies AmbientMode,
+    "data-ambient": ambientMode satisfies AmbientMode,
   }, [header, live, main, footer]);
   root.append(skip, ambient, frame);
   return { main };

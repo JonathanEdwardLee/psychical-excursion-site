@@ -16,6 +16,21 @@ function formatFullMoonWhen(at: Date): { date: string; time: string; spoken: str
   return { date, time, spoken };
 }
 
+function bodyPair(kind: "sun" | "moon", glyph: string, signName: string, signGlyph: string): HTMLElement {
+  const label = kind === "sun" ? `Sun in ${signName}` : `Moon in ${signName}`;
+  return el("span", {
+    class: "sky-widget-pair",
+    tabindex: "0",
+    role: "img",
+    "aria-label": label,
+    "data-sky-body": kind,
+  }, [
+    el("span", { class: "sky-widget-body", "aria-hidden": "true" }, [glyph]),
+    el("span", { class: "sky-widget-sign", "aria-hidden": "true" }, [signGlyph]),
+    el("span", { class: "sky-widget-tip", "aria-hidden": "true" }, [label]),
+  ]);
+}
+
 /** Compact observational Sun/Moon tropical-zodiac glance — no location, no interpretation. */
 export function renderSkyWidget(): HTMLElement {
   const now = new Date();
@@ -40,14 +55,8 @@ export function renderSkyWidget(): HTMLElement {
     role: "group",
     "aria-label": spoken,
   }, [
-    el("span", { class: "sky-widget-pair" }, [
-      el("span", { class: "sky-widget-body", "aria-hidden": "true" }, [`${SUN_GLYPH}${TEXT_PRESENTATION}`]),
-      el("span", { class: "sky-widget-sign", "aria-hidden": "true" }, [sunSign.glyph]),
-    ]),
-    el("span", { class: "sky-widget-pair" }, [
-      el("span", { class: "sky-widget-body", "aria-hidden": "true" }, [`${MOON_GLYPH}${TEXT_PRESENTATION}`]),
-      el("span", { class: "sky-widget-sign", "aria-hidden": "true" }, [moonSign.glyph]),
-    ]),
+    bodyPair("sun", `${SUN_GLYPH}${TEXT_PRESENTATION}`, sunSign.name, sunSign.glyph),
+    bodyPair("moon", `${MOON_GLYPH}${TEXT_PRESENTATION}`, moonSign.name, moonSign.glyph),
     fullNode,
   ]);
 }

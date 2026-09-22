@@ -1,8 +1,10 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { CHAPTER_01_HASH, CHAPTER_01_TITLE, loadGuidebookChapter01 } from "../content/guidebookChapter01.ts";
+import { CHAPTER_02_HASH, CHAPTER_02_TITLE, loadGuidebookChapter02 } from "../content/guidebookChapter02.ts";
 import { loadGuidebookManuscript } from "../content/guidebookManuscript.ts";
 import { TROPICAL_ZODIAC_SIGNS } from "../astronomy/zodiac.ts";
 import { renderApp } from "./app.ts";
+import { resetGuidebookPageTracking } from "./guidebookRoute.ts";
 
 async function mount(hash: string): Promise<HTMLElement> {
   window.location.hash = hash;
@@ -16,6 +18,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
   beforeEach(() => {
     localStorage.clear();
     sessionStorage.clear();
+    resetGuidebookPageTracking();
   });
 
   it("loads the approved manuscript with the correct opening heading", () => {
@@ -93,6 +96,14 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(sky.textContent).toContain("☉");
     expect(sky.textContent).toContain("☽");
     expect(TROPICAL_ZODIAC_SIGNS.some((sign) => sky.textContent?.includes(sign.glyph))).toBe(true);
+    const sun = root.querySelector('.sky-widget-pair[data-sky-body="sun"]') as HTMLElement;
+    const moon = root.querySelector('.sky-widget-pair[data-sky-body="moon"]') as HTMLElement;
+    expect(sun.getAttribute("tabindex")).toBe("0");
+    expect(moon.getAttribute("tabindex")).toBe("0");
+    expect(sun.getAttribute("aria-label")).toMatch(/^Sun in /);
+    expect(moon.getAttribute("aria-label")).toMatch(/^Moon in /);
+    expect(sun.querySelector(".sky-widget-tip")?.textContent).toBe(sun.getAttribute("aria-label"));
+    expect(moon.querySelector(".sky-widget-tip")?.textContent).toBe(moon.getAttribute("aria-label"));
     expect(sky.textContent).not.toMatch(/horoscope|rising|house|prediction/i);
     expect(sky.className).not.toMatch(/button|card/);
   });
@@ -105,6 +116,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     });
     await mount("#/");
     await mount(CHAPTER_01_HASH);
+    await mount(CHAPTER_02_HASH);
     expect(getCurrentPosition).not.toHaveBeenCalled();
   });
 
@@ -143,6 +155,8 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelectorAll(".guidebook-steps").length).toBeGreaterThanOrEqual(2);
     expect(root.querySelector("#ref-6")).toBeTruthy();
     expect(root.querySelector(".pex-ambient-memory")).toBeTruthy();
+    expect(root.querySelector("#guidebook-next-chapter-2")?.getAttribute("href")).toBe(CHAPTER_02_HASH);
+    expect(root.querySelector("#guidebook-next-chapter-2")?.textContent).toContain(CHAPTER_02_TITLE);
     expect(root.querySelector('a[href="#/astronomy"]')).toBeNull();
     expect(root.textContent).not.toMatch(/Sign in with Google/);
     expect(document.title).toMatch(CHAPTER_01_TITLE);
@@ -151,6 +165,41 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
   it("keeps ambient geometry present for reduced-motion readers", async () => {
     const root = await mount("#/");
     expect(root.querySelector(".pex-ambient-orbit")).toBeTruthy();
-    expect(root.querySelector(".pex-reveal")).toBeTruthy();
+    expect(root.querySelector(".guidebook-section.pex-reveal")).toBeTruthy();
+  });
+
+  it("renders Chapter 2 from the approved manuscript without a next-page link", async () => {
+    const chapter = loadGuidebookChapter02();
+    expect(chapter.title).toBe(CHAPTER_02_TITLE);
+    const root = await mount(CHAPTER_02_HASH);
+    expect(window.location.hash).toBe(CHAPTER_02_HASH);
+    expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_02_TITLE);
+    expect(root.textContent).toMatch(/dream signs/);
+    expect(root.textContent).toMatch(/Am I dreaming\?/);
+    expect(root.querySelector("#guidebook-next-chapter-2")).toBeNull();
+    expect(root.querySelector(".nav-guide")).toBeNull();
+    expect(root.querySelector(".pex-ambient-notice")).toBeTruthy();
+    expect(document.title).toMatch(CHAPTER_02_TITLE);
+    expect(root.textContent).not.toMatch(/Sign in with Google/);
+  });
+
+  it("resets window scroll when moving between guidebook pages", async () => {
+    const root = await mount("#/");
+    document.documentElement.scrollTop = 480;
+    window.location.hash = CHAPTER_01_HASH;
+    await renderApp(root);
+    expect(document.documentElement.scrollTop).toBe(0);
+    document.documentElement.scrollTop = 320;
+    window.location.hash = CHAPTER_02_HASH;
+    await renderApp(root);
+    expect(document.documentElement.scrollTop).toBe(0);
+    expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_02_TITLE);
+  });
+
+  it("keeps retired routes away from Chapter 2", async () => {
+    const root = await mount(CHAPTER_02_HASH);
+    expect(root.querySelector('a[href="#/journal"]')).toBeNull();
+    expect(root.querySelector('a[href="#/days"]')).toBeNull();
+    expect(root.querySelector('a[href="#/astronomy"]')).toBeNull();
   });
 });
