@@ -1,5 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { CHAPTER_01_HASH, CHAPTER_01_TITLE, loadGuidebookChapter01 } from "../content/guidebookChapter01.ts";
 import { loadGuidebookManuscript } from "../content/guidebookManuscript.ts";
+import { TROPICAL_ZODIAC_SIGNS } from "../astronomy/zodiac.ts";
 import { renderApp } from "./app.ts";
 
 async function mount(hash: string): Promise<HTMLElement> {
@@ -38,6 +40,8 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector("#settings-menu-trigger")).toBeNull();
     expect(root.querySelector(".nav-guide")).toBeNull();
     expect(root.querySelector('a[href="#/astronomy"]')).toBeNull();
+    expect(root.querySelector(".guidebook-title")).toBeNull();
+    expect(root.querySelector("header")?.textContent).not.toMatch(/Psychical Excursion/);
   });
 
   it("normalizes retired hash routes to guidebook home", async () => {
@@ -73,13 +77,24 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     );
   });
 
-  it("exposes a plain Light/Dark switch and a compact sky widget", async () => {
+  it("exposes an unlabeled theme switch and observational sky clock", async () => {
     const root = await mount("#/");
     const theme = root.querySelector("#theme-light-dark") as HTMLButtonElement;
     expect(theme).toBeTruthy();
-    expect(theme.textContent).toMatch(/Light|Dark/);
-    expect(root.querySelector(".sky-widget-compact")).toBeTruthy();
-    expect(root.querySelector(".sky-widget-compact a")).toBeNull();
+    expect(theme.getAttribute("role")).toBe("switch");
+    expect(theme.getAttribute("aria-label")).toMatch(/dark appearance/i);
+    expect(theme.textContent?.replace(/\s+/g, "")).toBe("");
+    const sky = root.querySelector(".sky-widget-compact") as HTMLElement;
+    expect(sky).toBeTruthy();
+    expect(sky.querySelector("a")).toBeNull();
+    expect(sky.getAttribute("aria-label")).toMatch(/Sun in /);
+    expect(sky.getAttribute("aria-label")).toMatch(/Moon in /);
+    expect(sky.getAttribute("aria-label")).toMatch(/full moon/i);
+    expect(sky.textContent).toContain("☉");
+    expect(sky.textContent).toContain("☽");
+    expect(TROPICAL_ZODIAC_SIGNS.some((sign) => sky.textContent?.includes(sign.glyph))).toBe(true);
+    expect(sky.textContent).not.toMatch(/horoscope|rising|house|prediction/i);
+    expect(sky.className).not.toMatch(/button|card/);
   });
 
   it("does not request geolocation on load", async () => {
@@ -89,17 +104,53 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
       geolocation: { getCurrentPosition },
     });
     await mount("#/");
+    await mount(CHAPTER_01_HASH);
     expect(getCurrentPosition).not.toHaveBeenCalled();
   });
 
-  it("toggles dark mode with ordinary Light/Dark labeling", async () => {
+  it("toggles dark mode through the switch state", async () => {
     const root = await mount("#/");
     const theme = root.querySelector("#theme-light-dark") as HTMLButtonElement;
+    expect(theme.getAttribute("aria-checked")).toBe("false");
     theme.click();
     expect(document.documentElement.dataset.theme).toBe("bedtime");
-    expect(theme.textContent).toBe("Light");
+    expect(theme.getAttribute("aria-checked")).toBe("true");
     theme.click();
     expect(document.documentElement.dataset.theme).toBe("light");
-    expect(theme.textContent).toBe("Dark");
+    expect(theme.getAttribute("aria-checked")).toBe("false");
+  });
+
+  it("opens Chapter 1 from the editorial next-reading line", async () => {
+    const root = await mount("#/");
+    const next = root.querySelector("#guidebook-next-chapter") as HTMLAnchorElement;
+    expect(next).toBeTruthy();
+    expect(next.getAttribute("href")).toBe(CHAPTER_01_HASH);
+    expect(next.textContent).toContain(CHAPTER_01_TITLE);
+    expect(next.textContent).toContain("→");
+    expect(root.querySelector(".nav-guide")).toBeNull();
+    expect(root.querySelector('a[href="#/journal"]')).toBeNull();
+    expect(root.querySelector('a[href="#/days"]')).toBeNull();
+  });
+
+  it("renders Chapter 1 as its own reading page without rewriting the title", async () => {
+    const chapter = loadGuidebookChapter01();
+    expect(chapter.title).toBe(CHAPTER_01_TITLE);
+    const root = await mount(CHAPTER_01_HASH);
+    expect(window.location.hash).toBe(CHAPTER_01_HASH);
+    expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_01_TITLE);
+    expect(root.textContent).toMatch(/arousal-retrieval model/);
+    expect(root.textContent).toMatch(/red stairs — grandmother — rain/);
+    expect(root.querySelectorAll(".guidebook-steps").length).toBeGreaterThanOrEqual(2);
+    expect(root.querySelector("#ref-6")).toBeTruthy();
+    expect(root.querySelector(".pex-ambient-memory")).toBeTruthy();
+    expect(root.querySelector('a[href="#/astronomy"]')).toBeNull();
+    expect(root.textContent).not.toMatch(/Sign in with Google/);
+    expect(document.title).toMatch(CHAPTER_01_TITLE);
+  });
+
+  it("keeps ambient geometry present for reduced-motion readers", async () => {
+    const root = await mount("#/");
+    expect(root.querySelector(".pex-ambient-orbit")).toBeTruthy();
+    expect(root.querySelector(".pex-reveal")).toBeTruthy();
   });
 });

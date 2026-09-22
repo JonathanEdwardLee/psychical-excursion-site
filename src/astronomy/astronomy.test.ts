@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { Body, EclipticLongitude, MakeTime } from "astronomy-engine";
-import { computeAstronomySnapshot } from "./compute.ts";
+import { computeAstronomySnapshot, nextFullMoon } from "./compute.ts";
 import { moonPhaseName } from "./constants.ts";
+import { tropicalZodiacSign } from "./zodiac.ts";
 
 /** Washington, DC — reference comparisons documented in docs/ASTRONOMY_VALIDATION.md */
 const WASHINGTON = { latitude: 38.9072, longitude: -77.0369, heightMeters: 0 };
@@ -62,5 +63,24 @@ describe("astronomy instrument", () => {
     const snap = computeAstronomySnapshot(late, null);
     expect(snap.computedAt).toBe(late.toISOString());
     expect(snap.utcTimeLabel.length).toBeGreaterThan(5);
+  });
+
+  it("maps geocentric ecliptic longitude to tropical Western zodiac sectors", () => {
+    expect(tropicalZodiacSign(0).name).toBe("Aries");
+    expect(tropicalZodiacSign(29.9).glyph).toBe("♈");
+    expect(tropicalZodiacSign(30).name).toBe("Taurus");
+    expect(tropicalZodiacSign(359).name).toBe("Pisces");
+    const equinox = new Date("2024-03-20T03:07:00.000Z");
+    const snap = computeAstronomySnapshot(equinox, null);
+    expect(tropicalZodiacSign(snap.sun.eclipticLongitudeDeg).name).toBe("Aries");
+    expect(snap.locationUsed).toBe(false);
+  });
+
+  it("finds the next geocentric full moon after a fixed instant", () => {
+    const at = new Date("2024-01-15T12:00:00.000Z");
+    const full = nextFullMoon(at);
+    expect(full).toBeTruthy();
+    expect(full!.getTime()).toBeGreaterThan(at.getTime());
+    expect(full!.toISOString().slice(0, 10)).toBe("2024-01-25");
   });
 });
