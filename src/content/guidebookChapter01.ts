@@ -9,7 +9,7 @@ export type ChapterBlock =
   | { kind: "emphasis"; text: string }
   | { kind: "heading"; text: string }
   | { kind: "quote"; text: string }
-  | { kind: "list"; items: string[] }
+  | { kind: "list"; items: string[]; ordered: boolean }
   | { kind: "rule" };
 
 export type ChapterDocument = {
@@ -72,7 +72,16 @@ export function parseGuidebookChapter(raw: string): ChapterDocument {
         items.push(lines[i]!.replace(/^\d+\.\s+/, "").trim());
         i += 1;
       }
-      blocks.push({ kind: "list", items });
+      blocks.push({ kind: "list", items, ordered: true });
+      continue;
+    }
+    if (/^-\s/.test(line)) {
+      const items: string[] = [];
+      while (i < lines.length && /^-\s/.test(lines[i]!)) {
+        items.push(lines[i]!.replace(/^-\s+/, "").trim());
+        i += 1;
+      }
+      blocks.push({ kind: "list", items, ordered: false });
       continue;
     }
     const parts: string[] = [];
@@ -80,7 +89,14 @@ export function parseGuidebookChapter(raw: string): ChapterDocument {
       const current = lines[i]!;
       if (!current.trim()) break;
       if (current.trim() === "---") break;
-      if (current.startsWith("## ") || current.startsWith("> ") || /^\d+\.\s/.test(current)) break;
+      if (
+        current.startsWith("## ") ||
+        current.startsWith("> ") ||
+        /^\d+\.\s/.test(current) ||
+        /^-\s/.test(current)
+      ) {
+        break;
+      }
       parts.push(current.trim());
       i += 1;
     }

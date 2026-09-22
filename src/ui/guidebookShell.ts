@@ -1,5 +1,6 @@
 import { CHAPTER_01_TITLE } from "../content/guidebookChapter01.ts";
 import { CHAPTER_02_TITLE } from "../content/guidebookChapter02.ts";
+import { CHAPTER_03_TITLE } from "../content/guidebookChapter03.ts";
 import { applyTheme, readTheme, toggleTheme } from "../theme.ts";
 import { el, text } from "./dom.ts";
 import { renderAmbientLayer, type AmbientMode } from "./guidebookAmbient.ts";
@@ -10,12 +11,14 @@ import { renderSkyWidget } from "./skyWidget.ts";
 function ambientFor(page: GuidebookPublicPage): AmbientMode {
   if (page === "chapter01") return "memory";
   if (page === "chapter02") return "notice";
+  if (page === "chapter03") return "recognize";
   return "orbit";
 }
 
 function documentTitleFor(page: GuidebookPublicPage): string {
   if (page === "chapter01") return `${CHAPTER_01_TITLE} · Psychical Excursion`;
   if (page === "chapter02") return `${CHAPTER_02_TITLE} · Psychical Excursion`;
+  if (page === "chapter03") return `${CHAPTER_03_TITLE} · Psychical Excursion`;
   return "Psychical Excursion";
 }
 
