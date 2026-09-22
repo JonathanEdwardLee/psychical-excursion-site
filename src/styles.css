@@ -528,6 +528,10 @@ input {
   border-top: 1px solid var(--line);
 }
 
+.guidebook-footer {
+  text-align: center;
+}
+
 .complete-panel {
   display: grid;
   gap: 0.65rem;

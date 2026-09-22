@@ -1,6 +1,12 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { CHAPTER_01_HASH, CHAPTER_01_TITLE, loadGuidebookChapter01 } from "../content/guidebookChapter01.ts";
 import { CHAPTER_02_HASH, CHAPTER_02_TITLE, loadGuidebookChapter02 } from "../content/guidebookChapter02.ts";
+import {
+  CHAPTER_03_HASH,
+  CHAPTER_03_PLACEHOLDER_MARKER,
+  CHAPTER_03_TITLE,
+  isGuidebookChapter03Ready,
+} from "../content/guidebookChapter03.ts";
 import { loadGuidebookManuscript } from "../content/guidebookManuscript.ts";
 import { TROPICAL_ZODIAC_SIGNS } from "../astronomy/zodiac.ts";
 import { renderApp } from "./app.ts";
@@ -45,6 +51,9 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector('a[href="#/astronomy"]')).toBeNull();
     expect(root.querySelector(".guidebook-title")).toBeNull();
     expect(root.querySelector("header")?.textContent).not.toMatch(/Psychical Excursion/);
+    expect(root.querySelector(".guidebook-footer")).toBeTruthy();
+    expect(root.querySelector(".guidebook-footer .attribution")?.textContent).toMatch(/Website by/);
+    expect(root.querySelector(".guidebook-footer .attribution")?.textContent).toMatch(/Hoopsnake Designs/);
   });
 
   it("normalizes retired hash routes to guidebook home", async () => {
@@ -181,6 +190,9 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector(".pex-ambient-notice")).toBeTruthy();
     expect(document.title).toMatch(CHAPTER_02_TITLE);
     expect(root.textContent).not.toMatch(/Sign in with Google/);
+    expect(isGuidebookChapter03Ready()).toBe(false);
+    expect(root.querySelector("#guidebook-next-chapter-3")).toBeNull();
+    expect(root.textContent).not.toContain(CHAPTER_03_PLACEHOLDER_MARKER);
   });
 
   it("resets window scroll when moving between guidebook pages", async () => {
@@ -196,10 +208,31 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_02_TITLE);
   });
 
-  it("keeps retired routes away from Chapter 2", async () => {
-    const root = await mount(CHAPTER_02_HASH);
+  it("does not publish Chapter 3 until the approved manuscript is supplied", async () => {
+    const root = await mount(CHAPTER_03_HASH);
+    expect(window.location.hash).toBe("#/");
+    expect(root.querySelector("h1")?.textContent).toBe("What Is a Psychical Excursion?");
+    expect(root.querySelector("h1")?.textContent).not.toBe(CHAPTER_03_TITLE);
+    expect(root.textContent).not.toContain(CHAPTER_03_PLACEHOLDER_MARKER);
+    expect(root.textContent).not.toMatch(/MILD|Wake-Back-to-Bed/i);
     expect(root.querySelector('a[href="#/journal"]')).toBeNull();
     expect(root.querySelector('a[href="#/days"]')).toBeNull();
     expect(root.querySelector('a[href="#/astronomy"]')).toBeNull();
+  });
+
+  it("resets scroll when the unfinished Chapter 3 hash is normalized to home", async () => {
+    const root = await mount(CHAPTER_02_HASH);
+    document.documentElement.scrollTop = 400;
+    window.location.hash = CHAPTER_03_HASH;
+    await renderApp(root);
+    expect(window.location.hash).toBe("#/");
+    expect(document.documentElement.scrollTop).toBe(0);
+  });
+
+  it("preserves Chapter 1 and Chapter 2 public routes", async () => {
+    const one = await mount(CHAPTER_01_HASH);
+    expect(one.querySelector("h1")?.textContent).toBe(CHAPTER_01_TITLE);
+    const two = await mount(CHAPTER_02_HASH);
+    expect(two.querySelector("h1")?.textContent).toBe(CHAPTER_02_TITLE);
   });
 });

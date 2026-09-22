@@ -6,8 +6,13 @@ import {
   CHAPTER_02_HASH,
   CHAPTER_02_PATH,
 } from "../content/guidebookChapter02.ts";
+import {
+  CHAPTER_03_HASH,
+  CHAPTER_03_PATH,
+  isGuidebookChapter03Ready,
+} from "../content/guidebookChapter03.ts";
 
-export type GuidebookPublicPage = "home" | "chapter01" | "chapter02";
+export type GuidebookPublicPage = "home" | "chapter01" | "chapter02" | "chapter03";
 
 function guidebookPath(hash = window.location.hash): string {
   const raw = hash.replace(/^#/, "").split("?")[0] || "/";
@@ -18,12 +23,14 @@ export function parseGuidebookPublicPage(hash = window.location.hash): Guidebook
   const path = guidebookPath(hash);
   if (path === CHAPTER_01_PATH) return "chapter01";
   if (path === CHAPTER_02_PATH) return "chapter02";
+  if (path === CHAPTER_03_PATH && isGuidebookChapter03Ready()) return "chapter03";
   return "home";
 }
 
 export function normalizeGuidebookPublicHash(): void {
   const path = guidebookPath();
   if (path === "/" || path === CHAPTER_01_PATH || path === CHAPTER_02_PATH) return;
+  if (path === CHAPTER_03_PATH && isGuidebookChapter03Ready()) return;
   window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}#/`);
 }
 
@@ -48,7 +55,8 @@ export function resetGuidebookWindowScroll(): void {
   }
   document.documentElement.scrollTop = 0;
   document.body.scrollTop = 0;
-  if (typeof window.scrollTo === "function" && !navigator.userAgent?.includes("jsdom")) {
+  const ua = navigator.userAgent ?? "";
+  if (typeof window.scrollTo === "function" && ua.length > 0 && !ua.includes("jsdom")) {
     window.scrollTo(0, 0);
   }
 }
@@ -57,4 +65,4 @@ export function resetGuidebookPageTracking(): void {
   lastGuidebookPage = null;
 }
 
-export { CHAPTER_01_HASH, CHAPTER_01_PATH, CHAPTER_02_HASH, CHAPTER_02_PATH };
+export { CHAPTER_01_HASH, CHAPTER_01_PATH, CHAPTER_02_HASH, CHAPTER_02_PATH, CHAPTER_03_HASH, CHAPTER_03_PATH };
