@@ -126,6 +126,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     await mount("#/");
     await mount(CHAPTER_01_HASH);
     await mount(CHAPTER_02_HASH);
+    await mount(CHAPTER_03_HASH);
     expect(getCurrentPosition).not.toHaveBeenCalled();
   });
 
@@ -177,7 +178,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector(".guidebook-section.pex-reveal")).toBeTruthy();
   });
 
-  it("renders Chapter 2 from the approved manuscript without a next-page link", async () => {
+  it("renders Chapter 2 from the approved manuscript with a Chapter 3 next-reading line", async () => {
     const chapter = loadGuidebookChapter02();
     expect(chapter.title).toBe(CHAPTER_02_TITLE);
     const root = await mount(CHAPTER_02_HASH);
@@ -190,8 +191,9 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector(".pex-ambient-notice")).toBeTruthy();
     expect(document.title).toMatch(CHAPTER_02_TITLE);
     expect(root.textContent).not.toMatch(/Sign in with Google/);
-    expect(isGuidebookChapter03Ready()).toBe(false);
-    expect(root.querySelector("#guidebook-next-chapter-3")).toBeNull();
+    expect(isGuidebookChapter03Ready()).toBe(true);
+    expect(root.querySelector("#guidebook-next-chapter-3")?.getAttribute("href")).toBe(CHAPTER_03_HASH);
+    expect(root.querySelector("#guidebook-next-chapter-3")?.textContent).toContain(CHAPTER_03_TITLE);
     expect(root.textContent).not.toContain(CHAPTER_03_PLACEHOLDER_MARKER);
   });
 
@@ -206,27 +208,33 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     await renderApp(root);
     expect(document.documentElement.scrollTop).toBe(0);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_02_TITLE);
+    document.documentElement.scrollTop = 280;
+    window.location.hash = CHAPTER_03_HASH;
+    await renderApp(root);
+    expect(document.documentElement.scrollTop).toBe(0);
+    expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_03_TITLE);
   });
 
-  it("does not publish Chapter 3 until the approved manuscript is supplied", async () => {
+  it("renders Chapter 3 from the approved manuscript without inventing a next-page link", async () => {
     const root = await mount(CHAPTER_03_HASH);
-    expect(window.location.hash).toBe("#/");
-    expect(root.querySelector("h1")?.textContent).toBe("What Is a Psychical Excursion?");
-    expect(root.querySelector("h1")?.textContent).not.toBe(CHAPTER_03_TITLE);
-    expect(root.textContent).not.toContain(CHAPTER_03_PLACEHOLDER_MARKER);
-    expect(root.textContent).not.toMatch(/MILD|Wake-Back-to-Bed/i);
+    expect(window.location.hash).toBe(CHAPTER_03_HASH);
+    expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_03_TITLE);
+    expect(root.textContent).toMatch(/Mnemonic Induction of Lucid Dreams/);
+    expect(root.textContent).toMatch(/Wake-Back-to-Bed/);
+    expect(root.querySelector("blockquote.guidebook-pull")?.textContent).toMatch(/DREAM MODE ENABLED/);
+    expect(root.querySelector("ul.guidebook-steps")).toBeTruthy();
+    expect(root.querySelector("ol.guidebook-steps")).toBeTruthy();
+    expect(root.querySelector("#ref-1")).toBeTruthy();
+    expect(root.querySelector("#ref-4")).toBeTruthy();
+    expect(root.querySelector(".pex-ambient-recognize")).toBeTruthy();
+    expect(root.querySelector("#guidebook-next-chapter-3")).toBeNull();
+    expect(root.querySelector(".nav-guide")).toBeNull();
     expect(root.querySelector('a[href="#/journal"]')).toBeNull();
     expect(root.querySelector('a[href="#/days"]')).toBeNull();
     expect(root.querySelector('a[href="#/astronomy"]')).toBeNull();
-  });
-
-  it("resets scroll when the unfinished Chapter 3 hash is normalized to home", async () => {
-    const root = await mount(CHAPTER_02_HASH);
-    document.documentElement.scrollTop = 400;
-    window.location.hash = CHAPTER_03_HASH;
-    await renderApp(root);
-    expect(window.location.hash).toBe("#/");
-    expect(document.documentElement.scrollTop).toBe(0);
+    expect(root.textContent).not.toContain(CHAPTER_03_PLACEHOLDER_MARKER);
+    expect(root.textContent).not.toMatch(/Sign in with Google/);
+    expect(document.title).toMatch(CHAPTER_03_TITLE);
   });
 
   it("preserves Chapter 1 and Chapter 2 public routes", async () => {

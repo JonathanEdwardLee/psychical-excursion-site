@@ -44,7 +44,7 @@ export function renderGuidebookChapterPage(
       continue;
     }
     if (block.kind === "list") {
-      const list = el("ol", { class: "guidebook-steps" });
+      const list = el(block.ordered ? "ol" : "ul", { class: "guidebook-steps" });
       for (const item of block.items) {
         const li = el("li", {});
         li.append(renderRichText(item));
