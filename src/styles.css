@@ -1414,6 +1414,13 @@ audio {
   font-weight: 400;
 }
 
+.guidebook-section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  max-width: 36rem;
+}
+
 .sky-widget-compact {
   display: flex;
   flex-wrap: wrap;
@@ -1440,6 +1447,31 @@ audio {
   gap: 0.28rem;
   white-space: nowrap;
   color: var(--ink);
+  position: relative;
+  cursor: default;
+}
+
+.sky-widget-tip {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 0.4rem);
+  transform: translateX(-50%);
+  font-size: 0.64rem;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  color: var(--ink);
+  background: var(--bg);
+  border: 0;
+  padding: 0.12rem 0;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.sky-widget-pair:hover .sky-widget-tip,
+.sky-widget-pair:focus-visible .sky-widget-tip {
+  opacity: 1;
 }
 
 .sky-widget-body {
@@ -1564,7 +1596,8 @@ html[data-theme="bedtime"] .theme-switch-track {
 
 .pex-ambient-spin-slow,
 .pex-ambient-spin-mid,
-.pex-ambient-memory-forms {
+.pex-ambient-memory-forms,
+.pex-ambient-notice-align {
   transform-origin: 51.67% 47.78%;
   transform-box: view-box;
 }
@@ -1572,19 +1605,15 @@ html[data-theme="bedtime"] .theme-switch-track {
 @media (prefers-reduced-motion: no-preference) {
   .pex-reveal {
     opacity: 0;
-    transform: translateY(0.55rem);
+    transform: translateY(0.4rem);
   }
 
   .pex-reveal.is-visible {
     opacity: 1;
     transform: none;
     transition:
-      opacity 880ms cubic-bezier(0.22, 0.7, 0.2, 1),
-      transform 880ms cubic-bezier(0.22, 0.7, 0.2, 1);
-  }
-
-  .guidebook-section-title.pex-reveal.is-visible {
-    transition-delay: 40ms;
+      opacity 920ms cubic-bezier(0.22, 0.7, 0.2, 1),
+      transform 920ms cubic-bezier(0.22, 0.7, 0.2, 1);
   }
 
   .pex-ambient-spin-slow {
@@ -1605,6 +1634,16 @@ html[data-theme="bedtime"] .theme-switch-track {
 
   .pex-ambient-form-c {
     animation: pex-remember 41s ease-in-out infinite 14s;
+  }
+
+  .pex-ambient-align-a,
+  .pex-ambient-align-b,
+  .pex-ambient-align-point {
+    animation: pex-notice 38s ease-in-out infinite;
+  }
+
+  .pex-ambient-align-b {
+    animation-delay: 7s;
   }
 
   html[data-theme="bedtime"] .theme-switch-track {
@@ -1640,6 +1679,19 @@ html[data-theme="bedtime"] .theme-switch-track {
   }
   72% {
     opacity: 0.07;
+  }
+}
+
+@keyframes pex-notice {
+  0%,
+  100% {
+    opacity: 0.04;
+  }
+  44% {
+    opacity: 0.2;
+  }
+  62% {
+    opacity: 0.09;
   }
 }
 

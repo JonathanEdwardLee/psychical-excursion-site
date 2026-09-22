@@ -3,36 +3,51 @@ import { GUIDEBOOK_SUBTITLE, loadGuidebookManuscript } from "../../content/guide
 import { el } from "../dom.ts";
 import { renderReferenceItem, renderRichParagraph } from "../guidebookRichText.ts";
 
+function newSection(first: boolean): HTMLElement {
+  return el("section", {
+    class: first ? "guidebook-section pex-reveal is-visible" : "guidebook-section pex-reveal",
+  });
+}
+
 export function renderGuidebookHome(main: HTMLElement): void {
   const manuscript = loadGuidebookManuscript();
-  const article = el("article", { class: "guidebook-article" }, [
-    el("p", { class: "guidebook-subtitle pex-reveal" }, [GUIDEBOOK_SUBTITLE]),
-    el("h1", { class: "guidebook-opening-title pex-reveal" }, [manuscript.openingHeading]),
+  const article = el("article", { class: "guidebook-article" });
+  let section = newSection(true);
+  article.append(section);
+  section.append(
+    el("p", { class: "guidebook-subtitle" }, [GUIDEBOOK_SUBTITLE]),
+    el("h1", { class: "guidebook-opening-title" }, [manuscript.openingHeading]),
     ...manuscript.openingParagraphs.map((paragraph) => renderRichParagraph(paragraph)),
-  ]);
+  );
 
-  for (const section of manuscript.sections) {
-    article.append(el("h2", { class: "guidebook-section-title pex-reveal" }, [section.heading]));
-    for (const paragraph of section.paragraphs) {
+  for (const part of manuscript.sections) {
+    section = newSection(false);
+    article.append(section);
+    section.append(el("h2", { class: "guidebook-section-title" }, [part.heading]));
+    for (const paragraph of part.paragraphs) {
       if (paragraph.startsWith("**") && paragraph.endsWith("**")) {
-        article.append(el("p", { class: "guidebook-emphasis-line pex-reveal" }, [paragraph.slice(2, -2)]));
+        section.append(el("p", { class: "guidebook-emphasis-line" }, [paragraph.slice(2, -2)]));
         continue;
       }
-      article.append(renderRichParagraph(paragraph));
+      section.append(renderRichParagraph(paragraph));
     }
   }
 
   if (manuscript.references.length) {
-    article.append(el("h2", { class: "guidebook-section-title pex-reveal", id: "references" }, ["References"]));
+    section = newSection(false);
+    article.append(section);
+    section.append(el("h2", { class: "guidebook-section-title", id: "references" }, ["References"]));
     const list = el("ul", { class: "guidebook-references" });
     for (const line of manuscript.references) {
       list.append(renderReferenceItem(line));
     }
-    article.append(list);
+    section.append(list);
   }
 
-  article.append(
-    el("p", { class: "guidebook-next pex-reveal" }, [
+  section = newSection(false);
+  article.append(section);
+  section.append(
+    el("p", { class: "guidebook-next" }, [
       el("a", {
         href: CHAPTER_01_HASH,
         class: "guidebook-next-link",

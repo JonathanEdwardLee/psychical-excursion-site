@@ -9,7 +9,7 @@ function svgEl<K extends keyof SVGElementTagNameMap>(
   return node;
 }
 
-export type AmbientMode = "orbit" | "memory";
+export type AmbientMode = "orbit" | "memory" | "notice";
 
 /** Lightweight celestial-instrument field. CSS moves it; geometry stays simple. */
 export function renderAmbientLayer(mode: AmbientMode): HTMLElement {
@@ -79,6 +79,22 @@ export function renderAmbientLayer(mode: AmbientMode): HTMLElement {
       }),
     );
     svg.append(memory);
+  }
+
+  if (mode === "notice") {
+    const notice = svgEl("g", { class: "pex-ambient-notice-align" });
+    notice.append(
+      svgEl("path", {
+        class: "pex-ambient-arc pex-ambient-align-a",
+        d: "M260 300 C 480 220, 700 240, 940 360",
+      }),
+      svgEl("path", {
+        class: "pex-ambient-arc pex-ambient-align-b",
+        d: "M300 620 C 520 420, 760 380, 980 520",
+      }),
+      svgEl("circle", { class: "pex-ambient-point pex-ambient-align-point", cx: "640", cy: "390", r: "2.4" }),
+    );
+    svg.append(notice);
   }
 
   layer.append(svg);

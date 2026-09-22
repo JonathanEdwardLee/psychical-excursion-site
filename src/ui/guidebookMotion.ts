@@ -19,6 +19,8 @@ export function bindGuidebookReveals(root: HTMLElement): void {
     return;
   }
 
+  nodes[0]?.classList.add("is-visible");
+
   const observer = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
@@ -27,7 +29,7 @@ export function bindGuidebookReveals(root: HTMLElement): void {
         observer.unobserve(entry.target);
       }
     },
-    { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+    { threshold: 0.08, rootMargin: "0px 0px -10% 0px" },
   );
 
   for (const node of nodes) observer.observe(node);
