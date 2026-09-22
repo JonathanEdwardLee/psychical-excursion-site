@@ -1,5 +1,6 @@
 import { nextFullMoon } from "../astronomy/compute.ts";
 import { snapshotAt } from "../astronomy/clock.ts";
+import { MOON_GLYPH, SUN_GLYPH, TEXT_PRESENTATION } from "../astronomy/constants.ts";
 import { tropicalZodiacSign } from "../astronomy/zodiac.ts";
 import { el } from "./dom.ts";
 
@@ -40,11 +41,11 @@ export function renderSkyWidget(): HTMLElement {
     "aria-label": spoken,
   }, [
     el("span", { class: "sky-widget-pair" }, [
-      el("span", { class: "sky-widget-body", "aria-hidden": "true" }, [snap.sun.glyph]),
+      el("span", { class: "sky-widget-body", "aria-hidden": "true" }, [`${SUN_GLYPH}${TEXT_PRESENTATION}`]),
       el("span", { class: "sky-widget-sign", "aria-hidden": "true" }, [sunSign.glyph]),
     ]),
     el("span", { class: "sky-widget-pair" }, [
-      el("span", { class: "sky-widget-body", "aria-hidden": "true" }, [snap.moon.glyph]),
+      el("span", { class: "sky-widget-body", "aria-hidden": "true" }, [`${MOON_GLYPH}${TEXT_PRESENTATION}`]),
       el("span", { class: "sky-widget-sign", "aria-hidden": "true" }, [moonSign.glyph]),
     ]),
     fullNode,

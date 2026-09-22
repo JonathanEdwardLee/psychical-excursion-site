@@ -67,7 +67,7 @@ describe("astronomy instrument", () => {
 
   it("maps geocentric ecliptic longitude to tropical Western zodiac sectors", () => {
     expect(tropicalZodiacSign(0).name).toBe("Aries");
-    expect(tropicalZodiacSign(29.9).glyph).toBe("♈");
+    expect(tropicalZodiacSign(29.9).glyph.startsWith("♈")).toBe(true);
     expect(tropicalZodiacSign(30).name).toBe("Taurus");
     expect(tropicalZodiacSign(359).name).toBe("Pisces");
     const equinox = new Date("2024-03-20T03:07:00.000Z");

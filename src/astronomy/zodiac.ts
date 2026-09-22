@@ -1,16 +1,16 @@
 export const TROPICAL_ZODIAC_SIGNS = [
-  { name: "Aries", glyph: "♈" },
-  { name: "Taurus", glyph: "♉" },
-  { name: "Gemini", glyph: "♊" },
-  { name: "Cancer", glyph: "♋" },
-  { name: "Leo", glyph: "♌" },
-  { name: "Virgo", glyph: "♍" },
-  { name: "Libra", glyph: "♎" },
-  { name: "Scorpio", glyph: "♏" },
-  { name: "Sagittarius", glyph: "♐" },
-  { name: "Capricorn", glyph: "♑" },
-  { name: "Aquarius", glyph: "♒" },
-  { name: "Pisces", glyph: "♓" },
+  { name: "Aries", glyph: "♈\uFE0E" },
+  { name: "Taurus", glyph: "♉\uFE0E" },
+  { name: "Gemini", glyph: "♊\uFE0E" },
+  { name: "Cancer", glyph: "♋\uFE0E" },
+  { name: "Leo", glyph: "♌\uFE0E" },
+  { name: "Virgo", glyph: "♍\uFE0E" },
+  { name: "Libra", glyph: "♎\uFE0E" },
+  { name: "Scorpio", glyph: "♏\uFE0E" },
+  { name: "Sagittarius", glyph: "♐\uFE0E" },
+  { name: "Capricorn", glyph: "♑\uFE0E" },
+  { name: "Aquarius", glyph: "♒\uFE0E" },
+  { name: "Pisces", glyph: "♓\uFE0E" },
 ] as const;
 
 export type TropicalZodiacSign = (typeof TROPICAL_ZODIAC_SIGNS)[number];
