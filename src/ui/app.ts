@@ -28,7 +28,12 @@ import { loadGuidebookChapter01, CHAPTER_01_HASH, CHAPTER_01_TITLE } from "../co
 import { CHAPTER_02_HASH, CHAPTER_02_TITLE, loadGuidebookChapter02 } from "../content/guidebookChapter02.ts";
 import { CHAPTER_03_HASH, CHAPTER_03_TITLE, loadGuidebookChapter03 } from "../content/guidebookChapter03.ts";
 import { CHAPTER_04_HASH, CHAPTER_04_TITLE, loadGuidebookChapter04 } from "../content/guidebookChapter04.ts";
-import { isGuidebookChapter05Ready, loadGuidebookChapter05 } from "../content/guidebookChapter05.ts";
+import {
+  CHAPTER_05_HASH,
+  CHAPTER_05_TITLE,
+  isGuidebookChapter05Ready,
+  loadGuidebookChapter05,
+} from "../content/guidebookChapter05.ts";
 import { finalizeGuidebookPage, renderGuidebookChrome } from "./guidebookShell.ts";
 import { isGuidebookPublicSurface } from "./publicSurface.ts";
 import { parseGuidebookHash } from "../content/guidebookAnchors.ts";
@@ -116,6 +121,13 @@ export async function renderApp(root: HTMLElement): Promise<void> {
           title: CHAPTER_03_TITLE,
           id: "guidebook-prev-chapter-3",
         },
+        next: isGuidebookChapter05Ready()
+          ? {
+            href: CHAPTER_05_HASH,
+            title: CHAPTER_05_TITLE,
+            id: "guidebook-next-chapter-5",
+          }
+          : undefined,
       });
     } else if (page === "chapter05" && isGuidebookChapter05Ready()) {
       renderGuidebookChapterPage(main, loadGuidebookChapter05(), {

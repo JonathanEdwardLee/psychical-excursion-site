@@ -81,6 +81,11 @@ export function parseGuidebookChapter(raw: string): ChapterDocument {
       i += 1;
       continue;
     }
+    if (line.trim() === ATTENTION_INSTRUMENT_TOKEN) {
+      blocks.push({ kind: "attention" });
+      i += 1;
+      continue;
+    }
     if (line.startsWith("## ")) {
       const heading = line.slice(3).trim();
       if (heading === "References") {

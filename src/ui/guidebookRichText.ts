@@ -1,4 +1,4 @@
-import { PEX_GUIDEBOOK_LINKS } from "../content/guidebookAnchors.ts";
+import { NIGHTTIME_BODY_RELEASE_ID, PEX_GUIDEBOOK_LINKS, RELAX_THE_BODY_HREF, RELAX_THE_BODY_PEX_ID } from "../content/guidebookAnchors.ts";
 import { el } from "./dom.ts";
 
 type RichTextOptions = {
@@ -14,27 +14,32 @@ export function renderRichText(text: string, options: RichTextOptions = {}): HTM
   const { linkCitations = true } = options;
   const paragraph = el("span", { class: "guidebook-rich-text" });
   const pattern = linkCitations
-    ? /(\[[^\]]+\]\(pex:[a-z0-9-]+\)|\*\*[^*]+\*\*|\*[^*]+\*|\[\d+\]|https:\/\/\S+|doi:10\.\S+)/gi
-    : /(\[[^\]]+\]\(pex:[a-z0-9-]+\)|\*\*[^*]+\*\*|\*[^*]+\*|https:\/\/\S+|doi:10\.\S+)/gi;
+    ? /(\[[^\]]+\]\((?:pex:[a-z0-9-]+|#\/[^)\s]+)\)|\*\*[^*]+\*\*|\*[^*]+\*|\[\d+\]|https:\/\/\S+|doi:10\.\S+)/gi
+    : /(\[[^\]]+\]\((?:pex:[a-z0-9-]+|#\/[^)\s]+)\)|\*\*[^*]+\*\*|\*[^*]+\*|https:\/\/\S+|doi:10\.\S+)/gi;
   let lastIndex = 0;
   for (const match of text.matchAll(pattern)) {
     const index = match.index ?? 0;
     if (index > lastIndex) paragraph.append(text.slice(lastIndex, index));
     const token = match[0];
-    const pexLink = token.match(/^\[([^\]]+)\]\(pex:([a-z0-9-]+)\)$/i);
-    if (pexLink) {
-      const dest = PEX_GUIDEBOOK_LINKS[pexLink[2]!.toLowerCase()];
-      if (dest) {
-        paragraph.append(
-          el("a", {
-            href: dest.href,
-            class: "guidebook-pex-link",
-            "data-pex-link": dest.id,
-          }, [pexLink[1]!]),
-        );
-      } else {
-        paragraph.append(token);
-      }
+    const mdLink = token.match(/^\[([^\]]+)\]\((pex:[a-z0-9-]+|#\/[^)\s]+)\)$/i);
+    if (mdLink) {
+      const label = mdLink[1]!;
+      const destRaw = mdLink[2]!;
+      const pexId = destRaw.toLowerCase().startsWith("pex:") ? destRaw.slice(4).toLowerCase() : "";
+      const dest = pexId ? PEX_GUIDEBOOK_LINKS[pexId] : undefined;
+      const href = dest?.href
+        ?? (destRaw === RELAX_THE_BODY_HREF || destRaw.endsWith(`#${NIGHTTIME_BODY_RELEASE_ID}`)
+          ? RELAX_THE_BODY_HREF
+          : destRaw);
+      const link = el("a", {
+        href,
+        class: "guidebook-pex-link",
+        "data-pex-link": dest?.id ?? RELAX_THE_BODY_PEX_ID,
+      });
+      const bold = label.match(/^\*\*(.+)\*\*$/);
+      if (bold) link.append(el("strong", {}, [bold[1]!]));
+      else link.append(label);
+      paragraph.append(link);
     } else if (token.startsWith("**")) {
       paragraph.append(el("strong", {}, [token.slice(2, -2)]));
     } else if (token.startsWith("*")) {
