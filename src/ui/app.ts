@@ -26,12 +26,8 @@ import { renderGuidebookHome } from "./pages/guidebookHome.ts";
 import { renderGuidebookChapterPage } from "./pages/guidebookChapter.ts";
 import { loadGuidebookChapter01 } from "../content/guidebookChapter01.ts";
 import { CHAPTER_02_HASH, CHAPTER_02_TITLE, loadGuidebookChapter02 } from "../content/guidebookChapter02.ts";
-import {
-  CHAPTER_03_HASH,
-  CHAPTER_03_TITLE,
-  isGuidebookChapter03Ready,
-  loadGuidebookChapter03,
-} from "../content/guidebookChapter03.ts";
+import { CHAPTER_03_HASH, CHAPTER_03_TITLE, loadGuidebookChapter03 } from "../content/guidebookChapter03.ts";
+import { CHAPTER_04_HASH, CHAPTER_04_TITLE, loadGuidebookChapter04 } from "../content/guidebookChapter04.ts";
 import { finalizeGuidebookPage, renderGuidebookChrome } from "./guidebookShell.ts";
 import { isGuidebookPublicSurface } from "./publicSurface.ts";
 import {
@@ -76,19 +72,19 @@ export async function renderApp(root: HTMLElement): Promise<void> {
         id: "guidebook-next-chapter-2",
       });
     } else if (page === "chapter02") {
-      renderGuidebookChapterPage(
-        main,
-        loadGuidebookChapter02(),
-        isGuidebookChapter03Ready()
-          ? {
-              href: CHAPTER_03_HASH,
-              title: CHAPTER_03_TITLE,
-              id: "guidebook-next-chapter-3",
-            }
-          : undefined,
-      );
+      renderGuidebookChapterPage(main, loadGuidebookChapter02(), {
+        href: CHAPTER_03_HASH,
+        title: CHAPTER_03_TITLE,
+        id: "guidebook-next-chapter-3",
+      });
     } else if (page === "chapter03") {
-      renderGuidebookChapterPage(main, loadGuidebookChapter03());
+      renderGuidebookChapterPage(main, loadGuidebookChapter03(), {
+        href: CHAPTER_04_HASH,
+        title: CHAPTER_04_TITLE,
+        id: "guidebook-next-chapter-4",
+      });
+    } else if (page === "chapter04") {
+      renderGuidebookChapterPage(main, loadGuidebookChapter04());
     } else {
       renderGuidebookHome(main);
     }
