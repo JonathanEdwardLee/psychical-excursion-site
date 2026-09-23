@@ -1305,6 +1305,7 @@ audio {
 .guidebook-section-title {
   font-size: clamp(1.35rem, 4.2vw, 1.85rem);
   margin: 2.4rem 0 0.85rem;
+  scroll-margin-top: 5.75rem;
 }
 
 .guidebook-opening-title {
@@ -1429,6 +1430,116 @@ audio {
   .guidebook-practice {
     padding: 1.15rem 0.95rem 1rem;
   }
+}
+
+.guidebook-prev {
+  margin: 0 0 1.15rem;
+}
+
+.guidebook-prev-link {
+  color: var(--muted);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  padding: 0.15rem 0;
+}
+
+.guidebook-prev-link:hover,
+.guidebook-prev-link:focus-visible {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.guidebook-prev-arrow {
+  font-weight: 400;
+}
+
+.guidebook-pex-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.pex-attention-instrument {
+  margin: 0.2rem 0 1.6rem;
+  max-width: 36rem;
+  width: 100%;
+}
+
+.pex-attention-instrument svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  color: var(--ink);
+}
+
+.pex-attention-line {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 0.7;
+  stroke-linejoin: miter;
+  stroke-linecap: square;
+  opacity: 0.42;
+}
+
+.pex-attention-strong {
+  stroke-width: 1.05;
+  opacity: 0.62;
+}
+
+.pex-attention-soft {
+  opacity: 0.3;
+}
+
+.pex-attention-fine {
+  stroke-width: 0.45;
+  opacity: 0.34;
+}
+
+.pex-attention-faintest {
+  stroke-width: 0.4;
+  opacity: 0.16;
+}
+
+.pex-attention-arc {
+  stroke-linecap: round;
+  opacity: 0.38;
+}
+
+.pex-attention-fill {
+  fill: currentColor;
+  stroke: none;
+  opacity: 0.55;
+}
+
+.pex-attention-instrument.is-static .pex-attention-spin-inner,
+.pex-attention-instrument.is-static .pex-attention-spin-mid,
+.pex-attention-instrument.is-static .pex-attention-spin-outer,
+.pex-attention-instrument.is-static .pex-attention-breathe {
+  animation: none;
+}
+
+.pex-attention-spin-outer,
+.pex-attention-spin-mid,
+.pex-attention-spin-inner,
+.pex-attention-breathe {
+  transform-origin: 500px 500px;
+  transform-box: view-box;
+}
+
+:root[data-theme="bedtime"] .pex-attention-line {
+  opacity: 0.5;
+}
+
+:root[data-theme="bedtime"] .pex-attention-faintest {
+  opacity: 0.2;
 }
 
 .guidebook-next {
@@ -1692,6 +1803,22 @@ html[data-theme="bedtime"] .theme-switch-track {
     animation-delay: 7s;
   }
 
+  .pex-attention-spin-inner {
+    animation: pex-attention-cw var(--pex-attention-inner, 180s) linear infinite;
+  }
+
+  .pex-attention-spin-mid {
+    animation: pex-attention-ccw var(--pex-attention-mid, 240s) linear infinite;
+  }
+
+  .pex-attention-spin-outer {
+    animation: pex-attention-cw var(--pex-attention-outer, 300s) linear infinite;
+  }
+
+  .pex-attention-breathe {
+    animation: pex-attention-breathe var(--pex-attention-breathe, 96s) ease-in-out infinite;
+  }
+
   html[data-theme="bedtime"] .theme-switch-track {
     transition: none;
   }
@@ -1712,6 +1839,34 @@ html[data-theme="bedtime"] .theme-switch-track {
   }
   to {
     transform: rotate(-348deg);
+  }
+}
+
+@keyframes pex-attention-cw {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pex-attention-ccw {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes pex-attention-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.028);
   }
 }
 

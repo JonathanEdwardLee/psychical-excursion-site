@@ -1,11 +1,18 @@
 import type { ChapterBlock, ChapterDocument, PracticePart } from "../../content/guidebookChapter01.ts";
+import { guidebookHeadingId } from "../../content/guidebookAnchors.ts";
 import { el } from "../dom.ts";
+import { renderAttentionInstrument } from "../attentionInstrument.ts";
 import { renderReferenceItem, renderRichParagraph, renderRichText } from "../guidebookRichText.ts";
 
 export type GuidebookNextReading = {
   href: string;
   title: string;
   id: string;
+};
+
+export type GuidebookChapterNav = {
+  next?: GuidebookNextReading;
+  previous?: GuidebookNextReading;
 };
 
 function newSection(first: boolean): HTMLElement {
@@ -40,7 +47,7 @@ function appendFlowBlocks(section: HTMLElement, blocks: ChapterBlock[]): void {
       section.append(el("hr", { class: "guidebook-rule" }));
       continue;
     }
-    if (block.kind === "heading" || block.kind === "practice") continue;
+    if (block.kind === "heading" || block.kind === "practice" || block.kind === "attention") continue;
     section.append(renderRichParagraph(block.text));
   }
 }
@@ -52,14 +59,28 @@ function renderPracticePart(part: PracticePart): HTMLElement {
   return region;
 }
 
+function renderPrevious(previous: GuidebookNextReading): HTMLElement {
+  return el("nav", { class: "guidebook-prev", "aria-label": "Previous reading" }, [
+    el("a", {
+      href: previous.href,
+      class: "guidebook-prev-link",
+      id: previous.id,
+    }, [
+      el("span", { class: "guidebook-prev-arrow", "aria-hidden": "true" }, ["← "]),
+      previous.title,
+    ]),
+  ]);
+}
+
 export function renderGuidebookChapterPage(
   main: HTMLElement,
   chapter: ChapterDocument,
-  next?: GuidebookNextReading,
+  nav: GuidebookChapterNav = {},
 ): void {
   const article = el("article", { class: "guidebook-article guidebook-chapter" });
   let section = newSection(true);
   article.append(section);
+  if (nav.previous) section.append(renderPrevious(nav.previous));
   section.append(el("h1", { class: "guidebook-chapter-title" }, [chapter.title]));
 
   for (const block of chapter.blocks) {
@@ -67,7 +88,11 @@ export function renderGuidebookChapterPage(
       section = newSection(false);
       article.append(section);
       const heading = el("h2", { class: "guidebook-section-title" }, [block.text]);
-      if (block.text === "References") heading.id = "references";
+      const id = guidebookHeadingId(block.text);
+      if (id) {
+        heading.id = id;
+        heading.tabIndex = -1;
+      }
       section.append(heading);
       continue;
     }
@@ -80,6 +105,12 @@ export function renderGuidebookChapterPage(
       });
       for (const part of block.parts) card.append(renderPracticePart(part));
       section.append(card);
+      continue;
+    }
+    if (block.kind === "attention") {
+      section = newSection(false);
+      article.append(section);
+      section.append(renderAttentionInstrument());
       continue;
     }
     appendFlowBlocks(section, [block]);
@@ -96,17 +127,17 @@ export function renderGuidebookChapterPage(
     section.append(list);
   }
 
-  if (next) {
+  if (nav.next) {
     section = newSection(false);
     article.append(section);
     section.append(
       el("p", { class: "guidebook-next" }, [
         el("a", {
-          href: next.href,
+          href: nav.next.href,
           class: "guidebook-next-link",
-          id: next.id,
+          id: nav.next.id,
         }, [
-          next.title,
+          nav.next.title,
           el("span", { class: "guidebook-next-arrow", "aria-hidden": "true" }, [" →"]),
         ]),
       ]),

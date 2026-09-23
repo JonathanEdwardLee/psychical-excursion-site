@@ -14,17 +14,23 @@ import {
   CHAPTER_04_HASH,
   CHAPTER_04_PATH,
 } from "../content/guidebookChapter04.ts";
+import {
+  CHAPTER_05_HASH,
+  CHAPTER_05_PATH,
+  isGuidebookChapter05Ready,
+} from "../content/guidebookChapter05.ts";
+import { parseGuidebookHash } from "../content/guidebookAnchors.ts";
 
 export type GuidebookPublicPage =
   | "home"
   | "chapter01"
   | "chapter02"
   | "chapter03"
-  | "chapter04";
+  | "chapter04"
+  | "chapter05";
 
 function guidebookPath(hash = window.location.hash): string {
-  const raw = hash.replace(/^#/, "").split("?")[0] || "/";
-  return raw.startsWith("/") ? raw : `/${raw}`;
+  return parseGuidebookHash(hash).path;
 }
 
 export function parseGuidebookPublicPage(hash = window.location.hash): GuidebookPublicPage {
@@ -33,11 +39,12 @@ export function parseGuidebookPublicPage(hash = window.location.hash): Guidebook
   if (path === CHAPTER_02_PATH) return "chapter02";
   if (path === CHAPTER_03_PATH) return "chapter03";
   if (path === CHAPTER_04_PATH) return "chapter04";
+  if (path === CHAPTER_05_PATH && isGuidebookChapter05Ready()) return "chapter05";
   return "home";
 }
 
 export function normalizeGuidebookPublicHash(): void {
-  const path = guidebookPath();
+  const { path } = parseGuidebookHash();
   if (
     path === "/" ||
     path === CHAPTER_01_PATH ||
@@ -47,6 +54,7 @@ export function normalizeGuidebookPublicHash(): void {
   ) {
     return;
   }
+  if (path === CHAPTER_05_PATH && isGuidebookChapter05Ready()) return;
   window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}#/`);
 }
 
@@ -77,6 +85,20 @@ export function resetGuidebookWindowScroll(): void {
   }
 }
 
+export function scrollGuidebookSection(root: HTMLElement, fragment: string): void {
+  if (!fragment) return;
+  const target = root.querySelector<HTMLElement>(`[id="${fragment}"]`);
+  if (!target) return;
+  target.closest(".guidebook-section")?.classList.add("is-visible");
+  const ua = navigator.userAgent ?? "";
+  if (typeof target.scrollIntoView === "function" && ua.length > 0 && !ua.includes("jsdom")) {
+    const reduced = typeof window.matchMedia === "function"
+      && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    target.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+  }
+  target.focus({ preventScroll: true });
+}
+
 export function resetGuidebookPageTracking(): void {
   lastGuidebookPage = null;
 }
@@ -90,4 +112,6 @@ export {
   CHAPTER_03_PATH,
   CHAPTER_04_HASH,
   CHAPTER_04_PATH,
+  CHAPTER_05_HASH,
+  CHAPTER_05_PATH,
 };
