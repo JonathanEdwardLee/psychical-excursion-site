@@ -9,10 +9,18 @@ import {
 import {
   CHAPTER_03_HASH,
   CHAPTER_03_PATH,
-  isGuidebookChapter03Ready,
 } from "../content/guidebookChapter03.ts";
+import {
+  CHAPTER_04_HASH,
+  CHAPTER_04_PATH,
+} from "../content/guidebookChapter04.ts";
 
-export type GuidebookPublicPage = "home" | "chapter01" | "chapter02" | "chapter03";
+export type GuidebookPublicPage =
+  | "home"
+  | "chapter01"
+  | "chapter02"
+  | "chapter03"
+  | "chapter04";
 
 function guidebookPath(hash = window.location.hash): string {
   const raw = hash.replace(/^#/, "").split("?")[0] || "/";
@@ -23,14 +31,22 @@ export function parseGuidebookPublicPage(hash = window.location.hash): Guidebook
   const path = guidebookPath(hash);
   if (path === CHAPTER_01_PATH) return "chapter01";
   if (path === CHAPTER_02_PATH) return "chapter02";
-  if (path === CHAPTER_03_PATH && isGuidebookChapter03Ready()) return "chapter03";
+  if (path === CHAPTER_03_PATH) return "chapter03";
+  if (path === CHAPTER_04_PATH) return "chapter04";
   return "home";
 }
 
 export function normalizeGuidebookPublicHash(): void {
   const path = guidebookPath();
-  if (path === "/" || path === CHAPTER_01_PATH || path === CHAPTER_02_PATH) return;
-  if (path === CHAPTER_03_PATH && isGuidebookChapter03Ready()) return;
+  if (
+    path === "/" ||
+    path === CHAPTER_01_PATH ||
+    path === CHAPTER_02_PATH ||
+    path === CHAPTER_03_PATH ||
+    path === CHAPTER_04_PATH
+  ) {
+    return;
+  }
   window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}#/`);
 }
 
@@ -65,4 +81,13 @@ export function resetGuidebookPageTracking(): void {
   lastGuidebookPage = null;
 }
 
-export { CHAPTER_01_HASH, CHAPTER_01_PATH, CHAPTER_02_HASH, CHAPTER_02_PATH, CHAPTER_03_HASH, CHAPTER_03_PATH };
+export {
+  CHAPTER_01_HASH,
+  CHAPTER_01_PATH,
+  CHAPTER_02_HASH,
+  CHAPTER_02_PATH,
+  CHAPTER_03_HASH,
+  CHAPTER_03_PATH,
+  CHAPTER_04_HASH,
+  CHAPTER_04_PATH,
+};

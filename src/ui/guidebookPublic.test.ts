@@ -5,8 +5,8 @@ import {
   CHAPTER_03_HASH,
   CHAPTER_03_PLACEHOLDER_MARKER,
   CHAPTER_03_TITLE,
-  isGuidebookChapter03Ready,
 } from "../content/guidebookChapter03.ts";
+import { CHAPTER_04_HASH, CHAPTER_04_TITLE, loadGuidebookChapter04 } from "../content/guidebookChapter04.ts";
 import { loadGuidebookManuscript } from "../content/guidebookManuscript.ts";
 import { TROPICAL_ZODIAC_SIGNS } from "../astronomy/zodiac.ts";
 import { renderApp } from "./app.ts";
@@ -18,6 +18,29 @@ async function mount(hash: string): Promise<HTMLElement> {
   const root = document.getElementById("app")!;
   await renderApp(root);
   return root;
+}
+
+function practiceLabels(root: HTMLElement): string[] {
+  const card = root.querySelector(".guidebook-practice");
+  return [...card?.querySelectorAll(".guidebook-practice-label") ?? []].map((node) => node.textContent ?? "");
+}
+
+function expectHeldFeaturesAbsent(root: HTMLElement): void {
+  expect(root.querySelector(".nav-guide")).toBeNull();
+  expect(root.querySelector('a[href="#/journal"]')).toBeNull();
+  expect(root.querySelector('a[href="#/days"]')).toBeNull();
+  expect(root.querySelector('a[href="#/astronomy"]')).toBeNull();
+  expect(root.textContent).not.toMatch(/Sign in with Google/);
+}
+
+function expectPublicHeader(root: HTMLElement): void {
+  const header = root.querySelector("header.guidebook-header");
+  expect(header).toBeTruthy();
+  expect(header?.querySelector(".brand-logo-light")).toBeTruthy();
+  expect(header?.querySelector(".brand-logo-reverse")).toBeTruthy();
+  expect(header?.querySelector(".sky-widget-compact")).toBeTruthy();
+  expect(header?.querySelector("#theme-light-dark")).toBeTruthy();
+  expect(header?.querySelectorAll("img.brand-logo").length).toBe(2);
 }
 
 describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
@@ -127,6 +150,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     await mount(CHAPTER_01_HASH);
     await mount(CHAPTER_02_HASH);
     await mount(CHAPTER_03_HASH);
+    await mount(CHAPTER_04_HASH);
     expect(getCurrentPosition).not.toHaveBeenCalled();
   });
 
@@ -162,13 +186,15 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_01_TITLE);
     expect(root.textContent).toMatch(/arousal-retrieval model/);
     expect(root.textContent).toMatch(/red stairs — grandmother — rain/);
-    expect(root.querySelectorAll(".guidebook-steps").length).toBeGreaterThanOrEqual(2);
+    expect(root.querySelectorAll("ol.guidebook-steps").length).toBeGreaterThanOrEqual(1);
+    expect(practiceLabels(root)).toEqual(["Summary", "Experiment", "Intention"]);
+    expect(root.querySelectorAll(".guidebook-practice").length).toBe(1);
     expect(root.querySelector("#ref-6")).toBeTruthy();
     expect(root.querySelector(".pex-ambient-memory")).toBeTruthy();
     expect(root.querySelector("#guidebook-next-chapter-2")?.getAttribute("href")).toBe(CHAPTER_02_HASH);
     expect(root.querySelector("#guidebook-next-chapter-2")?.textContent).toContain(CHAPTER_02_TITLE);
-    expect(root.querySelector('a[href="#/astronomy"]')).toBeNull();
-    expect(root.textContent).not.toMatch(/Sign in with Google/);
+    expectPublicHeader(root);
+    expectHeldFeaturesAbsent(root);
     expect(document.title).toMatch(CHAPTER_01_TITLE);
   });
 
@@ -190,11 +216,13 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector(".nav-guide")).toBeNull();
     expect(root.querySelector(".pex-ambient-notice")).toBeTruthy();
     expect(document.title).toMatch(CHAPTER_02_TITLE);
-    expect(root.textContent).not.toMatch(/Sign in with Google/);
-    expect(isGuidebookChapter03Ready()).toBe(true);
+    expect(practiceLabels(root)).toEqual(["Summary", "Experiment", "Intention"]);
+    expect(root.querySelectorAll(".guidebook-practice").length).toBe(1);
     expect(root.querySelector("#guidebook-next-chapter-3")?.getAttribute("href")).toBe(CHAPTER_03_HASH);
     expect(root.querySelector("#guidebook-next-chapter-3")?.textContent).toContain(CHAPTER_03_TITLE);
     expect(root.textContent).not.toContain(CHAPTER_03_PLACEHOLDER_MARKER);
+    expectPublicHeader(root);
+    expectHeldFeaturesAbsent(root);
   });
 
   it("resets window scroll when moving between guidebook pages", async () => {
@@ -213,34 +241,71 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     await renderApp(root);
     expect(document.documentElement.scrollTop).toBe(0);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_03_TITLE);
+    document.documentElement.scrollTop = 240;
+    window.location.hash = CHAPTER_04_HASH;
+    await renderApp(root);
+    expect(document.documentElement.scrollTop).toBe(0);
+    expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_04_TITLE);
   });
 
-  it("renders Chapter 3 from the approved manuscript without inventing a next-page link", async () => {
+  it("renders Chapter 3 with a Chapter 4 next-reading line and one practice card", async () => {
     const root = await mount(CHAPTER_03_HASH);
     expect(window.location.hash).toBe(CHAPTER_03_HASH);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_03_TITLE);
     expect(root.textContent).toMatch(/Mnemonic Induction of Lucid Dreams/);
     expect(root.textContent).toMatch(/Wake-Back-to-Bed/);
     expect(root.querySelector("blockquote.guidebook-pull")?.textContent).toMatch(/DREAM MODE ENABLED/);
-    expect(root.querySelector("ul.guidebook-steps")).toBeTruthy();
-    expect(root.querySelector("ol.guidebook-steps")).toBeTruthy();
+    expect(root.querySelector("ul.guidebook-steps")?.querySelectorAll("li").length).toBe(11);
+    expect(root.querySelector("ol.guidebook-steps")).toBeNull();
+    expect([...root.querySelectorAll("h2.guidebook-section-title")].map((node) => node.textContent)).not.toContain("Try This");
+    expect(root.textContent?.split("Choose a dream you remember").length).toBe(2);
+    expect(practiceLabels(root)).toEqual(["Summary", "Experiment", "Intention"]);
+    expect(root.querySelectorAll(".guidebook-practice").length).toBe(1);
     expect(root.querySelector("#ref-1")).toBeTruthy();
     expect(root.querySelector("#ref-4")).toBeTruthy();
     expect(root.querySelector(".pex-ambient-recognize")).toBeTruthy();
-    expect(root.querySelector("#guidebook-next-chapter-3")).toBeNull();
-    expect(root.querySelector(".nav-guide")).toBeNull();
-    expect(root.querySelector('a[href="#/journal"]')).toBeNull();
-    expect(root.querySelector('a[href="#/days"]')).toBeNull();
-    expect(root.querySelector('a[href="#/astronomy"]')).toBeNull();
+    expect(root.querySelector("#guidebook-next-chapter-4")?.getAttribute("href")).toBe(CHAPTER_04_HASH);
+    expect(root.querySelector("#guidebook-next-chapter-4")?.textContent).toContain(CHAPTER_04_TITLE);
+    expectPublicHeader(root);
+    expectHeldFeaturesAbsent(root);
     expect(root.textContent).not.toContain(CHAPTER_03_PLACEHOLDER_MARKER);
-    expect(root.textContent).not.toMatch(/Sign in with Google/);
     expect(document.title).toMatch(CHAPTER_03_TITLE);
   });
 
-  it("preserves Chapter 1 and Chapter 2 public routes", async () => {
+  it("renders Chapter 4 Feel the Body without a next-page link", async () => {
+    const chapter = loadGuidebookChapter04();
+    expect(chapter.title).toBe(CHAPTER_04_TITLE);
+    const root = await mount(CHAPTER_04_HASH);
+    expect(window.location.hash).toBe(CHAPTER_04_HASH);
+    expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_04_TITLE);
+    expect(root.textContent).toMatch(/progressive muscle relaxation/);
+    expect(root.textContent).toMatch(/somatosensory attention/);
+    expect(practiceLabels(root)).toEqual(["Summary", "Experiment", "Intention"]);
+    expect(root.querySelectorAll(".guidebook-practice").length).toBe(1);
+    expect(root.querySelector("#ref-1")).toBeTruthy();
+    expect(root.querySelector("#ref-3")).toBeTruthy();
+    expect(root.querySelector(".pex-ambient-body")).toBeTruthy();
+    expect(root.querySelector("#guidebook-next-chapter-4")).toBeNull();
+    expect(root.querySelector(".guidebook-footer")).toBeTruthy();
+    expectPublicHeader(root);
+    expectHeldFeaturesAbsent(root);
+    expect(document.title).toMatch(CHAPTER_04_TITLE);
+  });
+
+  it("keeps reduced-motion readers able to see Chapter 4 sections", async () => {
+    const root = await mount(CHAPTER_04_HASH);
+    expect(root.querySelector(".pex-ambient-body")).toBeTruthy();
+    expect(root.querySelector(".guidebook-section.pex-reveal")).toBeTruthy();
+    expect(root.querySelector(".guidebook-practice")?.closest(".guidebook-section.pex-reveal")).toBeTruthy();
+  });
+
+  it("preserves Chapter 1 through Chapter 3 public routes", async () => {
     const one = await mount(CHAPTER_01_HASH);
     expect(one.querySelector("h1")?.textContent).toBe(CHAPTER_01_TITLE);
+    expectPublicHeader(one);
     const two = await mount(CHAPTER_02_HASH);
     expect(two.querySelector("h1")?.textContent).toBe(CHAPTER_02_TITLE);
+    const three = await mount(CHAPTER_03_HASH);
+    expect(three.querySelector("h1")?.textContent).toBe(CHAPTER_03_TITLE);
   });
 });

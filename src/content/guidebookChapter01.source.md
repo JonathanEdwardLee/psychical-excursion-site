@@ -310,19 +310,39 @@ Tonight:
 2. As you settle into sleep, repeat a simple present-tense intention such as **I remember my dreams**.
 3. Imagine yourself waking with a dream already in mind.
 
-When you wake:
-
-1. Remain still for a few breaths.
-2. Ask **What was just happening?**
-3. Follow the first image, emotion, place, person, phrase, or sensation that appears.
-4. Record the smallest fragment you have.
-5. Let additional details return in their own order.
-
 For the next several mornings, notice what changes.
 
 Dream length matters less than recall itself.
 
 One fragment is the beginning.
+
+---
+
+### Summary
+
+Dream recall begins in the first moments after waking. Dreams can disappear quickly when attention moves immediately toward the day, so remembering them becomes easier when waking itself becomes part of the practice.
+
+The goal is not to remember every dream perfectly. It is to strengthen the habit of turning attention toward whatever remains.
+
+### Experiment
+
+When you wake, stay still for a few moments if comfortable.
+
+Before reaching for your phone or beginning the day, ask:
+
+**What was I just experiencing?**
+
+Let any image, person, place, feeling, sentence, or fragment return.
+
+Start with whatever is there.
+
+Follow it backward if more appears.
+
+Record what you remember while it is still available, even if it is only one strange image or a few words.
+
+### Intention
+
+**When I wake, I remember my dreams.**
 
 ---
 

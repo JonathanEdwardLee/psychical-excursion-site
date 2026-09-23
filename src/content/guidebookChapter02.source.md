@@ -540,21 +540,27 @@ Examples:
 
 During waking life, let anything resembling those signs become an invitation to notice.
 
-When a cue appears:
+---
 
-1. Pause.
-2. Look carefully at where you are.
-3. Remember how you arrived there.
-4. Notice something about your body and surroundings.
-5. Ask **Am I dreaming?**
-6. Give the possibility a genuine moment of consideration.
-7. Imagine one simple impossible action becoming possible.
+### Summary
 
-Then continue normally.
+Dreams often contain recurring clues: impossible events, familiar places, unusual emotions, repeated situations, strange technology, people from another period of life, or details that simply do not behave as waking reality normally does.
 
-Notice whether the question begins appearing on its own.
+Learning your own dream signs gives you something specific to notice rather than waiting for a dream to become obviously absurd.
 
-That is the experiment.
+### Experiment
+
+Review several dreams you remember.
+
+Choose one sign that appears more than once, or one category of sign that feels especially characteristic of your dreams.
+
+During waking life, when something genuinely surprising, unusual, repetitive, or dreamlike catches your attention, pause for a moment and really notice it.
+
+You are practicing the movement from automatic experience to curiosity.
+
+### Intention
+
+**I notice what is unusual.**
 
 ---
 

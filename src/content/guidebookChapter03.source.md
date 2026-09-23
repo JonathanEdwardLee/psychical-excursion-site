@@ -676,25 +676,33 @@ For now, recognize the state.
 
 Everything else can come later.
 
-## Try This
+We remembered the dream.
+
+We learned its clues.
+
+Now we give the clue a job.
+
+**You are dreaming. Recognize.**
+
+---
+
+### Summary
+
+Recognition connects a dream clue with a remembered intention.
+
+MILD uses prospective memory, dream signs, intention, and mental rehearsal to practice a future moment: something unusual happens, attention changes, and the thought arrives—
+
+**I am dreaming.**
+
+The aim is not to repeat a question mechanically. It is to recognize the state when the opportunity appears.
+
+### Experiment
 
 Choose a dream you remember.
 
 Find one moment that could have revealed the dream.
 
-Perhaps something impossible happened.
-
-Perhaps you were in a recurring place.
-
-Perhaps a familiar dream sign appeared.
-
-Close your eyes and reconstruct the scene.
-
-See it.
-
-Hear it.
-
-Feel yourself there.
+Close your eyes and reconstruct it.
 
 Let the dream sign appear again.
 
@@ -704,57 +712,21 @@ Recognize it.
 
 **I am dreaming.**
 
-Imagine that realization becoming completely clear.
+Imagine that realization becoming clear while the dream continues.
 
-Then choose one simple action.
+Then perform one simple imagined action: touch something, speak, look carefully around you, or slowly hover a few inches from the ground.
 
-Touch something.
+If you wake naturally from a dream during the night, remember the dream, find its clue, rehearse recognition, and let yourself return to sleep.
 
-Say **I am dreaming** aloud.
-
-Look carefully at the room.
-
-Or imagine slowly hovering a few inches from the ground.
-
-Run through the scene several times.
-
-Keep it vivid rather than mechanical.
-
-Tonight, as you fall asleep, return briefly to the same intention:
-
-**When I am dreaming, I recognize that I am dreaming.**
-
-If you wake naturally from a dream during the night:
-
-1. Remember as much of the dream as you can.
-2. Identify something that could have revealed it as a dream.
-3. Mentally return to that moment.
-4. Imagine recognizing the dream while it continues.
-5. Let yourself return to sleep.
-
-During waking life, when something genuinely unusual or dreamlike happens, ask:
+During waking life, when something genuinely strange catches your attention, ask:
 
 **Am I dreaming?**
 
-Then give the question a few real seconds.
+Give the question a few sincere seconds.
 
-Look.
+### Intention
 
-Remember.
-
-Investigate.
-
-Imagine that the answer is yes.
-
-Notice what changes when the question becomes sincere.
-
-We remembered the dream.
-
-We learned its clues.
-
-Now we give the clue a job.
-
-**You are dreaming. Recognize.**
+**When I am dreaming, I recognize that I am dreaming.**
 
 ---
 
