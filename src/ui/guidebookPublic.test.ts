@@ -13,6 +13,7 @@ import {
   CHAPTER_05_TITLE,
   loadGuidebookChapter05,
 } from "../content/guidebookChapter05.ts";
+import { CHAPTER_06_HASH, CHAPTER_06_TITLE, loadGuidebookChapter06 } from "../content/guidebookChapter06.ts";
 import { NIGHTTIME_BODY_RELEASE_ID, RELAX_THE_BODY_HREF } from "../content/guidebookAnchors.ts";
 import { loadGuidebookManuscript } from "../content/guidebookManuscript.ts";
 import { TROPICAL_ZODIAC_SIGNS } from "../astronomy/zodiac.ts";
@@ -158,6 +159,8 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     await mount(CHAPTER_02_HASH);
     await mount(CHAPTER_03_HASH);
     await mount(CHAPTER_04_HASH);
+    await mount(CHAPTER_05_HASH);
+    await mount(CHAPTER_06_HASH);
     expect(getCurrentPosition).not.toHaveBeenCalled();
   });
 
@@ -326,7 +329,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(three.querySelector("h1")?.textContent).toBe(CHAPTER_03_TITLE);
   });
 
-  it("renders Chapter 5 Move Your Attention with the attention instrument and no next-page link", async () => {
+  it("renders Chapter 5 Move Your Attention with the attention instrument and a Chapter 6 next-reading line", async () => {
     const chapter = loadGuidebookChapter05();
     expect(chapter.title).toBe(CHAPTER_05_TITLE);
     const root = await mount(CHAPTER_05_HASH);
@@ -344,11 +347,49 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector("#guidebook-prev-chapter-4")?.getAttribute("href")).toBe(CHAPTER_04_HASH);
     expect(root.querySelector("#guidebook-prev-chapter-4")?.textContent).toContain(CHAPTER_04_TITLE);
     expect(root.querySelector("#guidebook-next-chapter-5")).toBeNull();
-    expect(root.querySelector("#guidebook-next-chapter-6")).toBeNull();
+    expect(root.querySelector("#guidebook-next-chapter-6")?.getAttribute("href")).toBe(CHAPTER_06_HASH);
+    expect(root.querySelector("#guidebook-next-chapter-6")?.textContent).toContain(CHAPTER_06_TITLE);
     expectPublicHeader(root);
     expectHeldFeaturesAbsent(root);
     expect(root.textContent).not.toContain(CHAPTER_05_PLACEHOLDER_MARKER);
     expect(document.title).toMatch(CHAPTER_05_TITLE);
+  });
+
+  it("renders Chapter 6 Build the Current with one practice card, references, and Chapter 5 previous navigation", async () => {
+    const chapter = loadGuidebookChapter06();
+    expect(chapter.title).toBe(CHAPTER_06_TITLE);
+    const root = await mount(CHAPTER_06_HASH);
+    expect(window.location.hash).toBe(CHAPTER_06_HASH);
+    expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_06_TITLE);
+    expect(root.querySelector(".pex-attention-instrument")).toBeNull();
+    expect(root.textContent).toMatch(/a repeated, continuous movement of attention through the felt body/);
+    expect(root.textContent).toMatch(/Qi is the vagus nerve/);
+    expect(practiceLabels(root)).toEqual(["Summary", "Experiment", "Intention"]);
+    expect(root.querySelectorAll(".guidebook-practice").length).toBe(1);
+    expect(root.querySelector("#ref-1")).toBeTruthy();
+    expect(root.querySelector("#ref-4")).toBeTruthy();
+    expect(root.querySelectorAll("a.guidebook-pex-link").length).toBe(2);
+    for (const link of root.querySelectorAll<HTMLAnchorElement>("a.guidebook-pex-link")) {
+      expect(link.getAttribute("href")).toBe(RELAX_THE_BODY_HREF);
+    }
+    expect(root.querySelector("#guidebook-prev-chapter-5")?.getAttribute("href")).toBe(CHAPTER_05_HASH);
+    expect(root.querySelector("#guidebook-prev-chapter-5")?.textContent).toContain(CHAPTER_05_TITLE);
+    expect(root.querySelector("#guidebook-next-chapter-7")).toBeNull();
+    expect(root.querySelector(".pex-ambient-orbit")).toBeTruthy();
+    expect(root.querySelector(".guidebook-section.pex-reveal")).toBeTruthy();
+    expect(root.querySelector(".guidebook-practice")?.closest(".guidebook-section.pex-reveal")).toBeTruthy();
+    expectPublicHeader(root);
+    expectHeldFeaturesAbsent(root);
+    expect(document.title).toMatch(CHAPTER_06_TITLE);
+  });
+
+  it("starts Chapter 6 at the top after ordinary Chapter 5 navigation", async () => {
+    const root = await mount(CHAPTER_05_HASH);
+    document.documentElement.scrollTop = 420;
+    window.location.hash = CHAPTER_06_HASH;
+    await renderApp(root);
+    expect(document.documentElement.scrollTop).toBe(0);
+    expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_06_TITLE);
   });
 
   it("opens a Chapter 4 relaxation deep link at A Nighttime Body Release", async () => {
