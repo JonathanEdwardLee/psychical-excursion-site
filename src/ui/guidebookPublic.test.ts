@@ -7,6 +7,13 @@ import {
   CHAPTER_03_TITLE,
 } from "../content/guidebookChapter03.ts";
 import { CHAPTER_04_HASH, CHAPTER_04_TITLE, loadGuidebookChapter04 } from "../content/guidebookChapter04.ts";
+import {
+  CHAPTER_05_HASH,
+  CHAPTER_05_PLACEHOLDER_MARKER,
+  CHAPTER_05_TITLE,
+  loadGuidebookChapter05,
+} from "../content/guidebookChapter05.ts";
+import { NIGHTTIME_BODY_RELEASE_ID, RELAX_THE_BODY_HREF } from "../content/guidebookAnchors.ts";
 import { loadGuidebookManuscript } from "../content/guidebookManuscript.ts";
 import { TROPICAL_ZODIAC_SIGNS } from "../astronomy/zodiac.ts";
 import { renderApp } from "./app.ts";
@@ -191,6 +198,8 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelectorAll(".guidebook-practice").length).toBe(1);
     expect(root.querySelector("#ref-6")).toBeTruthy();
     expect(root.querySelector(".pex-ambient-memory")).toBeTruthy();
+    expect(root.querySelector("#guidebook-prev-home")?.getAttribute("href")).toBe("#/");
+    expect(root.querySelector("#guidebook-prev-home")?.textContent).toMatch(/Introduction/);
     expect(root.querySelector("#guidebook-next-chapter-2")?.getAttribute("href")).toBe(CHAPTER_02_HASH);
     expect(root.querySelector("#guidebook-next-chapter-2")?.textContent).toContain(CHAPTER_02_TITLE);
     expectPublicHeader(root);
@@ -218,6 +227,8 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(document.title).toMatch(CHAPTER_02_TITLE);
     expect(practiceLabels(root)).toEqual(["Summary", "Experiment", "Intention"]);
     expect(root.querySelectorAll(".guidebook-practice").length).toBe(1);
+    expect(root.querySelector("#guidebook-prev-chapter-1")?.getAttribute("href")).toBe(CHAPTER_01_HASH);
+    expect(root.querySelector("#guidebook-prev-chapter-1")?.textContent).toContain(CHAPTER_01_TITLE);
     expect(root.querySelector("#guidebook-next-chapter-3")?.getAttribute("href")).toBe(CHAPTER_03_HASH);
     expect(root.querySelector("#guidebook-next-chapter-3")?.textContent).toContain(CHAPTER_03_TITLE);
     expect(root.textContent).not.toContain(CHAPTER_03_PLACEHOLDER_MARKER);
@@ -264,6 +275,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector("#ref-1")).toBeTruthy();
     expect(root.querySelector("#ref-4")).toBeTruthy();
     expect(root.querySelector(".pex-ambient-recognize")).toBeTruthy();
+    expect(root.querySelector("#guidebook-prev-chapter-2")?.getAttribute("href")).toBe(CHAPTER_02_HASH);
     expect(root.querySelector("#guidebook-next-chapter-4")?.getAttribute("href")).toBe(CHAPTER_04_HASH);
     expect(root.querySelector("#guidebook-next-chapter-4")?.textContent).toContain(CHAPTER_04_TITLE);
     expectPublicHeader(root);
@@ -272,7 +284,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(document.title).toMatch(CHAPTER_03_TITLE);
   });
 
-  it("renders Chapter 4 Feel the Body without a next-page link", async () => {
+  it("renders Chapter 4 Feel the Body with a Chapter 5 next-reading line", async () => {
     const chapter = loadGuidebookChapter04();
     expect(chapter.title).toBe(CHAPTER_04_TITLE);
     const root = await mount(CHAPTER_04_HASH);
@@ -285,7 +297,12 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector("#ref-1")).toBeTruthy();
     expect(root.querySelector("#ref-3")).toBeTruthy();
     expect(root.querySelector(".pex-ambient-body")).toBeTruthy();
+    expect(root.querySelector("#guidebook-prev-chapter-3")?.getAttribute("href")).toBe(CHAPTER_03_HASH);
+    expect(root.querySelector("#guidebook-prev-chapter-3")?.textContent).toContain(CHAPTER_03_TITLE);
+    expect(root.querySelector(`#${NIGHTTIME_BODY_RELEASE_ID}`)?.textContent).toBe("A Nighttime Body Release");
     expect(root.querySelector("#guidebook-next-chapter-4")).toBeNull();
+    expect(root.querySelector("#guidebook-next-chapter-5")?.getAttribute("href")).toBe(CHAPTER_05_HASH);
+    expect(root.querySelector("#guidebook-next-chapter-5")?.textContent).toContain(CHAPTER_05_TITLE);
     expect(root.querySelector(".guidebook-footer")).toBeTruthy();
     expectPublicHeader(root);
     expectHeldFeaturesAbsent(root);
@@ -307,5 +324,39 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(two.querySelector("h1")?.textContent).toBe(CHAPTER_02_TITLE);
     const three = await mount(CHAPTER_03_HASH);
     expect(three.querySelector("h1")?.textContent).toBe(CHAPTER_03_TITLE);
+  });
+
+  it("renders Chapter 5 Move Your Attention with the attention instrument and no next-page link", async () => {
+    const chapter = loadGuidebookChapter05();
+    expect(chapter.title).toBe(CHAPTER_05_TITLE);
+    const root = await mount(CHAPTER_05_HASH);
+    expect(window.location.hash).toBe(CHAPTER_05_HASH);
+    expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_05_TITLE);
+    expect(root.querySelector(".pex-attention-instrument")).toBeTruthy();
+    expect(root.textContent).toMatch(/Look at the center/);
+    expect(root.textContent).toMatch(/tactile imaging/);
+    expect(root.querySelectorAll("a.guidebook-pex-link").length).toBe(2);
+    expect(root.querySelector("a.guidebook-pex-link")?.getAttribute("href")).toBe(RELAX_THE_BODY_HREF);
+    expect(practiceLabels(root)).toEqual(["Summary", "Experiment", "Intention"]);
+    expect(root.querySelectorAll(".guidebook-practice").length).toBe(1);
+    expect(root.querySelector("#ref-1")).toBeTruthy();
+    expect(root.querySelector("#ref-5")).toBeTruthy();
+    expect(root.querySelector("#guidebook-prev-chapter-4")?.getAttribute("href")).toBe(CHAPTER_04_HASH);
+    expect(root.querySelector("#guidebook-prev-chapter-4")?.textContent).toContain(CHAPTER_04_TITLE);
+    expect(root.querySelector("#guidebook-next-chapter-5")).toBeNull();
+    expect(root.querySelector("#guidebook-next-chapter-6")).toBeNull();
+    expectPublicHeader(root);
+    expectHeldFeaturesAbsent(root);
+    expect(root.textContent).not.toContain(CHAPTER_05_PLACEHOLDER_MARKER);
+    expect(document.title).toMatch(CHAPTER_05_TITLE);
+  });
+
+  it("opens a Chapter 4 relaxation deep link at A Nighttime Body Release", async () => {
+    const root = await mount(RELAX_THE_BODY_HREF);
+    expect(window.location.hash).toBe(RELAX_THE_BODY_HREF);
+    const heading = root.querySelector(`#${NIGHTTIME_BODY_RELEASE_ID}`);
+    expect(heading?.textContent).toBe("A Nighttime Body Release");
+    expect(heading?.closest(".guidebook-section")?.classList.contains("is-visible")).toBe(true);
+    expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_04_TITLE);
   });
 });

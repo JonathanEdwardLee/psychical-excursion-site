@@ -1,4 +1,5 @@
 import source from "./guidebookChapter01.source.md?raw";
+import { ATTENTION_INSTRUMENT_TOKEN } from "./guidebookAnchors.ts";
 
 export const CHAPTER_01_TITLE = "You Are Dreaming. Remember.";
 export const CHAPTER_01_PATH = "/you-are-dreaming-remember";
@@ -14,7 +15,8 @@ export type ChapterBlock =
   | { kind: "quote"; text: string }
   | { kind: "list"; items: string[]; ordered: boolean }
   | { kind: "rule" }
-  | { kind: "practice"; parts: PracticePart[] };
+  | { kind: "practice"; parts: PracticePart[] }
+  | { kind: "attention" };
 
 export type PracticePart = {
   label: PracticeLabel;
@@ -45,6 +47,7 @@ function stopsFlow(line: string): boolean {
     line.startsWith("## ") ||
     line.startsWith("### ") ||
     line.startsWith("> ") ||
+    line.trim() === ATTENTION_INSTRUMENT_TOKEN ||
     /^\d+\.\s/.test(line) ||
     /^-\s/.test(line)
   );
@@ -75,6 +78,11 @@ export function parseGuidebookChapter(raw: string): ChapterDocument {
     }
     if (line.trim() === "---") {
       blocks.push({ kind: "rule" });
+      i += 1;
+      continue;
+    }
+    if (line.trim() === ATTENTION_INSTRUMENT_TOKEN) {
+      blocks.push({ kind: "attention" });
       i += 1;
       continue;
     }
@@ -159,6 +167,11 @@ function parseFlowUntil(
     }
     if (line.trim() === "---") {
       blocks.push({ kind: "rule" });
+      i += 1;
+      continue;
+    }
+    if (line.trim() === ATTENTION_INSTRUMENT_TOKEN) {
+      blocks.push({ kind: "attention" });
       i += 1;
       continue;
     }

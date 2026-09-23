@@ -1,3 +1,4 @@
+import { NIGHTTIME_BODY_RELEASE_ID, PEX_GUIDEBOOK_LINKS, RELAX_THE_BODY_HREF, RELAX_THE_BODY_PEX_ID } from "../content/guidebookAnchors.ts";
 import { el } from "./dom.ts";
 
 type RichTextOptions = {
@@ -13,14 +14,33 @@ export function renderRichText(text: string, options: RichTextOptions = {}): HTM
   const { linkCitations = true } = options;
   const paragraph = el("span", { class: "guidebook-rich-text" });
   const pattern = linkCitations
-    ? /(\*\*[^*]+\*\*|\*[^*]+\*|\[\d+\]|https:\/\/\S+|doi:10\.\S+)/gi
-    : /(\*\*[^*]+\*\*|\*[^*]+\*|https:\/\/\S+|doi:10\.\S+)/gi;
+    ? /(\[[^\]]+\]\((?:pex:[a-z0-9-]+|#\/[^)\s]+)\)|\*\*[^*]+\*\*|\*[^*]+\*|\[\d+\]|https:\/\/\S+|doi:10\.\S+)/gi
+    : /(\[[^\]]+\]\((?:pex:[a-z0-9-]+|#\/[^)\s]+)\)|\*\*[^*]+\*\*|\*[^*]+\*|https:\/\/\S+|doi:10\.\S+)/gi;
   let lastIndex = 0;
   for (const match of text.matchAll(pattern)) {
     const index = match.index ?? 0;
     if (index > lastIndex) paragraph.append(text.slice(lastIndex, index));
     const token = match[0];
-    if (token.startsWith("**")) {
+    const mdLink = token.match(/^\[([^\]]+)\]\((pex:[a-z0-9-]+|#\/[^)\s]+)\)$/i);
+    if (mdLink) {
+      const label = mdLink[1]!;
+      const destRaw = mdLink[2]!;
+      const pexId = destRaw.toLowerCase().startsWith("pex:") ? destRaw.slice(4).toLowerCase() : "";
+      const dest = pexId ? PEX_GUIDEBOOK_LINKS[pexId] : undefined;
+      const href = dest?.href
+        ?? (destRaw === RELAX_THE_BODY_HREF || destRaw.endsWith(`#${NIGHTTIME_BODY_RELEASE_ID}`)
+          ? RELAX_THE_BODY_HREF
+          : destRaw);
+      const link = el("a", {
+        href,
+        class: "guidebook-pex-link",
+        "data-pex-link": dest?.id ?? RELAX_THE_BODY_PEX_ID,
+      });
+      const bold = label.match(/^\*\*(.+)\*\*$/);
+      if (bold) link.append(el("strong", {}, [bold[1]!]));
+      else link.append(label);
+      paragraph.append(link);
+    } else if (token.startsWith("**")) {
       paragraph.append(el("strong", {}, [token.slice(2, -2)]));
     } else if (token.startsWith("*")) {
       paragraph.append(el("em", {}, [token.slice(1, -1)]));
@@ -84,6 +104,23 @@ export function bindInPageCitations(root: HTMLElement): void {
       const target = root.querySelector<HTMLElement>(`#ref-${match[1]}`);
       if (!target) return;
       event.preventDefault();
+      const reduced = typeof window.matchMedia === "function"
+        && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      target.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+      target.focus({ preventScroll: true });
+    });
+  }
+  for (const link of root.querySelectorAll<HTMLAnchorElement>("a.guidebook-pex-link")) {
+    link.addEventListener("click", (event) => {
+      const href = link.getAttribute("href") ?? "";
+      const hash = href.startsWith("#") ? href : "";
+      if (!hash.includes("#", 1) && !hash.includes("#")) return;
+      const fragment = hash.replace(/^#/, "").split("#")[1];
+      if (!fragment) return;
+      const target = root.querySelector<HTMLElement>(`[id="${fragment}"]`);
+      if (!target) return;
+      event.preventDefault();
+      target.closest(".guidebook-section")?.classList.add("is-visible");
       const reduced = typeof window.matchMedia === "function"
         && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       target.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });

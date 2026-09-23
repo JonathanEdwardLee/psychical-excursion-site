@@ -24,18 +24,26 @@ import { renderAstronomyPage, stopAstronomyClock } from "./pages/astronomy.ts";
 import { renderAboutPage, renderHomePage, renderMethodPage } from "./pages/home.ts";
 import { renderGuidebookHome } from "./pages/guidebookHome.ts";
 import { renderGuidebookChapterPage } from "./pages/guidebookChapter.ts";
-import { loadGuidebookChapter01 } from "../content/guidebookChapter01.ts";
+import { loadGuidebookChapter01, CHAPTER_01_HASH, CHAPTER_01_TITLE } from "../content/guidebookChapter01.ts";
 import { CHAPTER_02_HASH, CHAPTER_02_TITLE, loadGuidebookChapter02 } from "../content/guidebookChapter02.ts";
 import { CHAPTER_03_HASH, CHAPTER_03_TITLE, loadGuidebookChapter03 } from "../content/guidebookChapter03.ts";
 import { CHAPTER_04_HASH, CHAPTER_04_TITLE, loadGuidebookChapter04 } from "../content/guidebookChapter04.ts";
+import {
+  CHAPTER_05_HASH,
+  CHAPTER_05_TITLE,
+  isGuidebookChapter05Ready,
+  loadGuidebookChapter05,
+} from "../content/guidebookChapter05.ts";
 import { finalizeGuidebookPage, renderGuidebookChrome } from "./guidebookShell.ts";
 import { isGuidebookPublicSurface } from "./publicSurface.ts";
+import { parseGuidebookHash } from "../content/guidebookAnchors.ts";
 import {
   guidebookPageChanged,
   markGuidebookPage,
   normalizeGuidebookPublicHash,
   parseGuidebookPublicPage,
   resetGuidebookWindowScroll,
+  scrollGuidebookSection,
 } from "./guidebookRoute.ts";
 import { bindGuidebookReveals, stopGuidebookMotion } from "./guidebookMotion.ts";
 import { renderNightCapturePage } from "./pages/nightCapture.ts";
@@ -61,38 +69,87 @@ export async function renderApp(root: HTMLElement): Promise<void> {
     stopScrollPresence();
     stopGuidebookMotion();
     const page = parseGuidebookPublicPage();
+    const fragment = parseGuidebookHash().fragment;
     const pageChanged = guidebookPageChanged(page);
-    if (pageChanged) resetGuidebookWindowScroll();
+    if (pageChanged && !fragment) resetGuidebookWindowScroll();
     markGuidebookPage(page);
     const { main } = renderGuidebookChrome(root, page);
+    const previousHome = {
+      href: "#/",
+      title: "Introduction",
+      id: "guidebook-prev-home",
+    };
     if (page === "chapter01") {
       renderGuidebookChapterPage(main, loadGuidebookChapter01(), {
-        href: CHAPTER_02_HASH,
-        title: CHAPTER_02_TITLE,
-        id: "guidebook-next-chapter-2",
+        previous: previousHome,
+        next: {
+          href: CHAPTER_02_HASH,
+          title: CHAPTER_02_TITLE,
+          id: "guidebook-next-chapter-2",
+        },
       });
     } else if (page === "chapter02") {
       renderGuidebookChapterPage(main, loadGuidebookChapter02(), {
-        href: CHAPTER_03_HASH,
-        title: CHAPTER_03_TITLE,
-        id: "guidebook-next-chapter-3",
+        previous: {
+          href: CHAPTER_01_HASH,
+          title: CHAPTER_01_TITLE,
+          id: "guidebook-prev-chapter-1",
+        },
+        next: {
+          href: CHAPTER_03_HASH,
+          title: CHAPTER_03_TITLE,
+          id: "guidebook-next-chapter-3",
+        },
       });
     } else if (page === "chapter03") {
       renderGuidebookChapterPage(main, loadGuidebookChapter03(), {
-        href: CHAPTER_04_HASH,
-        title: CHAPTER_04_TITLE,
-        id: "guidebook-next-chapter-4",
+        previous: {
+          href: CHAPTER_02_HASH,
+          title: CHAPTER_02_TITLE,
+          id: "guidebook-prev-chapter-2",
+        },
+        next: {
+          href: CHAPTER_04_HASH,
+          title: CHAPTER_04_TITLE,
+          id: "guidebook-next-chapter-4",
+        },
       });
     } else if (page === "chapter04") {
-      renderGuidebookChapterPage(main, loadGuidebookChapter04());
+      renderGuidebookChapterPage(main, loadGuidebookChapter04(), {
+        previous: {
+          href: CHAPTER_03_HASH,
+          title: CHAPTER_03_TITLE,
+          id: "guidebook-prev-chapter-3",
+        },
+        next: isGuidebookChapter05Ready()
+          ? {
+            href: CHAPTER_05_HASH,
+            title: CHAPTER_05_TITLE,
+            id: "guidebook-next-chapter-5",
+          }
+          : undefined,
+      });
+    } else if (page === "chapter05" && isGuidebookChapter05Ready()) {
+      renderGuidebookChapterPage(main, loadGuidebookChapter05(), {
+        previous: {
+          href: CHAPTER_04_HASH,
+          title: CHAPTER_04_TITLE,
+          id: "guidebook-prev-chapter-4",
+        },
+      });
     } else {
       renderGuidebookHome(main);
     }
     bindGuidebookReveals(main);
     finalizeGuidebookPage(root);
-    if (pageChanged) {
+    if (fragment) {
+      scrollGuidebookSection(root, fragment);
+    } else if (pageChanged) {
       resetGuidebookWindowScroll();
-      requestAnimationFrame(() => resetGuidebookWindowScroll());
+      const ua = navigator.userAgent ?? "";
+      if (typeof requestAnimationFrame === "function" && ua.length > 0 && !ua.includes("jsdom")) {
+        requestAnimationFrame(() => resetGuidebookWindowScroll());
+      }
     }
     return;
   }
