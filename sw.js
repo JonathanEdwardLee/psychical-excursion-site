@@ -1,6 +1,6 @@
 /* PEx application-shell service worker. Generated at build time. */
-const CACHE_NAME = "pex-shell-muezywga";
-const PRECACHE = ["/","/index.html","/assets/index-ND5VLHXS.css","/assets/index-qkn0u0fU.js","/brand/pex-logo-primary-reverse.svg","/brand/pex-logo-primary.svg","/icons/pex-app-icon-dark-180.png","/icons/pex-app-icon-dark-192.png","/icons/pex-app-icon-dark-512.png","/icons/pex-app-icon-light-180.png","/icons/pex-app-icon-light-192.png","/icons/pex-app-icon-light-512.png","/icons/pex-favicon-dark-16.png","/icons/pex-favicon-dark-32.png","/icons/pex-favicon-dark-48.png","/icons/pex-favicon-dark-64.png","/icons/pex-favicon-symbol-16.png","/icons/pex-favicon-symbol-32.png","/icons/pex-favicon-symbol-48.png","/icons/pex-favicon-symbol-64.png","/icons/pex-favicon.ico","/manifest.webmanifest"];
+const CACHE_NAME = "pex-shell-muffq833";
+const PRECACHE = ["/","/index.html","/assets/index-D1iIJyrV.css","/assets/index-DU0P-6RS.js","/brand/pex-logo-primary-reverse.svg","/brand/pex-logo-primary.svg","/icons/pex-app-icon-dark-180.png","/icons/pex-app-icon-dark-192.png","/icons/pex-app-icon-dark-512.png","/icons/pex-app-icon-light-180.png","/icons/pex-app-icon-light-192.png","/icons/pex-app-icon-light-512.png","/icons/pex-favicon-dark-16.png","/icons/pex-favicon-dark-32.png","/icons/pex-favicon-dark-48.png","/icons/pex-favicon-dark-64.png","/icons/pex-favicon-symbol-16.png","/icons/pex-favicon-symbol-32.png","/icons/pex-favicon-symbol-48.png","/icons/pex-favicon-symbol-64.png","/icons/pex-favicon.ico","/manifest.webmanifest"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
