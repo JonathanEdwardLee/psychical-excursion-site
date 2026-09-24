@@ -84,7 +84,7 @@ export function renderRichParagraph(text: string, options?: RichTextOptions): HT
 }
 
 export function renderReferenceItem(line: string): HTMLLIElement {
-  const match = line.match(/^\[(\d+)\]\s*(.*)$/);
+  const match = line.match(/^(?:\*\*)?\[(\d+)\](?:\*\*)?\s*(.*)$/);
   const num = match?.[1] ?? "0";
   const body = match?.[2] ?? line;
   const li = el("li", { id: `ref-${num}`, class: "guidebook-reference-item" });
