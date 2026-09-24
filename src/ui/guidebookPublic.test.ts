@@ -409,7 +409,10 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector(".pex-attention-instrument")).toBeNull();
     expect(root.textContent).toMatch(/meta-awareness/);
     expect(root.textContent).toMatch(/Focused-attention meditation/);
-    expect(root.querySelectorAll("a.guidebook-pex-link").length).toBe(0);
+    const relaxLinks = [...root.querySelectorAll("a.guidebook-pex-link")];
+    expect(relaxLinks).toHaveLength(1);
+    expect(relaxLinks[0]?.getAttribute("href")).toBe(RELAX_THE_BODY_HREF);
+    expect(relaxLinks[0]?.textContent).toBe("Relax the body");
     expect(practiceLabels(root)).toEqual(["Summary", "Experiment", "Intention"]);
     expect(root.querySelectorAll(".guidebook-practice").length).toBe(1);
     expect([...root.querySelectorAll("h2.guidebook-section-title")].map((node) => node.textContent)).not.toContain("Summary");

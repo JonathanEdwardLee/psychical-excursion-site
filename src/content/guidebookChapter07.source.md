@@ -150,7 +150,7 @@ This chapter also establishes a skill we will need shortly: remaining relaxed an
 
 ## Experiment
 
-If you are practicing near bedtime, begin with **Relax the body**. Then perform one slow circuit from **Build the Current** and allow the movement of attention to stop.
+If you are practicing near bedtime, begin with [**Relax the body**](#/feel-the-body#nighttime-body-release). Then perform one slow circuit from **Build the Current** and allow the movement of attention to stop.
 
 Choose a single object of attention. The physical sensation of natural breathing is useful, but a body point, steady sound, or simple repeated word also works. Spend several minutes remaining with that object. Each time you notice that attention has moved elsewhere, briefly recognize what captured it and return.
 

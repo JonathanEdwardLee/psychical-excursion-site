@@ -6,6 +6,7 @@ import {
   loadGuidebookChapter07,
 } from "./guidebookChapter07.ts";
 import { parseGuidebookPublicPage } from "../ui/guidebookRoute.ts";
+import { RELAX_THE_BODY_HREF } from "./guidebookAnchors.ts";
 
 describe("Chapter 7 Quiet the Mind manuscript", () => {
   it("locks title and public hash", () => {
@@ -26,6 +27,9 @@ describe("Chapter 7 Quiet the Mind manuscript", () => {
     expect(chapter.blocks.some((block) => block.kind === "heading" && block.text === "Summary")).toBe(false);
     expect(chapter.blocks.some((block) => block.kind === "attention")).toBe(false);
     expect(chapter.blocks.some((block) => block.kind === "heading" && block.text === "Focused Attention and Open Monitoring")).toBe(true);
+    const experiment = parts.find((part) => part.label === "Experiment");
+    const experimentText = JSON.stringify(experiment);
+    expect(experimentText).toContain(`[**Relax the body**](${RELAX_THE_BODY_HREF})`);
     expect(JSON.stringify(chapter)).not.toMatch(/\bPEx\b/);
   });
 });
