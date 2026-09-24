@@ -34,8 +34,9 @@ function isPracticeLabel(value: string): value is PracticeLabel {
 }
 
 function practiceHeading(line: string): PracticeLabel | null {
-  if (!line.startsWith("### ")) return null;
-  const label = line.slice(4).trim();
+  const match = line.match(/^#{2,3}\s+(.*)$/);
+  if (!match) return null;
+  const label = match[1]!.trim();
   return isPracticeLabel(label) ? label : null;
 }
 
@@ -86,6 +87,14 @@ export function parseGuidebookChapter(raw: string): ChapterDocument {
       i += 1;
       continue;
     }
+    const practiceLabel = practiceHeading(line);
+    if (practiceLabel) {
+      const parsed = parsePracticeBlock(lines, i);
+      blocks.push(parsed.block);
+      i = parsed.nextIndex;
+      if (i < lines.length && lines[i]!.trim() === "---") i += 1;
+      continue;
+    }
     if (line.startsWith("## ")) {
       const heading = line.slice(3).trim();
       if (heading === "References") {
@@ -95,14 +104,6 @@ export function parseGuidebookChapter(raw: string): ChapterDocument {
       }
       blocks.push({ kind: "heading", text: heading });
       i += 1;
-      continue;
-    }
-    const practiceLabel = practiceHeading(line);
-    if (practiceLabel) {
-      const parsed = parsePracticeBlock(lines, i);
-      blocks.push(parsed.block);
-      i = parsed.nextIndex;
-      if (i < lines.length && lines[i]!.trim() === "---") i += 1;
       continue;
     }
     if (line.startsWith("> ")) {
@@ -230,7 +231,7 @@ function parsePracticeBlock(
   for (const expected of PRACTICE_LABELS) {
     const label = practiceHeading(lines[i] ?? "");
     if (label !== expected) {
-      throw new Error(`Practice component must use ### ${PRACTICE_LABELS.join(", then ### ")}`);
+      throw new Error(`Practice component must use ${PRACTICE_LABELS.join(", then ")} headings`);
     }
     i += 1;
     const parsed = parseFlowUntil(lines, i, (line) => {
