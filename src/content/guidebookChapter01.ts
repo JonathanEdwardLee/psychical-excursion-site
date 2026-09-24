@@ -12,6 +12,7 @@ export type ChapterBlock =
   | { kind: "paragraph"; text: string }
   | { kind: "emphasis"; text: string }
   | { kind: "heading"; text: string }
+  | { kind: "subheading"; text: string }
   | { kind: "quote"; text: string }
   | { kind: "list"; items: string[]; ordered: boolean }
   | { kind: "rule" }
@@ -175,6 +176,14 @@ function parseFlowUntil(
       blocks.push({ kind: "attention" });
       i += 1;
       continue;
+    }
+    if (line.startsWith("### ")) {
+      const text = line.slice(4).trim();
+      if (!isPracticeLabel(text)) {
+        blocks.push({ kind: "subheading", text });
+        i += 1;
+        continue;
+      }
     }
     if (line.startsWith("> ")) {
       const quoted: string[] = [];

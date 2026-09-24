@@ -5,6 +5,7 @@ import { CHAPTER_04_TITLE } from "../content/guidebookChapter04.ts";
 import { CHAPTER_05_TITLE } from "../content/guidebookChapter05.ts";
 import { CHAPTER_06_TITLE } from "../content/guidebookChapter06.ts";
 import { CHAPTER_07_TITLE } from "../content/guidebookChapter07.ts";
+import { CHAPTER_08_TITLE } from "../content/guidebookChapter08.ts";
 import { applyTheme, readTheme, toggleTheme } from "../theme.ts";
 import { el, text } from "./dom.ts";
 import { renderAmbientLayer, type AmbientMode } from "./guidebookAmbient.ts";
@@ -28,6 +29,7 @@ function documentTitleFor(page: GuidebookPublicPage): string {
   if (page === "chapter05") return `${CHAPTER_05_TITLE} · Psychical Excursion`;
   if (page === "chapter06") return `${CHAPTER_06_TITLE} · Psychical Excursion`;
   if (page === "chapter07") return `${CHAPTER_07_TITLE} · Psychical Excursion`;
+  if (page === "chapter08") return `${CHAPTER_08_TITLE} · Psychical Excursion`;
   return "Psychical Excursion";
 }
 

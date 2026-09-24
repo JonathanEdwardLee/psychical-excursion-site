@@ -48,6 +48,10 @@ function appendFlowBlocks(section: HTMLElement, blocks: ChapterBlock[]): void {
       continue;
     }
     if (block.kind === "heading" || block.kind === "practice" || block.kind === "attention") continue;
+    if (block.kind === "subheading") {
+      section.append(el("h3", { class: "guidebook-practice-subheading" }, [block.text]));
+      continue;
+    }
     section.append(renderRichParagraph(block.text));
   }
 }

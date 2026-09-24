@@ -27,6 +27,10 @@ import {
   CHAPTER_07_HASH,
   CHAPTER_07_PATH,
 } from "../content/guidebookChapter07.ts";
+import {
+  CHAPTER_08_HASH,
+  CHAPTER_08_PATH,
+} from "../content/guidebookChapter08.ts";
 import { parseGuidebookHash } from "../content/guidebookAnchors.ts";
 
 export type GuidebookPublicPage =
@@ -37,7 +41,8 @@ export type GuidebookPublicPage =
   | "chapter04"
   | "chapter05"
   | "chapter06"
-  | "chapter07";
+  | "chapter07"
+  | "chapter08";
 
 function guidebookPath(hash = window.location.hash): string {
   return parseGuidebookHash(hash).path;
@@ -52,6 +57,7 @@ export function parseGuidebookPublicPage(hash = window.location.hash): Guidebook
   if (path === CHAPTER_05_PATH && isGuidebookChapter05Ready()) return "chapter05";
   if (path === CHAPTER_06_PATH) return "chapter06";
   if (path === CHAPTER_07_PATH) return "chapter07";
+  if (path === CHAPTER_08_PATH) return "chapter08";
   return "home";
 }
 
@@ -69,6 +75,7 @@ export function normalizeGuidebookPublicHash(): void {
   if (path === CHAPTER_05_PATH && isGuidebookChapter05Ready()) return;
   if (path === CHAPTER_06_PATH) return;
   if (path === CHAPTER_07_PATH) return;
+  if (path === CHAPTER_08_PATH) return;
   window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}#/`);
 }
 
@@ -132,4 +139,6 @@ export {
   CHAPTER_06_PATH,
   CHAPTER_07_HASH,
   CHAPTER_07_PATH,
+  CHAPTER_08_HASH,
+  CHAPTER_08_PATH,
 };
