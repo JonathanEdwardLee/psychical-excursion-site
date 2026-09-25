@@ -114,9 +114,13 @@ Read several of your dreams together and ask:
 
 You are looking for anything impossible, improbable, recurring, emotionally distinctive, or simply strange enough that waking-you would normally stop and examine it.
 
+Dream research gives a second reason those recurrences are worth noticing. The **continuity hypothesis** treats a large part of dream content as connected to recent and ongoing waking life: concerns, people, places, and unfinished business tend to reappear, often in rearranged form.[7] That is a description of patterning, not a license to decide that every repeating image is a message from elsewhere.
+
+The useful move is simpler. Notice the habit. Record it. Leave the metaphysics for later, when you have more than a hunch.
+
 ## Four Ways a Dream Gives Itself Away
 
-Stephen LaBerge and other lucid-dream researchers have used categories for dream signs that are useful without turning this into a taxonomy lesson.
+Stephen LaBerge and other lucid-dream researchers have used categories for dream signs that are useful without turning this into a taxonomy lesson.[4]
 
 The categories are simple enough.
 
@@ -222,7 +226,7 @@ The second one is nearly useless.
 
 The practice only becomes interesting when, for a moment, you genuinely allow both possibilities.
 
-Paul Tholey developed what he called the **reflection technique** for lucid dreaming. During waking life, he repeatedly questioned whether he was awake or dreaming, especially when something unusual occurred.
+Paul Tholey developed what he called the **reflection technique** for lucid dreaming. During waking life, he repeatedly questioned whether he was awake or dreaming, especially when something unusual occurred.[2][3]
 
 The purpose was larger than performing a trick.
 
@@ -294,7 +298,7 @@ Some of these work better than others for different people.
 
 Research gives us a reason to keep our expectations modest.
 
-Reality testing is a legitimate lucid-dream induction technique, but studies have not shown that simply performing lots of reality checks reliably produces lucid dreams. In a large 2020 study comparing induction methods, the number of daytime reality tests did not significantly predict lucid dreaming success. MILD and SSILD showed stronger results.[1]
+Reality testing is a legitimate lucid-dream induction technique, but studies have not shown that simply performing lots of reality checks reliably produces lucid dreams. In a large 2020 study comparing induction methods, the number of daytime reality tests did not significantly predict lucid dreaming success. MILD and SSILD showed stronger results.[1] An earlier systematic review of induction methods likewise found mixed and often modest effects, with cognitive techniques such as MILD among the more promising approaches rather than a guaranteed method.[5]
 
 That does not make reality testing useless.
 
@@ -358,7 +362,7 @@ Those are different things.
 
 Tibetan dream-yoga traditions approach this territory from a very different philosophical direction.
 
-In Tenzin Wangyal Rinpoche's presentation of Bön dream yoga, practitioners cultivate awareness of waking experience itself as dreamlike.
+In Tenzin Wangyal Rinpoche's presentation of Bön dream yoga, practitioners cultivate awareness of waking experience itself as dreamlike.[6]
 
 Within that tradition, this is part of a much larger spiritual understanding of mind, appearance, attachment, and liberation.
 
@@ -574,6 +578,8 @@ You are practicing the movement from automatic experience to curiosity.
 
 [4] LaBerge, S., & Rheingold, H. *Exploring the World of Lucid Dreaming*. Ballantine Books, 1990.
 
-[5] Stumbrys, T., Erlacher, D., Schädlich, M., & Schredl, M. “Induction of Lucid Dreams: A Systematic Review of Evidence.” *Consciousness and Cognition* 21, no. 3 (2012): 1456–1475.
+[5] Stumbrys, T., Erlacher, D., Schädlich, M., & Schredl, M. “Induction of Lucid Dreams: A Systematic Review of Evidence.” *Consciousness and Cognition* 21, no. 3 (2012): 1456–1475. https://doi.org/10.1016/j.concog.2012.07.003
 
 [6] Tenzin Wangyal Rinpoche. *The Tibetan Yogas of Dream and Sleep*. Revised and updated edition. Shambhala, 2022.
+
+[7] Schredl, M., & Hofmann, F. “Continuity Between Waking Activities and Dream Activities.” *Consciousness and Cognition* 12, no. 2 (2003): 298–308. https://doi.org/10.1016/S1053-8100(02)00072-7

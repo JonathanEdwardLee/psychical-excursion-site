@@ -60,9 +60,9 @@ It means the doorway matters.
 
 The few moments when sleep becomes waking may be part of the memory process itself.
 
-Think of a dream as a message written in disappearing ink.
+Sleep itself is also a difficult environment for ordinary waking memory. Dreaming can be richly detailed while it is happening and still leave little behind once the brain shifts into wake-oriented processing. Reviews of dreaming and the sleeping brain treat that disappearance as a memory problem, not as proof that nothing occurred.[1]
 
-Morning is when we learn how to read it before the page clears.
+Think of a dream as a message written in disappearing ink. Morning is when we learn how to read it before the page clears.
 
 ## Attention Changes the Experiment
 
@@ -108,25 +108,7 @@ Then ask:
 
 **What was just happening?**
 
-Start with whatever arrives.
-
-An image.
-
-A place.
-
-A voice.
-
-A person.
-
-A color.
-
-A body sensation.
-
-An emotion.
-
-A sentence.
-
-A single absurd fact.
+Start with whatever arrives: an image, a place, a voice, a person, a color, a body sensation, an emotion, a sentence, or a single absurd fact.
 
 Maybe you remember that you were trying to buy groceries inside a cathedral.
 
@@ -288,15 +270,7 @@ That makes intuitive sense.
 
 Becoming aware inside dreams becomes easier to investigate when dreams are already becoming easier to retrieve.
 
-So we begin here.
-
-Tonight you sleep.
-
-You dream.
-
-Morning comes.
-
-And instead of immediately leaving that world behind, you turn toward it.
+So we begin here. Tonight you sleep, you dream, morning comes—and instead of immediately leaving that world behind, you turn toward it.
 
 **You are dreaming. Remember.**
 

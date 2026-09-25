@@ -160,8 +160,6 @@ This time, when the clue appears, you recognize it.
 
 You rehearse that moment while forming the intention to recognize dreaming the next time it happens.
 
-This is important.
-
 MILD is sometimes reduced to repeating a sentence in bed.
 
 The sentence matters.
@@ -548,9 +546,9 @@ No induction method makes lucid dreams appear reliably on command.
 
 A 2023 systematic review of empirical lucid-dream induction research nevertheless found MILD to be the most effective technique among the methods it reviewed.[4]
 
-So MILD deserves our attention.
+So MILD deserves our attention. It does not deserve mythology.
 
-It does not deserve mythology.
+When the later chapters collapse many techniques into one nightly loop, this same recognition skill is still the cognitive core. We do not need a second copy of that routine here. We need the habit: a cue appears, and you remember what you meant to do.
 
 ## Sleep Is Part of the Experiment
 

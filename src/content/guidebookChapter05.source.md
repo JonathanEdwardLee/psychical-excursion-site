@@ -114,7 +114,7 @@ That is what we are going to investigate.
 
 ## Attention Has an Address
 
-We learned that deliberately attending to the body can make normally quiet sensations more noticeable.
+Deliberately attending to the body can make normally quiet sensations more noticeable.
 
 Now we are going to make the practice more precise.
 
@@ -594,7 +594,7 @@ Expectation influenced perception.
 
 Circulation changed because of posture or tension.
 
-A traditional energy practitioner might describe increased qi, prana, or subtle-energy movement.
+A traditional energy practitioner might describe increased qi, prana, or subtle-energy movement. Those words name a model, not a demonstrated substance in the laboratory sense. A tingling forearm is still a tingling forearm whether we call it qi, attention, or nerves.
 
 There may be other possibilities.
 
