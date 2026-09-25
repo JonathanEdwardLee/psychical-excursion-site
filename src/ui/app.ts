@@ -43,6 +43,7 @@ import { CHAPTER_10_HASH, CHAPTER_10_TITLE, loadGuidebookChapter10 } from "../co
 import { CHAPTER_11_HASH, CHAPTER_11_TITLE, loadGuidebookChapter11 } from "../content/guidebookChapter11.ts";
 import { CHAPTER_12_HASH, CHAPTER_12_TITLE, loadGuidebookChapter12 } from "../content/guidebookChapter12.ts";
 import { CHAPTER_13_HASH, CHAPTER_13_TITLE, loadGuidebookChapter13 } from "../content/guidebookChapter13.ts";
+import { CHAPTER_14_HASH, CHAPTER_14_TITLE, loadGuidebookChapter14 } from "../content/guidebookChapter14.ts";
 import { finalizeGuidebookPage, renderGuidebookChrome } from "./guidebookShell.ts";
 import { isGuidebookPublicSurface } from "./publicSurface.ts";
 import { parseGuidebookHash } from "../content/guidebookAnchors.ts";
@@ -248,6 +249,19 @@ export async function renderApp(root: HTMLElement): Promise<void> {
           href: CHAPTER_12_HASH,
           title: CHAPTER_12_TITLE,
           id: "guidebook-prev-chapter-12",
+        },
+        next: {
+          href: CHAPTER_14_HASH,
+          title: CHAPTER_14_TITLE,
+          id: "guidebook-next-chapter-14",
+        },
+      });
+    } else if (page === "chapter14") {
+      renderGuidebookChapterPage(main, loadGuidebookChapter14(), {
+        previous: {
+          href: CHAPTER_13_HASH,
+          title: CHAPTER_13_TITLE,
+          id: "guidebook-prev-chapter-13",
         },
       });
     } else {
