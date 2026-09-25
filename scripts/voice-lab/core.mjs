@@ -116,8 +116,19 @@ export function assertCostCeiling(estimateUsd, ceilingUsd) {
   }
 }
 
+export function redactSecrets(text, key) {
+  let out = text;
+  if (key && key.length >= 8) {
+    out = out.split(key).join("[REDACTED_API_KEY]");
+  }
+  out = out.replace(/Bearer\s+sk-[A-Za-z0-9_-]+/gi, "Bearer [REDACTED_API_KEY]");
+  out = out.replace(/sk-[A-Za-z0-9_-]{8,}/g, "sk-[REDACTED]");
+  return out;
+}
+
+/** Fail closed before persisting API error text that contains the live key. */
 export function assertNoSecretLeak(haystack, key) {
-  if (key && haystack.includes(key)) {
+  if (key && key.length >= 8 && haystack.includes(key)) {
     throw new Error("secret would be persisted or logged");
   }
 }

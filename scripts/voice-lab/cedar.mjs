@@ -6,7 +6,7 @@
  * Never logs the key.
  */
 import { existsSync, mkdirSync, statSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { basename, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
   CEDAR_MODEL,
@@ -16,6 +16,7 @@ import {
   MARIN_VOICE,
   assertCostCeiling,
   assertNoSecretLeak,
+  redactSecrets,
   chunkForSpeechApi,
   estimateCedarUsd,
 } from "./core.mjs";
@@ -77,7 +78,7 @@ export async function synthesizeCedar({
     if (resume && existsSync(file) && statSync(file).size > 2048) {
       process.stdout.write(`Cedar: chunk ${i + 1}/${chunks.length} skipped (exists)\n`);
       receipt.skipped_chunks += 1;
-      receipt.files.push(file);
+      receipt.files.push(basename(file));
       continue;
     }
     process.stdout.write(`Cedar: chunk ${i + 1}/${chunks.length}…\n`);
@@ -103,9 +104,8 @@ export async function synthesizeCedar({
       receipt.request_count += 1;
       if (res.ok) break;
       errText = await res.text();
-      assertNoSecretLeak(errText, key);
       if (/credit_balance_exhausted|insufficient_quota/i.test(errText)) {
-        const detail = errText.trim().slice(0, 800) || "(empty body)";
+        const detail = redactSecrets(errText.trim().slice(0, 800), key) || "(empty body)";
         throw new Error(`OpenAI speech HTTP ${res.status}: ${detail}`);
       }
       if (res.status === 429 && attempt < maxAttempts) {
@@ -115,18 +115,19 @@ export async function synthesizeCedar({
         await sleep(waitMs);
         continue;
       }
-      const detail = errText.trim().slice(0, 800) || "(empty body)";
+      const detail = redactSecrets(errText.trim().slice(0, 800), key) || "(empty body)";
       throw new Error(`OpenAI speech HTTP ${res.status}: ${detail}`);
     }
     const buf = Buffer.from(await res.arrayBuffer());
     writeFileSync(file, buf);
     process.stdout.write(`Cedar: wrote ${file} (${buf.length} bytes)\n`);
     receipt.files.push(file);
-    assertNoSecretLeak(file, key);
     if (i < chunks.length - 1) await sleep(2000);
   }
   receipt.executed = true;
-  writeFileSync(join(outDir, `${voice}-receipt.json`), `${JSON.stringify(receipt, null, 2)}\n`);
+  const receiptJson = `${JSON.stringify(receipt, null, 2)}\n`;
+  assertNoSecretLeak(receiptJson, key);
+  writeFileSync(join(outDir, `${voice}-receipt.json`), receiptJson);
   return receipt;
 }
 
