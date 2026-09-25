@@ -33,10 +33,18 @@ export const DEFAULT_INSTRUCTIONS = [
 export const SECTION_PAUSE_MARKER = "[[PEX_SECTION_PAUSE_MS_1750]]";
 export const SECTION_PAUSE_MS = 1750;
 
+function normalizeSpokenNewlines(text) {
+  return text.replace(/\r\n/g, "\n").replace(/\n{3,}/g, "\n\n").trim();
+}
+
 export function spokenOnly(script) {
   let text = script.replace(/<!--\s*cue:section-pause\s*-->/gi, `\n${SECTION_PAUSE_MARKER}\n`);
   text = text.replace(/<!--[\s\S]*?-->/g, "\n");
-  return text.replace(/\r\n/g, "\n").replace(/\n{3,}/g, "\n\n").trim();
+  const parts = text.split(SECTION_PAUSE_MARKER);
+  return parts
+    .map((part) => normalizeSpokenNewlines(part))
+    .join(`\n${SECTION_PAUSE_MARKER}\n`)
+    .trim();
 }
 
 /** Speech segments and deterministic silence gaps for assembly (not sent to Cedar). */

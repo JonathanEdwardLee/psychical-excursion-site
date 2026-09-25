@@ -1,18 +1,58 @@
 {
   "status": "correction-regeneration-pending",
-  "updated_at": "2026-09-25T20:49:36.266Z",
+  "updated_at": "2026-09-25T22:41:36.100Z",
   "work_order": "docs/work-orders/PEX-FULL-CEDAR-AUDIOBOOK.md",
   "model": "gpt-4o-mini-tts",
   "voice": "cedar",
   "cost_ceiling_usd": 15,
-  "package_zip_sha256": "e5ef4837d57752eeb384b16c36db40fa156a37ccf7f5a9bbca337a922912941c",
-  "package_zip_bytes": 543898279,
-  "total_duration_seconds_measured": 23820,
-  "planning_spend_usd_rule_of_thumb": 5.96,
   "conservative_usd_estimated": 8.5492,
   "api_request_count": 257,
   "track_count_planned": 29,
   "tracks_completed": 29,
+  "total_duration_seconds_measured": 23821.95,
+  "planning_spend_usd_rule_of_thumb": 5.96,
+  "package_zip_sha256": "e5ef4837d57752eeb384b16c36db40fa156a37ccf7f5a9bbca337a922912941c",
+  "package_zip_bytes": 543898279,
+  "correction_pass": {
+    "started_at": "2026-09-25T22:41:36.098Z",
+    "tracks_regenerated": [
+      "PEX-AUDIO-00-opening-credits",
+      "PEX-AUDIO-00a-evidence-and-belief",
+      "PEX-AUDIO-00b-sleep-and-safety",
+      "PEX-AUDIO-01-what-is-a-psychical-excursion"
+    ],
+    "tracks_reused_unchanged": [
+      "PEX-AUDIO-02-remember-your-dreams",
+      "PEX-AUDIO-03-notice-your-dreams",
+      "PEX-AUDIO-04-recognize-the-dream",
+      "PEX-AUDIO-05-feel-the-body",
+      "PEX-AUDIO-06-move-your-attention",
+      "PEX-AUDIO-07-build-the-current",
+      "PEX-AUDIO-08-quiet-the-mind",
+      "PEX-AUDIO-09-see-the-image",
+      "PEX-AUDIO-10-watch-the-edge",
+      "PEX-AUDIO-11-let-the-body-sleep",
+      "PEX-AUDIO-12-move-without-moving",
+      "PEX-AUDIO-13-feel-the-shift",
+      "PEX-AUDIO-14-know-the-threshold",
+      "PEX-AUDIO-15-stabilize-the-dream",
+      "PEX-AUDIO-16-explore-the-dream",
+      "PEX-AUDIO-17-loosen-the-body",
+      "PEX-AUDIO-18-cross-the-threshold",
+      "PEX-AUDIO-19-test-the-experience",
+      "PEX-AUDIO-20-compare-the-maps",
+      "PEX-AUDIO-21-floating-in-space",
+      "PEX-AUDIO-22-notice-the-coincidence",
+      "PEX-AUDIO-23-return-record-repeat",
+      "PEX-AUDIO-24-about-the-author",
+      "PEX-AUDIO-25-continue-the-experiment",
+      "PEX-AUDIO-99-closing-credits"
+    ],
+    "additional_api_requests": 0,
+    "additional_conservative_usd": 0,
+    "section_pause_ms": 1750,
+    "chapter1_pause_verified": false
+  },
   "tracks": {
     "PEX-AUDIO-00-opening-credits": {
       "sequence": 0,
@@ -218,17 +258,5 @@
       "conservative_usd": 0.0027
     }
   },
-  "note": "Audio binaries gitignored under local/voice-lab/full-book/",
-  "superseded_package_sha256": "e5ef4837d57752eeb384b16c36db40fa156a37ccf7f5a9bbca337a922912941c",
-  "correction_pending": {
-    "reason": "Founder-approved intro corrections after first full package",
-    "affected_tracks": [
-      "PEX-AUDIO-00-opening-credits",
-      "PEX-AUDIO-00a-evidence-and-belief",
-      "PEX-AUDIO-00b-sleep-and-safety",
-      "PEX-AUDIO-01-what-is-a-psychical-excursion"
-    ],
-    "unchanged_tracks_reusable": 25,
-    "package_must_be_rebuilt": true
-  }
+  "note": "Audio binaries gitignored under local/voice-lab/full-book/"
 }

@@ -1,0 +1,25 @@
+{
+  "status": "awaiting-operator-regeneration",
+  "source_verified_on_branch": "primary/pex-full-cedar-audiobook-20260925",
+  "source_checks": {
+    "opening_credits_three_lines_only": true,
+    "evidence_front_matter_no_duplicate_heading": true,
+    "sleep_safety_front_matter_no_duplicate_heading": true,
+    "chapter1_car_wreck_removed": true,
+    "chapter1_multiple_self_question_updated": true,
+    "chapter1_section_pause_cue_present": true
+  },
+  "pipeline": {
+    "section_pause_ms": 1750,
+    "implementation": "scripts/voice-lab/core.mjs SECTION_PAUSE_MARKER + scripts/voice-lab/full-book/silence.mjs + assembly-order.json"
+  },
+  "tracks_to_regenerate": [
+    "PEX-AUDIO-00-opening-credits",
+    "PEX-AUDIO-00a-evidence-and-belief",
+    "PEX-AUDIO-00b-sleep-and-safety",
+    "PEX-AUDIO-01-what-is-a-psychical-excursion"
+  ],
+  "tracks_reuse_unchanged": 25,
+  "operator_command": "PEX_AUDIOBOOK_EXECUTE=1 PEX_AUDIOBOOK_CORRECTION_CEILING_USD=15 npm run audiobook:correct",
+  "note": "Run on laptop with valid OPENAI_API_KEY. This file is updated when correction completes."
+}
