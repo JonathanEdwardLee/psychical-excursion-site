@@ -5,6 +5,7 @@ import { renderAmbientLayer, type AmbientMode } from "./guidebookAmbient.ts";
 import type { GuidebookPublicPage } from "./guidebookRoute.ts";
 import { bindInPageCitations } from "./guidebookRichText.ts";
 import { renderSkyWidget } from "./skyWidget.ts";
+import { renderGuidebookChapterMenu } from "./guidebookChapterMenu.ts";
 
 function ambientFor(page: GuidebookPublicPage): AmbientMode {
   if (page === "chapter01") return "memory";
@@ -72,7 +73,9 @@ export function renderGuidebookChrome(
   const frame = el("div", {
     class: "app-frame guidebook-frame",
     "data-ambient": ambientMode satisfies AmbientMode,
-  }, [header, live, main, footer]);
+  }, page === "landing"
+    ? [header, live, main, footer]
+    : [header, live, main, footer, renderGuidebookChapterMenu(page)]);
   root.append(skip, ambient, frame);
   return { main };
 }

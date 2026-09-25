@@ -122,6 +122,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expectPublicHeader(root);
     expectHeldFeaturesAbsent(root);
     expect(root.querySelector(".brand-link")?.getAttribute("href")).toBe(LANDING_PATH);
+    expect(root.querySelector(".guidebook-chapter-nav")).toBeNull();
   });
 
   it("keeps the homepage mandala static under reduced motion", async () => {
@@ -153,6 +154,23 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.textContent).toMatch(/By then, you will also have a way to test unusual experiences/);
     expect(root.textContent).not.toMatch(/And if we eventually reach the strange collection/);
     expect(root.querySelectorAll(".guidebook-references li").length).toBe(5);
+    expect(root.querySelector("h1")?.textContent).not.toMatch(/^\s*01\b/);
+    expect(document.title).not.toMatch(/^\s*01\b/);
+    const menu = root.querySelector(".guidebook-chapter-nav") as HTMLElement;
+    const trigger = root.querySelector("#guidebook-chapter-trigger") as HTMLButtonElement;
+    const links = [...root.querySelectorAll(".guidebook-chapter-link")] as HTMLAnchorElement[];
+    expect(menu).toBeTruthy();
+    expect(menu.getAttribute("aria-label")).toBe("Book chapters");
+    expect(trigger.getAttribute("aria-label")).toBe("Open chapter menu");
+    expect(trigger.getAttribute("aria-expanded")).toBe("false");
+    expect(links).toHaveLength(23);
+    expect(links[0]?.querySelector(".guidebook-chapter-number")?.textContent).toBe("01");
+    expect(links[0]?.querySelector(".guidebook-chapter-title")?.textContent).toBe("What Is a Psychical Excursion?");
+    expect(links[0]?.getAttribute("href")).toBe(INTRODUCTION_PATH);
+    expect(links[0]?.getAttribute("aria-current")).toBe("page");
+    expect(links[22]?.querySelector(".guidebook-chapter-number")?.textContent).toBe("23");
+    expect(links[22]?.querySelector(".guidebook-chapter-title")?.textContent).toBe(CHAPTER_22_TITLE);
+    expect(links[22]?.getAttribute("href")).toBe(CHAPTER_22_HASH);
     expect(root.textContent).not.toMatch(/Chapter 0/i);
     expect(root.textContent).not.toMatch(/Start Day 1/i);
     expect(root.textContent).not.toMatch(/Sign in with Google/i);
@@ -277,6 +295,25 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector('a[href="#/days"]')).toBeNull();
   });
 
+  it("opens the chapter menu, marks the current page, and closes on Escape", async () => {
+    const scrollIntoView = vi.fn();
+    window.HTMLElement.prototype.scrollIntoView = scrollIntoView;
+    const root = await mount(INTRODUCTION_PATH);
+    const trigger = root.querySelector("#guidebook-chapter-trigger") as HTMLButtonElement;
+    const panel = root.querySelector("#guidebook-chapter-panel") as HTMLElement;
+    expect(panel.hidden).toBe(true);
+    trigger.click();
+    expect(trigger.getAttribute("aria-expanded")).toBe("true");
+    expect(trigger.getAttribute("aria-label")).toBe("Close chapter menu");
+    expect(panel.hidden).toBe(false);
+    expect(scrollIntoView).toHaveBeenCalled();
+    document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+    expect(trigger.getAttribute("aria-expanded")).toBe("false");
+    expect(trigger.getAttribute("aria-label")).toBe("Open chapter menu");
+    expect(panel.hidden).toBe(true);
+    expect(document.activeElement).toBe(trigger);
+  });
+
   it("renders Chapter 1 as its own reading page without rewriting the title", async () => {
     const chapter = loadGuidebookChapter01();
     expect(chapter.title).toBe(CHAPTER_01_TITLE);
@@ -294,6 +331,10 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector("#guidebook-prev-home")?.textContent).toMatch(/Introduction/);
     expect(root.querySelector("#guidebook-next-chapter-2")?.getAttribute("href")).toBe(CHAPTER_02_HASH);
     expect(root.querySelector("#guidebook-next-chapter-2")?.textContent).toContain(CHAPTER_02_TITLE);
+    expect(root.querySelector("h1")?.textContent).not.toMatch(/^\s*02\b/);
+    const current = root.querySelector(".guidebook-chapter-link[aria-current='page']");
+    expect(current?.querySelector(".guidebook-chapter-number")?.textContent).toBe("02");
+    expect(current?.getAttribute("href")).toBe(CHAPTER_01_HASH);
     expectPublicHeader(root);
     expectHeldFeaturesAbsent(root);
     expect(document.title).toMatch(CHAPTER_01_TITLE);
@@ -1172,6 +1213,8 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector("#guidebook-prev-chapter-21")?.textContent).toContain(CHAPTER_21_TITLE);
     expect(root.querySelector("#guidebook-next-chapter-22")).toBeNull();
     expect(root.querySelector("#guidebook-next-chapter-23")).toBeNull();
+    expect(root.querySelector(".guidebook-chapter-link[aria-current='page'] .guidebook-chapter-number")?.textContent).toBe("23");
+    expect(root.querySelector(".guidebook-chapter-link[aria-current='page']")?.getAttribute("href")).toBe(CHAPTER_22_HASH);
     expectPublicHeader(root);
     expectHeldFeaturesAbsent(root);
     expect(root.textContent).not.toMatch(/\bPEx\b/);

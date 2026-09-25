@@ -66,6 +66,7 @@ import {
   scrollGuidebookSection,
 } from "./guidebookRoute.ts";
 import { bindGuidebookReveals, stopGuidebookMotion } from "./guidebookMotion.ts";
+import { stopGuidebookChapterMenu } from "./guidebookChapterMenu.ts";
 import { renderNightCapturePage } from "./pages/nightCapture.ts";
 import { parseRoute, type AppRoute } from "./routes.ts";
 import { bindDayReading, bindPhaseJourney, stopScrollPresence } from "./scrollPresence.ts";
@@ -88,6 +89,7 @@ export async function renderApp(root: HTMLElement): Promise<void> {
     stopAstronomyClock();
     stopScrollPresence();
     stopGuidebookMotion();
+    stopGuidebookChapterMenu();
     const page = parseGuidebookPublicPage();
     const fragment = inPageGuidebookFragment();
     const pageChanged = guidebookPageChanged(page);
