@@ -34,7 +34,7 @@ The same principle applies to sensations. An itch does not automatically require
 
 ## From Moving Attention to Holding It
 
-Chapter 6 used movement itself as the exercise. You traced attention through the body and experimented with longer circuits. Now try using that work as an entry point into stillness.
+In [**07**](/energy-sensations-meditation/), movement itself was the exercise. You traced attention through the body and experimented with longer circuits. Now try using that work as an entry point into stillness.
 
 Run one slow circuit through the body. Once the circuit is complete, choose one location along it and stop there. Instead of immediately moving onward, examine what happens to the sensation over time.
 
@@ -136,7 +136,7 @@ Then answer.
 
 The aim is not to develop the habit of saying “no.” The aim is to develop the habit of **checking the state you are already inside**.
 
-That practice belongs naturally beside meditation because Chapter 7 is ultimately about the same broader capacity we have been building from the beginning: recognizing where attention is and choosing what to do next.
+That practice belongs naturally beside meditation because this chapter is ultimately about the same broader capacity we have been building from the beginning: recognizing where attention is and choosing what to do next.
 
 ## Summary
 
@@ -150,7 +150,7 @@ This chapter also establishes a skill we will need shortly: remaining relaxed an
 
 ## Experiment
 
-If you are practicing near bedtime, begin with [**Relax the body**](#/feel-the-body#nighttime-body-release). Then perform one slow circuit from **Build the Current** and allow the movement of attention to stop.
+If you are practicing near bedtime, begin with [**Relax the body**](/body-scan-meditation/#nighttime-body-release). Then perform one slow circuit from **Build the Current** and allow the movement of attention to stop.
 
 Choose a single object of attention. The physical sensation of natural breathing is useful, but a body point, steady sound, or simple repeated word also works. Spend several minutes remaining with that object. Each time you notice that attention has moved elsewhere, briefly recognize what captured it and return.
 

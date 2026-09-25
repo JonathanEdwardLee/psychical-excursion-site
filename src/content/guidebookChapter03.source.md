@@ -88,7 +88,7 @@ No message saying:
 
 So we need a cue.
 
-Fortunately, Chapter 2 gave us plenty.
+Fortunately, we found plenty of them in [**03**](/dream-awareness-signs/).
 
 Dream signs.
 

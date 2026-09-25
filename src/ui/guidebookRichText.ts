@@ -1,4 +1,4 @@
-import { NIGHTTIME_BODY_RELEASE_ID, PEX_GUIDEBOOK_LINKS, RELAX_THE_BODY_HREF, RELAX_THE_BODY_PEX_ID } from "../content/guidebookAnchors.ts";
+import { NIGHTTIME_BODY_RELEASE_ID, PEX_GUIDEBOOK_LINKS, RELAX_THE_BODY_HREF } from "../content/guidebookAnchors.ts";
 import { el } from "./dom.ts";
 
 type RichTextOptions = {
@@ -13,15 +13,16 @@ function stripLinkTrailingPunctuation(value: string): string {
 export function renderRichText(text: string, options: RichTextOptions = {}): HTMLElement {
   const { linkCitations = true } = options;
   const paragraph = el("span", { class: "guidebook-rich-text" });
+  const mdLinkToken = String.raw`\[(?:[^\]]+)\]\((?:pex:[a-z0-9-]+|#\/[^)\s]+|\/[a-z0-9-/#]+)\)`;
   const pattern = linkCitations
-    ? /(\[[^\]]+\]\((?:pex:[a-z0-9-]+|#\/[^)\s]+)\)|\*\*[^*]+\*\*|\*[^*]+\*|\[\d+\]|https:\/\/\S+|doi:10\.\S+)/gi
-    : /(\[[^\]]+\]\((?:pex:[a-z0-9-]+|#\/[^)\s]+)\)|\*\*[^*]+\*\*|\*[^*]+\*|https:\/\/\S+|doi:10\.\S+)/gi;
+    ? new RegExp(`(${mdLinkToken}|\\*\\*[^*]+\\*\\*|\\*[^*]+\\*|\\[\\d+\\]|https:\\/\\/\\S+|doi:10\\.\\S+)`, "gi")
+    : new RegExp(`(${mdLinkToken}|\\*\\*[^*]+\\*\\*|\\*[^*]+\\*|https:\\/\\/\\S+|doi:10\\.\\S+)`, "gi");
   let lastIndex = 0;
   for (const match of text.matchAll(pattern)) {
     const index = match.index ?? 0;
     if (index > lastIndex) paragraph.append(text.slice(lastIndex, index));
     const token = match[0];
-    const mdLink = token.match(/^\[([^\]]+)\]\((pex:[a-z0-9-]+|#\/[^)\s]+)\)$/i);
+    const mdLink = token.match(/^\[([^\]]+)\]\((pex:[a-z0-9-]+|#\/[^)\s]+|\/[a-z0-9-/#]+)\)$/i);
     if (mdLink) {
       const label = mdLink[1]!;
       const destRaw = mdLink[2]!;
@@ -34,7 +35,7 @@ export function renderRichText(text: string, options: RichTextOptions = {}): HTM
       const link = el("a", {
         href,
         class: "guidebook-pex-link",
-        "data-pex-link": dest?.id ?? RELAX_THE_BODY_PEX_ID,
+        "data-pex-link": dest?.id,
       });
       const bold = label.match(/^\*\*(.+)\*\*$/);
       if (bold) link.append(el("strong", {}, [bold[1]!]));

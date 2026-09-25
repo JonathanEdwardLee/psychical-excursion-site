@@ -74,7 +74,7 @@ There is also a useful reverse case. In REM sleep behavior disorder, normal REM 
 
 In ordinary REM sleep, however, imagined movement is largely separated from overt movement.
 
-This separation will become very important in the next chapter.
+This separation will become very important in [**12**](/motor-imagery-lucid-dreaming/).
 
 ## When Awareness Returns Before Movement
 
@@ -312,7 +312,7 @@ A dream movement can feel entirely physical even though the physical body did no
 
 A floating sensation can arrive without any deliberate imagery at all.
 
-The next chapter will examine that directly.
+[**12**](/motor-imagery-lucid-dreaming/) will examine that directly.
 
 ## Conscious Entry Into Sleep
 
@@ -466,7 +466,7 @@ It is to become more precise about what changes as the body becomes less dominan
 
 Practice while going to sleep normally.
 
-Begin with [**Relax the body**](#/feel-the-body#nighttime-body-release) if useful.
+Begin with [**Relax the body**](/body-scan-meditation/#nighttime-body-release) if useful.
 
 Let your attention move briefly through the body.
 

@@ -111,7 +111,9 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector("h1")?.textContent).toBe("Psychical Excursion");
     expect(root.querySelector("h1")?.classList.contains("visually-hidden")).toBe(true);
     expect(root.querySelector(".guidebook-landing-affirmation")?.textContent).toBe(LANDING_AFFIRMATION);
-    expect(root.querySelectorAll(".guidebook-landing-affirmation").length).toBe(1);
+    expect(root.querySelector(".guidebook-landing-mandala + .guidebook-landing-affirmation")).toBeTruthy();
+    expect(root.querySelector(".guidebook-landing-affirmation + .guidebook-book-entry")).toBeTruthy();
+    expect(root.querySelector(".guidebook-book-entry + .guidebook-landing-synopsis")).toBeTruthy();
     expect(root.querySelector(".guidebook-landing-synopsis")?.textContent).toBe(LANDING_SYNOPSIS);
     const enter = root.querySelector("#guidebook-enter-book") as HTMLAnchorElement;
     expect(enter?.getAttribute("href")).toBe(INTRODUCTION_PATH);
@@ -163,6 +165,8 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(menu.getAttribute("aria-label")).toBe("Book chapters");
     expect(trigger.getAttribute("aria-label")).toBe("Open chapter menu");
     expect(trigger.getAttribute("aria-expanded")).toBe("false");
+    expect(trigger.querySelector(".guidebook-chapter-icon")?.getAttribute("viewBox")).toBe("0 0 24 24");
+    expect(trigger.querySelector(".guidebook-chapter-icon-diamond")?.getAttribute("points")).toContain("23.6");
     expect(links).toHaveLength(23);
     expect(links[0]?.querySelector(".guidebook-chapter-number")?.textContent).toBe("01");
     expect(links[0]?.querySelector(".guidebook-chapter-menu-title")?.textContent).toBe("What Is a Psychical Excursion?");
@@ -502,6 +506,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector("#ref-1")).toBeTruthy();
     expect(root.querySelector("#ref-4")).toBeTruthy();
     expect(root.querySelector(".pex-ambient-recognize")).toBeTruthy();
+    expect(root.querySelector('a.guidebook-pex-link[href="/dream-awareness-signs/"]')?.textContent).toBe("03");
     expect(root.querySelector("#guidebook-prev-chapter-2")?.getAttribute("href")).toBe(CHAPTER_02_HASH);
     expect(root.querySelector("#guidebook-next-chapter-4")?.getAttribute("href")).toBe(CHAPTER_04_HASH);
     expect(root.querySelector("#guidebook-next-chapter-4")?.textContent).toContain(CHAPTER_04_TITLE);
@@ -562,8 +567,8 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector(".pex-attention-instrument")).toBeTruthy();
     expect(root.textContent).toMatch(/Look at the center/);
     expect(root.textContent).toMatch(/tactile imaging/);
-    expect(root.querySelectorAll("a.guidebook-pex-link").length).toBe(2);
-    expect(root.querySelector("a.guidebook-pex-link")?.getAttribute("href")).toBe(RELAX_THE_BODY_HREF);
+    expect(root.querySelectorAll(`a.guidebook-pex-link[href="${RELAX_THE_BODY_HREF}"]`).length).toBe(2);
+    expect(root.querySelector('a.guidebook-pex-link[href="/dream-recall/"]')?.textContent).toBe("02");
     expect(practiceLabels(root)).toEqual(["Summary", "Experiment", "Intention"]);
     expect(root.querySelectorAll(".guidebook-practice").length).toBe(1);
     expect(root.querySelector("#ref-1")).toBeTruthy();
@@ -588,8 +593,8 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector(".pex-attention-instrument")).toBeNull();
     expect(root.textContent).toMatch(/From Movement to Current/);
     expect(root.textContent).toMatch(/a repeated, continuous movement of attention/);
-    expect(root.querySelectorAll("a.guidebook-pex-link").length).toBe(2);
-    expect(root.querySelector("a.guidebook-pex-link")?.getAttribute("href")).toBe(RELAX_THE_BODY_HREF);
+    expect(root.querySelectorAll(`a.guidebook-pex-link[href="${RELAX_THE_BODY_HREF}"]`).length).toBe(2);
+    expect(root.querySelector('a.guidebook-pex-link[href="/attention-body-awareness/"]')?.textContent).toBe("06");
     expect(practiceLabels(root)).toEqual(["Summary", "Experiment", "Intention"]);
     expect(root.querySelectorAll(".guidebook-practice").length).toBe(1);
     expect(root.querySelector("#ref-1")).toBeTruthy();
@@ -619,7 +624,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector(".pex-attention-instrument")).toBeNull();
     expect(root.textContent).toMatch(/meta-awareness/);
     expect(root.textContent).toMatch(/Focused-attention meditation/);
-    const relaxLinks = [...root.querySelectorAll("a.guidebook-pex-link")];
+    const relaxLinks = [...root.querySelectorAll(`a.guidebook-pex-link[href="${RELAX_THE_BODY_HREF}"]`)];
     expect(relaxLinks).toHaveLength(1);
     expect(relaxLinks[0]?.getAttribute("href")).toBe(RELAX_THE_BODY_HREF);
     expect(relaxLinks[0]?.textContent).toBe("Relax the body");
@@ -688,7 +693,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector(".pex-attention-instrument")).toBeNull();
     expect(root.textContent).toMatch(/Falling Asleep Is a Process/);
     expect(root.textContent).toMatch(/microdreams/);
-    const relaxLinks = [...root.querySelectorAll("a.guidebook-pex-link")];
+    const relaxLinks = [...root.querySelectorAll(`a.guidebook-pex-link[href="${RELAX_THE_BODY_HREF}"]`)];
     expect(relaxLinks).toHaveLength(1);
     expect(relaxLinks[0]?.getAttribute("href")).toBe(RELAX_THE_BODY_HREF);
     expect(relaxLinks[0]?.textContent).toBe("Relax the body");
@@ -722,7 +727,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector(".pex-attention-instrument")).toBeNull();
     expect(root.textContent).toMatch(/mind awake, body asleep/);
     expect(root.textContent).toMatch(/Movement and Awareness Are Not One System/);
-    const relaxLinks = [...root.querySelectorAll("a.guidebook-pex-link")];
+    const relaxLinks = [...root.querySelectorAll(`a.guidebook-pex-link[href="${RELAX_THE_BODY_HREF}"]`)];
     expect(relaxLinks).toHaveLength(1);
     expect(relaxLinks[0]?.getAttribute("href")).toBe(RELAX_THE_BODY_HREF);
     expect(relaxLinks[0]?.textContent).toBe("Relax the body");

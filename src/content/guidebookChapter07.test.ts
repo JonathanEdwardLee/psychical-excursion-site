@@ -29,7 +29,7 @@ describe("Chapter 7 Quiet the Mind manuscript", () => {
     expect(chapter.blocks.some((block) => block.kind === "heading" && block.text === "Focused Attention and Open Monitoring")).toBe(true);
     const experiment = parts.find((part) => part.label === "Experiment");
     const experimentText = JSON.stringify(experiment);
-    expect(experimentText).toContain("[**Relax the body**](#/feel-the-body#nighttime-body-release)");
+    expect(experimentText).toContain(`[**Relax the body**](${RELAX_THE_BODY_HREF})`);
     expect(RELAX_THE_BODY_HREF).toBe("/body-scan-meditation/#nighttime-body-release");
     expect(JSON.stringify(chapter)).not.toMatch(/\bPEx\b/);
   });

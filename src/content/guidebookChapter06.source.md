@@ -1,6 +1,6 @@
 # Build the Current: Tingling, Energy Sensations and Focused Attention
 
-In the last chapter, we moved attention.
+In [**06**](/attention-body-awareness/), we moved attention.
 
 A point in the palm.
 
@@ -722,7 +722,7 @@ One field.
 
 You may discover that moving attention is easier than holding broad attention.
 
-That will become important in the next chapter.
+That will become important in [**08**](/meditation-for-lucid-dreaming/).
 
 ## What Is the Current?
 
@@ -836,7 +836,7 @@ That is much more useful than treating a traditional package as one indivisible 
 
 Our dream practice is still running quietly beside all of this.
 
-Tonight, when you are ready for sleep, [**Relax the body**](#/feel-the-body#nighttime-body-release).
+Tonight, when you are ready for sleep, [**Relax the body**](/body-scan-meditation/#nighttime-body-release).
 
 Then perform one gentle circuit.
 
@@ -984,11 +984,11 @@ But if our larger goal is to maximize human potential, better control of attenti
 
 ## From Motion to Stillness
 
-We began Chapter 4 by feeling the body.
+We began [**05**](/body-scan-meditation/) by feeling the body.
 
 Then we learned to release it.
 
-In Chapter 5 we made attention mobile.
+In [**06**](/attention-body-awareness/) we made attention mobile.
 
 Now we have connected those movements into larger circuits.
 
@@ -1090,7 +1090,7 @@ Nothing unusual.
 
 Record the observation before deciding what caused it.
 
-At bedtime, [**Relax the body**](#/feel-the-body#nighttime-body-release), perform one gentle circuit, and then ask:
+At bedtime, [**Relax the body**](/body-scan-meditation/#nighttime-body-release), perform one gentle circuit, and then ask:
 
 **Where is my body when I am dreaming?**
 
