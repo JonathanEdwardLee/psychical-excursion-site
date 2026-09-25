@@ -6,6 +6,8 @@ import { readFileSync } from "node:fs";
 
 export const CHAPTER10_SCRIPT = "publication/audio/session-scripts/10-watch-the-edge.md";
 export const DEFAULT_COST_CEILING_USD = 1;
+/** Full audiobook production pass (work order PEX-FULL-CEDAR-AUDIOBOOK). */
+export const FULL_BOOK_COST_CEILING_USD = 15;
 export const CEDAR_MODEL = "gpt-4o-mini-tts";
 export const CEDAR_VOICE = "cedar";
 export const MARIN_VOICE = "marin";

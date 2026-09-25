@@ -5,7 +5,7 @@
  * and the conservative estimate is under the hard ceiling.
  * Never logs the key.
  */
-import { mkdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
@@ -35,6 +35,8 @@ export async function synthesizeCedar({
   ceilingUsd = Number(env.VOICE_LAB_COST_CEILING_USD ?? DEFAULT_COST_CEILING_USD),
   execute = env.VOICE_LAB_EXECUTE === "1",
   words,
+  resume = false,
+  chunkName = "cedar",
 }) {
   const key = env.OPENAI_API_KEY;
   const chunks = chunkForSpeechApi(text);
@@ -51,6 +53,7 @@ export async function synthesizeCedar({
     cost_ceiling_usd: ceilingUsd,
     executed: false,
     request_count: 0,
+    skipped_chunks: 0,
     files: [],
     api_key: key ? "set" : "missing",
   };
@@ -66,6 +69,17 @@ export async function synthesizeCedar({
   mkdirSync(outDir, { recursive: true });
   process.stdout.write(`Cedar: ${chunks.length} chunk(s), voice=${voice}, ceiling=$${ceilingUsd}\n`);
   for (let i = 0; i < chunks.length; i += 1) {
+    const chunkFile =
+      chunkName === "cedar"
+        ? `${voice}-chunk-${String(i + 1).padStart(2, "0")}.wav`
+        : `chunk-${String(i + 1).padStart(3, "0")}.wav`;
+    const file = join(outDir, chunkFile);
+    if (resume && existsSync(file) && statSync(file).size > 2048) {
+      process.stdout.write(`Cedar: chunk ${i + 1}/${chunks.length} skipped (exists)\n`);
+      receipt.skipped_chunks += 1;
+      receipt.files.push(file);
+      continue;
+    }
     process.stdout.write(`Cedar: chunk ${i + 1}/${chunks.length}…\n`);
     const body = {
       model: CEDAR_MODEL,
@@ -105,7 +119,6 @@ export async function synthesizeCedar({
       throw new Error(`OpenAI speech HTTP ${res.status}: ${detail}`);
     }
     const buf = Buffer.from(await res.arrayBuffer());
-    const file = join(outDir, `${voice}-chunk-${String(i + 1).padStart(2, "0")}.wav`);
     writeFileSync(file, buf);
     process.stdout.write(`Cedar: wrote ${file} (${buf.length} bytes)\n`);
     receipt.files.push(file);

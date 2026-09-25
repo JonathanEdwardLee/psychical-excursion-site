@@ -1,0 +1,13 @@
+{
+  "status": "in-progress",
+  "work_order": "docs/work-orders/PEX-FULL-CEDAR-AUDIOBOOK.md",
+  "model": "gpt-4o-mini-tts",
+  "voice": "cedar",
+  "cost_ceiling_usd": 15,
+  "conservative_usd_estimated": 0,
+  "api_request_count": 0,
+  "track_count_planned": 29,
+  "tracks_completed": 0,
+  "tracks": {},
+  "note": "Updated by scripts/voice-lab/full-book/generate.mjs during production. Audio stays gitignored under local/voice-lab/full-book/."
+}
