@@ -1,6 +1,6 @@
 /* PEx application-shell service worker. Generated at build time. */
-const CACHE_NAME = "pex-shell-mugagfj6";
-const PRECACHE = ["/","/index.html","/assets/index-D1iIJyrV.css","/assets/index-DqwX2eTe.js","/brand/pex-logo-primary-reverse.svg","/brand/pex-logo-primary.svg","/icons/pex-app-icon-dark-180.png","/icons/pex-app-icon-dark-192.png","/icons/pex-app-icon-dark-512.png","/icons/pex-app-icon-light-180.png","/icons/pex-app-icon-light-192.png","/icons/pex-app-icon-light-512.png","/icons/pex-favicon-dark-16.png","/icons/pex-favicon-dark-32.png","/icons/pex-favicon-dark-48.png","/icons/pex-favicon-dark-64.png","/icons/pex-favicon-symbol-16.png","/icons/pex-favicon-symbol-32.png","/icons/pex-favicon-symbol-48.png","/icons/pex-favicon-symbol-64.png","/icons/pex-favicon.ico","/manifest.webmanifest"];
+const CACHE_NAME = "pex-shell-mugbcu1r";
+const PRECACHE = ["/","/index.html","/assets/index-CotJ6Bp_.js","/assets/index-D1iIJyrV.css","/attention-body-awareness/index.html","/body-scan-meditation/index.html","/brand/pex-logo-primary-reverse.svg","/brand/pex-logo-primary.svg","/dream-awareness-signs/index.html","/dream-recall/index.html","/energy-sensations-meditation/index.html","/entering-a-lucid-dream/index.html","/hypnagogia-lucid-dreaming/index.html","/icons/pex-app-icon-dark-180.png","/icons/pex-app-icon-dark-192.png","/icons/pex-app-icon-dark-512.png","/icons/pex-app-icon-light-180.png","/icons/pex-app-icon-light-192.png","/icons/pex-app-icon-light-512.png","/icons/pex-favicon-dark-16.png","/icons/pex-favicon-dark-32.png","/icons/pex-favicon-dark-48.png","/icons/pex-favicon-dark-64.png","/icons/pex-favicon-symbol-16.png","/icons/pex-favicon-symbol-32.png","/icons/pex-favicon-symbol-48.png","/icons/pex-favicon-symbol-64.png","/icons/pex-favicon.ico","/lucid-dream-experiments/index.html","/lucid-dream-stabilization/index.html","/lucid-dreaming-reality-checks/index.html","/manifest.webmanifest","/meditation-for-lucid-dreaming/index.html","/mind-awake-body-asleep/index.html","/motor-imagery-lucid-dreaming/index.html","/out-of-body-sensations-sleep/index.html","/psychical-excursion/index.html","/robots.txt","/sitemap.xml","/visualization-hypnagogic-imagery/index.html"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -30,23 +30,25 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
 
-  if (request.mode === "navigate") {
-    event.respondWith(
-      (async () => {
-        try {
-          const fresh = await fetch(request);
-          const cache = await caches.open(CACHE_NAME);
-          cache.put("/index.html", fresh.clone());
-          return fresh;
-        } catch {
-          const cached = (await caches.match("/index.html")) || (await caches.match("/"));
-          if (cached) return cached;
-          return Response.error();
-        }
-      })()
-    );
-    return;
-  }
+      if (request.mode === "navigate") {
+        event.respondWith(
+          (async () => {
+            try {
+              const fresh = await fetch(request);
+              const cache = await caches.open(CACHE_NAME);
+              cache.put(request, fresh.clone());
+              return fresh;
+            } catch {
+              const cached = (await caches.match(request))
+                || (await caches.match("/psychical-excursion/"))
+                || (await caches.match("/psychical-excursion/index.html"));
+              if (cached) return cached;
+              return Response.error();
+            }
+          })()
+        );
+        return;
+      }
 
   event.respondWith(
     (async () => {
