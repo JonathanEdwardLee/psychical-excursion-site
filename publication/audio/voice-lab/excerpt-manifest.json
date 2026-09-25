@@ -1,0 +1,14 @@
+{
+  "source": "publication/audio/session-scripts/10-watch-the-edge.md",
+  "words": 607,
+  "excerpt_sha256": "2eb7f0d978ab0630d04019c2c4364638106cc8ddda30d79dc3180bff5480d71f",
+  "source_script_sha256": "ca12846e77f579ce634c04d1a81b5424e7ba475298449e009b7ca4e4dd93b227",
+  "planning_minutes_at_150wpm": 4,
+  "includes": [
+    "research exposition",
+    "humor",
+    "EEG/hypnagogia",
+    "reflective question",
+    "sleep-onset instruction"
+  ]
+}

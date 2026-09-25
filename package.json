@@ -21,7 +21,13 @@
     "test:publish": "bash scripts/test-publish-hostinger-deploy.sh",
     "report:release": "node scripts/report-release-tree.mjs",
     "generate:publication": "node scripts/generate-publication-master.mjs",
-    "generate:session-scripts": "node scripts/generate-session-scripts.mjs"
+    "generate:session-scripts": "node scripts/generate-session-scripts.mjs",
+    "voice-lab:excerpt": "node scripts/voice-lab/write-excerpt.mjs",
+    "voice-lab:hardware": "node scripts/voice-lab/hardware.mjs",
+    "voice-lab:pilot": "node scripts/voice-lab/write-excerpt.mjs && node scripts/voice-lab/generate-pilot.mjs",
+    "voice-lab:cedar": "node scripts/voice-lab/cedar.mjs",
+    "voice-lab:chatterbox": "node scripts/voice-lab/chatterbox.mjs",
+    "voice-lab:serve": "node scripts/voice-lab/serve.mjs"
   },
   "engines": {
     "node": ">=22.0.0"

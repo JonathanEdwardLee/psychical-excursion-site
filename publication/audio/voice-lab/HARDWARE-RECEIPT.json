@@ -1,0 +1,19 @@
+{
+  "inspected_at": "2026-09-25T16:10:48.360Z",
+  "os": "Linux 6.12.94+",
+  "cpu_count": 4,
+  "cpu_model": "Intel(R) Xeon(R) Processor",
+  "ram_gb": 15.6,
+  "ram_free_gb": 5.2,
+  "disk_free_gb": 245.4,
+  "python": "python3",
+  "gpu": {
+    "nvidia": false,
+    "report": "no nvidia-smi"
+  },
+  "gate": {
+    "chatterbox_variant": "none",
+    "install": "refused",
+    "reason": "No GPU; available RAM/CPU is too tight to download Torch + Chatterbox weights in this environment without risking instability. Operator laptop with ≥8 CPU cores may try Chatterbox-Nano later; do not buy hardware."
+  }
+}

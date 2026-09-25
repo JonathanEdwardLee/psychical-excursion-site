@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>PEx Voice Lab (local only)</title>
+  <style>
+    body { font-family: Georgia, serif; max-width: 42rem; margin: 2rem auto; padding: 0 1rem; }
+    textarea, input, select { width: 100%; }
+    .blind label { display: block; margin: 0.75rem 0; }
+    .meta { display: none; }
+    body.show-meta .meta { display: block; }
+    audio { width: 100%; }
+  </style>
+</head>
+<body>
+  <h1>Local Voice Lab</h1>
+  <p>Scores stay in this browser. Nothing is uploaded.</p>
+  <p id="excerpt"></p>
+  <p>
+    Load local WAV files the operator generated under <code>local/voice-lab/</code>.
+    Listen without names first.
+  </p>
+  <div class="blind">
+    <label>Candidate A <input id="a" type="file" accept="audio/*" /></label>
+    <audio id="pa" controls></audio>
+    <label>Candidate B <input id="b" type="file" accept="audio/*" /></label>
+    <audio id="pb" controls></audio>
+  </div>
+  <h2>Scores (1–5)</h2>
+  <form id="form">
+    <label>Naturalness A <input name="natA" type="number" min="1" max="5" /></label>
+    <label>Naturalness B <input name="natB" type="number" min="1" max="5" /></label>
+    <label>Fit for Psychical Excursion A <input name="fitA" type="number" min="1" max="5" /></label>
+    <label>Fit B <input name="fitB" type="number" min="1" max="5" /></label>
+    <label>Jonathan likeness (clone only) <input name="like" type="number" min="1" max="5" /></label>
+    <label>Pronunciation A <input name="proA" type="number" min="1" max="5" /></label>
+    <label>Pronunciation B <input name="proB" type="number" min="1" max="5" /></label>
+    <label>Humor/timing A <input name="humA" type="number" min="1" max="5" /></label>
+    <label>Humor/timing B <input name="humB" type="number" min="1" max="5" /></label>
+    <label>Calmness A <input name="calA" type="number" min="1" max="5" /></label>
+    <label>Calmness B <input name="calB" type="number" min="1" max="5" /></label>
+    <label>Listenability A <input name="lisA" type="number" min="1" max="5" /></label>
+    <label>Listenability B <input name="lisB" type="number" min="1" max="5" /></label>
+    <label>Artifacts A (1=many, 5=none) <input name="artA" type="number" min="1" max="5" /></label>
+    <label>Artifacts B <input name="artB" type="number" min="1" max="5" /></label>
+    <label>Notes <textarea name="notes" rows="4"></textarea></label>
+    <button type="submit">Save locally</button>
+  </form>
+  <p><button type="button" id="reveal">Show generation metadata</button></p>
+  <pre class="meta" id="meta"></pre>
+  <script>
+    const excerptEl = document.getElementById("excerpt");
+    fetch("./EXCERPT.md").then((r) => r.text()).then((t) => { excerptEl.textContent = t; });
+    fetch("./GENERATION-MANIFEST.json").then((r) => r.json()).then((j) => {
+      document.getElementById("meta").textContent = JSON.stringify(j, null, 2);
+    }).catch(() => {});
+    function bind(input, player) {
+      input.addEventListener("change", () => {
+        const f = input.files[0];
+        if (!f) return;
+        player.src = URL.createObjectURL(f);
+      });
+    }
+    bind(document.getElementById("a"), document.getElementById("pa"));
+    bind(document.getElementById("b"), document.getElementById("pb"));
+    document.getElementById("reveal").onclick = () => document.body.classList.toggle("show-meta");
+    const form = document.getElementById("form");
+    const saved = localStorage.getItem("pex-voice-lab-scores");
+    if (saved) {
+      const data = JSON.parse(saved);
+      for (const [k, v] of Object.entries(data)) {
+        if (form.elements[k]) form.elements[k].value = v;
+      }
+    }
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      localStorage.setItem("pex-voice-lab-scores", JSON.stringify(data));
+    });
+  </script>
+</body>
+</html>

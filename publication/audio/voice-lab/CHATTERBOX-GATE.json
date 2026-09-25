@@ -1,0 +1,21 @@
+{
+  "candidate": "official Resemble AI Chatterbox (resemble-ai/chatterbox)",
+  "wrapper_license": "MIT (GitHub LICENSE, Copyright (c) 2025 Resemble AI, retrieved 2026-09-25)",
+  "weights_license_claimed": "Hugging Face ResembleAI/chatterbox and chatterbox-nano model cards list license: mit (re-verify after any download)",
+  "commercial_claim": "Resemble states Chatterbox family is MIT and may be used commercially; this is not a substitute for the LICENSE file inside the exact checkpoint tarball the operator downloads.",
+  "do_not_use": [
+    "Coqui XTTS-v2 (CPML non-commercial)",
+    "F5-TTS public weights (CC-BY-NC)",
+    "Fish Speech public weights (separate commercial agreement)"
+  ],
+  "hardware": {
+    "chatterbox_variant": "none",
+    "install": "refused",
+    "reason": "No GPU; available RAM/CPU is too tight to download Torch + Chatterbox weights in this environment without risking instability. Operator laptop with ≥8 CPU cores may try Chatterbox-Nano later; do not buy hardware."
+  },
+  "reference_wav_present": false,
+  "cloud_upload": false,
+  "installed": false,
+  "generated": false,
+  "stop": "No GPU; available RAM/CPU is too tight to download Torch + Chatterbox weights in this environment without risking instability. Operator laptop with ≥8 CPU cores may try Chatterbox-Nano later; do not buy hardware."
+}
