@@ -9,9 +9,9 @@ import { parseGuidebookPublicPage } from "../ui/guidebookRoute.ts";
 
 describe("Chapter 3 Recognize manuscript", () => {
   it("locks title and public hash", () => {
-    expect(CHAPTER_03_TITLE).toBe("You Are Dreaming. Recognize.");
-    expect(CHAPTER_03_PATH).toBe("/you-are-dreaming-recognize");
-    expect(CHAPTER_03_HASH).toBe("#/you-are-dreaming-recognize");
+    expect(CHAPTER_03_TITLE).toBe("Recognize the Dream: Lucid Dreaming, Reality Checks and Dream Signs");
+    expect(CHAPTER_03_PATH).toBe("/lucid-dreaming-reality-checks/");
+    expect(CHAPTER_03_HASH).toBe("/lucid-dreaming-reality-checks/");
     expect(parseGuidebookPublicPage(CHAPTER_03_HASH)).toBe("chapter03");
   });
 

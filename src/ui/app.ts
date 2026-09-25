@@ -47,11 +47,12 @@ import { CHAPTER_14_HASH, CHAPTER_14_TITLE, loadGuidebookChapter14 } from "../co
 import { CHAPTER_15_HASH, CHAPTER_15_TITLE, loadGuidebookChapter15 } from "../content/guidebookChapter15.ts";
 import { finalizeGuidebookPage, renderGuidebookChrome } from "./guidebookShell.ts";
 import { isGuidebookPublicSurface } from "./publicSurface.ts";
-import { parseGuidebookHash } from "../content/guidebookAnchors.ts";
+import { INTRODUCTION_PATH } from "../content/guidebookCatalog.ts";
 import {
+  applyGuidebookLocation,
   guidebookPageChanged,
+  inPageGuidebookFragment,
   markGuidebookPage,
-  normalizeGuidebookPublicHash,
   parseGuidebookPublicPage,
   resetGuidebookWindowScroll,
   scrollGuidebookSection,
@@ -74,19 +75,19 @@ function applyCaptureRouteTheme(route: AppRoute): void {
 
 export async function renderApp(root: HTMLElement): Promise<void> {
   if (isGuidebookPublicSurface()) {
-    normalizeGuidebookPublicHash();
+    if (applyGuidebookLocation()) return;
     abandonLiveMicrophone();
     stopAstronomyClock();
     stopScrollPresence();
     stopGuidebookMotion();
     const page = parseGuidebookPublicPage();
-    const fragment = parseGuidebookHash().fragment;
+    const fragment = inPageGuidebookFragment();
     const pageChanged = guidebookPageChanged(page);
     if (pageChanged && !fragment) resetGuidebookWindowScroll();
     markGuidebookPage(page);
     const { main } = renderGuidebookChrome(root, page);
     const previousHome = {
-      href: "#/",
+      href: INTRODUCTION_PATH,
       title: "Introduction",
       id: "guidebook-prev-home",
     };

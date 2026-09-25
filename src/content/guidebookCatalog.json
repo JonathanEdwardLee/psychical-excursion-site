@@ -1,0 +1,117 @@
+{
+  "origin": "https://psychicalexcursion.com",
+  "pages": [
+    {
+      "id": "home",
+      "title": "Psychical Excursion: Lucid Dreaming, Meditation, Visualization & OBE Research",
+      "path": "/psychical-excursion/",
+      "legacyHashes": ["/", "#/", "#"],
+      "description": "A free researched practice guide for lucid dreaming, meditation, visualization, and out-of-body experience. Public pages use aggregate analytics. Journal entries stay on this device."
+    },
+    {
+      "id": "chapter01",
+      "title": "Remember Your Dreams: Dream Recall Techniques and Research",
+      "path": "/dream-recall/",
+      "legacyHashes": ["#/you-are-dreaming-remember"],
+      "description": "Dream recall techniques and research for noticing and remembering more of the night’s dreams."
+    },
+    {
+      "id": "chapter02",
+      "title": "Notice Your Dreams: Dream Awareness, Patterns and Dream Signs",
+      "path": "/dream-awareness-signs/",
+      "legacyHashes": ["#/you-are-dreaming-notice"],
+      "description": "How to notice dream awareness, repeating patterns, and dream signs without forcing a story onto the night."
+    },
+    {
+      "id": "chapter03",
+      "title": "Recognize the Dream: Lucid Dreaming, Reality Checks and Dream Signs",
+      "path": "/lucid-dreaming-reality-checks/",
+      "legacyHashes": ["#/you-are-dreaming-recognize"],
+      "description": "Lucid dreaming practice that uses reality checks and dream signs to recognize the dream while it is happening."
+    },
+    {
+      "id": "chapter04",
+      "title": "Feel the Body: Body Scan Meditation and Deep Relaxation",
+      "path": "/body-scan-meditation/",
+      "legacyHashes": ["#/feel-the-body"],
+      "description": "Body scan meditation and deep relaxation as a way to feel the body before sleep-edge practice."
+    },
+    {
+      "id": "chapter05",
+      "title": "Move Your Attention: Focused Attention and Body Awareness Meditation",
+      "path": "/attention-body-awareness/",
+      "legacyHashes": ["#/move-your-attention"],
+      "description": "Focused attention and body-awareness meditation for moving attention through the body without forcing results."
+    },
+    {
+      "id": "chapter06",
+      "title": "Build the Current: Tingling, Energy Sensations and Focused Attention",
+      "path": "/energy-sensations-meditation/",
+      "legacyHashes": ["#/build-the-current"],
+      "description": "Tingling and energy-like sensations as objects of focused attention, kept distinct from interpretation."
+    },
+    {
+      "id": "chapter07",
+      "title": "Quiet the Mind: Meditation Techniques for Sleep and Dream Awareness",
+      "path": "/meditation-for-lucid-dreaming/",
+      "legacyHashes": ["#/quiet-the-mind"],
+      "description": "Meditation techniques that quiet mental noise around sleep so dream awareness can be noticed."
+    },
+    {
+      "id": "chapter08",
+      "title": "See the Image: Visualization, Mental Imagery and Hypnagogic Imagery",
+      "path": "/visualization-hypnagogic-imagery/",
+      "legacyHashes": ["#/see-the-image"],
+      "description": "Visualization and hypnagogic imagery as they appear near sleep, including how images form and fade."
+    },
+    {
+      "id": "chapter09",
+      "title": "Watch the Edge: Hypnagogia and the Transition Into Lucid Dreaming",
+      "path": "/hypnagogia-lucid-dreaming/",
+      "legacyHashes": ["#/watch-the-edge"],
+      "description": "Watching hypnagogia and the sleep-edge transition without treating every image as a finished dream."
+    },
+    {
+      "id": "chapter10",
+      "title": "Let the Body Sleep: The “Mind Awake, Body Asleep” Route to Lucid Dreaming",
+      "path": "/mind-awake-body-asleep/",
+      "legacyHashes": ["#/let-the-body-sleep"],
+      "description": "The mind-awake, body-asleep route to lucid dreaming, including how awareness and the sleeping body can diverge."
+    },
+    {
+      "id": "chapter11",
+      "title": "Move Without Moving: Motor Imagery, Dream Movement and Sleep-Onset Practice",
+      "path": "/motor-imagery-lucid-dreaming/",
+      "legacyHashes": ["#/move-without-moving"],
+      "description": "Motor imagery and imagined movement while the physical body stays still, as sleep-onset practice."
+    },
+    {
+      "id": "chapter12",
+      "title": "Feel the Shift: Vibrations, Floating and Out-of-Body Sensations Near Sleep",
+      "path": "/out-of-body-sensations-sleep/",
+      "legacyHashes": ["#/feel-the-shift"],
+      "description": "Vibrations, floating, and out-of-body sensations near sleep, tracked as changes in bodily self rather than a single event."
+    },
+    {
+      "id": "chapter13",
+      "title": "Know the Threshold: How to Recognize When Waking Imagery Becomes a Dream",
+      "path": "/entering-a-lucid-dream/",
+      "legacyHashes": ["#/know-the-threshold"],
+      "description": "How to notice the threshold where waking imagery begins to continue as a dream, without diagnosing a sleep stage."
+    },
+    {
+      "id": "chapter14",
+      "title": "Stabilize the Dream: Lucid Dream Stabilization Techniques and Research",
+      "path": "/lucid-dream-stabilization/",
+      "legacyHashes": ["#/stabilize-the-dream"],
+      "description": "Lucid dream stabilization techniques and research, keeping lucidity, stability, and control distinct."
+    },
+    {
+      "id": "chapter15",
+      "title": "Explore the Dream: Lucid Dream Experiments, Dream Control and Research",
+      "path": "/lucid-dream-experiments/",
+      "legacyHashes": ["#/explore-the-dream"],
+      "description": "Lucid dream experiments that keep exploration, dream control, and externally verified facts distinct."
+    }
+  ]
+}

@@ -9,9 +9,9 @@ import { parseGuidebookPublicPage } from "../ui/guidebookRoute.ts";
 
 describe("Chapter 15 Explore the Dream manuscript", () => {
   it("locks title and public hash", () => {
-    expect(CHAPTER_15_TITLE).toBe("Explore the Dream.");
-    expect(CHAPTER_15_PATH).toBe("/explore-the-dream");
-    expect(CHAPTER_15_HASH).toBe("#/explore-the-dream");
+    expect(CHAPTER_15_TITLE).toBe("Explore the Dream: Lucid Dream Experiments, Dream Control and Research");
+    expect(CHAPTER_15_PATH).toBe("/lucid-dream-experiments/");
+    expect(CHAPTER_15_HASH).toBe("/lucid-dream-experiments/");
     expect(parseGuidebookPublicPage(CHAPTER_15_HASH)).toBe("chapter15");
   });
 

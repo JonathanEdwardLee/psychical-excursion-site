@@ -9,9 +9,9 @@ import { parseGuidebookPublicPage } from "../ui/guidebookRoute.ts";
 
 describe("Chapter 14 Stabilize the Dream manuscript", () => {
   it("locks title and public hash", () => {
-    expect(CHAPTER_14_TITLE).toBe("Stabilize the Dream.");
-    expect(CHAPTER_14_PATH).toBe("/stabilize-the-dream");
-    expect(CHAPTER_14_HASH).toBe("#/stabilize-the-dream");
+    expect(CHAPTER_14_TITLE).toBe("Stabilize the Dream: Lucid Dream Stabilization Techniques and Research");
+    expect(CHAPTER_14_PATH).toBe("/lucid-dream-stabilization/");
+    expect(CHAPTER_14_HASH).toBe("/lucid-dream-stabilization/");
     expect(parseGuidebookPublicPage(CHAPTER_14_HASH)).toBe("chapter14");
   });
 

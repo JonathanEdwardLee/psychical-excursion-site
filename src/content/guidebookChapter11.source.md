@@ -1,4 +1,4 @@
-# Move Without Moving.
+# Move Without Moving: Motor Imagery, Dream Movement and Sleep-Onset Practice
 
 Raise one hand.
 

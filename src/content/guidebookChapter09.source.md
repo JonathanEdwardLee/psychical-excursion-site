@@ -1,4 +1,4 @@
-# Watch the Edge.
+# Watch the Edge: Hypnagogia and the Transition Into Lucid Dreaming
 
 Every night you cross a boundary that is surprisingly difficult to locate.
 

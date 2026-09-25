@@ -10,9 +10,9 @@ import { RELAX_THE_BODY_HREF } from "./guidebookAnchors.ts";
 
 describe("Chapter 10 Let the Body Sleep manuscript", () => {
   it("locks title and public hash", () => {
-    expect(CHAPTER_10_TITLE).toBe("Let the Body Sleep.");
-    expect(CHAPTER_10_PATH).toBe("/let-the-body-sleep");
-    expect(CHAPTER_10_HASH).toBe("#/let-the-body-sleep");
+    expect(CHAPTER_10_TITLE).toBe("Let the Body Sleep: The “Mind Awake, Body Asleep” Route to Lucid Dreaming");
+    expect(CHAPTER_10_PATH).toBe("/mind-awake-body-asleep/");
+    expect(CHAPTER_10_HASH).toBe("/mind-awake-body-asleep/");
     expect(parseGuidebookPublicPage(CHAPTER_10_HASH)).toBe("chapter10");
   });
 

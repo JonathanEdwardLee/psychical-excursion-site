@@ -1,4 +1,4 @@
-# Feel the Shift.
+# Feel the Shift: Vibrations, Floating and Out-of-Body Sensations Near Sleep
 
 There may be a moment, somewhere between lying in bed and finding yourself fully inside a dream, when the ordinary relationship between you and your body begins to change.
 

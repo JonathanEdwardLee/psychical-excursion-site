@@ -1,4 +1,5 @@
-import { CHAPTER_01_HASH, CHAPTER_01_TITLE } from "../../content/guidebookChapter01.ts";
+import { CHAPTER_01_PATH, CHAPTER_01_TITLE } from "../../content/guidebookChapter01.ts";
+import { INTRODUCTION_TITLE } from "../../content/guidebookCatalog.ts";
 import { GUIDEBOOK_SUBTITLE, loadGuidebookManuscript } from "../../content/guidebookManuscript.ts";
 import { el } from "../dom.ts";
 import { renderReferenceItem, renderRichParagraph } from "../guidebookRichText.ts";
@@ -16,7 +17,8 @@ export function renderGuidebookHome(main: HTMLElement): void {
   article.append(section);
   section.append(
     el("p", { class: "guidebook-subtitle" }, [GUIDEBOOK_SUBTITLE]),
-    el("h1", { class: "guidebook-opening-title" }, [manuscript.openingHeading]),
+    el("h1", { class: "guidebook-opening-title" }, [INTRODUCTION_TITLE]),
+    el("p", { class: "guidebook-opening-heading" }, [manuscript.openingHeading]),
     ...manuscript.openingParagraphs.map((paragraph) => renderRichParagraph(paragraph)),
   );
 
@@ -49,7 +51,7 @@ export function renderGuidebookHome(main: HTMLElement): void {
   section.append(
     el("p", { class: "guidebook-next" }, [
       el("a", {
-        href: CHAPTER_01_HASH,
+        href: CHAPTER_01_PATH,
         class: "guidebook-next-link",
         id: "guidebook-next-chapter",
       }, [

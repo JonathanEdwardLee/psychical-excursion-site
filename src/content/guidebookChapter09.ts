@@ -1,9 +1,9 @@
 import source from "./guidebookChapter09.source.md?raw";
 import { parseGuidebookChapter, type ChapterDocument } from "./guidebookChapter01.ts";
 
-export const CHAPTER_09_TITLE = "Watch the Edge.";
-export const CHAPTER_09_PATH = "/watch-the-edge";
-export const CHAPTER_09_HASH = `#${CHAPTER_09_PATH}`;
+export const CHAPTER_09_TITLE = "Watch the Edge: Hypnagogia and the Transition Into Lucid Dreaming";
+export const CHAPTER_09_PATH = "/hypnagogia-lucid-dreaming/";
+export const CHAPTER_09_HASH = CHAPTER_09_PATH;
 
 let cached: ChapterDocument | null = null;
 

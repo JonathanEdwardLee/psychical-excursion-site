@@ -1,4 +1,4 @@
-# Explore the Dream.
+# Explore the Dream: Lucid Dream Experiments, Dream Control and Research
 
 Once a lucid dream becomes stable enough to stay inside, a new problem appears.
 

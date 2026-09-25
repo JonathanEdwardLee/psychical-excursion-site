@@ -1,4 +1,4 @@
-# You Are Dreaming. Remember.
+# Remember Your Dreams: Dream Recall Techniques and Research
 
 Tonight, you are going to dream.
 

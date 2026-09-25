@@ -10,9 +10,9 @@ import { RELAX_THE_BODY_HREF } from "./guidebookAnchors.ts";
 
 describe("Chapter 9 Watch the Edge manuscript", () => {
   it("locks title and public hash", () => {
-    expect(CHAPTER_09_TITLE).toBe("Watch the Edge.");
-    expect(CHAPTER_09_PATH).toBe("/watch-the-edge");
-    expect(CHAPTER_09_HASH).toBe("#/watch-the-edge");
+    expect(CHAPTER_09_TITLE).toBe("Watch the Edge: Hypnagogia and the Transition Into Lucid Dreaming");
+    expect(CHAPTER_09_PATH).toBe("/hypnagogia-lucid-dreaming/");
+    expect(CHAPTER_09_HASH).toBe("/hypnagogia-lucid-dreaming/");
     expect(parseGuidebookPublicPage(CHAPTER_09_HASH)).toBe("chapter09");
   });
 

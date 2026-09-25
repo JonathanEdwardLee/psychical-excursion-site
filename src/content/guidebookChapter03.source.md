@@ -1,4 +1,4 @@
-# You Are Dreaming. Recognize.
+# Recognize the Dream: Lucid Dreaming, Reality Checks and Dream Signs
 
 Something impossible happens.
 

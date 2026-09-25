@@ -13,6 +13,9 @@ Options -Indexes
   RewriteCond %{HTTP_HOST} ^www\.psychicalexcursion\.com$ [NC]
   RewriteRule ^ https://psychicalexcursion.com%{REQUEST_URI} [L,R=301]
 
+  # Canonical introduction lives at /psychical-excursion/.
+  RewriteRule ^$ /psychical-excursion/ [R=301,L]
+
   RewriteRule ^(src|node_modules|tests|scripts|coverage)(/|$) - [F,L]
   RewriteRule \.map$ - [F,L]
 </IfModule>

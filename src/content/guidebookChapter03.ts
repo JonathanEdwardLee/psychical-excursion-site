@@ -1,9 +1,9 @@
 import source from "./guidebookChapter03.source.md?raw";
 import { parseGuidebookChapter, type ChapterDocument } from "./guidebookChapter01.ts";
 
-export const CHAPTER_03_TITLE = "You Are Dreaming. Recognize.";
-export const CHAPTER_03_PATH = "/you-are-dreaming-recognize";
-export const CHAPTER_03_HASH = `#${CHAPTER_03_PATH}`;
+export const CHAPTER_03_TITLE = "Recognize the Dream: Lucid Dreaming, Reality Checks and Dream Signs";
+export const CHAPTER_03_PATH = "/lucid-dreaming-reality-checks/";
+export const CHAPTER_03_HASH = CHAPTER_03_PATH;
 export const CHAPTER_03_PLACEHOLDER_MARKER = "PEX-IMPLEMENTATION-PLACEHOLDER";
 
 let cached: ChapterDocument | null = null;

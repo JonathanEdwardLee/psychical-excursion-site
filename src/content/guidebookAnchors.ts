@@ -2,7 +2,7 @@ export const NIGHTTIME_BODY_RELEASE_ID = "nighttime-body-release";
 export const NIGHTTIME_BODY_RELEASE_HEADING = "A Nighttime Body Release";
 export const RELAX_THE_BODY_PEX_ID = "relax-the-body";
 export const RELAX_THE_BODY_LABEL = "Relax the body";
-export const RELAX_THE_BODY_HREF = `#/feel-the-body#${NIGHTTIME_BODY_RELEASE_ID}`;
+export const RELAX_THE_BODY_HREF = `/body-scan-meditation/#${NIGHTTIME_BODY_RELEASE_ID}`;
 export const ATTENTION_INSTRUMENT_TOKEN = "pex:attention-instrument";
 
 const HEADING_IDS: Record<string, string> = {
@@ -42,5 +42,5 @@ export function parseGuidebookHash(hash = window.location.hash): GuidebookHashPa
 }
 
 export function isFeelTheBodyPath(path: string): boolean {
-  return path === "/feel-the-body";
+  return path === "/body-scan-meditation/" || path === "/body-scan-meditation" || path === "/feel-the-body";
 }

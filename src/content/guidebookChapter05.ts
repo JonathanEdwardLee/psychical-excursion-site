@@ -1,9 +1,9 @@
 import source from "./guidebookChapter05.source.md?raw";
 import { parseGuidebookChapter, type ChapterDocument } from "./guidebookChapter01.ts";
 
-export const CHAPTER_05_TITLE = "Move Your Attention.";
-export const CHAPTER_05_PATH = "/move-your-attention";
-export const CHAPTER_05_HASH = `#${CHAPTER_05_PATH}`;
+export const CHAPTER_05_TITLE = "Move Your Attention: Focused Attention and Body Awareness Meditation";
+export const CHAPTER_05_PATH = "/attention-body-awareness/";
+export const CHAPTER_05_HASH = CHAPTER_05_PATH;
 export const CHAPTER_05_PLACEHOLDER_MARKER = "PEX-IMPLEMENTATION-PLACEHOLDER";
 
 let cached: ChapterDocument | null = null;

@@ -1,4 +1,4 @@
-# Build the Current.
+# Build the Current: Tingling, Energy Sensations and Focused Attention
 
 In the last chapter, we moved attention.
 

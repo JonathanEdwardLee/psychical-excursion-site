@@ -1,3 +1,5 @@
+import catalog from "./src/content/guidebookCatalog.json";
+import { execFileSync } from "node:child_process";
 import { readdirSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { defineConfig, type Plugin } from "vite";
@@ -27,6 +29,10 @@ function pexServiceWorker(): Plugin {
       outDir = config.build.outDir;
     },
     closeBundle() {
+      execFileSync("node", ["scripts/generate-guidebook-seo.mjs", resolve(outDir)], {
+        cwd: process.cwd(),
+        stdio: "inherit",
+      });
       const files = listFiles(outDir);
       const precache = Array.from(new Set(["/", "/index.html", ...files]));
       const buildId = `pex-shell-${Date.now().toString(36)}`;
@@ -62,23 +68,25 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
 
-  if (request.mode === "navigate") {
-    event.respondWith(
-      (async () => {
-        try {
-          const fresh = await fetch(request);
-          const cache = await caches.open(CACHE_NAME);
-          cache.put("/index.html", fresh.clone());
-          return fresh;
-        } catch {
-          const cached = (await caches.match("/index.html")) || (await caches.match("/"));
-          if (cached) return cached;
-          return Response.error();
-        }
-      })()
-    );
-    return;
-  }
+      if (request.mode === "navigate") {
+        event.respondWith(
+          (async () => {
+            try {
+              const fresh = await fetch(request);
+              const cache = await caches.open(CACHE_NAME);
+              cache.put(request, fresh.clone());
+              return fresh;
+            } catch {
+              const cached = (await caches.match(request))
+                || (await caches.match("/psychical-excursion/"))
+                || (await caches.match("/psychical-excursion/index.html"));
+              if (cached) return cached;
+              return Response.error();
+            }
+          })()
+        );
+        return;
+      }
 
   event.respondWith(
     (async () => {
@@ -104,8 +112,24 @@ self.addEventListener("fetch", (event) => {
   };
 }
 
+function guidebookDevFallback(): Plugin {
+  const prefixes = catalog.pages.map((page) => page.path.replace(/\/$/, ""));
+  return {
+    name: "guidebook-dev-paths",
+    configureServer(server) {
+      server.middlewares.use((req, _res, next) => {
+        const url = (req.url ?? "").split("?")[0] ?? "";
+        if (prefixes.some((prefix) => url === prefix || url === `${prefix}/` || url.startsWith(`${prefix}/`))) {
+          req.url = "/";
+        }
+        next();
+      });
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [pexServiceWorker()],
+  plugins: [guidebookDevFallback(), pexServiceWorker()],
   build: {
     // Production artifact is public on the real domain. Do not ship source maps.
     sourcemap: false,

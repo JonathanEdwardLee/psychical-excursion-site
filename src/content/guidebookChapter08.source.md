@@ -1,4 +1,4 @@
-# See the Image.
+# See the Image: Visualization, Mental Imagery and Hypnagogic Imagery
 
 Close your eyes and picture a basketball.
 

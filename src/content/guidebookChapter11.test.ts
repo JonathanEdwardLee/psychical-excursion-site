@@ -9,9 +9,9 @@ import { parseGuidebookPublicPage } from "../ui/guidebookRoute.ts";
 
 describe("Chapter 11 Move Without Moving manuscript", () => {
   it("locks title and public hash", () => {
-    expect(CHAPTER_11_TITLE).toBe("Move Without Moving.");
-    expect(CHAPTER_11_PATH).toBe("/move-without-moving");
-    expect(CHAPTER_11_HASH).toBe("#/move-without-moving");
+    expect(CHAPTER_11_TITLE).toBe("Move Without Moving: Motor Imagery, Dream Movement and Sleep-Onset Practice");
+    expect(CHAPTER_11_PATH).toBe("/motor-imagery-lucid-dreaming/");
+    expect(CHAPTER_11_HASH).toBe("/motor-imagery-lucid-dreaming/");
     expect(parseGuidebookPublicPage(CHAPTER_11_HASH)).toBe("chapter11");
   });
 

@@ -1,3 +1,11 @@
+import { isGuidebookChapter05Ready } from "../content/guidebookChapter05.ts";
+import {
+  canonicalGuidebookPath,
+  catalogPageByPath,
+  INTRODUCTION_PATH,
+  resolveLegacyGuidebookHash,
+} from "../content/guidebookCatalog.ts";
+import { parseGuidebookHash } from "../content/guidebookAnchors.ts";
 import {
   CHAPTER_01_HASH,
   CHAPTER_01_PATH,
@@ -17,7 +25,6 @@ import {
 import {
   CHAPTER_05_HASH,
   CHAPTER_05_PATH,
-  isGuidebookChapter05Ready,
 } from "../content/guidebookChapter05.ts";
 import {
   CHAPTER_06_HASH,
@@ -59,7 +66,6 @@ import {
   CHAPTER_15_HASH,
   CHAPTER_15_PATH,
 } from "../content/guidebookChapter15.ts";
-import { parseGuidebookHash } from "../content/guidebookAnchors.ts";
 
 export type GuidebookPublicPage =
   | "home"
@@ -79,53 +85,77 @@ export type GuidebookPublicPage =
   | "chapter14"
   | "chapter15";
 
-function guidebookPath(hash = window.location.hash): string {
-  return parseGuidebookHash(hash).path;
+function isJsdom(): boolean {
+  return (navigator.userAgent ?? "").includes("jsdom");
 }
 
-export function parseGuidebookPublicPage(hash = window.location.hash): GuidebookPublicPage {
-  const path = guidebookPath(hash);
-  if (path === CHAPTER_01_PATH) return "chapter01";
-  if (path === CHAPTER_02_PATH) return "chapter02";
-  if (path === CHAPTER_03_PATH) return "chapter03";
-  if (path === CHAPTER_04_PATH) return "chapter04";
-  if (path === CHAPTER_05_PATH && isGuidebookChapter05Ready()) return "chapter05";
-  if (path === CHAPTER_06_PATH) return "chapter06";
-  if (path === CHAPTER_07_PATH) return "chapter07";
-  if (path === CHAPTER_08_PATH) return "chapter08";
-  if (path === CHAPTER_09_PATH) return "chapter09";
-  if (path === CHAPTER_10_PATH) return "chapter10";
-  if (path === CHAPTER_11_PATH) return "chapter11";
-  if (path === CHAPTER_12_PATH) return "chapter12";
-  if (path === CHAPTER_13_PATH) return "chapter13";
-  if (path === CHAPTER_14_PATH) return "chapter14";
-  if (path === CHAPTER_15_PATH) return "chapter15";
-  return "home";
+let locationOverride: { pathname: string; hash: string } | null = null;
+
+/** Test helper: jsdom does not reliably apply history pathname changes. */
+export function overrideGuidebookLocation(pathname: string, hash = ""): void {
+  locationOverride = { pathname, hash };
+}
+
+function readPathname(): string {
+  return locationOverride?.pathname ?? window.location.pathname;
+}
+
+function readHash(): string {
+  return locationOverride?.hash ?? window.location.hash;
+}
+
+export function readPublicGuidebookPathname(): string {
+  return canonicalGuidebookPath(readPathname());
+}
+
+export function inPageGuidebookFragment(hash = readHash()): string {
+  if (!hash || hash === "#" || hash.startsWith("#/")) {
+    return parseGuidebookHash(hash).fragment;
+  }
+  return hash.replace(/^#/, "");
+}
+
+export function parseGuidebookPublicPage(input?: string): GuidebookPublicPage {
+  let path: string;
+  if (input?.startsWith("#")) {
+    path = resolveLegacyGuidebookHash(input)?.path ?? INTRODUCTION_PATH;
+  } else if (input) {
+    path = canonicalGuidebookPath(input);
+  } else {
+    const legacy = resolveLegacyGuidebookHash(readHash());
+    path = legacy?.path ?? canonicalGuidebookPath(readPathname());
+  }
+  const page = catalogPageByPath(path);
+  if (!page || page.id === "home") return "home";
+  if (page.id === "chapter05" && !isGuidebookChapter05Ready()) return "home";
+  return page.id as GuidebookPublicPage;
+}
+
+/** Convert leftover hash-only guidebook URLs to canonical pathnames before render/analytics. */
+export function applyGuidebookLocation(): boolean {
+  const hash = readHash();
+  const pathname = readPathname();
+  const legacy = hash.startsWith("#/") ? resolveLegacyGuidebookHash(hash) : null;
+  const search = window.location.search;
+  if (legacy) {
+    const dest = `${legacy.path}${search}${legacy.fragment ? `#${legacy.fragment}` : ""}`;
+    locationOverride = { pathname: legacy.path, hash: legacy.fragment ? `#${legacy.fragment}` : "" };
+    if (!isJsdom() && legacy.path !== canonicalGuidebookPath(pathname)) {
+      window.location.replace(dest);
+      return true;
+    }
+    window.history.replaceState(null, "", dest);
+  } else if (hash.startsWith("#/")) {
+    locationOverride = { pathname: INTRODUCTION_PATH, hash: "" };
+    window.history.replaceState(null, "", `${INTRODUCTION_PATH}${search}`);
+  } else if (!isJsdom() && (pathname === "/" || pathname === "")) {
+    window.history.replaceState(null, "", `${INTRODUCTION_PATH}${search}`);
+  }
+  return false;
 }
 
 export function normalizeGuidebookPublicHash(): void {
-  const { path } = parseGuidebookHash();
-  if (
-    path === "/" ||
-    path === CHAPTER_01_PATH ||
-    path === CHAPTER_02_PATH ||
-    path === CHAPTER_03_PATH ||
-    path === CHAPTER_04_PATH
-  ) {
-    return;
-  }
-  if (path === CHAPTER_05_PATH && isGuidebookChapter05Ready()) return;
-  if (path === CHAPTER_06_PATH) return;
-  if (path === CHAPTER_07_PATH) return;
-  if (path === CHAPTER_08_PATH) return;
-  if (path === CHAPTER_09_PATH) return;
-  if (path === CHAPTER_10_PATH) return;
-  if (path === CHAPTER_11_PATH) return;
-  if (path === CHAPTER_12_PATH) return;
-  if (path === CHAPTER_13_PATH) return;
-  if (path === CHAPTER_14_PATH) return;
-  if (path === CHAPTER_15_PATH) return;
-  window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}#/`);
+  applyGuidebookLocation();
 }
 
 export function isGuidebookHomeHash(): boolean {
@@ -142,7 +172,6 @@ export function markGuidebookPage(page: GuidebookPublicPage): void {
   lastGuidebookPage = page;
 }
 
-/** Reset window scroll when the guidebook page identity changes. Citations do not change page identity. */
 export function resetGuidebookWindowScroll(): void {
   if (typeof history !== "undefined" && "scrollRestoration" in history) {
     history.scrollRestoration = "manual";
@@ -171,6 +200,7 @@ export function scrollGuidebookSection(root: HTMLElement, fragment: string): voi
 
 export function resetGuidebookPageTracking(): void {
   lastGuidebookPage = null;
+  locationOverride = null;
 }
 
 export {
