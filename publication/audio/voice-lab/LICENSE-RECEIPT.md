@@ -1,6 +1,6 @@
 # Chatterbox license receipt (no weights downloaded in this pass)
 
-Retrieved 2026-09-25 from official sources. Re-verify the LICENSE inside any checkpoint before selling audio.
+Retrieved 2026-09-25 from official sources. **Re-verified 2026-09-25 on Jonathan’s Windows laptop** (GitHub `LICENSE` + Hugging Face API for `ResembleAI/chatterbox` and `ResembleAI/chatterbox-nano`; no weights downloaded). Re-verify the LICENSE inside any checkpoint tarball before selling audio.
 
 ## Wrapper / repository
 

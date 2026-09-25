@@ -20,6 +20,12 @@ import {
   estimateCedarUsd,
 } from "./core.mjs";
 
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
 export async function synthesizeCedar({
   text,
   outDir,
@@ -58,7 +64,9 @@ export async function synthesizeCedar({
   }
 
   mkdirSync(outDir, { recursive: true });
+  process.stdout.write(`Cedar: ${chunks.length} chunk(s), voice=${voice}, ceiling=$${ceilingUsd}\n`);
   for (let i = 0; i < chunks.length; i += 1) {
+    process.stdout.write(`Cedar: chunk ${i + 1}/${chunks.length}…\n`);
     const body = {
       model: CEDAR_MODEL,
       voice,
@@ -66,25 +74,43 @@ export async function synthesizeCedar({
       instructions: DEFAULT_INSTRUCTIONS,
       response_format: "wav",
     };
-    const res = await fetchImpl("https://api.openai.com/v1/audio/speech", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${key}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
-    receipt.request_count += 1;
-    if (!res.ok) {
-      const errText = await res.text();
+    let res;
+    let errText = "";
+    const maxAttempts = 4;
+    for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+      res = await fetchImpl("https://api.openai.com/v1/audio/speech", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${key}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+      receipt.request_count += 1;
+      if (res.ok) break;
+      errText = await res.text();
       assertNoSecretLeak(errText, key);
-      throw new Error(`OpenAI speech HTTP ${res.status}`);
+      if (/credit_balance_exhausted|insufficient_quota/i.test(errText)) {
+        const detail = errText.trim().slice(0, 800) || "(empty body)";
+        throw new Error(`OpenAI speech HTTP ${res.status}: ${detail}`);
+      }
+      if (res.status === 429 && attempt < maxAttempts) {
+        const retryAfter = Number(res.headers.get("retry-after"));
+        const waitMs = Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter * 1000 : 15000 * attempt;
+        process.stdout.write(`Cedar: HTTP 429, retry ${attempt}/${maxAttempts - 1} in ${Math.round(waitMs / 1000)}s…\n`);
+        await sleep(waitMs);
+        continue;
+      }
+      const detail = errText.trim().slice(0, 800) || "(empty body)";
+      throw new Error(`OpenAI speech HTTP ${res.status}: ${detail}`);
     }
     const buf = Buffer.from(await res.arrayBuffer());
     const file = join(outDir, `${voice}-chunk-${String(i + 1).padStart(2, "0")}.wav`);
     writeFileSync(file, buf);
+    process.stdout.write(`Cedar: wrote ${file} (${buf.length} bytes)\n`);
     receipt.files.push(file);
     assertNoSecretLeak(file, key);
+    if (i < chunks.length - 1) await sleep(2000);
   }
   receipt.executed = true;
   writeFileSync(join(outDir, `${voice}-receipt.json`), `${JSON.stringify(receipt, null, 2)}\n`);
