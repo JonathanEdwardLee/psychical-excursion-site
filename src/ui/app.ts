@@ -24,6 +24,7 @@ import { renderDaysPage, renderPhasePage, renderWeekPage } from "./pages/days.ts
 import { renderAstronomyPage, stopAstronomyClock } from "./pages/astronomy.ts";
 import { renderAboutPage, renderHomePage, renderMethodPage } from "./pages/home.ts";
 import { renderGuidebookHome } from "./pages/guidebookHome.ts";
+import { renderGuidebookLanding } from "./pages/guidebookLanding.ts";
 import { renderGuidebookChapterPage } from "./pages/guidebookChapter.ts";
 import { loadGuidebookChapter01, CHAPTER_01_HASH, CHAPTER_01_TITLE } from "../content/guidebookChapter01.ts";
 import { CHAPTER_02_HASH, CHAPTER_02_TITLE, loadGuidebookChapter02 } from "../content/guidebookChapter02.ts";
@@ -377,6 +378,8 @@ export async function renderApp(root: HTMLElement): Promise<void> {
           id: "guidebook-prev-chapter-21",
         },
       });
+    } else if (page === "landing") {
+      renderGuidebookLanding(main);
     } else {
       renderGuidebookHome(main);
     }

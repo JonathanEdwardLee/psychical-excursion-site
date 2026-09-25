@@ -78,6 +78,8 @@ self.addEventListener("fetch", (event) => {
               return fresh;
             } catch {
               const cached = (await caches.match(request))
+                || (await caches.match("/"))
+                || (await caches.match("/index.html"))
                 || (await caches.match("/psychical-excursion/"))
                 || (await caches.match("/psychical-excursion/index.html"));
               if (cached) return cached;
@@ -113,7 +115,9 @@ self.addEventListener("fetch", (event) => {
 }
 
 function guidebookDevFallback(): Plugin {
-  const prefixes = catalog.pages.map((page) => page.path.replace(/\/$/, ""));
+  const prefixes = catalog.pages
+    .map((page) => page.path.replace(/\/$/, ""))
+    .filter((prefix) => prefix.length > 0);
   return {
     name: "guidebook-dev-paths",
     configureServer(server) {

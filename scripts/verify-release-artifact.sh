@@ -90,4 +90,27 @@ if ! grep -q 'source_sha=' "$RELEASE/SOURCE_SHA.txt"; then
   exit 1
 fi
 
+if grep -q 'RewriteRule ^$ /psychical-excursion/' "$RELEASE/.htaccess"; then
+  echo "Root must not 301 to the introduction." >&2
+  exit 1
+fi
+
+sitemap_count="$(grep -c '<loc>' "$RELEASE/sitemap.xml" || true)"
+if [[ "$sitemap_count" != "24" ]]; then
+  echo "sitemap.xml must contain 24 canonical URLs, found ${sitemap_count}." >&2
+  exit 1
+fi
+if grep -q '#' "$RELEASE/sitemap.xml"; then
+  echo "sitemap.xml must not contain hash URLs." >&2
+  exit 1
+fi
+if ! grep -q 'https://psychicalexcursion.com/</loc>' "$RELEASE/sitemap.xml"; then
+  echo "sitemap.xml must include the root homepage." >&2
+  exit 1
+fi
+if ! grep -q 'rel="canonical" href="https://psychicalexcursion.com/"' "$RELEASE/index.html"; then
+  echo "Root index.html must canonicalize to https://psychicalexcursion.com/." >&2
+  exit 1
+fi
+
 echo "Release artifact layout verification passed."

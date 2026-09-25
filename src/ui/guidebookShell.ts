@@ -1,4 +1,4 @@
-import { catalogPageByPublicPage, documentTitleForCatalog, INTRODUCTION_PATH } from "../content/guidebookCatalog.ts";
+import { catalogPageByPublicPage, documentTitleForCatalog, LANDING_PATH } from "../content/guidebookCatalog.ts";
 import { applyTheme, readTheme, toggleTheme } from "../theme.ts";
 import { el, text } from "./dom.ts";
 import { renderAmbientLayer, type AmbientMode } from "./guidebookAmbient.ts";
@@ -32,7 +32,7 @@ export function renderGuidebookChrome(
   const ambient = renderAmbientLayer(ambientMode);
   const themeBtn = themeSwitch();
   const header = el("header", { class: "app-header guidebook-header" }, [
-    el("a", { href: INTRODUCTION_PATH, class: "brand-link", "aria-label": "Psychical Excursion home" }, [
+    el("a", { href: LANDING_PATH, class: "brand-link", "aria-label": "Psychical Excursion home" }, [
       el("img", {
         class: "brand-logo brand-logo-light",
         src: "/brand/pex-logo-primary.svg",

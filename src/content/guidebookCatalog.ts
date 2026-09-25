@@ -6,15 +6,21 @@ export type GuidebookCatalogPage = (typeof catalog.pages)[number];
 
 export const GUIDEBOOK_CATALOG_PAGES: readonly GuidebookCatalogPage[] = catalog.pages;
 
-export const INTRODUCTION_TITLE = catalog.pages[0]!.title;
-export const INTRODUCTION_PATH = catalog.pages[0]!.path;
-export const INTRODUCTION_DESCRIPTION = catalog.pages[0]!.description;
+const landingPage = catalog.pages.find((page) => page.id === "landing")!;
+const introductionPage = catalog.pages.find((page) => page.id === "home")!;
+
+export const LANDING_TITLE = landingPage.title;
+export const LANDING_PATH = landingPage.path;
+export const LANDING_DESCRIPTION = landingPage.description;
+export const INTRODUCTION_TITLE = introductionPage.title;
+export const INTRODUCTION_PATH = introductionPage.path;
+export const INTRODUCTION_DESCRIPTION = introductionPage.description;
 
 export function canonicalGuidebookPath(path: string): string {
-  if (!path) return INTRODUCTION_PATH;
+  if (!path) return LANDING_PATH;
   const trimmed = path.split("?")[0] || "/";
   const withSlash = trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
-  if (withSlash === "/") return INTRODUCTION_PATH;
+  if (withSlash === "/" || withSlash === "/index.html") return LANDING_PATH;
   return withSlash.endsWith("/") ? withSlash : `${withSlash}/`;
 }
 
@@ -48,7 +54,7 @@ function normalizeLegacyHash(hash: string): string {
 export function resolveLegacyGuidebookHash(hash: string): { path: string; fragment: string } | null {
   if (!hash.startsWith("#/")) return null;
   const raw = hash.replace(/^#/, "");
-  if (!raw || raw === "/") return { path: INTRODUCTION_PATH, fragment: "" };
+  if (!raw || raw === "/") return { path: LANDING_PATH, fragment: "" };
   if (!raw.startsWith("/")) return null;
   const withoutQuery = raw.split("?")[0] || "/";
   const [pathPart, fragment = ""] = withoutQuery.split("#");

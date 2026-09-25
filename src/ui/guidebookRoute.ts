@@ -96,6 +96,7 @@ import {
 } from "../content/guidebookChapter22.ts";
 
 export type GuidebookPublicPage =
+  | "landing"
   | "home"
   | "chapter01"
   | "chapter02"
@@ -161,7 +162,9 @@ export function parseGuidebookPublicPage(input?: string): GuidebookPublicPage {
     path = legacy?.path ?? canonicalGuidebookPath(readPathname());
   }
   const page = catalogPageByPath(path);
-  if (!page || page.id === "home") return "home";
+  if (!page) return "home";
+  if (page.id === "landing") return "landing";
+  if (page.id === "home") return "home";
   if (page.id === "chapter05" && !isGuidebookChapter05Ready()) return "home";
   return page.id as GuidebookPublicPage;
 }
@@ -182,8 +185,6 @@ export function applyGuidebookLocation(): boolean {
     window.history.replaceState(null, "", dest);
   } else if (hash.startsWith("#/")) {
     locationOverride = { pathname: INTRODUCTION_PATH, hash: "" };
-    window.history.replaceState(null, "", `${INTRODUCTION_PATH}${search}`);
-  } else if (!isJsdom() && (pathname === "/" || pathname === "")) {
     window.history.replaceState(null, "", `${INTRODUCTION_PATH}${search}`);
   }
   return false;

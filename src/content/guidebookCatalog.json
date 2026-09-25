@@ -2,10 +2,17 @@
   "origin": "https://psychicalexcursion.com",
   "pages": [
     {
+      "id": "landing",
+      "title": "A Free Researched Guidebook for Lucid Dreaming and Out-of-Body Practice",
+      "path": "/",
+      "legacyHashes": ["#/", "#"],
+      "description": "A free researched guidebook for dream recall, attention, lucid dreaming, and out-of-body practice. Public pages use aggregate analytics. Journal entries stay on this device."
+    },
+    {
       "id": "home",
       "title": "Psychical Excursion: Lucid Dreaming, Meditation, Visualization & OBE Research",
       "path": "/psychical-excursion/",
-      "legacyHashes": ["/", "#/", "#"],
+      "legacyHashes": [],
       "description": "A free researched practice guide for lucid dreaming, meditation, visualization, and out-of-body experience. Public pages use aggregate analytics. Journal entries stay on this device."
     },
     {
