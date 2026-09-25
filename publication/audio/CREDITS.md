@@ -5,10 +5,9 @@ Use only with session scripts `00-opening-credits` and `99-closing-credits`. Do 
 ## Known facts
 
 - Title: Psychical Excursion
-- Author: Jonathan Lee
-- Narrator: **placeholder — not selected**
-- Edition: Publication Master adapted from the accepted 23-chapter Web Edition
-- Website (spoken only in credits / front / back matter): psychicalexcursion.com
+- Subtitle: **A researched experiment in dreams, attention, and the edge of sleep**
+- Creator credit: **Created by Hoopsnake Designs**
+- Narration: AI-generated using OpenAI Cedar; disclosure belongs in buyer-facing package metadata, not the spoken opening
 - Source notes: **Full source notes appear in the print and ebook editions.**
 
 ## Do not invent
@@ -19,15 +18,9 @@ Publisher, ISBN, copyright registration, publication date, platform, producer, s
 
 Psychical Excursion.
 
-Written by Jonathan Lee.
+A researched experiment in dreams, attention, and the edge of sleep.
 
-Narrated by — narrator to be confirmed.
-
-This audiobook uses the Publication Master of Psychical Excursion. Full source notes appear in the print and ebook editions.
-
-The website psychicalexcursion.com remains a separate reading copy of the Web Edition. It is not required to listen.
-
-Publisher, ISBN, and publication date stay in planning metadata (`COPYRIGHT.md`, this file’s “Do not invent” list). They are **not** spoken.
+Created by Hoopsnake Designs.
 
 ## Closing (spoken)
 
