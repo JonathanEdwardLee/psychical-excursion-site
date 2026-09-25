@@ -1480,6 +1480,50 @@ audio {
   text-underline-offset: 0.18em;
 }
 
+.guidebook-landing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1.2rem 0 3rem;
+}
+
+.guidebook-landing-mandala {
+  width: min(92vw, 40rem);
+  max-width: 100%;
+}
+
+.guidebook-landing-mandala .pex-attention-instrument {
+  margin: 0;
+  max-width: none;
+}
+
+.guidebook-landing-affirmation {
+  margin: 1.4rem 0 0;
+  max-width: 32rem;
+  font-size: 0.92rem;
+  letter-spacing: 0.01em;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.guidebook-landing-synopsis {
+  margin: 1.6rem 0 0;
+  max-width: 32rem;
+  font-size: 1.02rem;
+  line-height: 1.55;
+}
+
+.guidebook-book-entry {
+  margin: 1.1rem 0 0;
+}
+
+.guidebook-book-entry-link {
+  min-height: var(--tap);
+}
+
 .pex-attention-instrument {
   margin: 0.2rem 0 1.6rem;
   max-width: 36rem;

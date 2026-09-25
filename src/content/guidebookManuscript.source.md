@@ -27,6 +27,10 @@ The goal is not to convince you that it isn't.
 
 The goal is to learn enough, practice enough, and pay enough attention that we have something more interesting to work with than an opinion.
 
+The route is practical. We begin by remembering dreams and training attention, then move through body awareness, visualization, hypnagogia, lucid dreaming, altered self-location, out-of-body techniques, verification, competing explanations, the larger sky we are already floating through, strange coincidences, and finally a repeatable nightly practice.
+
+You do not need to believe the same thing at the end that you believed at the beginning. You only need to become a better observer of your own experience.
+
 ## Why “Psychical”?
 
 I'll admit that the name did not arrive in a bolt of revelation.
@@ -259,6 +263,40 @@ Those questions are much larger than this guide can settle.
 
 But they are excellent reasons to explore.
 
+## What This Book Actually Does
+
+Each section takes one piece of the larger question and slows it down enough to examine.
+
+We will look at research where research can answer something.
+
+We will look at historical, religious, occult, and contemplative traditions when they offer useful maps.
+
+We will practice.
+
+We will record what happens.
+
+And when a claim becomes testable, we will try to make the test cleaner rather than the story bigger.
+
+The book gradually moves from ordinary skills toward stranger territory.
+
+Dream recall becomes dream recognition.
+
+Body awareness becomes altered self-location.
+
+Visualization becomes autonomous imagery.
+
+Lucid dreaming becomes a laboratory.
+
+Out-of-body techniques become something we can compare with lucid dreaming, sleep paralysis, and body-schema research.
+
+The Sun, Moon, planets, synchronicity, recurring places, and shared-dream reports become things to investigate without granting them automatic authority.
+
+At the end, the many techniques collapse back into one repeatable practice.
+
+The point is not to collect twenty-three beliefs.
+
+The point is to become more skillful at noticing what consciousness actually does.
+
 ## No Grades, No Gurus
 
 This is not a certification program.
@@ -317,15 +355,15 @@ Don't decide whether lucid dreaming is possible.
 
 Learn to become lucid.
 
-And if we eventually reach the strange collection of techniques people have used to attempt out-of-body experiences?
-
-We'll try those too.
+When we reach the strange collection of techniques people have used to attempt out-of-body experiences, we'll try those too.
 
 Carefully.
 
 Curiously.
 
 Without pretending beforehand that we know what the result means.
+
+By then, you will also have a way to test unusual experiences, compare competing maps, notice recurring patterns without surrendering to them, and return to one simple nightly routine.
 
 I hope that by the end of this excursion you discover more about yourself—and maybe find a renewed love of life and what might be possible inside it.
 

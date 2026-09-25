@@ -3,14 +3,15 @@ import {
   GUIDEBOOK_CATALOG_PAGES,
   GUIDEBOOK_SITE_ORIGIN,
   INTRODUCTION_PATH,
+  LANDING_PATH,
   resolveLegacyGuidebookHash,
 } from "./guidebookCatalog.ts";
 
 describe("guidebook SEO catalog", () => {
-  it("publishes 23 unique canonical paths without chapter numbers", () => {
-    expect(GUIDEBOOK_CATALOG_PAGES).toHaveLength(23);
+  it("publishes 24 unique canonical paths without chapter numbers", () => {
+    expect(GUIDEBOOK_CATALOG_PAGES).toHaveLength(24);
     const paths = GUIDEBOOK_CATALOG_PAGES.map((page) => page.path);
-    expect(new Set(paths).size).toBe(23);
+    expect(new Set(paths).size).toBe(24);
     for (const page of GUIDEBOOK_CATALOG_PAGES) {
       expect(page.path.startsWith("/")).toBe(true);
       expect(page.path.endsWith("/")).toBe(true);
@@ -18,11 +19,13 @@ describe("guidebook SEO catalog", () => {
       expect(page.title).not.toMatch(/chapter\s+\d/i);
       expect(page.path).not.toMatch(/#/);
     }
+    expect(LANDING_PATH).toBe("/");
     expect(INTRODUCTION_PATH).toBe("/psychical-excursion/");
     expect(GUIDEBOOK_SITE_ORIGIN).toBe("https://psychicalexcursion.com");
   });
 
   it("maps legacy hashes including the body-scan deep link", () => {
+    expect(resolveLegacyGuidebookHash("#/")?.path).toBe("/");
     expect(resolveLegacyGuidebookHash("#/stabilize-the-dream")?.path).toBe("/lucid-dream-stabilization/");
     expect(resolveLegacyGuidebookHash("#/feel-the-shift")?.path).toBe("/out-of-body-sensations-sleep/");
     expect(resolveLegacyGuidebookHash("#/explore-the-dream")?.path).toBe("/lucid-dream-experiments/");

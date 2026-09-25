@@ -30,9 +30,14 @@ import { CHAPTER_19_HASH, CHAPTER_19_TITLE, loadGuidebookChapter19 } from "../co
 import { CHAPTER_20_HASH, CHAPTER_20_TITLE, loadGuidebookChapter20 } from "../content/guidebookChapter20.ts";
 import { CHAPTER_21_HASH, CHAPTER_21_TITLE, loadGuidebookChapter21 } from "../content/guidebookChapter21.ts";
 import { CHAPTER_22_HASH, CHAPTER_22_TITLE, loadGuidebookChapter22 } from "../content/guidebookChapter22.ts";
-import { INTRODUCTION_PATH } from "../content/guidebookCatalog.ts";
+import { INTRODUCTION_PATH, LANDING_PATH } from "../content/guidebookCatalog.ts";
 import { NIGHTTIME_BODY_RELEASE_ID, RELAX_THE_BODY_HREF } from "../content/guidebookAnchors.ts";
 import { loadGuidebookManuscript } from "../content/guidebookManuscript.ts";
+import {
+  LANDING_AFFIRMATION,
+  LANDING_ENTRY_LABEL,
+  LANDING_SYNOPSIS,
+} from "../content/guidebookLanding.ts";
 import { TROPICAL_ZODIAC_SIGNS } from "../astronomy/zodiac.ts";
 import { renderApp } from "./app.ts";
 import { resetGa4PublicPageViews } from "../analytics/ga4.ts";
@@ -94,14 +99,60 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     const manuscript = loadGuidebookManuscript();
     expect(manuscript.openingHeading).toBe("What Is a Psychical Excursion?");
     expect(manuscript.openingParagraphs[0]).toMatch(/What if consciousness/);
-    expect(manuscript.references.length).toBeGreaterThanOrEqual(5);
+    expect(manuscript.openingParagraphs.some((paragraph) => paragraph.includes("The route is practical"))).toBe(true);
+    expect(manuscript.sections.some((section) => section.heading === "What This Book Actually Does")).toBe(true);
+    expect(manuscript.references).toHaveLength(5);
   });
 
-  it("renders the manuscript as the primary landing experience", async () => {
-    const root = await mount("#/");
+  it("renders the root homepage as a mandala threshold into the book", async () => {
+    const root = await mount(LANDING_PATH);
+    expect(window.location.pathname).toBe("/");
+    expect(root.querySelectorAll(".pex-attention-instrument").length).toBe(1);
+    expect(root.querySelector("h1")?.textContent).toBe("Psychical Excursion");
+    expect(root.querySelector("h1")?.classList.contains("visually-hidden")).toBe(true);
+    expect(root.querySelector(".guidebook-landing-affirmation")?.textContent).toBe(LANDING_AFFIRMATION);
+    expect(root.querySelectorAll(".guidebook-landing-affirmation").length).toBe(1);
+    expect(root.querySelector(".guidebook-landing-synopsis")?.textContent).toBe(LANDING_SYNOPSIS);
+    const enter = root.querySelector("#guidebook-enter-book") as HTMLAnchorElement;
+    expect(enter?.getAttribute("href")).toBe(INTRODUCTION_PATH);
+    expect(enter?.textContent).toBe(`${LANDING_ENTRY_LABEL} →`);
+    expect(root.textContent).not.toMatch(/What Is a Psychical Excursion\?/);
+    expect(root.textContent).not.toMatch(/arousal-retrieval model/);
+    expect(root.textContent).not.toMatch(/Start Day 1/i);
+    expectPublicHeader(root);
+    expectHeldFeaturesAbsent(root);
+    expect(root.querySelector(".brand-link")?.getAttribute("href")).toBe(LANDING_PATH);
+  });
+
+  it("keeps the homepage mandala static under reduced motion", async () => {
+    const prior = window.matchMedia;
+    window.matchMedia = ((query: string) => ({
+      matches: query.includes("prefers-reduced-motion: reduce"),
+      media: query,
+      onchange: null,
+      addListener() {},
+      removeListener() {},
+      addEventListener() {},
+      removeEventListener() {},
+      dispatchEvent() { return false; },
+    })) as typeof window.matchMedia;
+    const root = await mount(LANDING_PATH);
+    expect(root.querySelector(".pex-attention-instrument")?.classList.contains("is-static")).toBe(true);
+    window.matchMedia = prior;
+  });
+
+  it("renders the manuscript as the introduction, not the root homepage", async () => {
+    const root = await mount(INTRODUCTION_PATH);
+    expect(window.location.pathname).toBe(INTRODUCTION_PATH);
     expect(root.textContent).toMatch(/What Is a Psychical Excursion\?/);
     expect(root.textContent).toMatch(/An experiment in dreams, consciousness, energy, and out-of-body experience/);
     expect(root.textContent).toMatch(/Let's see what happens/);
+    expect(root.textContent).toMatch(/The route is practical/);
+    expect(root.textContent).toMatch(/What This Book Actually Does/);
+    expect(root.textContent).toMatch(/When we reach the strange collection of techniques/);
+    expect(root.textContent).toMatch(/By then, you will also have a way to test unusual experiences/);
+    expect(root.textContent).not.toMatch(/And if we eventually reach the strange collection/);
+    expect(root.querySelectorAll(".guidebook-references li").length).toBe(5);
     expect(root.textContent).not.toMatch(/Chapter 0/i);
     expect(root.textContent).not.toMatch(/Start Day 1/i);
     expect(root.textContent).not.toMatch(/Sign in with Google/i);
@@ -142,7 +193,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
   });
 
   it("links inline citations to reference anchors and DOI destinations", async () => {
-    const root = await mount("#/");
+    const root = await mount(INTRODUCTION_PATH);
     const citation = root.querySelector('a.guidebook-citation[href="#ref-2"]');
     expect(citation).toBeTruthy();
     expect(root.querySelector("#ref-2")).toBeTruthy();
@@ -215,7 +266,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
   });
 
   it("opens Chapter 1 from the editorial next-reading line", async () => {
-    const root = await mount("#/");
+    const root = await mount(INTRODUCTION_PATH);
     const next = root.querySelector("#guidebook-next-chapter") as HTMLAnchorElement;
     expect(next).toBeTruthy();
     expect(next.getAttribute("href")).toBe(CHAPTER_01_HASH);
@@ -249,7 +300,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
   });
 
   it("keeps ambient geometry present for reduced-motion readers", async () => {
-    const root = await mount("#/");
+    const root = await mount(INTRODUCTION_PATH);
     expect(root.querySelector(".pex-ambient-orbit")).toBeTruthy();
     expect(root.querySelector(".guidebook-section.pex-reveal")).toBeTruthy();
   });
@@ -278,7 +329,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
   });
 
   it("resets window scroll when moving between guidebook pages", async () => {
-    const root = await mount("#/");
+    const root = await mount(INTRODUCTION_PATH);
     document.documentElement.scrollTop = 480;
     setPublicRoute(CHAPTER_01_HASH);
     await renderApp(root);
@@ -1146,8 +1197,9 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
 
   it("records GA4 page views for public hash routes without duplicates or private content", async () => {
     const gtag = window.gtag as ReturnType<typeof vi.fn>;
-    await mount("#/");
-    await mount("#/");
+    await mount(LANDING_PATH);
+    await mount(LANDING_PATH);
+    await mount(INTRODUCTION_PATH);
     await mount(CHAPTER_12_HASH);
     await mount(CHAPTER_13_HASH);
     await mount(CHAPTER_14_HASH);
@@ -1161,8 +1213,9 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     await mount(CHAPTER_22_HASH);
     await mount(RELAX_THE_BODY_HREF);
     const views = gtag.mock.calls.filter((call) => call[0] === "event" && call[1] === "page_view");
-    expect(views).toHaveLength(13);
+    expect(views).toHaveLength(14);
     expect(views.map((call) => (call[2] as { page_path: string }).page_path)).toEqual([
+      LANDING_PATH,
       INTRODUCTION_PATH,
       CHAPTER_12_HASH,
       CHAPTER_13_HASH,
