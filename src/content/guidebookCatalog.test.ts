@@ -7,10 +7,10 @@ import {
 } from "./guidebookCatalog.ts";
 
 describe("guidebook SEO catalog", () => {
-  it("publishes 19 unique canonical paths without chapter numbers", () => {
-    expect(GUIDEBOOK_CATALOG_PAGES).toHaveLength(19);
+  it("publishes 20 unique canonical paths without chapter numbers", () => {
+    expect(GUIDEBOOK_CATALOG_PAGES).toHaveLength(20);
     const paths = GUIDEBOOK_CATALOG_PAGES.map((page) => page.path);
-    expect(new Set(paths).size).toBe(19);
+    expect(new Set(paths).size).toBe(20);
     for (const page of GUIDEBOOK_CATALOG_PAGES) {
       expect(page.path.startsWith("/")).toBe(true);
       expect(page.path.endsWith("/")).toBe(true);
@@ -29,6 +29,7 @@ describe("guidebook SEO catalog", () => {
     expect(resolveLegacyGuidebookHash("#/loosen-the-body")?.path).toBe("/out-of-body-experience-body-ownership/");
     expect(resolveLegacyGuidebookHash("#/cross-the-threshold")?.path).toBe("/astral-projection-obe-techniques/");
     expect(resolveLegacyGuidebookHash("#/test-the-experience")?.path).toBe("/testing-out-of-body-experiences/");
+    expect(resolveLegacyGuidebookHash("#/compare-the-maps")?.path).toBe("/lucid-dreaming-vs-astral-projection/");
     expect(resolveLegacyGuidebookHash("#/feel-the-body")?.path).toBe("/body-scan-meditation/");
     expect(resolveLegacyGuidebookHash("#/feel-the-body#nighttime-body-release")).toEqual({
       path: "/body-scan-meditation/",

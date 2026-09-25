@@ -16,6 +16,7 @@ required=(
   "out-of-body-experience-body-ownership/index.html"
   "astral-projection-obe-techniques/index.html"
   "testing-out-of-body-experiences/index.html"
+  "lucid-dreaming-vs-astral-projection/index.html"
   "manifest.webmanifest"
   "sw.js"
   "brand/pex-logo-primary.svg"
