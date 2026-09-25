@@ -8,8 +8,6 @@ Audiobook: do not delete markers from the Publication Master. Suppress `[n]` and
 
 YouTube/podcast descriptions may reuse the same chapter reference lists.
 
-YouTube/podcast descriptions may reuse the same chapter reference lists.
-
 ## Source-verification debt (not repaired in this pass)
 
 These Web Edition bibliography lines remain incomplete or author-thin. Do not invent missing fields here:
