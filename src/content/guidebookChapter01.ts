@@ -107,6 +107,11 @@ export function parseGuidebookChapter(raw: string): ChapterDocument {
       i += 1;
       continue;
     }
+    if (line.startsWith("### ")) {
+      blocks.push({ kind: "subheading", text: line.slice(4).trim() });
+      i += 1;
+      continue;
+    }
     if (line.startsWith("> ")) {
       const quoted: string[] = [];
       while (i < lines.length && lines[i]!.startsWith("> ")) {

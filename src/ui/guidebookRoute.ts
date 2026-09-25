@@ -82,6 +82,10 @@ import {
   CHAPTER_19_HASH,
   CHAPTER_19_PATH,
 } from "../content/guidebookChapter19.ts";
+import {
+  CHAPTER_20_HASH,
+  CHAPTER_20_PATH,
+} from "../content/guidebookChapter20.ts";
 
 export type GuidebookPublicPage =
   | "home"
@@ -103,7 +107,8 @@ export type GuidebookPublicPage =
   | "chapter16"
   | "chapter17"
   | "chapter18"
-  | "chapter19";
+  | "chapter19"
+  | "chapter20";
 
 function isJsdom(): boolean {
   return (navigator.userAgent ?? "").includes("jsdom");
@@ -262,4 +267,6 @@ export {
   CHAPTER_18_PATH,
   CHAPTER_19_HASH,
   CHAPTER_19_PATH,
+  CHAPTER_20_HASH,
+  CHAPTER_20_PATH,
 };

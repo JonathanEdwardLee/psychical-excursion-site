@@ -21,7 +21,7 @@ function newSection(first: boolean): HTMLElement {
   });
 }
 
-function appendFlowBlocks(section: HTMLElement, blocks: ChapterBlock[]): void {
+function appendFlowBlocks(section: HTMLElement, blocks: ChapterBlock[], subheadingClass = "guidebook-section-subheading"): void {
   for (const block of blocks) {
     if (block.kind === "emphasis") {
       section.append(el("p", { class: "guidebook-emphasis-line" }, [block.text]));
@@ -49,7 +49,7 @@ function appendFlowBlocks(section: HTMLElement, blocks: ChapterBlock[]): void {
     }
     if (block.kind === "heading" || block.kind === "practice" || block.kind === "attention") continue;
     if (block.kind === "subheading") {
-      section.append(el("h3", { class: "guidebook-practice-subheading" }, [block.text]));
+      section.append(el("h3", { class: subheadingClass }, [block.text]));
       continue;
     }
     section.append(renderRichParagraph(block.text));
@@ -59,7 +59,7 @@ function appendFlowBlocks(section: HTMLElement, blocks: ChapterBlock[]): void {
 function renderPracticePart(part: PracticePart): HTMLElement {
   const region = el("section", { class: "guidebook-practice-part" });
   region.append(el("h2", { class: "guidebook-practice-label" }, [part.label]));
-  appendFlowBlocks(region, part.blocks);
+  appendFlowBlocks(region, part.blocks, "guidebook-practice-subheading");
   return region;
 }
 
