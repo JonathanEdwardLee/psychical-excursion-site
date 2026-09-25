@@ -97,4 +97,4 @@ Do not claim production is live until those checks are done independently.
 
 ## Costs and stop conditions
 
-No new recurring cost, analytics, payments, donations, ads, marketing, or backend services. Stop if the Hostinger target would overwrite an unrelated `public_html`, if the domain/site assignment is ambiguous, or if the deployment branch cannot be proven to correspond to accepted `main`.
+No new recurring cost, payments, donations, ads, marketing, or backend services. Public Google Analytics 4 (`G-297PE2TV2R`) is founder-authorized. Stop if the Hostinger target would overwrite an unrelated `public_html`, if the domain/site assignment is ambiguous, or if the deployment branch cannot be proven to correspond to accepted `main`.
