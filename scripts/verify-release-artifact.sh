@@ -17,6 +17,7 @@ required=(
   "astral-projection-obe-techniques/index.html"
   "testing-out-of-body-experiences/index.html"
   "lucid-dreaming-vs-astral-projection/index.html"
+  "sun-moon-planets-sleep-dreams/index.html"
   "manifest.webmanifest"
   "sw.js"
   "brand/pex-logo-primary.svg"
