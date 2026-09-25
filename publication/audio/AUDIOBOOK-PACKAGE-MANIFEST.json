@@ -1,5 +1,5 @@
 {
-  "created_at": "2026-09-25T20:49:36.266Z",
+  "created_at": "2026-09-25T22:58:50.603Z",
   "zip_name": "Psychical-Excursion-Audiobook-v1.zip",
   "files": [
     {
@@ -120,10 +120,10 @@
     }
   ],
   "sha256": {
-    "00-PEX-AUDIO-00-opening-credits.mp3": "9dd301cc834d668b39fe1b7ccdae1e576e457c23ee9288d67d6c71a7e85fa3c3",
-    "01-PEX-AUDIO-00a-evidence-and-belief.mp3": "3acf4f5b3d1cd61b8402fac2c4cac644edd97fbb836eb8accda6ce204386e43f",
-    "02-PEX-AUDIO-00b-sleep-and-safety.mp3": "50a716669bdda85ddf8fb6cfc1ffd8b2e226e6323e1134ce9d66acff465d9910",
-    "03-PEX-AUDIO-01-what-is-a-psychical-excursion.mp3": "991b289d98476a02af82acad820db756fb94eccb5584a5f3ff58a774d8418ed1",
+    "00-PEX-AUDIO-00-opening-credits.mp3": "177d49773a06f861f5de76107654179b5159e3b3f9a194af32449f3ee0c9cbc0",
+    "01-PEX-AUDIO-00a-evidence-and-belief.mp3": "2338f64d8c54a084fe33690791546d8beca22468f2461e8cb895bff912d46c3e",
+    "02-PEX-AUDIO-00b-sleep-and-safety.mp3": "cc04ace4e3046ccf30ce4fc8a71568cba6d0463a3907af6b6cf06bf05dfa90d5",
+    "03-PEX-AUDIO-01-what-is-a-psychical-excursion.mp3": "042b0450458f542c24c4475b994fa356696b68742cc7d0e2c47f1287eb2f69ef",
     "04-PEX-AUDIO-02-remember-your-dreams.mp3": "21c2c4bde84eb720755cf7017dd870b43d6b4129ca7b3fca1368c5406b89e3da",
     "05-PEX-AUDIO-03-notice-your-dreams.mp3": "99dc14fa329f41f0521db0cad61e2c2d72b6990d08bd97d227ee0466cd735db1",
     "06-PEX-AUDIO-04-recognize-the-dream.mp3": "9facfa1bf767094082af2c49c9ccff21671f43afb66cba1804dd09e7d207d2d3",
@@ -153,7 +153,7 @@
     "README.txt": "64775ff0a95d9dbadf93cded4efaef215e971411502d2ef8eeefbdef052d0103",
     "SOURCE-NOTES.txt": "8e8f79c204cc2131170a921d4cdbbbd7a10f8b2befd840e40d874710403881c9"
   },
-  "zip_sha256": "e5ef4837d57752eeb384b16c36db40fa156a37ccf7f5a9bbca337a922912941c",
-  "zip_bytes": 543898279,
+  "zip_sha256": "d612ae97e3e6847a1c951ded371c8b61128a19427bbe63fbe5956b4dac95d4ca",
+  "zip_bytes": 542919884,
   "zip_path_gitignored": "local/voice-lab/full-book/Psychical-Excursion-Audiobook-v1.zip"
 }

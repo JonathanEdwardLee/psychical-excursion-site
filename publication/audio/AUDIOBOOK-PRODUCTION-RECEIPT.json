@@ -1,20 +1,20 @@
 {
-  "status": "correction-regeneration-pending",
-  "updated_at": "2026-09-25T22:41:36.100Z",
+  "status": "package-complete",
+  "updated_at": "2026-09-25T22:59:15.336Z",
   "work_order": "docs/work-orders/PEX-FULL-CEDAR-AUDIOBOOK.md",
   "model": "gpt-4o-mini-tts",
   "voice": "cedar",
   "cost_ceiling_usd": 15,
-  "conservative_usd_estimated": 8.5492,
-  "api_request_count": 257,
+  "conservative_usd_estimated": 8.538,
+  "api_request_count": 269,
   "track_count_planned": 29,
   "tracks_completed": 29,
-  "total_duration_seconds_measured": 23821.95,
-  "planning_spend_usd_rule_of_thumb": 5.96,
-  "package_zip_sha256": "e5ef4837d57752eeb384b16c36db40fa156a37ccf7f5a9bbca337a922912941c",
-  "package_zip_bytes": 543898279,
+  "total_duration_seconds_measured": 23770.4,
+  "planning_spend_usd_rule_of_thumb": 5.94,
+  "package_zip_sha256": "d612ae97e3e6847a1c951ded371c8b61128a19427bbe63fbe5956b4dac95d4ca",
+  "package_zip_bytes": 542919884,
   "correction_pass": {
-    "started_at": "2026-09-25T22:41:36.098Z",
+    "started_at": "2026-09-25T22:56:00.243Z",
     "tracks_regenerated": [
       "PEX-AUDIO-00-opening-credits",
       "PEX-AUDIO-00a-evidence-and-belief",
@@ -48,39 +48,51 @@
       "PEX-AUDIO-25-continue-the-experiment",
       "PEX-AUDIO-99-closing-credits"
     ],
-    "additional_api_requests": 0,
-    "additional_conservative_usd": 0,
+    "additional_api_requests": 12,
+    "additional_conservative_usd": 0.3298,
     "section_pause_ms": 1750,
-    "chapter1_pause_verified": false
+    "chapter1_pause_verified": true,
+    "chapter1_pause_in_assembly": true,
+    "chapter1_speech_segments": 2,
+    "chapter1_delivery_duration_seconds": 776.881633,
+    "chapter1_assembly_has_pause_wav": true,
+    "completed_at": "2026-09-25T22:59:15.332Z",
+    "verified": true,
+    "package_zip_sha256": "d612ae97e3e6847a1c951ded371c8b61128a19427bbe63fbe5956b4dac95d4ca",
+    "package_zip_bytes": 542919884
   },
   "tracks": {
     "PEX-AUDIO-00-opening-credits": {
       "sequence": 0,
       "status": "mastered",
-      "words": 50,
-      "duration_seconds": 20.3,
-      "conservative_usd": 0.0067
+      "words": 17,
+      "duration_seconds": 8.1,
+      "conservative_usd": 0.0023,
+      "correction_regenerated_at": "2026-09-25T22:56:05.352Z"
     },
     "PEX-AUDIO-00a-evidence-and-belief": {
       "sequence": 1,
       "status": "mastered",
-      "words": 91,
-      "duration_seconds": 32.7,
-      "conservative_usd": 0.0123
+      "words": 86,
+      "duration_seconds": 34.9,
+      "conservative_usd": 0.0116,
+      "correction_regenerated_at": "2026-09-25T22:56:12.779Z"
     },
     "PEX-AUDIO-00b-sleep-and-safety": {
       "sequence": 2,
       "status": "mastered",
-      "words": 65,
-      "duration_seconds": 25.75,
-      "conservative_usd": 0.0088
+      "words": 62,
+      "duration_seconds": 25.5,
+      "conservative_usd": 0.0084,
+      "correction_regenerated_at": "2026-09-25T22:56:17.536Z"
     },
     "PEX-AUDIO-01-what-is-a-psychical-excursion": {
       "sequence": 3,
       "status": "mastered",
-      "words": 2320,
-      "duration_seconds": 818.15,
-      "conservative_usd": 0.3132
+      "words": 2278,
+      "duration_seconds": 776.85,
+      "conservative_usd": 0.3075,
+      "correction_regenerated_at": "2026-09-25T22:58:47.679Z"
     },
     "PEX-AUDIO-02-remember-your-dreams": {
       "sequence": 4,

@@ -1,25 +1,49 @@
 {
-  "status": "awaiting-operator-regeneration",
-  "source_verified_on_branch": "primary/pex-full-cedar-audiobook-20260925",
-  "source_checks": {
-    "opening_credits_three_lines_only": true,
-    "evidence_front_matter_no_duplicate_heading": true,
-    "sleep_safety_front_matter_no_duplicate_heading": true,
-    "chapter1_car_wreck_removed": true,
-    "chapter1_multiple_self_question_updated": true,
-    "chapter1_section_pause_cue_present": true
-  },
-  "pipeline": {
-    "section_pause_ms": 1750,
-    "implementation": "scripts/voice-lab/core.mjs SECTION_PAUSE_MARKER + scripts/voice-lab/full-book/silence.mjs + assembly-order.json"
-  },
-  "tracks_to_regenerate": [
+  "status": "package-complete",
+  "started_at": "2026-09-25T22:56:00.243Z",
+  "tracks_regenerated": [
     "PEX-AUDIO-00-opening-credits",
     "PEX-AUDIO-00a-evidence-and-belief",
     "PEX-AUDIO-00b-sleep-and-safety",
     "PEX-AUDIO-01-what-is-a-psychical-excursion"
   ],
-  "tracks_reuse_unchanged": 25,
-  "operator_command": "PEX_AUDIOBOOK_EXECUTE=1 PEX_AUDIOBOOK_CORRECTION_CEILING_USD=15 npm run audiobook:correct",
-  "note": "Run on laptop with valid OPENAI_API_KEY. This file is updated when correction completes."
+  "tracks_reused_unchanged": [
+    "PEX-AUDIO-02-remember-your-dreams",
+    "PEX-AUDIO-03-notice-your-dreams",
+    "PEX-AUDIO-04-recognize-the-dream",
+    "PEX-AUDIO-05-feel-the-body",
+    "PEX-AUDIO-06-move-your-attention",
+    "PEX-AUDIO-07-build-the-current",
+    "PEX-AUDIO-08-quiet-the-mind",
+    "PEX-AUDIO-09-see-the-image",
+    "PEX-AUDIO-10-watch-the-edge",
+    "PEX-AUDIO-11-let-the-body-sleep",
+    "PEX-AUDIO-12-move-without-moving",
+    "PEX-AUDIO-13-feel-the-shift",
+    "PEX-AUDIO-14-know-the-threshold",
+    "PEX-AUDIO-15-stabilize-the-dream",
+    "PEX-AUDIO-16-explore-the-dream",
+    "PEX-AUDIO-17-loosen-the-body",
+    "PEX-AUDIO-18-cross-the-threshold",
+    "PEX-AUDIO-19-test-the-experience",
+    "PEX-AUDIO-20-compare-the-maps",
+    "PEX-AUDIO-21-floating-in-space",
+    "PEX-AUDIO-22-notice-the-coincidence",
+    "PEX-AUDIO-23-return-record-repeat",
+    "PEX-AUDIO-24-about-the-author",
+    "PEX-AUDIO-25-continue-the-experiment",
+    "PEX-AUDIO-99-closing-credits"
+  ],
+  "additional_api_requests": 12,
+  "additional_conservative_usd": 0.3298,
+  "section_pause_ms": 1750,
+  "chapter1_pause_verified": true,
+  "chapter1_pause_in_assembly": true,
+  "chapter1_speech_segments": 2,
+  "chapter1_delivery_duration_seconds": 776.881633,
+  "chapter1_assembly_has_pause_wav": true,
+  "completed_at": "2026-09-25T22:59:15.332Z",
+  "verified": true,
+  "package_zip_sha256": "d612ae97e3e6847a1c951ded371c8b61128a19427bbe63fbe5956b4dac95d4ca",
+  "package_zip_bytes": 542919884
 }

@@ -1,8 +1,7 @@
-# Direct-sale handoff (superseded package — correction regeneration pending)
+# Direct-sale handoff (corrected package complete — checkout not activated)
 
-**Initial production completed:** 2026-09-25 (operator laptop).
-
-**Current status:** The initial ZIP is superseded by founder-approved intro corrections. Do not sell or upload it. Regenerate only opening credits, the two front-matter warning tracks, and Chapter 1; reuse the other 25 accepted tracks, then rebuild and rehash the package.  
+**Production completed:** 2026-09-25 (operator laptop).  
+**Correction pass completed:** 2026-09-25 (4 tracks regenerated, 25 reused).  
 **Work order:** `docs/work-orders/PEX-FULL-CEDAR-AUDIOBOOK.md`  
 **Voice:** OpenAI `gpt-4o-mini-tts`, **cedar**
 
@@ -11,19 +10,22 @@
 | Field | Value |
 | --- | --- |
 | Path | `local/voice-lab/full-book/Psychical-Excursion-Audiobook-v1.zip` |
-| SHA-256 | `e5ef4837d57752eeb384b16c36db40fa156a37ccf7f5a9bbca337a922912941c` |
-| Size | **543,898,279 bytes** (~519 MB) |
+| SHA-256 | `d612ae97e3e6847a1c951ded371c8b61128a19427bbe63fbe5956b4dac95d4ca` |
+| Size | **542,919,884 bytes** (~518 MB) |
 | MP3 tracks | **29** (00–28 sortable prefixes) |
-| Measured runtime | **~6h 37m** (23,820 s summed from mastered WAV receipts) |
+| Measured runtime | **~6h 36m** (23,770.4 s summed from mastered WAV receipts) |
 | Per-file hashes | `publication/audio/AUDIOBOOK-PACKAGE-MANIFEST.json` |
+| Chapter 1 section pause | **1.75 s** silence after “The Excursion” (verified in assembly) |
 
 ## Production economics (ledger)
 
 | Metric | Value |
 | --- | --- |
-| API requests | **257** |
-| Conservative planning total | **$8.5492** (under **$15** ceiling) |
-| Rule-of-thumb audio spend | ~397 min × $0.015/min ≈ **$5.96** (not a billed export) |
+| API requests (total) | **269** |
+| Correction pass additional requests | **12** |
+| Conservative planning total | **$8.538** (under **$15** ceiling) |
+| Correction pass additional (conservative) | **$0.3298** |
+| Rule-of-thumb audio spend | ~396 min × $0.015/min ≈ **$5.94** (not a billed export) |
 | Founder QC time | Not measured |
 
 ## AI disclosure (buyer-facing)
