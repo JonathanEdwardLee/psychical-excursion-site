@@ -1,5 +1,5 @@
 {
-  "status": "package-complete",
+  "status": "correction-regeneration-pending",
   "updated_at": "2026-09-25T20:49:36.266Z",
   "work_order": "docs/work-orders/PEX-FULL-CEDAR-AUDIOBOOK.md",
   "model": "gpt-4o-mini-tts",
@@ -218,5 +218,17 @@
       "conservative_usd": 0.0027
     }
   },
-  "note": "Audio binaries gitignored under local/voice-lab/full-book/"
+  "note": "Audio binaries gitignored under local/voice-lab/full-book/",
+  "superseded_package_sha256": "e5ef4837d57752eeb384b16c36db40fa156a37ccf7f5a9bbca337a922912941c",
+  "correction_pending": {
+    "reason": "Founder-approved intro corrections after first full package",
+    "affected_tracks": [
+      "PEX-AUDIO-00-opening-credits",
+      "PEX-AUDIO-00a-evidence-and-belief",
+      "PEX-AUDIO-00b-sleep-and-safety",
+      "PEX-AUDIO-01-what-is-a-psychical-excursion"
+    ],
+    "unchanged_tracks_reusable": 25,
+    "package_must_be_rebuilt": true
+  }
 }
