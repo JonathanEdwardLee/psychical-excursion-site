@@ -562,7 +562,7 @@ Was the report written before checking?
 
 Could chance, memory, inference, or prior exposure explain the result?
 
-Those questions belong later in **Test the Experience**.
+Those questions belong later in [**Test the Experience**](/testing-out-of-body-experiences/).
 
 For now, preserve the event without upgrading it.
 
