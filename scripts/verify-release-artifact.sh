@@ -13,6 +13,7 @@ required=(
   "psychical-excursion/index.html"
   "dream-recall/index.html"
   "lucid-dream-experiments/index.html"
+  "out-of-body-experience-body-ownership/index.html"
   "manifest.webmanifest"
   "sw.js"
   "brand/pex-logo-primary.svg"
