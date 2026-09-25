@@ -988,7 +988,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector(".guidebook-practice")?.closest(".guidebook-section.pex-reveal")).toBeTruthy();
   });
 
-  it("renders Chapter 20 Watch the Sky with a Chapter 21 next-reading line", async () => {
+  it("renders Chapter 20 Floating in Space with a Chapter 21 next-reading line", async () => {
     const chapter = loadGuidebookChapter20();
     expect(chapter.title).toBe(CHAPTER_20_TITLE);
     const root = await mount(CHAPTER_20_HASH);
