@@ -1,4 +1,4 @@
 Psychical Excursion runtime artifact
 source_repository=JonathanEdwardLee/psychical-excursion-site
-source_sha=0c4f4a0ea3424ff04dfb43c694e3e8e3277c01aa
+source_sha=af28e880b1bc1948d87824c490fe0d8365f11f89
 branch_after_publish=hostinger-deploy
