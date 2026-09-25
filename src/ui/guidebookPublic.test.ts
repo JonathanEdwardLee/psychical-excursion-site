@@ -506,7 +506,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector("#ref-1")).toBeTruthy();
     expect(root.querySelector("#ref-4")).toBeTruthy();
     expect(root.querySelector(".pex-ambient-recognize")).toBeTruthy();
-    expect(root.querySelector('a.guidebook-pex-link[href="/dream-awareness-signs/"]')?.textContent).toBe("03");
+    expect(root.textContent).toMatch(/Fortunately, we already have plenty/);
     expect(root.querySelector("#guidebook-prev-chapter-2")?.getAttribute("href")).toBe(CHAPTER_02_HASH);
     expect(root.querySelector("#guidebook-next-chapter-4")?.getAttribute("href")).toBe(CHAPTER_04_HASH);
     expect(root.querySelector("#guidebook-next-chapter-4")?.textContent).toContain(CHAPTER_04_TITLE);
@@ -568,7 +568,6 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.textContent).toMatch(/Look at the center/);
     expect(root.textContent).toMatch(/tactile imaging/);
     expect(root.querySelectorAll(`a.guidebook-pex-link[href="${RELAX_THE_BODY_HREF}"]`).length).toBe(2);
-    expect(root.querySelector('a.guidebook-pex-link[href="/dream-recall/"]')?.textContent).toBe("02");
     expect(practiceLabels(root)).toEqual(["Summary", "Experiment", "Intention"]);
     expect(root.querySelectorAll(".guidebook-practice").length).toBe(1);
     expect(root.querySelector("#ref-1")).toBeTruthy();
@@ -594,7 +593,6 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.textContent).toMatch(/From Movement to Current/);
     expect(root.textContent).toMatch(/a repeated, continuous movement of attention/);
     expect(root.querySelectorAll(`a.guidebook-pex-link[href="${RELAX_THE_BODY_HREF}"]`).length).toBe(2);
-    expect(root.querySelector('a.guidebook-pex-link[href="/attention-body-awareness/"]')?.textContent).toBe("06");
     expect(practiceLabels(root)).toEqual(["Summary", "Experiment", "Intention"]);
     expect(root.querySelectorAll(".guidebook-practice").length).toBe(1);
     expect(root.querySelector("#ref-1")).toBeTruthy();

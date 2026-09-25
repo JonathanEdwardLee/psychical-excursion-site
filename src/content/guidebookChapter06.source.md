@@ -1,6 +1,6 @@
 # Build the Current: Tingling, Energy Sensations and Focused Attention
 
-In [**06**](/attention-body-awareness/), we moved attention.
+We moved attention.
 
 A point in the palm.
 
@@ -722,7 +722,7 @@ One field.
 
 You may discover that moving attention is easier than holding broad attention.
 
-That will become important in [**08**](/meditation-for-lucid-dreaming/).
+That will become important when we ask attention to remain still.
 
 ## What Is the Current?
 
@@ -984,11 +984,11 @@ But if our larger goal is to maximize human potential, better control of attenti
 
 ## From Motion to Stillness
 
-In [**05**](/body-scan-meditation/), we began by feeling the body.
+We began by feeling the body.
 
 Then we learned to release it.
 
-In [**06**](/attention-body-awareness/) we made attention mobile.
+Then we made attention mobile.
 
 Now we have connected those movements into larger circuits.
 

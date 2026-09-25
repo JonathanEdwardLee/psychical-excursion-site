@@ -86,7 +86,7 @@ A subtle shift in self-location may tell you more about what is changing than an
 
 ## Movement without movement
 
-In [**12**](/motor-imagery-lucid-dreaming/), we practiced intentional movement while the physical body remained still. Here we begin listening for movement that appears on its own.
+We practiced intentional movement while the physical body remained still. Here we begin listening for movement that appears on its own.
 
 Reports associated with sleep transitions and sleep paralysis include floating, flying, falling, rotation, illusory locomotion, and other vestibular-motor experiences. Researchers have repeatedly found that these experiences form a recognizable cluster, and out-of-body experiences can occur within the same family of altered bodily and spatial sensations.
 

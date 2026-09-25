@@ -34,7 +34,7 @@ The same principle applies to sensations. An itch does not automatically require
 
 ## From Moving Attention to Holding It
 
-In [**07**](/energy-sensations-meditation/), movement itself was the exercise. You traced attention through the body and experimented with longer circuits. Now try using that work as an entry point into stillness.
+Movement itself was the exercise. You traced attention through the body and experimented with longer circuits. Now try using that work as an entry point into stillness.
 
 Run one slow circuit through the body. Once the circuit is complete, choose one location along it and stop there. Instead of immediately moving onward, examine what happens to the sensation over time.
 

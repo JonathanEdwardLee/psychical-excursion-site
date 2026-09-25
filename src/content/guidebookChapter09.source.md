@@ -64,7 +64,7 @@ It is when thought stops explaining itself.
 
 ## When Imagery Stops Waiting for You
 
-In [**09**](/visualization-hypnagogic-imagery/), we separated deliberate imagery from imagery that seemed to appear on its own. Sleep onset pushes much further in the second direction.
+Earlier, we separated deliberate imagery from imagery that seemed to appear on its own. Sleep onset pushes much further in the second direction.
 
 Researchers have repeatedly awakened people during the transition into sleep and asked what had just been happening in their experience. Reports include simple visual patterns, objects, landscapes, people, movement, sounds, and increasingly dream-like scenes.[3]
 
@@ -130,7 +130,7 @@ You are back in bed.
 
 For a moment, however, you were not deliberately imagining a kitchen. You had entered a tiny event.
 
-This is an important transition from [**09**](/visualization-hypnagogic-imagery/).
+This is an important transition from deliberate imagery.
 
 A spontaneous image is something that appears.
 
@@ -178,7 +178,7 @@ Was it one word or an ongoing conversation?
 
 Did it surprise you back into fuller wakefulness?
 
-The same distinction from [**09**](/visualization-hypnagogic-imagery/) applies.
+The same distinction applies.
 
 There is a difference between **imagining a voice deliberately** and **hearing a voice-like event that appeared without being requested**.
 
@@ -230,7 +230,7 @@ Then:
 
 You are awake again.
 
-This resembles the fragile imagery from [**09**](/visualization-hypnagogic-imagery/), but now another factor is involved. Sleep itself is unstable at this boundary. Increasing alertness can move you back toward waking.
+This resembles the fragile imagery from earlier, but now another factor is involved. Sleep itself is unstable at this boundary. Increasing alertness can move you back toward waking.
 
 This makes the attentional work from **Quiet the Mind** particularly useful.
 
