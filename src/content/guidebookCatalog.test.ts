@@ -7,10 +7,10 @@ import {
 } from "./guidebookCatalog.ts";
 
 describe("guidebook SEO catalog", () => {
-  it("publishes 21 unique canonical paths without chapter numbers", () => {
-    expect(GUIDEBOOK_CATALOG_PAGES).toHaveLength(21);
+  it("publishes 22 unique canonical paths without chapter numbers", () => {
+    expect(GUIDEBOOK_CATALOG_PAGES).toHaveLength(22);
     const paths = GUIDEBOOK_CATALOG_PAGES.map((page) => page.path);
-    expect(new Set(paths).size).toBe(21);
+    expect(new Set(paths).size).toBe(22);
     for (const page of GUIDEBOOK_CATALOG_PAGES) {
       expect(page.path.startsWith("/")).toBe(true);
       expect(page.path.endsWith("/")).toBe(true);
@@ -31,6 +31,7 @@ describe("guidebook SEO catalog", () => {
     expect(resolveLegacyGuidebookHash("#/test-the-experience")?.path).toBe("/testing-out-of-body-experiences/");
     expect(resolveLegacyGuidebookHash("#/compare-the-maps")?.path).toBe("/lucid-dreaming-vs-astral-projection/");
     expect(resolveLegacyGuidebookHash("#/watch-the-sky")?.path).toBe("/sun-moon-planets-sleep-dreams/");
+    expect(resolveLegacyGuidebookHash("#/notice-the-coincidence")?.path).toBe("/synchronicity-recurring-shared-dreams/");
     expect(resolveLegacyGuidebookHash("#/feel-the-body")?.path).toBe("/body-scan-meditation/");
     expect(resolveLegacyGuidebookHash("#/feel-the-body#nighttime-body-release")).toEqual({
       path: "/body-scan-meditation/",

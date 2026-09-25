@@ -7,15 +7,16 @@ import {
 } from "./guidebookChapter20.ts";
 import { parseGuidebookPublicPage } from "../ui/guidebookRoute.ts";
 
-describe("Chapter 20 Watch the Sky manuscript", () => {
+describe("Chapter 20 Floating in Space manuscript", () => {
   it("locks title and public hash", () => {
     expect(CHAPTER_20_TITLE).toBe(
-      "Watch the Sky: Sun, Moon, Planets and the Science of Sleep & Dreams",
+      "Floating in Space: Sun, Moon, Planets and the Science of Sleep & Dreams",
     );
     expect(CHAPTER_20_PATH).toBe("/sun-moon-planets-sleep-dreams/");
     expect(CHAPTER_20_HASH).toBe("/sun-moon-planets-sleep-dreams/");
     expect(parseGuidebookPublicPage(CHAPTER_20_HASH)).toBe("chapter20");
     expect(parseGuidebookPublicPage("#/watch-the-sky")).toBe("chapter20");
+    expect(CHAPTER_20_TITLE).not.toMatch(/Watch the Sky/);
   });
 
   it("parses the approved manuscript with Track the Sky Without Cheating, eight experiment subheadings, and twenty-seven references", () => {

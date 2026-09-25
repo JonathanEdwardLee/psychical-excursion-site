@@ -1,4 +1,4 @@
-# Watch the Sky: Sun, Moon, Planets and the Science of Sleep & Dreams
+# Floating in Space: Sun, Moon, Planets and the Science of Sleep & Dreams
 
 Human beings slept under the sky long before we invented blackout curtains, electric lights, clocks, phone screens, alarm schedules, or apps that tell us when the Moon is full.
 
