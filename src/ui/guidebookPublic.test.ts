@@ -19,6 +19,7 @@ import { CHAPTER_08_HASH, CHAPTER_08_TITLE, loadGuidebookChapter08 } from "../co
 import { CHAPTER_09_HASH, CHAPTER_09_TITLE, loadGuidebookChapter09 } from "../content/guidebookChapter09.ts";
 import { CHAPTER_10_HASH, CHAPTER_10_TITLE, loadGuidebookChapter10 } from "../content/guidebookChapter10.ts";
 import { CHAPTER_11_HASH, CHAPTER_11_TITLE, loadGuidebookChapter11 } from "../content/guidebookChapter11.ts";
+import { CHAPTER_12_HASH, CHAPTER_12_TITLE, loadGuidebookChapter12 } from "../content/guidebookChapter12.ts";
 import { NIGHTTIME_BODY_RELEASE_ID, RELAX_THE_BODY_HREF } from "../content/guidebookAnchors.ts";
 import { loadGuidebookManuscript } from "../content/guidebookManuscript.ts";
 import { TROPICAL_ZODIAC_SIGNS } from "../astronomy/zodiac.ts";
@@ -298,6 +299,11 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     await renderApp(root);
     expect(document.documentElement.scrollTop).toBe(0);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_11_TITLE);
+    document.documentElement.scrollTop = 60;
+    window.location.hash = CHAPTER_12_HASH;
+    await renderApp(root);
+    expect(document.documentElement.scrollTop).toBe(0);
+    expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_12_TITLE);
   });
 
   it("renders Chapter 3 with a Chapter 4 next-reading line and one practice card", async () => {
@@ -561,7 +567,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector(".guidebook-practice")?.closest(".guidebook-section.pex-reveal")).toBeTruthy();
   });
 
-  it("renders Chapter 11 Move Without Moving without a next-page link or attention instrument", async () => {
+  it("renders Chapter 11 Move Without Moving with a Chapter 12 next-reading line", async () => {
     const chapter = loadGuidebookChapter11();
     expect(chapter.title).toBe(CHAPTER_11_TITLE);
     const root = await mount(CHAPTER_11_HASH);
@@ -581,7 +587,8 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector("#guidebook-prev-chapter-10")?.getAttribute("href")).toBe(CHAPTER_10_HASH);
     expect(root.querySelector("#guidebook-prev-chapter-10")?.textContent).toContain(CHAPTER_10_TITLE);
     expect(root.querySelector("#guidebook-next-chapter-11")).toBeNull();
-    expect(root.querySelector("#guidebook-next-chapter-12")).toBeNull();
+    expect(root.querySelector("#guidebook-next-chapter-12")?.getAttribute("href")).toBe(CHAPTER_12_HASH);
+    expect(root.querySelector("#guidebook-next-chapter-12")?.textContent).toContain(CHAPTER_12_TITLE);
     expectPublicHeader(root);
     expectHeldFeaturesAbsent(root);
     expect(root.textContent).not.toMatch(/\bPEx\b/);
@@ -590,6 +597,41 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
 
   it("keeps reduced-motion readers able to see Chapter 11 sections", async () => {
     const root = await mount(CHAPTER_11_HASH);
+    expect(root.querySelector(".guidebook-section.pex-reveal")).toBeTruthy();
+    expect(root.querySelector(".guidebook-practice")?.closest(".guidebook-section.pex-reveal")).toBeTruthy();
+  });
+
+  it("renders Chapter 12 Feel the Shift without a next-page link or attention instrument", async () => {
+    const chapter = loadGuidebookChapter12();
+    expect(chapter.title).toBe(CHAPTER_12_TITLE);
+    const root = await mount(CHAPTER_12_HASH);
+    expect(window.location.hash).toBe(CHAPTER_12_HASH);
+    expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_12_TITLE);
+    expect(root.querySelector(".pex-attention-instrument")).toBeNull();
+    expect(root.textContent).toMatch(/Which part of the bodily self shifts first/);
+    expect(root.textContent).toMatch(/Body sensation/);
+    expect(root.textContent).toMatch(/Self-location/);
+    expect(root.textContent).toMatch(/Body ownership/);
+    expect(root.textContent).toMatch(/Environment/);
+    expect([...root.querySelectorAll("h3.guidebook-practice-subheading")].map((node) => node.textContent)).toEqual([
+      "Map the Shift",
+    ]);
+    expect(practiceLabels(root)).toEqual(["Summary", "Experiment", "Intention"]);
+    expect(root.querySelectorAll(".guidebook-practice").length).toBe(1);
+    expect(root.querySelector("#ref-1")).toBeTruthy();
+    expect(root.querySelector("#ref-7")).toBeTruthy();
+    expect(root.querySelector("#guidebook-prev-chapter-11")?.getAttribute("href")).toBe(CHAPTER_11_HASH);
+    expect(root.querySelector("#guidebook-prev-chapter-11")?.textContent).toContain(CHAPTER_11_TITLE);
+    expect(root.querySelector("#guidebook-next-chapter-12")).toBeNull();
+    expect(root.querySelector("#guidebook-next-chapter-13")).toBeNull();
+    expectPublicHeader(root);
+    expectHeldFeaturesAbsent(root);
+    expect(root.textContent).not.toMatch(/\bPEx\b/);
+    expect(document.title).toMatch(CHAPTER_12_TITLE);
+  });
+
+  it("keeps reduced-motion readers able to see Chapter 12 sections", async () => {
+    const root = await mount(CHAPTER_12_HASH);
     expect(root.querySelector(".guidebook-section.pex-reveal")).toBeTruthy();
     expect(root.querySelector(".guidebook-practice")?.closest(".guidebook-section.pex-reveal")).toBeTruthy();
   });
