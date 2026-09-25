@@ -369,13 +369,13 @@ Let's see what happens.
 
 ## References
 
-[1] “Society for Psychical Research.” *Nature* 158, 338 (1946). doi:10.1038/158338c0.
+[1] “Society for Psychical Research.” *Nature* 158, 338 (1946). https://doi.org/10.1038/158338c0.
 
-[2] LaBerge, S. P., Nagel, L. E., Dement, W. C., & Zarcone, V. P. Jr. “Lucid Dreaming Verified by Volitional Communication during REM Sleep.” *Perceptual and Motor Skills* 52, no. 3 (1981): 727–732. doi:10.2466/pms.1981.52.3.727.
+[2] LaBerge, S. P., Nagel, L. E., Dement, W. C., & Zarcone, V. P. Jr. “Lucid Dreaming Verified by Volitional Communication during REM Sleep.” *Perceptual and Motor Skills* 52, no. 3 (1981): 727–732. https://doi.org/10.2466/pms.1981.52.3.727.
 
-[3] Gibson, J. “Mindfulness, Interoception, and the Body: A Contemporary Perspective.” *Frontiers in Psychology* (2019). doi:10.3389/fpsyg.2019.02012.
+[3] Gibson, J. “Mindfulness, Interoception, and the Body: A Contemporary Perspective.” *Frontiers in Psychology* (2019). https://doi.org/10.3389/fpsyg.2019.02012.
 
-[4] Treves, I. N., et al. “A Meta-analysis of the Effects of Mindfulness Meditation Training on Self-reported Interoception.” *Scientific Reports* (2025). doi:10.1038/s41598-025-22661-4.
+[4] Treves, I. N., et al. “A Meta-analysis of the Effects of Mindfulness Meditation Training on Self-reported Interoception.” *Scientific Reports* (2025). https://doi.org/10.1038/s41598-025-22661-4.
 
 [5] Wangyal Rinpoche, Tenzin. *The Tibetan Yogas of Dream and Sleep: Practices for Awakening*. Edited by Mark Dahlby. Revised edition. Shambhala Publications, 2022. https://www.shambhala.com/the-tibetan-yogas-of-dream-and-sleep.html
 

@@ -1092,7 +1092,7 @@ You do not need vivid visual imagery to practice. You can see the movement, feel
 
 ### Experiment
 
-Begin with the PEx geometric attention object.
+Begin with the geometric attention object.
 
 Rest your gaze gently near its fixed center for about a minute.
 

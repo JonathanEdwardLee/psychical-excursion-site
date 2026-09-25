@@ -579,6 +579,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector("#guidebook-next-chapter-6")?.textContent).toContain(CHAPTER_06_TITLE);
     expectPublicHeader(root);
     expectHeldFeaturesAbsent(root);
+    expect(root.textContent).not.toMatch(/\bPEx\b/);
     expect(root.textContent).not.toContain(CHAPTER_05_PLACEHOLDER_MARKER);
     expect(document.title).toMatch(CHAPTER_05_TITLE);
   });
@@ -692,7 +693,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.textContent).toMatch(/Falling Asleep Is a Process/);
     expect(root.textContent).toMatch(/microdreams/);
     const relaxLinks = [...root.querySelectorAll(`a.guidebook-pex-link[href="${RELAX_THE_BODY_HREF}"]`)];
-    expect(relaxLinks).toHaveLength(1);
+    expect(relaxLinks).toHaveLength(2);
     expect(relaxLinks[0]?.getAttribute("href")).toBe(RELAX_THE_BODY_HREF);
     expect(relaxLinks[0]?.textContent).toBe("Relax the body");
     expect(practiceLabels(root)).toEqual(["Summary", "Experiment", "Intention"]);

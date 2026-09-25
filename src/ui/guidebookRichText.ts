@@ -59,6 +59,15 @@ export function renderRichText(text: string, options: RichTextOptions = {}): HTM
           rel: "noreferrer",
         }, [token]),
       );
+    } else if (token.toLowerCase().startsWith("https://doi.org/")) {
+      const href = stripLinkTrailingPunctuation(token);
+      paragraph.append(
+        el("a", {
+          href,
+          class: "guidebook-doi",
+          rel: "noreferrer",
+        }, [token]),
+      );
     } else if (token.toLowerCase().startsWith("https://")) {
       const href = stripLinkTrailingPunctuation(token);
       paragraph.append(

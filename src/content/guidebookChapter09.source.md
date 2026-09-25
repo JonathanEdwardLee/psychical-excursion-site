@@ -338,7 +338,7 @@ Sleep onset is not one clean switch between waking and sleeping. Research descri
 
 Hypnagogic experience can include visual imagery, sounds, altered thought, bodily sensations, and extremely brief dream-like events. Recent waking experience can influence these contents, but the result may be transformed rather than replayed literally.
 
-The practical skill developed in the previous chapters now becomes useful in a new environment. Relax the body. Allow attention to become quieter. Stop deliberately manufacturing imagery. Then observe what begins happening as sleep takes over more of the process.
+The practical skill developed in the previous chapters now becomes useful in a new environment. [**Relax the body**](/body-scan-meditation/#nighttime-body-release). Allow attention to become quieter. Stop deliberately manufacturing imagery. Then observe what begins happening as sleep takes over more of the process.
 
 You are no longer asking only what you can imagine.
 
