@@ -7,10 +7,10 @@ import {
 } from "./guidebookCatalog.ts";
 
 describe("guidebook SEO catalog", () => {
-  it("publishes 18 unique canonical paths without chapter numbers", () => {
-    expect(GUIDEBOOK_CATALOG_PAGES).toHaveLength(18);
+  it("publishes 19 unique canonical paths without chapter numbers", () => {
+    expect(GUIDEBOOK_CATALOG_PAGES).toHaveLength(19);
     const paths = GUIDEBOOK_CATALOG_PAGES.map((page) => page.path);
-    expect(new Set(paths).size).toBe(18);
+    expect(new Set(paths).size).toBe(19);
     for (const page of GUIDEBOOK_CATALOG_PAGES) {
       expect(page.path.startsWith("/")).toBe(true);
       expect(page.path.endsWith("/")).toBe(true);
@@ -28,6 +28,7 @@ describe("guidebook SEO catalog", () => {
     expect(resolveLegacyGuidebookHash("#/explore-the-dream")?.path).toBe("/lucid-dream-experiments/");
     expect(resolveLegacyGuidebookHash("#/loosen-the-body")?.path).toBe("/out-of-body-experience-body-ownership/");
     expect(resolveLegacyGuidebookHash("#/cross-the-threshold")?.path).toBe("/astral-projection-obe-techniques/");
+    expect(resolveLegacyGuidebookHash("#/test-the-experience")?.path).toBe("/testing-out-of-body-experiences/");
     expect(resolveLegacyGuidebookHash("#/feel-the-body")?.path).toBe("/body-scan-meditation/");
     expect(resolveLegacyGuidebookHash("#/feel-the-body#nighttime-body-release")).toEqual({
       path: "/body-scan-meditation/",
