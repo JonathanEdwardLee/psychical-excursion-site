@@ -19,6 +19,7 @@ required=(
   "lucid-dreaming-vs-astral-projection/index.html"
   "sun-moon-planets-sleep-dreams/index.html"
   "synchronicity-recurring-shared-dreams/index.html"
+  "lucid-dreaming-astral-projection-bedtime-routine/index.html"
   "manifest.webmanifest"
   "sw.js"
   "brand/pex-logo-primary.svg"
