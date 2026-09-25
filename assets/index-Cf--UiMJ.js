@@ -114,7 +114,7 @@ That is what we are going to investigate.
 
 ## Attention Has an Address
 
-We learned that deliberately attending to the body can make normally quiet sensations more noticeable.
+Deliberately attending to the body can make normally quiet sensations more noticeable.
 
 Now we are going to make the practice more precise.
 
@@ -594,7 +594,7 @@ Expectation influenced perception.
 
 Circulation changed because of posture or tension.
 
-A traditional energy practitioner might describe increased qi, prana, or subtle-energy movement.
+A traditional energy practitioner might describe increased qi, prana, or subtle-energy movement. Those words name a model, not a demonstrated substance in the laboratory sense. A tingling forearm is still a tingling forearm whether we call it qi, attention, or nerves.
 
 There may be other possibilities.
 
@@ -1231,9 +1231,9 @@ It means the doorway matters.
 
 The few moments when sleep becomes waking may be part of the memory process itself.
 
-Think of a dream as a message written in disappearing ink.
+Sleep itself is also a difficult environment for ordinary waking memory. Dreaming can be richly detailed while it is happening and still leave little behind once the brain shifts into wake-oriented processing. Reviews of dreaming and the sleeping brain treat that disappearance as a memory problem, not as proof that nothing occurred.[1]
 
-Morning is when we learn how to read it before the page clears.
+Think of a dream as a message written in disappearing ink. Morning is when we learn how to read it before the page clears.
 
 ## Attention Changes the Experiment
 
@@ -1279,25 +1279,7 @@ Then ask:
 
 **What was just happening?**
 
-Start with whatever arrives.
-
-An image.
-
-A place.
-
-A voice.
-
-A person.
-
-A color.
-
-A body sensation.
-
-An emotion.
-
-A sentence.
-
-A single absurd fact.
+Start with whatever arrives: an image, a place, a voice, a person, a color, a body sensation, an emotion, a sentence, or a single absurd fact.
 
 Maybe you remember that you were trying to buy groceries inside a cathedral.
 
@@ -1459,15 +1441,7 @@ That makes intuitive sense.
 
 Becoming aware inside dreams becomes easier to investigate when dreams are already becoming easier to retrieve.
 
-So we begin here.
-
-Tonight you sleep.
-
-You dream.
-
-Morning comes.
-
-And instead of immediately leaving that world behind, you turn toward it.
+So we begin here. Tonight you sleep, you dream, morning comes—and instead of immediately leaving that world behind, you turn toward it.
 
 **You are dreaming. Remember.**
 
@@ -1648,9 +1622,13 @@ Read several of your dreams together and ask:
 
 You are looking for anything impossible, improbable, recurring, emotionally distinctive, or simply strange enough that waking-you would normally stop and examine it.
 
+Dream research gives a second reason those recurrences are worth noticing. The **continuity hypothesis** treats a large part of dream content as connected to recent and ongoing waking life: concerns, people, places, and unfinished business tend to reappear, often in rearranged form.[7] That is a description of patterning, not a license to decide that every repeating image is a message from elsewhere.
+
+The useful move is simpler. Notice the habit. Record it. Leave the metaphysics for later, when you have more than a hunch.
+
 ## Four Ways a Dream Gives Itself Away
 
-Stephen LaBerge and other lucid-dream researchers have used categories for dream signs that are useful without turning this into a taxonomy lesson.
+Stephen LaBerge and other lucid-dream researchers have used categories for dream signs that are useful without turning this into a taxonomy lesson.[4]
 
 The categories are simple enough.
 
@@ -1756,7 +1734,7 @@ The second one is nearly useless.
 
 The practice only becomes interesting when, for a moment, you genuinely allow both possibilities.
 
-Paul Tholey developed what he called the **reflection technique** for lucid dreaming. During waking life, he repeatedly questioned whether he was awake or dreaming, especially when something unusual occurred.
+Paul Tholey developed what he called the **reflection technique** for lucid dreaming. During waking life, he repeatedly questioned whether he was awake or dreaming, especially when something unusual occurred.[2][3]
 
 The purpose was larger than performing a trick.
 
@@ -1828,7 +1806,7 @@ Some of these work better than others for different people.
 
 Research gives us a reason to keep our expectations modest.
 
-Reality testing is a legitimate lucid-dream induction technique, but studies have not shown that simply performing lots of reality checks reliably produces lucid dreams. In a large 2020 study comparing induction methods, the number of daytime reality tests did not significantly predict lucid dreaming success. MILD and SSILD showed stronger results.[1]
+Reality testing is a legitimate lucid-dream induction technique, but studies have not shown that simply performing lots of reality checks reliably produces lucid dreams. In a large 2020 study comparing induction methods, the number of daytime reality tests did not significantly predict lucid dreaming success. MILD and SSILD showed stronger results.[1] An earlier systematic review of induction methods likewise found mixed and often modest effects, with cognitive techniques such as MILD among the more promising approaches rather than a guaranteed method.[5]
 
 That does not make reality testing useless.
 
@@ -1892,7 +1870,7 @@ Those are different things.
 
 Tibetan dream-yoga traditions approach this territory from a very different philosophical direction.
 
-In Tenzin Wangyal Rinpoche's presentation of Bön dream yoga, practitioners cultivate awareness of waking experience itself as dreamlike.
+In Tenzin Wangyal Rinpoche's presentation of Bön dream yoga, practitioners cultivate awareness of waking experience itself as dreamlike.[6]
 
 Within that tradition, this is part of a much larger spiritual understanding of mind, appearance, attachment, and liberation.
 
@@ -2108,9 +2086,11 @@ You are practicing the movement from automatic experience to curiosity.
 
 [4] LaBerge, S., & Rheingold, H. *Exploring the World of Lucid Dreaming*. Ballantine Books, 1990.
 
-[5] Stumbrys, T., Erlacher, D., Schädlich, M., & Schredl, M. “Induction of Lucid Dreams: A Systematic Review of Evidence.” *Consciousness and Cognition* 21, no. 3 (2012): 1456–1475.
+[5] Stumbrys, T., Erlacher, D., Schädlich, M., & Schredl, M. “Induction of Lucid Dreams: A Systematic Review of Evidence.” *Consciousness and Cognition* 21, no. 3 (2012): 1456–1475. https://doi.org/10.1016/j.concog.2012.07.003
 
 [6] Tenzin Wangyal Rinpoche. *The Tibetan Yogas of Dream and Sleep*. Revised and updated edition. Shambhala, 2022.
+
+[7] Schredl, M., & Hofmann, F. “Continuity Between Waking Activities and Dream Activities.” *Consciousness and Cognition* 12, no. 2 (2003): 298–308. https://doi.org/10.1016/S1053-8100(02)00072-7
 `,bt="Notice Your Dreams: Dream Awareness, Patterns and Dream Signs",Ni="/dream-awareness-signs/",wt=Ni;let rn=null;function Oi(){return rn||(rn=S(Ci)),rn}const Ma=`# Recognize the Dream: Lucid Dreaming, Reality Checks and Dream Signs
 
 Something impossible happens.
@@ -2272,8 +2252,6 @@ This time, when the clue appears, you recognize it.
 **I am dreaming.**
 
 You rehearse that moment while forming the intention to recognize dreaming the next time it happens.
-
-This is important.
 
 MILD is sometimes reduced to repeating a sentence in bed.
 
@@ -2661,9 +2639,9 @@ No induction method makes lucid dreams appear reliably on command.
 
 A 2023 systematic review of empirical lucid-dream induction research nevertheless found MILD to be the most effective technique among the methods it reviewed.[4]
 
-So MILD deserves our attention.
+So MILD deserves our attention. It does not deserve mythology.
 
-It does not deserve mythology.
+When the later chapters collapse many techniques into one nightly loop, this same recognition skill is still the cognitive core. We do not need a second copy of that routine here. We need the habit: a cue appears, and you remember what you meant to do.
 
 ## Sleep Is Part of the Experiment
 
@@ -2926,7 +2904,7 @@ Others disappear into the background.
 
 Then attention changes the balance.
 
-Laboratory research on somatosensory attention shows that directing attention toward a particular part of the body can alter the processing of touch and bodily sensation associated with that location.[1]
+Laboratory research on somatosensory attention shows that directing attention toward a particular part of the body can alter the processing of touch and bodily sensation associated with that location.[1] Interoception—the sensing of the body's internal condition—is a related, ordinary capacity. It is not a mystical faculty, and it is not proof of a second body. It is simply one of the ways the nervous system keeps track of what is happening inside the organism.[4]
 
 That does not mean attention creates every sensation we feel.
 
@@ -3174,7 +3152,7 @@ This practice has a name in psychology:
 
 **progressive muscle relaxation**, or PMR.
 
-It grew out of work by physician Edmund Jacobson in the early twentieth century and has since been adapted into many shorter forms.
+It grew out of work by physician Edmund Jacobson in the early twentieth century and has since been adapted into many shorter forms.[3]
 
 The basic principle is beautifully simple.
 
@@ -3406,9 +3384,7 @@ The practice is preparation for sleep.
 
 Let sleep win.
 
-A growing body of randomized research suggests that progressive muscle relaxation can improve subjective sleep quality in adults. A 2026 systematic review and meta-analysis including thirty-one randomized trials found overall improvement in reported sleep quality, although results varied substantially across studies and populations.[2]
-
-Another recent meta-analysis similarly found an overall sleep-quality benefit while emphasizing substantial variation between the included studies.[3]
+A growing body of randomized research suggests that progressive muscle relaxation can improve subjective sleep quality in adults. A 2026 systematic review and meta-analysis including thirty-one randomized trials found overall improvement in reported sleep quality, although heterogeneity was high and effects varied substantially across studies and populations.[2] That is a reason to treat PMR as a useful sleep-compatible skill, not as a guaranteed sleep drug.
 
 So there is legitimate evidence behind this simple practice.
 
@@ -3732,7 +3708,9 @@ During the day, choose one finger, toe, hand or foot occasionally and practice l
 
 [2] Donato, K. O., Falcão, L., Nishizima, A., et al. “Progressive Muscle Relaxation Technique Improves Sleep Quality and Mental Health: A Systematic Review and Meta-analysis of Randomized Controlled Trials.” *Journal of Psychosomatic Research* 203 (2026): 112563. https://doi.org/10.1016/j.jpsychores.2026.112563
 
-[3] “The Effects of Progressive Muscle Relaxation on Sleep Quality in Adults: A Systematic Review and Meta-analysis of Randomized Controlled Trials.” 2026. PubMed PMID 42625730.
+[3] Jacobson, E. *Progressive Relaxation*. University of Chicago Press, 1938.
+
+[4] Craig, A. D. “How Do You Feel? Interoception: The Sense of the Physiological Condition of the Body.” *Nature Reviews Neuroscience* 3 (2002): 655–666. https://doi.org/10.1038/nrn894
 `,Tt="Feel the Body: Body Scan Meditation and Deep Relaxation",zi="/body-scan-meditation/",kt=zi;let ln=null;function Hi(){return ln||(ln=S(Fi)),ln}const Yi=`# Build the Current: Tingling, Energy Sensations and Focused Attention
 
 We moved attention.
@@ -15595,17 +15573,9 @@ The word *psychical* also has an interesting history. In the late nineteenth cen
 
 That posture appeals to me.
 
-Something strange is claimed.
+Something strange is claimed. Don't worship it, and don't laugh it out of the room either.
 
-Don't worship it.
-
-Don't laugh it out of the room either.
-
-Look at it.
-
-Ask questions.
-
-Try what can actually be tried.
+Look at it. Ask questions. Try what can actually be tried.
 
 ## I Want Psychic Super Powers
 
@@ -15795,21 +15765,9 @@ That was enough to make me want to keep investigating.
 
 I've also been in a serious car wreck in which the vehicle rolled completely over. During the event, time seemed to slow.
 
-Why?
+Why? What does extreme stress do to our perception of time? What happens to consciousness around sleep, trauma, anesthesia, meditation, and death? Are extraordinary experiences entirely products of the brain, and is that distinction even as simple as it sounds? Could consciousness ever exist or operate independently of the physical body?
 
-What does extreme stress do to our perception of time?
-
-What happens to consciousness around sleep, trauma, anesthesia, meditation, and death?
-
-Are extraordinary experiences entirely products of the brain?
-
-Is that distinction even as simple as it sounds?
-
-Could consciousness ever exist or operate independently of the physical body?
-
-Those questions are much larger than this guide can settle.
-
-But they are excellent reasons to explore.
+Those questions are much larger than this guide can settle. They are still excellent reasons to explore.
 
 ## What This Book Actually Does
 
