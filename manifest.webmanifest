@@ -2,7 +2,7 @@
   "name": "Psychical Excursion",
   "short_name": "PEx",
   "description": "A free, local-first practice guide. Private journal material stays on this device.",
-  "start_url": "/psychical-excursion/",
+  "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
