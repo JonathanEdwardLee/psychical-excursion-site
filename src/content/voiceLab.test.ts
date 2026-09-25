@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { parseSpokenSegments, SECTION_PAUSE_MARKER, spokenOnly } from "../../scripts/voice-lab/core.mjs";
 
 const ROOT = join(import.meta.dirname, "../..");
 
@@ -98,6 +99,17 @@ describe("local AI narration voice lab", () => {
       expect(cedar.executed).not.toBe(true);
       expect(JSON.stringify(cedar)).toMatch(/dry-run/i);
     }
+  });
+
+  it("turns section-pause cues into assembly silence segments, not Cedar speech", () => {
+    const script =
+      "The Excursion\n\n<!-- cue:section-pause -->\n\nRobert Anton Wilson was another major influence.";
+    const spoken = spokenOnly(script);
+    expect(spoken).toContain(SECTION_PAUSE_MARKER);
+    const segments = parseSpokenSegments(spoken);
+    expect(segments).toHaveLength(3);
+    expect(segments[1]).toEqual({ type: "pause", ms: 1750 });
+    expect(segments[2].text).toContain("Robert Anton Wilson");
   });
 
   it("does not network-post local scores (lab HTML stores localStorage only)", () => {

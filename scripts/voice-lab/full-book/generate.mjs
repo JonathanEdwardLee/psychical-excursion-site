@@ -3,8 +3,8 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
-import { chunkForSpeechApi, estimateCedarUsd, FULL_BOOK_COST_CEILING_USD } from "../core.mjs";
-import { synthesizeCedar } from "../cedar.mjs";
+import { estimateCedarUsd, FULL_BOOK_COST_CEILING_USD } from "../core.mjs";
+import { generateTrackRaw, planTrackChunks } from "./track-generate.mjs";
 import { assembleTrack } from "./assemble.mjs";
 import { masterTrack } from "./master.mjs";
 import { assertLedgerHeadroom, readLedger, writeLedger } from "./ledger.mjs";
@@ -23,9 +23,10 @@ function ceilingUsd(env) {
 }
 
 function parseArgs(argv) {
-  const opts = { dryRun: false, track: null, fromSequence: null };
+  const opts = { dryRun: false, track: null, fromSequence: null, force: false };
   for (let i = 2; i < argv.length; i += 1) {
     if (argv[i] === "--dry-run") opts.dryRun = true;
+    else if (argv[i] === "--force") opts.force = true;
     else if (argv[i] === "--track" && argv[i + 1]) {
       opts.track = argv[++i];
     } else if (argv[i] === "--from" && argv[i + 1]) {
@@ -86,7 +87,7 @@ export async function runFullBookGeneration({ env = process.env, opts = {} } = {
       id,
       title: track.title,
       words: textInfo.words,
-      chunks: chunkForSpeechApi(textInfo.spoken).length,
+      chunks: planTrackChunks(textInfo),
       conservative_usd: estimate.conservative_usd_this_run,
     });
   }
@@ -102,7 +103,7 @@ export async function runFullBookGeneration({ env = process.env, opts = {} } = {
 
   for (const track of tracks) {
     const id = track.output_basename;
-    if (ledger.tracks[id]?.status === "mastered") {
+    if (!opts.force && ledger.tracks[id]?.status === "mastered") {
       process.stdout.write(`skip ${id}: already mastered\n`);
       continue;
     }
@@ -114,15 +115,12 @@ export async function runFullBookGeneration({ env = process.env, opts = {} } = {
     mkdirSync(RECEIPTS, { recursive: true });
     process.stdout.write(`\n=== Track ${track.sequence}: ${id} (${textInfo.words} words) ===\n`);
 
-    const receipt = await synthesizeCedar({
-      text: textInfo.spoken,
-      words: textInfo.words,
-      outDir: rawDir,
-      env: { ...env, VOICE_LAB_EXECUTE: "1" },
+    const raw = await generateTrackRaw({
+      textInfo,
+      rawDir,
+      env,
       ceilingUsd: Math.max(ceiling, estimate.conservative_usd_this_run),
-      execute: true,
-      resume: true,
-      chunkName: "numbered",
+      force: opts.force,
     });
 
     const trackReceipt = {
@@ -132,7 +130,7 @@ export async function runFullBookGeneration({ env = process.env, opts = {} } = {
       script_sha256: textInfo.scriptSha256,
       spoken_sha256: textInfo.spokenSha256,
       words: textInfo.words,
-      cedar: receipt,
+      assembly: raw,
       status: "raw-complete",
       updated_at: new Date().toISOString(),
     };
@@ -140,7 +138,7 @@ export async function runFullBookGeneration({ env = process.env, opts = {} } = {
     ledger.conservative_usd_estimated = Math.round(
       (ledger.conservative_usd_estimated + estimate.conservative_usd_this_run) * 10000,
     ) / 10000;
-    ledger.api_request_count += receipt.request_count;
+    ledger.api_request_count += raw.request_count;
     writeFileSync(join(RECEIPTS, `${id}.json`), `${JSON.stringify(trackReceipt, null, 2)}\n`);
 
     assembleTrack(id);

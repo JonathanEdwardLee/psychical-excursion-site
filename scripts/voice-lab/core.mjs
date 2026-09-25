@@ -29,8 +29,37 @@ export const DEFAULT_INSTRUCTIONS = [
   "Read the text exactly. Do not add commentary or invented words.",
 ].join(" ");
 
+/** Inserted by spokenOnly when session script contains <!-- cue:section-pause -->. */
+export const SECTION_PAUSE_MARKER = "[[PEX_SECTION_PAUSE_MS_1750]]";
+export const SECTION_PAUSE_MS = 1750;
+
 export function spokenOnly(script) {
-  return script.replace(/<!--[\s\S]*?-->/g, "\n").replace(/\r\n/g, "\n").replace(/\n{3,}/g, "\n\n").trim();
+  let text = script.replace(/<!--\s*cue:section-pause\s*-->/gi, `\n${SECTION_PAUSE_MARKER}\n`);
+  text = text.replace(/<!--[\s\S]*?-->/g, "\n");
+  return text.replace(/\r\n/g, "\n").replace(/\n{3,}/g, "\n\n").trim();
+}
+
+/** Speech segments and deterministic silence gaps for assembly (not sent to Cedar). */
+export function parseSpokenSegments(spoken) {
+  const parts = spoken.split(SECTION_PAUSE_MARKER);
+  const segments = [];
+  parts.forEach((part, index) => {
+    const text = part.trim();
+    if (text) segments.push({ type: "speech", text });
+    if (index < parts.length - 1) {
+      segments.push({ type: "pause", ms: SECTION_PAUSE_MS });
+    }
+  });
+  if (!segments.length && spoken.trim()) {
+    segments.push({ type: "speech", text: spoken.trim() });
+  }
+  return segments;
+}
+
+export function countWordsInSegments(segments) {
+  return segments
+    .filter((s) => s.type === "speech")
+    .reduce((sum, s) => sum + countWords(s.text), 0);
 }
 
 export function sha256(text) {

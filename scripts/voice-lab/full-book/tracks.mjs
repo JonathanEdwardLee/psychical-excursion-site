@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { countWords, sha256, spokenOnly } from "../core.mjs";
+import { countWordsInSegments, parseSpokenSegments, sha256, spokenOnly } from "../core.mjs";
 
 export function loadTrackManifest(root) {
   const path = join(root, "publication/audio/TRACK-MANIFEST.json");
@@ -18,12 +18,14 @@ export function loadTrackSpokenText(root, track) {
   const scriptPath = resolveSessionScript(root, track);
   const raw = readFileSync(scriptPath, "utf8");
   const spoken = spokenOnly(raw);
+  const segments = parseSpokenSegments(spoken);
   return {
     scriptPath,
     raw,
     spoken,
+    segments,
     scriptSha256: sha256(raw),
     spokenSha256: sha256(spoken),
-    words: countWords(spoken),
+    words: countWordsInSegments(segments),
   };
 }

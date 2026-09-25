@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { existsSync, mkdirSync, readdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
@@ -13,13 +13,26 @@ function ffmpegOk() {
   return spawnSync("ffmpeg", ["-version"], { encoding: "utf8" }).status === 0;
 }
 
-function concatRaw(trackId, rawDir, outWav) {
-  const chunks = readdirSync(rawDir)
+function listAssemblyFiles(rawDir) {
+  const orderPath = join(rawDir, "assembly-order.json");
+  if (existsSync(orderPath)) {
+    return JSON.parse(readFileSync(orderPath, "utf8"));
+  }
+  return readdirSync(rawDir)
     .filter((f) => /^chunk-\d+\.wav$/i.test(f))
     .sort();
-  if (!chunks.length) throw new Error(`No chunks in ${rawDir}`);
+}
+
+function concatRaw(trackId, rawDir, outWav) {
+  const files = listAssemblyFiles(rawDir);
+  if (!files.length) throw new Error(`No assembly files in ${rawDir}`);
   const listPath = join(rawDir, "concat-list.txt");
-  const lines = chunks.map((f) => `file '${f.replace(/'/g, "'\\''")}'`).join("\n");
+  const lines = files
+    .map((f) => {
+      const rel = f.replace(/\\/g, "/");
+      return `file '${rel.replace(/'/g, "'\\''")}'`;
+    })
+    .join("\n");
   writeFileSync(listPath, `${lines}\n`);
   mkdirSync(dirname(outWav), { recursive: true });
   let r = spawnSync(
@@ -37,7 +50,7 @@ function concatRaw(trackId, rawDir, outWav) {
   if (r.status !== 0 || !existsSync(outWav)) {
     throw new Error(`ffmpeg concat failed for ${trackId}: ${r.stderr?.slice(0, 400)}`);
   }
-  return { chunk_count: chunks.length };
+  return { file_count: files.length };
 }
 
 export function assembleTrack(trackId) {
