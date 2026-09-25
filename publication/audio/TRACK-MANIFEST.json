@@ -1,0 +1,834 @@
+{
+  "edition": "audiobook-production-plan",
+  "publication_master_baseline": "c08aa9c5265af96d7c7f8b38a1cd11a38653e858",
+  "web_edition_baseline": "c969ebb5650e4f854b3d1a1284458a818eb71cfb",
+  "planning_wpm": 150,
+  "wpm_rates": [
+    135,
+    150,
+    165
+  ],
+  "recommended_pilot_menu": 10,
+  "recommended_pilot_path": "jonathan-narrates-one-chapter-pilot",
+  "no_audio_files": true,
+  "totals": {
+    "publication_narration_words": 63509,
+    "session_script_chapter_words": 62974,
+    "estimates_minutes": {
+      "wpm_135": 470.4,
+      "wpm_150": 423.4,
+      "wpm_165": 384.9
+    }
+  },
+  "longest_chapter": {
+    "menu": 21,
+    "title": "Floating in Space: Sun, Moon, Planets and the Science of Sleep & Dreams",
+    "publication_narration_words": 4615
+  },
+  "shortest_chapter": {
+    "menu": 2,
+    "title": "Remember Your Dreams: Dream Recall Techniques and Research",
+    "publication_narration_words": 1588
+  },
+  "session_split_rule": "Default one chapter equals one final track. Optional internal recording segments only if a chapter exceeds about 4000 narration words (currently menu 21).",
+  "tracks": [
+    {
+      "sequence": 0,
+      "kind": "credits",
+      "chapter_number": null,
+      "title": "Opening credits",
+      "source_publication_file": "publication/audio/CREDITS.md",
+      "session_script": "audio/session-scripts/00-opening-credits.md",
+      "narration_word_count": 50,
+      "publication_narration_words": null,
+      "estimated_duration_minutes": {
+        "wpm_135": 0.4,
+        "wpm_150": 0.3,
+        "wpm_165": 0.3
+      },
+      "pronunciation_flags": [],
+      "exercise_pause_flags": [],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-00-opening-credits",
+      "audio_hash": null
+    },
+    {
+      "sequence": 1,
+      "kind": "front-matter",
+      "chapter_number": null,
+      "title": "How this book treats evidence",
+      "source_publication_file": "front-matter/EVIDENCE-AND-BELIEF.md",
+      "session_script": "audio/session-scripts/00a-how-this-book-treats-evidence.md",
+      "narration_word_count": 91,
+      "publication_narration_words": null,
+      "estimated_duration_minutes": {
+        "wpm_135": 0.7,
+        "wpm_150": 0.6,
+        "wpm_165": 0.6
+      },
+      "pronunciation_flags": [],
+      "exercise_pause_flags": [],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-00a-evidence-and-belief",
+      "audio_hash": null
+    },
+    {
+      "sequence": 2,
+      "kind": "front-matter",
+      "chapter_number": null,
+      "title": "Sleep and safety",
+      "source_publication_file": "front-matter/SLEEP-AND-SAFETY.md",
+      "session_script": "audio/session-scripts/00b-sleep-and-safety.md",
+      "narration_word_count": 65,
+      "publication_narration_words": null,
+      "estimated_duration_minutes": {
+        "wpm_135": 0.5,
+        "wpm_150": 0.4,
+        "wpm_165": 0.4
+      },
+      "pronunciation_flags": [
+        "wbtb"
+      ],
+      "exercise_pause_flags": [],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-00b-sleep-and-safety",
+      "audio_hash": null
+    },
+    {
+      "sequence": 3,
+      "kind": "chapter",
+      "chapter_number": 1,
+      "title": "What Is a Psychical Excursion?",
+      "source_publication_file": "chapters/01-what-is-a-psychical-excursion.md",
+      "session_script": "audio/session-scripts/01-what-is-a-psychical-excursion.md",
+      "narration_word_count": 2320,
+      "publication_narration_words": 2328,
+      "estimated_duration_minutes": {
+        "wpm_135": 17.2,
+        "wpm_150": 15.5,
+        "wpm_165": 14.1
+      },
+      "pronunciation_flags": [
+        "rinpoche",
+        "laberge",
+        "bon",
+        "qigong",
+        "hypnagogia",
+        "interoception",
+        "rem"
+      ],
+      "exercise_pause_flags": [],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-01-what-is-a-psychical-excursion",
+      "audio_hash": null
+    },
+    {
+      "sequence": 4,
+      "kind": "chapter",
+      "chapter_number": 2,
+      "title": "Remember Your Dreams: Dream Recall Techniques and Research",
+      "source_publication_file": "chapters/02-remember-your-dreams.md",
+      "session_script": "audio/session-scripts/02-remember-your-dreams.md",
+      "narration_word_count": 1573,
+      "publication_narration_words": 1588,
+      "estimated_duration_minutes": {
+        "wpm_135": 11.8,
+        "wpm_150": 10.6,
+        "wpm_165": 9.6
+      },
+      "pronunciation_flags": [
+        "mild",
+        "ssild",
+        "rem"
+      ],
+      "exercise_pause_flags": [
+        "has-practice-prose",
+        "intention"
+      ],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-02-remember-your-dreams",
+      "audio_hash": null
+    },
+    {
+      "sequence": 5,
+      "kind": "chapter",
+      "chapter_number": 3,
+      "title": "Notice Your Dreams: Dream Awareness, Patterns and Dream Signs",
+      "source_publication_file": "chapters/03-notice-your-dreams.md",
+      "session_script": "audio/session-scripts/03-notice-your-dreams.md",
+      "narration_word_count": 2227,
+      "publication_narration_words": 2245,
+      "estimated_duration_minutes": {
+        "wpm_135": 16.6,
+        "wpm_150": 15,
+        "wpm_165": 13.6
+      },
+      "pronunciation_flags": [
+        "rinpoche",
+        "laberge",
+        "bon",
+        "mild",
+        "ssild"
+      ],
+      "exercise_pause_flags": [
+        "has-practice-prose",
+        "intention"
+      ],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-03-notice-your-dreams",
+      "audio_hash": null
+    },
+    {
+      "sequence": 6,
+      "kind": "chapter",
+      "chapter_number": 4,
+      "title": "Recognize the Dream: Lucid Dreaming, Reality Checks and Dream Signs",
+      "source_publication_file": "chapters/04-recognize-the-dream.md",
+      "session_script": "audio/session-scripts/04-recognize-the-dream.md",
+      "narration_word_count": 2623,
+      "publication_narration_words": 2640,
+      "estimated_duration_minutes": {
+        "wpm_135": 19.6,
+        "wpm_150": 17.6,
+        "wpm_165": 16
+      },
+      "pronunciation_flags": [
+        "laberge",
+        "mild",
+        "wbtb",
+        "rem"
+      ],
+      "exercise_pause_flags": [
+        "has-practice-prose",
+        "intention"
+      ],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-04-recognize-the-dream",
+      "audio_hash": null
+    },
+    {
+      "sequence": 7,
+      "kind": "chapter",
+      "chapter_number": 5,
+      "title": "Feel the Body: Body Scan Meditation and Deep Relaxation",
+      "source_publication_file": "chapters/05-feel-the-body.md",
+      "session_script": "audio/session-scripts/05-feel-the-body.md",
+      "narration_word_count": 2701,
+      "publication_narration_words": 2725,
+      "estimated_duration_minutes": {
+        "wpm_135": 20.2,
+        "wpm_150": 18.2,
+        "wpm_165": 16.5
+      },
+      "pronunciation_flags": [
+        "qigong",
+        "interoception"
+      ],
+      "exercise_pause_flags": [
+        "has-practice-prose",
+        "relax-the-body",
+        "intention"
+      ],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-05-feel-the-body",
+      "audio_hash": null
+    },
+    {
+      "sequence": 8,
+      "kind": "chapter",
+      "chapter_number": 6,
+      "title": "Move Your Attention: Focused Attention and Body Awareness Meditation",
+      "source_publication_file": "chapters/06-move-your-attention.md",
+      "session_script": "audio/session-scripts/06-move-your-attention.md",
+      "narration_word_count": 3697,
+      "publication_narration_words": 3723,
+      "estimated_duration_minutes": {
+        "wpm_135": 27.6,
+        "wpm_150": 24.8,
+        "wpm_165": 22.6
+      },
+      "pronunciation_flags": [
+        "vestibular"
+      ],
+      "exercise_pause_flags": [
+        "has-practice-prose",
+        "relax-the-body",
+        "intention"
+      ],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-06-move-your-attention",
+      "audio_hash": null
+    },
+    {
+      "sequence": 9,
+      "kind": "chapter",
+      "chapter_number": 7,
+      "title": "Build the Current: Tingling, Energy Sensations and Focused Attention",
+      "source_publication_file": "chapters/07-build-the-current.md",
+      "session_script": "audio/session-scripts/07-build-the-current.md",
+      "narration_word_count": 3095,
+      "publication_narration_words": 3122,
+      "estimated_duration_minutes": {
+        "wpm_135": 23.1,
+        "wpm_150": 20.8,
+        "wpm_165": 18.9
+      },
+      "pronunciation_flags": [
+        "qigong",
+        "dantian",
+        "interoception",
+        "proprioception",
+        "vestibular"
+      ],
+      "exercise_pause_flags": [
+        "has-practice-prose",
+        "relax-the-body",
+        "intention"
+      ],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-07-build-the-current",
+      "audio_hash": null
+    },
+    {
+      "sequence": 10,
+      "kind": "chapter",
+      "chapter_number": 8,
+      "title": "Quiet the Mind: Meditation Techniques for Sleep and Dream Awareness",
+      "source_publication_file": "chapters/08-quiet-the-mind.md",
+      "session_script": "audio/session-scripts/08-quiet-the-mind.md",
+      "narration_word_count": 2414,
+      "publication_narration_words": 2424,
+      "estimated_duration_minutes": {
+        "wpm_135": 18,
+        "wpm_150": 16.2,
+        "wpm_165": 14.7
+      },
+      "pronunciation_flags": [
+        "eeg"
+      ],
+      "exercise_pause_flags": [
+        "has-practice-prose",
+        "relax-the-body",
+        "intention"
+      ],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-08-quiet-the-mind",
+      "audio_hash": null
+    },
+    {
+      "sequence": 11,
+      "kind": "chapter",
+      "chapter_number": 9,
+      "title": "See the Image: Visualization, Mental Imagery and Hypnagogic Imagery",
+      "source_publication_file": "chapters/09-see-the-image.md",
+      "session_script": "audio/session-scripts/09-see-the-image.md",
+      "narration_word_count": 3162,
+      "publication_narration_words": 3179,
+      "estimated_duration_minutes": {
+        "wpm_135": 23.5,
+        "wpm_150": 21.2,
+        "wpm_165": 19.3
+      },
+      "pronunciation_flags": [
+        "hypnagogia"
+      ],
+      "exercise_pause_flags": [
+        "has-practice-prose",
+        "intention"
+      ],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-09-see-the-image",
+      "audio_hash": null
+    },
+    {
+      "sequence": 12,
+      "kind": "chapter",
+      "chapter_number": 10,
+      "title": "Watch the Edge: Hypnagogia and the Transition Into Lucid Dreaming",
+      "source_publication_file": "chapters/10-watch-the-edge.md",
+      "session_script": "audio/session-scripts/10-watch-the-edge.md",
+      "narration_word_count": 2762,
+      "publication_narration_words": 2776,
+      "estimated_duration_minutes": {
+        "wpm_135": 20.6,
+        "wpm_150": 18.5,
+        "wpm_165": 16.8
+      },
+      "pronunciation_flags": [
+        "rinpoche",
+        "hypnagogia",
+        "rem",
+        "eeg"
+      ],
+      "exercise_pause_flags": [
+        "has-practice-prose",
+        "relax-the-body",
+        "intention",
+        "sleep-onset"
+      ],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-10-watch-the-edge",
+      "audio_hash": null
+    },
+    {
+      "sequence": 13,
+      "kind": "chapter",
+      "chapter_number": 11,
+      "title": "Let the Body Sleep: The “Mind Awake, Body Asleep” Route to Lucid Dreaming",
+      "source_publication_file": "chapters/11-let-the-body-sleep.md",
+      "session_script": "audio/session-scripts/11-let-the-body-sleep.md",
+      "narration_word_count": 2867,
+      "publication_narration_words": 2882,
+      "estimated_duration_minutes": {
+        "wpm_135": 21.3,
+        "wpm_150": 19.2,
+        "wpm_165": 17.5
+      },
+      "pronunciation_flags": [
+        "hypnagogia",
+        "interoception",
+        "proprioception",
+        "vestibular",
+        "rem",
+        "eeg"
+      ],
+      "exercise_pause_flags": [
+        "has-practice-prose",
+        "relax-the-body",
+        "intention"
+      ],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-11-let-the-body-sleep",
+      "audio_hash": null
+    },
+    {
+      "sequence": 14,
+      "kind": "chapter",
+      "chapter_number": 12,
+      "title": "Move Without Moving: Motor Imagery, Dream Movement and Sleep-Onset Practice",
+      "source_publication_file": "chapters/12-move-without-moving.md",
+      "session_script": "audio/session-scripts/12-move-without-moving.md",
+      "narration_word_count": 2687,
+      "publication_narration_words": 2707,
+      "estimated_duration_minutes": {
+        "wpm_135": 20.1,
+        "wpm_150": 18,
+        "wpm_165": 16.4
+      },
+      "pronunciation_flags": [
+        "proprioception",
+        "vestibular"
+      ],
+      "exercise_pause_flags": [
+        "has-practice-prose",
+        "intention"
+      ],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-12-move-without-moving",
+      "audio_hash": null
+    },
+    {
+      "sequence": 15,
+      "kind": "chapter",
+      "chapter_number": 13,
+      "title": "Feel the Shift: Vibrations, Floating and Out-of-Body Sensations Near Sleep",
+      "source_publication_file": "chapters/13-feel-the-shift.md",
+      "session_script": "audio/session-scripts/13-feel-the-shift.md",
+      "narration_word_count": 2747,
+      "publication_narration_words": 2759,
+      "estimated_duration_minutes": {
+        "wpm_135": 20.4,
+        "wpm_150": 18.4,
+        "wpm_165": 16.7
+      },
+      "pronunciation_flags": [
+        "hypnagogia",
+        "proprioception",
+        "vestibular",
+        "rem"
+      ],
+      "exercise_pause_flags": [
+        "has-practice-prose",
+        "intention"
+      ],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-13-feel-the-shift",
+      "audio_hash": null
+    },
+    {
+      "sequence": 16,
+      "kind": "chapter",
+      "chapter_number": 14,
+      "title": "Know the Threshold: How to Recognize When Waking Imagery Becomes a Dream",
+      "source_publication_file": "chapters/14-know-the-threshold.md",
+      "session_script": "audio/session-scripts/14-know-the-threshold.md",
+      "narration_word_count": 2669,
+      "publication_narration_words": 2688,
+      "estimated_duration_minutes": {
+        "wpm_135": 19.9,
+        "wpm_150": 17.9,
+        "wpm_165": 16.3
+      },
+      "pronunciation_flags": [
+        "hypnagogia",
+        "vestibular",
+        "rem",
+        "eeg"
+      ],
+      "exercise_pause_flags": [
+        "has-practice-prose",
+        "intention"
+      ],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-14-know-the-threshold",
+      "audio_hash": null
+    },
+    {
+      "sequence": 17,
+      "kind": "chapter",
+      "chapter_number": 15,
+      "title": "Stabilize the Dream: Lucid Dream Stabilization Techniques and Research",
+      "source_publication_file": "chapters/15-stabilize-the-dream.md",
+      "session_script": "audio/session-scripts/15-stabilize-the-dream.md",
+      "narration_word_count": 2809,
+      "publication_narration_words": 2832,
+      "estimated_duration_minutes": {
+        "wpm_135": 21,
+        "wpm_150": 18.9,
+        "wpm_165": 17.2
+      },
+      "pronunciation_flags": [
+        "laberge",
+        "vestibular",
+        "rem"
+      ],
+      "exercise_pause_flags": [
+        "has-practice-prose",
+        "intention"
+      ],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-15-stabilize-the-dream",
+      "audio_hash": null
+    },
+    {
+      "sequence": 18,
+      "kind": "chapter",
+      "chapter_number": 16,
+      "title": "Explore the Dream: Lucid Dream Experiments, Dream Control and Research",
+      "source_publication_file": "chapters/16-explore-the-dream.md",
+      "session_script": "audio/session-scripts/16-explore-the-dream.md",
+      "narration_word_count": 2505,
+      "publication_narration_words": 2530,
+      "estimated_duration_minutes": {
+        "wpm_135": 18.7,
+        "wpm_150": 16.9,
+        "wpm_165": 15.3
+      },
+      "pronunciation_flags": [
+        "rem",
+        "eeg"
+      ],
+      "exercise_pause_flags": [
+        "has-practice-prose",
+        "intention"
+      ],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-16-explore-the-dream",
+      "audio_hash": null
+    },
+    {
+      "sequence": 19,
+      "kind": "chapter",
+      "chapter_number": 17,
+      "title": "Loosen the Body: Body Ownership, Self-Location and Out-of-Body Experience",
+      "source_publication_file": "chapters/17-loosen-the-body.md",
+      "session_script": "audio/session-scripts/17-loosen-the-body.md",
+      "narration_word_count": 2562,
+      "publication_narration_words": 2589,
+      "estimated_duration_minutes": {
+        "wpm_135": 19.2,
+        "wpm_150": 17.3,
+        "wpm_165": 15.7
+      },
+      "pronunciation_flags": [
+        "proprioception",
+        "vestibular",
+        "obe"
+      ],
+      "exercise_pause_flags": [
+        "has-practice-prose",
+        "intention"
+      ],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-17-loosen-the-body",
+      "audio_hash": null
+    },
+    {
+      "sequence": 20,
+      "kind": "chapter",
+      "chapter_number": 18,
+      "title": "Cross the Threshold: Astral Projection, OBE Techniques and Lucid Dreaming",
+      "source_publication_file": "chapters/18-cross-the-threshold.md",
+      "session_script": "audio/session-scripts/18-cross-the-threshold.md",
+      "narration_word_count": 2629,
+      "publication_narration_words": 2656,
+      "estimated_duration_minutes": {
+        "wpm_135": 19.7,
+        "wpm_150": 17.7,
+        "wpm_165": 16.1
+      },
+      "pronunciation_flags": [
+        "hypnagogia",
+        "vestibular",
+        "mild",
+        "ssild",
+        "wbtb",
+        "rem",
+        "obe"
+      ],
+      "exercise_pause_flags": [
+        "has-practice-prose",
+        "relax-the-body",
+        "intention"
+      ],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-18-cross-the-threshold",
+      "audio_hash": null
+    },
+    {
+      "sequence": 21,
+      "kind": "chapter",
+      "chapter_number": 19,
+      "title": "Test the Experience: Can Lucid Dreams and Out-of-Body Experiences Be Verified?",
+      "source_publication_file": "chapters/19-test-the-experience.md",
+      "session_script": "audio/session-scripts/19-test-the-experience.md",
+      "narration_word_count": 2513,
+      "publication_narration_words": 2544,
+      "estimated_duration_minutes": {
+        "wpm_135": 18.8,
+        "wpm_150": 17,
+        "wpm_165": 15.4
+      },
+      "pronunciation_flags": [
+        "laberge",
+        "vestibular",
+        "mild",
+        "ssild",
+        "rem",
+        "obe",
+        "eeg"
+      ],
+      "exercise_pause_flags": [
+        "has-practice-prose",
+        "intention"
+      ],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-19-test-the-experience",
+      "audio_hash": null
+    },
+    {
+      "sequence": 22,
+      "kind": "chapter",
+      "chapter_number": 20,
+      "title": "Compare the Maps: Lucid Dreaming vs. Astral Projection, OBE and Sleep Paralysis",
+      "source_publication_file": "chapters/20-compare-the-maps.md",
+      "session_script": "audio/session-scripts/20-compare-the-maps.md",
+      "narration_word_count": 2487,
+      "publication_narration_words": 2518,
+      "estimated_duration_minutes": {
+        "wpm_135": 18.7,
+        "wpm_150": 16.8,
+        "wpm_165": 15.3
+      },
+      "pronunciation_flags": [
+        "laberge",
+        "hypnagogia",
+        "rem",
+        "obe",
+        "eeg"
+      ],
+      "exercise_pause_flags": [
+        "has-practice-prose",
+        "intention"
+      ],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-20-compare-the-maps",
+      "audio_hash": null
+    },
+    {
+      "sequence": 23,
+      "kind": "chapter",
+      "chapter_number": 21,
+      "title": "Floating in Space: Sun, Moon, Planets and the Science of Sleep & Dreams",
+      "source_publication_file": "chapters/21-floating-in-space.md",
+      "session_script": "audio/session-scripts/21-floating-in-space.md",
+      "narration_word_count": 4567,
+      "publication_narration_words": 4615,
+      "estimated_duration_minutes": {
+        "wpm_135": 34.2,
+        "wpm_150": 30.8,
+        "wpm_165": 28
+      },
+      "pronunciation_flags": [
+        "rem",
+        "obe"
+      ],
+      "exercise_pause_flags": [
+        "has-practice-prose",
+        "intention"
+      ],
+      "recording_session": "optional-internal-segments; keep one final chapter track",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-21-floating-in-space",
+      "audio_hash": null
+    },
+    {
+      "sequence": 24,
+      "kind": "chapter",
+      "chapter_number": 22,
+      "title": "Notice the Coincidence: Synchronicity, Recurring Dreams, Shared Dreams and Pattern Recognition",
+      "source_publication_file": "chapters/22-notice-the-coincidence.md",
+      "session_script": "audio/session-scripts/22-notice-the-coincidence.md",
+      "narration_word_count": 2632,
+      "publication_narration_words": 2665,
+      "estimated_duration_minutes": {
+        "wpm_135": 19.7,
+        "wpm_150": 17.8,
+        "wpm_165": 16.2
+      },
+      "pronunciation_flags": [
+        "rem"
+      ],
+      "exercise_pause_flags": [
+        "has-practice-prose",
+        "intention"
+      ],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-22-notice-the-coincidence",
+      "audio_hash": null
+    },
+    {
+      "sequence": 25,
+      "kind": "chapter",
+      "chapter_number": 23,
+      "title": "Return. Record. Repeat: The Best Bedtime Routine for Lucid Dreaming and Astral Projection",
+      "source_publication_file": "chapters/23-return-record-repeat.md",
+      "session_script": "audio/session-scripts/23-return-record-repeat.md",
+      "narration_word_count": 2726,
+      "publication_narration_words": 2774,
+      "estimated_duration_minutes": {
+        "wpm_135": 20.5,
+        "wpm_150": 18.5,
+        "wpm_165": 16.8
+      },
+      "pronunciation_flags": [
+        "laberge",
+        "hypnagogia",
+        "vestibular",
+        "mild",
+        "ssild",
+        "wbtb",
+        "rem",
+        "obe"
+      ],
+      "exercise_pause_flags": [
+        "has-practice-prose",
+        "relax-the-body",
+        "intention"
+      ],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-23-return-record-repeat",
+      "audio_hash": null
+    },
+    {
+      "sequence": 26,
+      "kind": "back-matter",
+      "chapter_number": null,
+      "title": "About the author",
+      "source_publication_file": "back-matter/ABOUT-THE-AUTHOR.md",
+      "session_script": "audio/session-scripts/24-about-the-author.md",
+      "narration_word_count": 71,
+      "publication_narration_words": null,
+      "estimated_duration_minutes": {
+        "wpm_135": 0.5,
+        "wpm_150": 0.5,
+        "wpm_165": 0.4
+      },
+      "pronunciation_flags": [
+        "qigong"
+      ],
+      "exercise_pause_flags": [],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-24-about-the-author",
+      "audio_hash": null
+    },
+    {
+      "sequence": 27,
+      "kind": "back-matter",
+      "chapter_number": null,
+      "title": "Continue the experiment",
+      "source_publication_file": "back-matter/CONTINUE.md",
+      "session_script": "audio/session-scripts/25-continue-the-experiment.md",
+      "narration_word_count": 58,
+      "publication_narration_words": null,
+      "estimated_duration_minutes": {
+        "wpm_135": 0.4,
+        "wpm_150": 0.4,
+        "wpm_165": 0.4
+      },
+      "pronunciation_flags": [],
+      "exercise_pause_flags": [],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-25-continue-the-experiment",
+      "audio_hash": null
+    },
+    {
+      "sequence": 28,
+      "kind": "credits",
+      "chapter_number": null,
+      "title": "Closing credits",
+      "source_publication_file": "publication/audio/CREDITS.md",
+      "session_script": "audio/session-scripts/99-closing-credits.md",
+      "narration_word_count": 20,
+      "publication_narration_words": null,
+      "estimated_duration_minutes": {
+        "wpm_135": 0.1,
+        "wpm_150": 0.1,
+        "wpm_165": 0.1
+      },
+      "pronunciation_flags": [],
+      "exercise_pause_flags": [],
+      "recording_session": "single-session",
+      "status": "script-only",
+      "output_basename": "PEX-AUDIO-99-closing-credits",
+      "audio_hash": null
+    }
+  ]
+}
