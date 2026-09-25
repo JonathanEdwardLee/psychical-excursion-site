@@ -1,4 +1,4 @@
-# Know the Threshold.
+# Know the Threshold: How to Recognize When Waking Imagery Becomes a Dream
 
 At some point every night, you fall asleep.
 

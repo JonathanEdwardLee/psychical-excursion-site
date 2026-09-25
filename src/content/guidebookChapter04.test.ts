@@ -9,9 +9,9 @@ import { parseGuidebookPublicPage } from "../ui/guidebookRoute.ts";
 
 describe("Chapter 4 Feel the Body manuscript", () => {
   it("locks title and public hash", () => {
-    expect(CHAPTER_04_TITLE).toBe("Feel the Body.");
-    expect(CHAPTER_04_PATH).toBe("/feel-the-body");
-    expect(CHAPTER_04_HASH).toBe("#/feel-the-body");
+    expect(CHAPTER_04_TITLE).toBe("Feel the Body: Body Scan Meditation and Deep Relaxation");
+    expect(CHAPTER_04_PATH).toBe("/body-scan-meditation/");
+    expect(CHAPTER_04_HASH).toBe("/body-scan-meditation/");
     expect(parseGuidebookPublicPage(CHAPTER_04_HASH)).toBe("chapter04");
   });
 

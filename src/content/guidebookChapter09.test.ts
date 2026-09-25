@@ -10,9 +10,9 @@ import { RELAX_THE_BODY_HREF } from "./guidebookAnchors.ts";
 
 describe("Chapter 9 Watch the Edge manuscript", () => {
   it("locks title and public hash", () => {
-    expect(CHAPTER_09_TITLE).toBe("Watch the Edge.");
-    expect(CHAPTER_09_PATH).toBe("/watch-the-edge");
-    expect(CHAPTER_09_HASH).toBe("#/watch-the-edge");
+    expect(CHAPTER_09_TITLE).toBe("Watch the Edge: Hypnagogia and the Transition Into Lucid Dreaming");
+    expect(CHAPTER_09_PATH).toBe("/hypnagogia-lucid-dreaming/");
+    expect(CHAPTER_09_HASH).toBe("/hypnagogia-lucid-dreaming/");
     expect(parseGuidebookPublicPage(CHAPTER_09_HASH)).toBe("chapter09");
   });
 
@@ -25,7 +25,8 @@ describe("Chapter 9 Watch the Edge manuscript", () => {
     const parts = practice[0]?.kind === "practice" ? practice[0].parts : [];
     expect(parts.map((part) => part.label)).toEqual(["Summary", "Experiment", "Intention"]);
     const experiment = parts.find((part) => part.label === "Experiment");
-    expect(JSON.stringify(experiment)).toContain(`[**Relax the body**](${RELAX_THE_BODY_HREF})`);
+    expect(JSON.stringify(experiment)).toContain("[**Relax the body**](#/feel-the-body#nighttime-body-release)");
+    expect(RELAX_THE_BODY_HREF).toBe("/body-scan-meditation/#nighttime-body-release");
     expect(chapter.blocks.some((block) => block.kind === "heading" && block.text === "Summary")).toBe(false);
     expect(chapter.blocks.some((block) => block.kind === "attention")).toBe(false);
     expect(JSON.stringify(chapter)).not.toMatch(/\bPEx\b/);

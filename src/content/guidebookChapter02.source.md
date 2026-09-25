@@ -1,4 +1,4 @@
-# You Are Dreaming. Notice.
+# Notice Your Dreams: Dream Awareness, Patterns and Dream Signs
 
 Dreams get away with an astonishing amount.
 

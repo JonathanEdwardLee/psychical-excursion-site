@@ -9,9 +9,9 @@ import { parseGuidebookPublicPage } from "../ui/guidebookRoute.ts";
 
 describe("Chapter 13 Know the Threshold manuscript", () => {
   it("locks title and public hash", () => {
-    expect(CHAPTER_13_TITLE).toBe("Know the Threshold.");
-    expect(CHAPTER_13_PATH).toBe("/know-the-threshold");
-    expect(CHAPTER_13_HASH).toBe("#/know-the-threshold");
+    expect(CHAPTER_13_TITLE).toBe("Know the Threshold: How to Recognize When Waking Imagery Becomes a Dream");
+    expect(CHAPTER_13_PATH).toBe("/entering-a-lucid-dream/");
+    expect(CHAPTER_13_HASH).toBe("/entering-a-lucid-dream/");
     expect(parseGuidebookPublicPage(CHAPTER_13_HASH)).toBe("chapter13");
   });
 

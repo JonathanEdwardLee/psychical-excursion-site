@@ -1,4 +1,4 @@
-# Let the Body Sleep.
+# Let the Body Sleep: The “Mind Awake, Body Asleep” Route to Lucid Dreaming
 
 There is a phrase that appears constantly in discussions of lucid dreaming, meditation, sleep paralysis, and out-of-body experience:
 

@@ -1,4 +1,4 @@
-# Quiet the Mind.
+# Quiet the Mind: Meditation Techniques for Sleep and Dream Awareness
 
 In the last few chapters, attention has been something you deliberately moved. You learned to notice sensations in the body, shift attention from one location to another, and finally connect those movements into larger circuits. That raises a different question: what happens when you stop moving attention and ask it to remain in one place?
 

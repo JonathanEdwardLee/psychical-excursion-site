@@ -3,6 +3,7 @@ import { localStore } from "./db/store.ts";
 import { registerServiceWorker } from "./pwa/register.ts";
 import { inspectAndRequestPersistence } from "./storage/persistence.ts";
 import { applyTheme } from "./theme.ts";
+import { applyGuidebookLocation } from "./ui/guidebookRoute.ts";
 import { renderApp } from "./ui/app.ts";
 
 function root(): HTMLElement {
@@ -18,7 +19,11 @@ async function boot(): Promise<void> {
   const draw = () => {
     void renderApp(app);
   };
-  window.addEventListener("hashchange", draw);
+  if (applyGuidebookLocation()) return;
+  window.addEventListener("popstate", draw);
+  window.addEventListener("hashchange", () => {
+    if (window.location.hash.startsWith("#/")) draw();
+  });
   draw();
   try {
     await localStore.open();

@@ -1,18 +1,4 @@
-import { CHAPTER_01_TITLE } from "../content/guidebookChapter01.ts";
-import { CHAPTER_02_TITLE } from "../content/guidebookChapter02.ts";
-import { CHAPTER_03_TITLE } from "../content/guidebookChapter03.ts";
-import { CHAPTER_04_TITLE } from "../content/guidebookChapter04.ts";
-import { CHAPTER_05_TITLE } from "../content/guidebookChapter05.ts";
-import { CHAPTER_06_TITLE } from "../content/guidebookChapter06.ts";
-import { CHAPTER_07_TITLE } from "../content/guidebookChapter07.ts";
-import { CHAPTER_08_TITLE } from "../content/guidebookChapter08.ts";
-import { CHAPTER_09_TITLE } from "../content/guidebookChapter09.ts";
-import { CHAPTER_10_TITLE } from "../content/guidebookChapter10.ts";
-import { CHAPTER_11_TITLE } from "../content/guidebookChapter11.ts";
-import { CHAPTER_12_TITLE } from "../content/guidebookChapter12.ts";
-import { CHAPTER_13_TITLE } from "../content/guidebookChapter13.ts";
-import { CHAPTER_14_TITLE } from "../content/guidebookChapter14.ts";
-import { CHAPTER_15_TITLE } from "../content/guidebookChapter15.ts";
+import { catalogPageByPublicPage, documentTitleForCatalog, INTRODUCTION_PATH } from "../content/guidebookCatalog.ts";
 import { applyTheme, readTheme, toggleTheme } from "../theme.ts";
 import { el, text } from "./dom.ts";
 import { renderAmbientLayer, type AmbientMode } from "./guidebookAmbient.ts";
@@ -29,22 +15,9 @@ function ambientFor(page: GuidebookPublicPage): AmbientMode {
 }
 
 function documentTitleFor(page: GuidebookPublicPage): string {
-  if (page === "chapter01") return `${CHAPTER_01_TITLE} · Psychical Excursion`;
-  if (page === "chapter02") return `${CHAPTER_02_TITLE} · Psychical Excursion`;
-  if (page === "chapter03") return `${CHAPTER_03_TITLE} · Psychical Excursion`;
-  if (page === "chapter04") return `${CHAPTER_04_TITLE} · Psychical Excursion`;
-  if (page === "chapter05") return `${CHAPTER_05_TITLE} · Psychical Excursion`;
-  if (page === "chapter06") return `${CHAPTER_06_TITLE} · Psychical Excursion`;
-  if (page === "chapter07") return `${CHAPTER_07_TITLE} · Psychical Excursion`;
-  if (page === "chapter08") return `${CHAPTER_08_TITLE} · Psychical Excursion`;
-  if (page === "chapter09") return `${CHAPTER_09_TITLE} · Psychical Excursion`;
-  if (page === "chapter10") return `${CHAPTER_10_TITLE} · Psychical Excursion`;
-  if (page === "chapter11") return `${CHAPTER_11_TITLE} · Psychical Excursion`;
-  if (page === "chapter12") return `${CHAPTER_12_TITLE} · Psychical Excursion`;
-  if (page === "chapter13") return `${CHAPTER_13_TITLE} · Psychical Excursion`;
-  if (page === "chapter14") return `${CHAPTER_14_TITLE} · Psychical Excursion`;
-  if (page === "chapter15") return `${CHAPTER_15_TITLE} · Psychical Excursion`;
-  return "Psychical Excursion";
+  const catalog = catalogPageByPublicPage(page);
+  if (!catalog) return "Psychical Excursion";
+  return documentTitleForCatalog(catalog.title);
 }
 
 export function renderGuidebookChrome(
@@ -59,7 +32,7 @@ export function renderGuidebookChrome(
   const ambient = renderAmbientLayer(ambientMode);
   const themeBtn = themeSwitch();
   const header = el("header", { class: "app-header guidebook-header" }, [
-    el("a", { href: "#/", class: "brand-link", "aria-label": "Psychical Excursion home" }, [
+    el("a", { href: INTRODUCTION_PATH, class: "brand-link", "aria-label": "Psychical Excursion home" }, [
       el("img", {
         class: "brand-logo brand-logo-light",
         src: "/brand/pex-logo-primary.svg",

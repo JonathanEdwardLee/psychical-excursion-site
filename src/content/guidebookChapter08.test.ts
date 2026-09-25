@@ -9,9 +9,9 @@ import { parseGuidebookPublicPage } from "../ui/guidebookRoute.ts";
 
 describe("Chapter 8 See the Image manuscript", () => {
   it("locks title and public hash", () => {
-    expect(CHAPTER_08_TITLE).toBe("See the Image.");
-    expect(CHAPTER_08_PATH).toBe("/see-the-image");
-    expect(CHAPTER_08_HASH).toBe("#/see-the-image");
+    expect(CHAPTER_08_TITLE).toBe("See the Image: Visualization, Mental Imagery and Hypnagogic Imagery");
+    expect(CHAPTER_08_PATH).toBe("/visualization-hypnagogic-imagery/");
+    expect(CHAPTER_08_HASH).toBe("/visualization-hypnagogic-imagery/");
     expect(parseGuidebookPublicPage(CHAPTER_08_HASH)).toBe("chapter08");
   });
 

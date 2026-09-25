@@ -1,9 +1,9 @@
 import source from "./guidebookChapter06.source.md?raw";
 import { parseGuidebookChapter, type ChapterDocument } from "./guidebookChapter01.ts";
 
-export const CHAPTER_06_TITLE = "Build the Current.";
-export const CHAPTER_06_PATH = "/build-the-current";
-export const CHAPTER_06_HASH = `#${CHAPTER_06_PATH}`;
+export const CHAPTER_06_TITLE = "Build the Current: Tingling, Energy Sensations and Focused Attention";
+export const CHAPTER_06_PATH = "/energy-sensations-meditation/";
+export const CHAPTER_06_HASH = CHAPTER_06_PATH;
 
 let cached: ChapterDocument | null = null;
 

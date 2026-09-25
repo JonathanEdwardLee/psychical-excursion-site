@@ -10,9 +10,9 @@ import { RELAX_THE_BODY_HREF } from "./guidebookAnchors.ts";
 
 describe("Chapter 7 Quiet the Mind manuscript", () => {
   it("locks title and public hash", () => {
-    expect(CHAPTER_07_TITLE).toBe("Quiet the Mind.");
-    expect(CHAPTER_07_PATH).toBe("/quiet-the-mind");
-    expect(CHAPTER_07_HASH).toBe("#/quiet-the-mind");
+    expect(CHAPTER_07_TITLE).toBe("Quiet the Mind: Meditation Techniques for Sleep and Dream Awareness");
+    expect(CHAPTER_07_PATH).toBe("/meditation-for-lucid-dreaming/");
+    expect(CHAPTER_07_HASH).toBe("/meditation-for-lucid-dreaming/");
     expect(parseGuidebookPublicPage(CHAPTER_07_HASH)).toBe("chapter07");
   });
 
@@ -29,7 +29,8 @@ describe("Chapter 7 Quiet the Mind manuscript", () => {
     expect(chapter.blocks.some((block) => block.kind === "heading" && block.text === "Focused Attention and Open Monitoring")).toBe(true);
     const experiment = parts.find((part) => part.label === "Experiment");
     const experimentText = JSON.stringify(experiment);
-    expect(experimentText).toContain(`[**Relax the body**](${RELAX_THE_BODY_HREF})`);
+    expect(experimentText).toContain("[**Relax the body**](#/feel-the-body#nighttime-body-release)");
+    expect(RELAX_THE_BODY_HREF).toBe("/body-scan-meditation/#nighttime-body-release");
     expect(JSON.stringify(chapter)).not.toMatch(/\bPEx\b/);
   });
 });

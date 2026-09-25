@@ -1,9 +1,9 @@
 import source from "./guidebookChapter02.source.md?raw";
 import { parseGuidebookChapter, type ChapterDocument } from "./guidebookChapter01.ts";
 
-export const CHAPTER_02_TITLE = "You Are Dreaming. Notice.";
-export const CHAPTER_02_PATH = "/you-are-dreaming-notice";
-export const CHAPTER_02_HASH = `#${CHAPTER_02_PATH}`;
+export const CHAPTER_02_TITLE = "Notice Your Dreams: Dream Awareness, Patterns and Dream Signs";
+export const CHAPTER_02_PATH = "/dream-awareness-signs/";
+export const CHAPTER_02_HASH = CHAPTER_02_PATH;
 
 let cached: ChapterDocument | null = null;
 

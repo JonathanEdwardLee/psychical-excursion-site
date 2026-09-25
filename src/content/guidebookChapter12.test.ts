@@ -9,9 +9,9 @@ import { parseGuidebookPublicPage } from "../ui/guidebookRoute.ts";
 
 describe("Chapter 12 Feel the Shift manuscript", () => {
   it("locks title and public hash", () => {
-    expect(CHAPTER_12_TITLE).toBe("Feel the Shift.");
-    expect(CHAPTER_12_PATH).toBe("/feel-the-shift");
-    expect(CHAPTER_12_HASH).toBe("#/feel-the-shift");
+    expect(CHAPTER_12_TITLE).toBe("Feel the Shift: Vibrations, Floating and Out-of-Body Sensations Near Sleep");
+    expect(CHAPTER_12_PATH).toBe("/out-of-body-sensations-sleep/");
+    expect(CHAPTER_12_HASH).toBe("/out-of-body-sensations-sleep/");
     expect(parseGuidebookPublicPage(CHAPTER_12_HASH)).toBe("chapter12");
   });
 

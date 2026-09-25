@@ -23,15 +23,28 @@ import { CHAPTER_12_HASH, CHAPTER_12_TITLE, loadGuidebookChapter12 } from "../co
 import { CHAPTER_13_HASH, CHAPTER_13_TITLE, loadGuidebookChapter13 } from "../content/guidebookChapter13.ts";
 import { CHAPTER_14_HASH, CHAPTER_14_TITLE, loadGuidebookChapter14 } from "../content/guidebookChapter14.ts";
 import { CHAPTER_15_HASH, CHAPTER_15_TITLE, loadGuidebookChapter15 } from "../content/guidebookChapter15.ts";
+import { INTRODUCTION_PATH } from "../content/guidebookCatalog.ts";
 import { NIGHTTIME_BODY_RELEASE_ID, RELAX_THE_BODY_HREF } from "../content/guidebookAnchors.ts";
 import { loadGuidebookManuscript } from "../content/guidebookManuscript.ts";
 import { TROPICAL_ZODIAC_SIGNS } from "../astronomy/zodiac.ts";
 import { renderApp } from "./app.ts";
 import { resetGa4PublicPageViews } from "../analytics/ga4.ts";
-import { resetGuidebookPageTracking } from "./guidebookRoute.ts";
+import { overrideGuidebookLocation, resetGuidebookPageTracking } from "./guidebookRoute.ts";
 
-async function mount(hash: string): Promise<HTMLElement> {
-  window.location.hash = hash;
+function setPublicRoute(route: string): void {
+  if (route.startsWith("#")) {
+    overrideGuidebookLocation("/", route);
+    window.history.replaceState(null, "", "/");
+    window.location.hash = route;
+  } else {
+    const url = new URL(route, "https://psychicalexcursion.com");
+    overrideGuidebookLocation(url.pathname, url.hash);
+    window.history.replaceState(null, "", url.pathname + url.hash);
+  }
+}
+
+async function mount(route: string): Promise<HTMLElement> {
+  setPublicRoute(route);
   document.body.innerHTML = '<div id="app"></div>';
   const root = document.getElementById("app")!;
   await renderApp(root);
@@ -99,11 +112,18 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector(".guidebook-footer .attribution")?.textContent).toMatch(/Hoopsnake Designs/);
   });
 
+  it("migrates a legacy hash route to the canonical pathname before rendering", async () => {
+    const root = await mount("#/stabilize-the-dream");
+    expect(window.location.pathname).toBe(CHAPTER_14_HASH);
+    expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_14_TITLE);
+    expect(root.textContent).not.toMatch(/Chapter\s+14/i);
+  });
+
   it("normalizes retired hash routes to guidebook home", async () => {
     window.location.hash = "#/journal";
     document.body.innerHTML = '<div id="app"></div>';
     await renderApp(document.getElementById("app")!);
-    expect(window.location.hash).toBe("#/");
+    expect(window.location.pathname).toBe(INTRODUCTION_PATH);
   });
 
   it("normalizes retired hash routes without moving search into the hash", async () => {
@@ -111,7 +131,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     document.body.innerHTML = '<div id="app"></div>';
     await renderApp(document.getElementById("app")!);
     expect(window.location.search).toBe("?foo=bar");
-    expect(window.location.hash).toBe("#/");
+    expect(window.location.pathname).toBe(INTRODUCTION_PATH);
   });
 
   it("links inline citations to reference anchors and DOI destinations", async () => {
@@ -202,7 +222,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     const chapter = loadGuidebookChapter01();
     expect(chapter.title).toBe(CHAPTER_01_TITLE);
     const root = await mount(CHAPTER_01_HASH);
-    expect(window.location.hash).toBe(CHAPTER_01_HASH);
+    expect(window.location.pathname).toBe(CHAPTER_01_HASH);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_01_TITLE);
     expect(root.textContent).toMatch(/arousal-retrieval model/);
     expect(root.textContent).toMatch(/red stairs — grandmother — rain/);
@@ -211,7 +231,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelectorAll(".guidebook-practice").length).toBe(1);
     expect(root.querySelector("#ref-6")).toBeTruthy();
     expect(root.querySelector(".pex-ambient-memory")).toBeTruthy();
-    expect(root.querySelector("#guidebook-prev-home")?.getAttribute("href")).toBe("#/");
+    expect(root.querySelector("#guidebook-prev-home")?.getAttribute("href")).toBe(INTRODUCTION_PATH);
     expect(root.querySelector("#guidebook-prev-home")?.textContent).toMatch(/Introduction/);
     expect(root.querySelector("#guidebook-next-chapter-2")?.getAttribute("href")).toBe(CHAPTER_02_HASH);
     expect(root.querySelector("#guidebook-next-chapter-2")?.textContent).toContain(CHAPTER_02_TITLE);
@@ -230,7 +250,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     const chapter = loadGuidebookChapter02();
     expect(chapter.title).toBe(CHAPTER_02_TITLE);
     const root = await mount(CHAPTER_02_HASH);
-    expect(window.location.hash).toBe(CHAPTER_02_HASH);
+    expect(window.location.pathname).toBe(CHAPTER_02_HASH);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_02_TITLE);
     expect(root.textContent).toMatch(/dream signs/);
     expect(root.textContent).toMatch(/Am I dreaming\?/);
@@ -252,76 +272,76 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
   it("resets window scroll when moving between guidebook pages", async () => {
     const root = await mount("#/");
     document.documentElement.scrollTop = 480;
-    window.location.hash = CHAPTER_01_HASH;
+    setPublicRoute(CHAPTER_01_HASH);
     await renderApp(root);
     expect(document.documentElement.scrollTop).toBe(0);
     document.documentElement.scrollTop = 320;
-    window.location.hash = CHAPTER_02_HASH;
+    setPublicRoute(CHAPTER_02_HASH);
     await renderApp(root);
     expect(document.documentElement.scrollTop).toBe(0);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_02_TITLE);
     document.documentElement.scrollTop = 280;
-    window.location.hash = CHAPTER_03_HASH;
+    setPublicRoute(CHAPTER_03_HASH);
     await renderApp(root);
     expect(document.documentElement.scrollTop).toBe(0);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_03_TITLE);
     document.documentElement.scrollTop = 240;
-    window.location.hash = CHAPTER_04_HASH;
+    setPublicRoute(CHAPTER_04_HASH);
     await renderApp(root);
     expect(document.documentElement.scrollTop).toBe(0);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_04_TITLE);
     document.documentElement.scrollTop = 200;
-    window.location.hash = CHAPTER_05_HASH;
+    setPublicRoute(CHAPTER_05_HASH);
     await renderApp(root);
     expect(document.documentElement.scrollTop).toBe(0);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_05_TITLE);
     document.documentElement.scrollTop = 180;
-    window.location.hash = CHAPTER_06_HASH;
+    setPublicRoute(CHAPTER_06_HASH);
     await renderApp(root);
     expect(document.documentElement.scrollTop).toBe(0);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_06_TITLE);
     document.documentElement.scrollTop = 160;
-    window.location.hash = CHAPTER_07_HASH;
+    setPublicRoute(CHAPTER_07_HASH);
     await renderApp(root);
     expect(document.documentElement.scrollTop).toBe(0);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_07_TITLE);
     document.documentElement.scrollTop = 140;
-    window.location.hash = CHAPTER_08_HASH;
+    setPublicRoute(CHAPTER_08_HASH);
     await renderApp(root);
     expect(document.documentElement.scrollTop).toBe(0);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_08_TITLE);
     document.documentElement.scrollTop = 120;
-    window.location.hash = CHAPTER_09_HASH;
+    setPublicRoute(CHAPTER_09_HASH);
     await renderApp(root);
     expect(document.documentElement.scrollTop).toBe(0);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_09_TITLE);
     document.documentElement.scrollTop = 100;
-    window.location.hash = CHAPTER_10_HASH;
+    setPublicRoute(CHAPTER_10_HASH);
     await renderApp(root);
     expect(document.documentElement.scrollTop).toBe(0);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_10_TITLE);
     document.documentElement.scrollTop = 80;
-    window.location.hash = CHAPTER_11_HASH;
+    setPublicRoute(CHAPTER_11_HASH);
     await renderApp(root);
     expect(document.documentElement.scrollTop).toBe(0);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_11_TITLE);
     document.documentElement.scrollTop = 60;
-    window.location.hash = CHAPTER_12_HASH;
+    setPublicRoute(CHAPTER_12_HASH);
     await renderApp(root);
     expect(document.documentElement.scrollTop).toBe(0);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_12_TITLE);
     document.documentElement.scrollTop = 40;
-    window.location.hash = CHAPTER_13_HASH;
+    setPublicRoute(CHAPTER_13_HASH);
     await renderApp(root);
     expect(document.documentElement.scrollTop).toBe(0);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_13_TITLE);
     document.documentElement.scrollTop = 20;
-    window.location.hash = CHAPTER_14_HASH;
+    setPublicRoute(CHAPTER_14_HASH);
     await renderApp(root);
     expect(document.documentElement.scrollTop).toBe(0);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_14_TITLE);
     document.documentElement.scrollTop = 10;
-    window.location.hash = CHAPTER_15_HASH;
+    setPublicRoute(CHAPTER_15_HASH);
     await renderApp(root);
     expect(document.documentElement.scrollTop).toBe(0);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_15_TITLE);
@@ -329,7 +349,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
 
   it("renders Chapter 3 with a Chapter 4 next-reading line and one practice card", async () => {
     const root = await mount(CHAPTER_03_HASH);
-    expect(window.location.hash).toBe(CHAPTER_03_HASH);
+    expect(window.location.pathname).toBe(CHAPTER_03_HASH);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_03_TITLE);
     expect(root.textContent).toMatch(/Mnemonic Induction of Lucid Dreams/);
     expect(root.textContent).toMatch(/Wake-Back-to-Bed/);
@@ -356,7 +376,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     const chapter = loadGuidebookChapter04();
     expect(chapter.title).toBe(CHAPTER_04_TITLE);
     const root = await mount(CHAPTER_04_HASH);
-    expect(window.location.hash).toBe(CHAPTER_04_HASH);
+    expect(window.location.pathname).toBe(CHAPTER_04_HASH);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_04_TITLE);
     expect(root.textContent).toMatch(/progressive muscle relaxation/);
     expect(root.textContent).toMatch(/somatosensory attention/);
@@ -398,7 +418,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     const chapter = loadGuidebookChapter05();
     expect(chapter.title).toBe(CHAPTER_05_TITLE);
     const root = await mount(CHAPTER_05_HASH);
-    expect(window.location.hash).toBe(CHAPTER_05_HASH);
+    expect(window.location.pathname).toBe(CHAPTER_05_HASH);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_05_TITLE);
     expect(root.querySelector(".pex-attention-instrument")).toBeTruthy();
     expect(root.textContent).toMatch(/Look at the center/);
@@ -424,7 +444,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     const chapter = loadGuidebookChapter06();
     expect(chapter.title).toBe(CHAPTER_06_TITLE);
     const root = await mount(CHAPTER_06_HASH);
-    expect(window.location.hash).toBe(CHAPTER_06_HASH);
+    expect(window.location.pathname).toBe(CHAPTER_06_HASH);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_06_TITLE);
     expect(root.querySelector(".pex-attention-instrument")).toBeNull();
     expect(root.textContent).toMatch(/From Movement to Current/);
@@ -455,7 +475,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     const chapter = loadGuidebookChapter07();
     expect(chapter.title).toBe(CHAPTER_07_TITLE);
     const root = await mount(CHAPTER_07_HASH);
-    expect(window.location.hash).toBe(CHAPTER_07_HASH);
+    expect(window.location.pathname).toBe(CHAPTER_07_HASH);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_07_TITLE);
     expect(root.querySelector(".pex-attention-instrument")).toBeNull();
     expect(root.textContent).toMatch(/meta-awareness/);
@@ -490,7 +510,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     const chapter = loadGuidebookChapter08();
     expect(chapter.title).toBe(CHAPTER_08_TITLE);
     const root = await mount(CHAPTER_08_HASH);
-    expect(window.location.hash).toBe(CHAPTER_08_HASH);
+    expect(window.location.pathname).toBe(CHAPTER_08_HASH);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_08_TITLE);
     expect(root.querySelector(".pex-attention-instrument")).toBeNull();
     expect(root.textContent).toMatch(/Close your eyes and picture a basketball/);
@@ -524,7 +544,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     const chapter = loadGuidebookChapter09();
     expect(chapter.title).toBe(CHAPTER_09_TITLE);
     const root = await mount(CHAPTER_09_HASH);
-    expect(window.location.hash).toBe(CHAPTER_09_HASH);
+    expect(window.location.pathname).toBe(CHAPTER_09_HASH);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_09_TITLE);
     expect(root.querySelector(".pex-attention-instrument")).toBeNull();
     expect(root.textContent).toMatch(/Falling Asleep Is a Process/);
@@ -558,7 +578,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     const chapter = loadGuidebookChapter10();
     expect(chapter.title).toBe(CHAPTER_10_TITLE);
     const root = await mount(CHAPTER_10_HASH);
-    expect(window.location.hash).toBe(CHAPTER_10_HASH);
+    expect(window.location.pathname).toBe(CHAPTER_10_HASH);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_10_TITLE);
     expect(root.querySelector(".pex-attention-instrument")).toBeNull();
     expect(root.textContent).toMatch(/mind awake, body asleep/);
@@ -592,7 +612,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     const chapter = loadGuidebookChapter11();
     expect(chapter.title).toBe(CHAPTER_11_TITLE);
     const root = await mount(CHAPTER_11_HASH);
-    expect(window.location.hash).toBe(CHAPTER_11_HASH);
+    expect(window.location.pathname).toBe(CHAPTER_11_HASH);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_11_TITLE);
     expect(root.querySelector(".pex-attention-instrument")).toBeNull();
     expect(root.textContent).toMatch(/Raise one hand/);
@@ -626,7 +646,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     const chapter = loadGuidebookChapter12();
     expect(chapter.title).toBe(CHAPTER_12_TITLE);
     const root = await mount(CHAPTER_12_HASH);
-    expect(window.location.hash).toBe(CHAPTER_12_HASH);
+    expect(window.location.pathname).toBe(CHAPTER_12_HASH);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_12_TITLE);
     expect(root.querySelector(".pex-attention-instrument")).toBeNull();
     expect(root.textContent).toMatch(/Which part of the bodily self shifts first/);
@@ -662,7 +682,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     const chapter = loadGuidebookChapter13();
     expect(chapter.title).toBe(CHAPTER_13_TITLE);
     const root = await mount(CHAPTER_13_HASH);
-    expect(window.location.hash).toBe(CHAPTER_13_HASH);
+    expect(window.location.pathname).toBe(CHAPTER_13_HASH);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_13_TITLE);
     expect(root.querySelector(".pex-attention-instrument")).toBeNull();
     expect(root.textContent).toMatch(/At some point every night, you fall asleep/);
@@ -698,7 +718,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     const chapter = loadGuidebookChapter14();
     expect(chapter.title).toBe(CHAPTER_14_TITLE);
     const root = await mount(CHAPTER_14_HASH);
-    expect(window.location.hash).toBe(CHAPTER_14_HASH);
+    expect(window.location.pathname).toBe(CHAPTER_14_HASH);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_14_TITLE);
     expect(root.querySelector(".pex-attention-instrument")).toBeNull();
     expect(root.textContent).toMatch(/Becoming lucid can feel like the finish line/);
@@ -736,7 +756,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     const chapter = loadGuidebookChapter15();
     expect(chapter.title).toBe(CHAPTER_15_TITLE);
     const root = await mount(CHAPTER_15_HASH);
-    expect(window.location.hash).toBe(CHAPTER_15_HASH);
+    expect(window.location.pathname).toBe(CHAPTER_15_HASH);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_15_TITLE);
     expect(root.querySelector(".pex-attention-instrument")).toBeNull();
     expect(root.textContent).toMatch(/Once a lucid dream becomes stable enough to stay inside/);
@@ -782,12 +802,12 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     const views = gtag.mock.calls.filter((call) => call[0] === "event" && call[1] === "page_view");
     expect(views).toHaveLength(6);
     expect(views.map((call) => (call[2] as { page_path: string }).page_path)).toEqual([
-      expect.stringMatching(/#\/$/),
-      expect.stringMatching(/#\/feel-the-shift$/),
-      expect.stringMatching(/#\/know-the-threshold$/),
-      expect.stringMatching(/#\/stabilize-the-dream$/),
-      expect.stringMatching(/#\/explore-the-dream$/),
-      expect.stringMatching(/#\/feel-the-body$/),
+      INTRODUCTION_PATH,
+      CHAPTER_12_HASH,
+      CHAPTER_13_HASH,
+      CHAPTER_14_HASH,
+      CHAPTER_15_HASH,
+      CHAPTER_04_HASH,
     ]);
     expect(JSON.stringify(views)).not.toMatch(/555962302|15841198465/);
     expect(JSON.stringify(views)).not.toMatch(/journal note|dream text|fixture/i);
@@ -795,7 +815,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
 
   it("opens a Chapter 4 relaxation deep link at A Nighttime Body Release", async () => {
     const root = await mount(RELAX_THE_BODY_HREF);
-    expect(window.location.hash).toBe(RELAX_THE_BODY_HREF);
+    expect(window.location.pathname + window.location.hash).toBe(RELAX_THE_BODY_HREF);
     const heading = root.querySelector(`#${NIGHTTIME_BODY_RELEASE_ID}`);
     expect(heading?.textContent).toBe("A Nighttime Body Release");
     expect(heading?.closest(".guidebook-section")?.classList.contains("is-visible")).toBe(true);

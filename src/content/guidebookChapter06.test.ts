@@ -9,9 +9,9 @@ import { parseGuidebookPublicPage } from "../ui/guidebookRoute.ts";
 
 describe("Chapter 6 Build the Current manuscript", () => {
   it("locks title and public hash", () => {
-    expect(CHAPTER_06_TITLE).toBe("Build the Current.");
-    expect(CHAPTER_06_PATH).toBe("/build-the-current");
-    expect(CHAPTER_06_HASH).toBe("#/build-the-current");
+    expect(CHAPTER_06_TITLE).toBe("Build the Current: Tingling, Energy Sensations and Focused Attention");
+    expect(CHAPTER_06_PATH).toBe("/energy-sensations-meditation/");
+    expect(CHAPTER_06_HASH).toBe("/energy-sensations-meditation/");
     expect(parseGuidebookPublicPage(CHAPTER_06_HASH)).toBe("chapter06");
   });
 

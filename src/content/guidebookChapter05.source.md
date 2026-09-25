@@ -1,4 +1,4 @@
-# Move Your Attention.
+# Move Your Attention: Focused Attention and Body Awareness Meditation
 
 pex:attention-instrument
 

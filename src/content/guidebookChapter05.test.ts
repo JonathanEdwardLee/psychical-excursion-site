@@ -10,9 +10,9 @@ import {
 
 describe("Chapter 5 Move Your Attention", () => {
   it("publishes the approved manuscript", () => {
-    expect(CHAPTER_05_TITLE).toBe("Move Your Attention.");
-    expect(CHAPTER_05_HASH).toBe("#/move-your-attention");
-    expect(CHAPTER_05_PATH).toBe("/move-your-attention");
+    expect(CHAPTER_05_TITLE).toBe("Move Your Attention: Focused Attention and Body Awareness Meditation");
+    expect(CHAPTER_05_HASH).toBe("/attention-body-awareness/");
+    expect(CHAPTER_05_PATH).toBe("/attention-body-awareness/");
     expect(isGuidebookChapter05Ready()).toBe(true);
     const chapter = loadGuidebookChapter05();
     expect(chapter.title).toBe(CHAPTER_05_TITLE);

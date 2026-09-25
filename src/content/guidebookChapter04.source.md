@@ -1,4 +1,4 @@
-# Feel the Body.
+# Feel the Body: Body Scan Meditation and Deep Relaxation
 
 Before we try to leave the body, perhaps we should spend some time finding it.
 

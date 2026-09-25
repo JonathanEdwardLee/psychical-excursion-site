@@ -1,4 +1,4 @@
-# Stabilize the Dream.
+# Stabilize the Dream: Lucid Dream Stabilization Techniques and Research
 
 Becoming lucid can feel like the finish line.
 

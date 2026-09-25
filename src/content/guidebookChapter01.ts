@@ -1,9 +1,9 @@
 import source from "./guidebookChapter01.source.md?raw";
 import { ATTENTION_INSTRUMENT_TOKEN } from "./guidebookAnchors.ts";
 
-export const CHAPTER_01_TITLE = "You Are Dreaming. Remember.";
-export const CHAPTER_01_PATH = "/you-are-dreaming-remember";
-export const CHAPTER_01_HASH = `#${CHAPTER_01_PATH}`;
+export const CHAPTER_01_TITLE = "Remember Your Dreams: Dream Recall Techniques and Research";
+export const CHAPTER_01_PATH = "/dream-recall/";
+export const CHAPTER_01_HASH = CHAPTER_01_PATH;
 
 export const PRACTICE_LABELS = ["Summary", "Experiment", "Intention"] as const;
 export type PracticeLabel = (typeof PRACTICE_LABELS)[number];

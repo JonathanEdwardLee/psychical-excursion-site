@@ -113,10 +113,19 @@ export function bindInPageCitations(root: HTMLElement): void {
   for (const link of root.querySelectorAll<HTMLAnchorElement>("a.guidebook-pex-link")) {
     link.addEventListener("click", (event) => {
       const href = link.getAttribute("href") ?? "";
-      const hash = href.startsWith("#") ? href : "";
-      if (!hash.includes("#", 1) && !hash.includes("#")) return;
-      const fragment = hash.replace(/^#/, "").split("#")[1];
-      if (!fragment) return;
+      let fragment = "";
+      let samePage = true;
+      try {
+        const url = new URL(href, window.location.href);
+        fragment = url.hash.replace(/^#/, "");
+        const here = window.location.pathname.replace(/\/?$/, "/");
+        const there = url.pathname.replace(/\/?$/, "/");
+        samePage = there === here || there === "/" || href.startsWith("#");
+      } catch {
+        fragment = href.includes("#") ? href.split("#").pop() ?? "" : "";
+      }
+      if (!fragment || fragment.startsWith("/")) return;
+      if (!samePage) return;
       const target = root.querySelector<HTMLElement>(`[id="${fragment}"]`);
       if (!target) return;
       event.preventDefault();
