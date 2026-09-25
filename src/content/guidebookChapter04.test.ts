@@ -18,7 +18,7 @@ describe("Chapter 4 Feel the Body manuscript", () => {
   it("parses the approved manuscript with one practice component and three references", () => {
     const chapter = loadGuidebookChapter04();
     expect(chapter.title).toBe(CHAPTER_04_TITLE);
-    expect(chapter.references).toHaveLength(3);
+    expect(chapter.references).toHaveLength(4);
     const practice = chapter.blocks.filter((block) => block.kind === "practice");
     expect(practice).toHaveLength(1);
     const parts = practice[0]?.kind === "practice" ? practice[0].parts : [];

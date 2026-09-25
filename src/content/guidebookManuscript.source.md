@@ -47,17 +47,9 @@ The word *psychical* also has an interesting history. In the late nineteenth cen
 
 That posture appeals to me.
 
-Something strange is claimed.
+Something strange is claimed. Don't worship it, and don't laugh it out of the room either.
 
-Don't worship it.
-
-Don't laugh it out of the room either.
-
-Look at it.
-
-Ask questions.
-
-Try what can actually be tried.
+Look at it. Ask questions. Try what can actually be tried.
 
 ## I Want Psychic Super Powers
 
@@ -247,21 +239,9 @@ That was enough to make me want to keep investigating.
 
 I've also been in a serious car wreck in which the vehicle rolled completely over. During the event, time seemed to slow.
 
-Why?
+Why? What does extreme stress do to our perception of time? What happens to consciousness around sleep, trauma, anesthesia, meditation, and death? Are extraordinary experiences entirely products of the brain, and is that distinction even as simple as it sounds? Could consciousness ever exist or operate independently of the physical body?
 
-What does extreme stress do to our perception of time?
-
-What happens to consciousness around sleep, trauma, anesthesia, meditation, and death?
-
-Are extraordinary experiences entirely products of the brain?
-
-Is that distinction even as simple as it sounds?
-
-Could consciousness ever exist or operate independently of the physical body?
-
-Those questions are much larger than this guide can settle.
-
-But they are excellent reasons to explore.
+Those questions are much larger than this guide can settle. They are still excellent reasons to explore.
 
 ## What This Book Actually Does
 
