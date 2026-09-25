@@ -1,6 +1,8 @@
-# Direct-sale handoff (package complete — checkout not activated)
+# Direct-sale handoff (superseded package — correction regeneration pending)
 
-**Production completed:** 2026-09-25 (operator laptop).  
+**Initial production completed:** 2026-09-25 (operator laptop).
+
+**Current status:** The initial ZIP is superseded by founder-approved intro corrections. Do not sell or upload it. Regenerate only opening credits, the two front-matter warning tracks, and Chapter 1; reuse the other 25 accepted tracks, then rebuild and rehash the package.  
 **Work order:** `docs/work-orders/PEX-FULL-CEDAR-AUDIOBOOK.md`  
 **Voice:** OpenAI `gpt-4o-mini-tts`, **cedar**
 
