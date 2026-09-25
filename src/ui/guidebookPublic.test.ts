@@ -22,6 +22,7 @@ import { CHAPTER_11_HASH, CHAPTER_11_TITLE, loadGuidebookChapter11 } from "../co
 import { CHAPTER_12_HASH, CHAPTER_12_TITLE, loadGuidebookChapter12 } from "../content/guidebookChapter12.ts";
 import { CHAPTER_13_HASH, CHAPTER_13_TITLE, loadGuidebookChapter13 } from "../content/guidebookChapter13.ts";
 import { CHAPTER_14_HASH, CHAPTER_14_TITLE, loadGuidebookChapter14 } from "../content/guidebookChapter14.ts";
+import { CHAPTER_15_HASH, CHAPTER_15_TITLE, loadGuidebookChapter15 } from "../content/guidebookChapter15.ts";
 import { NIGHTTIME_BODY_RELEASE_ID, RELAX_THE_BODY_HREF } from "../content/guidebookAnchors.ts";
 import { loadGuidebookManuscript } from "../content/guidebookManuscript.ts";
 import { TROPICAL_ZODIAC_SIGNS } from "../astronomy/zodiac.ts";
@@ -319,6 +320,11 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     await renderApp(root);
     expect(document.documentElement.scrollTop).toBe(0);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_14_TITLE);
+    document.documentElement.scrollTop = 10;
+    window.location.hash = CHAPTER_15_HASH;
+    await renderApp(root);
+    expect(document.documentElement.scrollTop).toBe(0);
+    expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_15_TITLE);
   });
 
   it("renders Chapter 3 with a Chapter 4 next-reading line and one practice card", async () => {
@@ -688,7 +694,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector(".guidebook-practice")?.closest(".guidebook-section.pex-reveal")).toBeTruthy();
   });
 
-  it("renders Chapter 14 Stabilize the Dream without a next-page link or attention instrument", async () => {
+  it("renders Chapter 14 Stabilize the Dream with a Chapter 15 next-reading line", async () => {
     const chapter = loadGuidebookChapter14();
     expect(chapter.title).toBe(CHAPTER_14_TITLE);
     const root = await mount(CHAPTER_14_HASH);
@@ -711,7 +717,8 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector("#guidebook-prev-chapter-13")?.getAttribute("href")).toBe(CHAPTER_13_HASH);
     expect(root.querySelector("#guidebook-prev-chapter-13")?.textContent).toContain(CHAPTER_13_TITLE);
     expect(root.querySelector("#guidebook-next-chapter-14")).toBeNull();
-    expect(root.querySelector("#guidebook-next-chapter-15")).toBeNull();
+    expect(root.querySelector("#guidebook-next-chapter-15")?.getAttribute("href")).toBe(CHAPTER_15_HASH);
+    expect(root.querySelector("#guidebook-next-chapter-15")?.textContent).toContain(CHAPTER_15_TITLE);
     expectPublicHeader(root);
     expectHeldFeaturesAbsent(root);
     expect(root.textContent).not.toMatch(/\bPEx\b/);
@@ -725,6 +732,44 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector(".guidebook-practice")?.closest(".guidebook-section.pex-reveal")).toBeTruthy();
   });
 
+  it("renders Chapter 15 Explore the Dream without a next-page link or attention instrument", async () => {
+    const chapter = loadGuidebookChapter15();
+    expect(chapter.title).toBe(CHAPTER_15_TITLE);
+    const root = await mount(CHAPTER_15_HASH);
+    expect(window.location.hash).toBe(CHAPTER_15_HASH);
+    expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_15_TITLE);
+    expect(root.querySelector(".pex-attention-instrument")).toBeNull();
+    expect(root.textContent).toMatch(/Once a lucid dream becomes stable enough to stay inside/);
+    expect([...root.querySelectorAll("h3.guidebook-practice-subheading")].map((node) => node.textContent)).toEqual([
+      "One Question",
+      "Observe first",
+      "Ask",
+      "Separate surprise from interpretation",
+      "Check memory",
+      "External verification",
+      "Problem exploration",
+    ]);
+    expect(practiceLabels(root)).toEqual(["Summary", "Experiment", "Intention"]);
+    expect(root.querySelectorAll(".guidebook-practice").length).toBe(1);
+    expect(root.querySelector("#ref-1")).toBeTruthy();
+    expect(root.querySelector("#ref-10")).toBeTruthy();
+    expect(root.querySelector("#guidebook-prev-chapter-14")?.getAttribute("href")).toBe(CHAPTER_14_HASH);
+    expect(root.querySelector("#guidebook-prev-chapter-14")?.textContent).toContain(CHAPTER_14_TITLE);
+    expect(root.querySelector("#guidebook-next-chapter-15")).toBeNull();
+    expect(root.querySelector("#guidebook-next-chapter-16")).toBeNull();
+    expectPublicHeader(root);
+    expectHeldFeaturesAbsent(root);
+    expect(root.textContent).not.toMatch(/\bPEx\b/);
+    expect(root.textContent).not.toMatch(/dream characters are independent consciousness|dream answers are external facts/i);
+    expect(document.title).toMatch(CHAPTER_15_TITLE);
+  });
+
+  it("keeps reduced-motion readers able to see Chapter 15 sections", async () => {
+    const root = await mount(CHAPTER_15_HASH);
+    expect(root.querySelector(".guidebook-section.pex-reveal")).toBeTruthy();
+    expect(root.querySelector(".guidebook-practice")?.closest(".guidebook-section.pex-reveal")).toBeTruthy();
+  });
+
   it("records GA4 page views for public hash routes without duplicates or private content", async () => {
     const gtag = window.gtag as ReturnType<typeof vi.fn>;
     await mount("#/");
@@ -732,14 +777,16 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     await mount(CHAPTER_12_HASH);
     await mount(CHAPTER_13_HASH);
     await mount(CHAPTER_14_HASH);
+    await mount(CHAPTER_15_HASH);
     await mount(RELAX_THE_BODY_HREF);
     const views = gtag.mock.calls.filter((call) => call[0] === "event" && call[1] === "page_view");
-    expect(views).toHaveLength(5);
+    expect(views).toHaveLength(6);
     expect(views.map((call) => (call[2] as { page_path: string }).page_path)).toEqual([
       expect.stringMatching(/#\/$/),
       expect.stringMatching(/#\/feel-the-shift$/),
       expect.stringMatching(/#\/know-the-threshold$/),
       expect.stringMatching(/#\/stabilize-the-dream$/),
+      expect.stringMatching(/#\/explore-the-dream$/),
       expect.stringMatching(/#\/feel-the-body$/),
     ]);
     expect(JSON.stringify(views)).not.toMatch(/555962302|15841198465/);
