@@ -20,7 +20,7 @@ Your physical hand remained still, yet some representation of movement occurred.
 
 This difference matters.
 
-The previous chapter examined what happens when the physical body becomes less dominant during sleep. Now we can ask the next question:
+We examined what happens when the physical body becomes less dominant during sleep. Now we can ask the next question:
 
 **What exactly is moving when movement is experienced without overt movement?**
 
@@ -248,7 +248,7 @@ Sleep adds more.
 
 ## Rocking While Still
 
-Think back to the previous chapter.
+Think back to that loss of physical dominance.
 
 Near sleep, some people report rocking, floating, sinking, turning, rising, or falling while their physical body remains still.
 
@@ -428,7 +428,7 @@ Good phenomenology keeps the question open longer.
 
 ## Training Kinesthetic Resolution
 
-In Chapter 8 we learned not to score imagery only by brightness.
+We learned not to score imagery only by brightness.
 
 The same principle applies here.
 

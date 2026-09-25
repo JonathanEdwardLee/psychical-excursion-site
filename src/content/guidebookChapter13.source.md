@@ -390,7 +390,7 @@ That progression is enough.
 
 ## The threshold is a cluster
 
-Chapter 12 asked which part of experience shifts first.
+We asked which part of experience shifts first.
 
 This chapter adds another question:
 
@@ -448,9 +448,7 @@ It is information.
 
 You have just discovered that recognition itself can alter the state you are trying to observe.
 
-The next chapter will deal with that problem.
-
-For now, noticing the threshold is enough.
+Recognizing a state can itself change it. For now, noticing the threshold is enough.
 
 Do not immediately grab it.
 

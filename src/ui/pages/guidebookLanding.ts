@@ -13,7 +13,6 @@ export function renderGuidebookLanding(main: HTMLElement): void {
     el("h1", { class: "visually-hidden" }, ["Psychical Excursion"]),
     el("div", { class: "guidebook-landing-mandala" }, [instrument]),
     el("p", { class: "guidebook-landing-affirmation" }, [LANDING_AFFIRMATION]),
-    el("p", { class: "guidebook-landing-synopsis" }, [LANDING_SYNOPSIS]),
     el("p", { class: "guidebook-book-entry" }, [
       el("a", {
         href: INTRODUCTION_PATH,
@@ -24,6 +23,7 @@ export function renderGuidebookLanding(main: HTMLElement): void {
         el("span", { class: "guidebook-next-arrow", "aria-hidden": "true" }, [" →"]),
       ]),
     ]),
+    el("p", { class: "guidebook-landing-synopsis" }, [LANDING_SYNOPSIS]),
   ]);
   main.append(article);
 }

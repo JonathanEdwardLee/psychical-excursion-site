@@ -25,7 +25,7 @@ describe("Chapter 10 Let the Body Sleep manuscript", () => {
     const parts = practice[0]?.kind === "practice" ? practice[0].parts : [];
     expect(parts.map((part) => part.label)).toEqual(["Summary", "Experiment", "Intention"]);
     const experiment = parts.find((part) => part.label === "Experiment");
-    expect(JSON.stringify(experiment)).toContain("[**Relax the body**](#/feel-the-body#nighttime-body-release)");
+    expect(JSON.stringify(experiment)).toContain(`[**Relax the body**](${RELAX_THE_BODY_HREF})`);
     expect(RELAX_THE_BODY_HREF).toBe("/body-scan-meditation/#nighttime-body-release");
     expect(chapter.blocks.some((block) => block.kind === "heading" && block.text === "Summary")).toBe(false);
     expect(chapter.blocks.some((block) => block.kind === "attention")).toBe(false);

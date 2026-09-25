@@ -114,7 +114,7 @@ That is what we are going to investigate.
 
 ## Attention Has an Address
 
-In the last chapter we learned that deliberately attending to the body can make normally quiet sensations more noticeable.
+We learned that deliberately attending to the body can make normally quiet sensations more noticeable.
 
 Now we are going to make the practice more precise.
 
@@ -978,7 +978,7 @@ Sincerely.
 
 Tonight we will connect the two practices very lightly.
 
-When you are ready for sleep, [**Relax the body**](#/feel-the-body#nighttime-body-release) using the Chapter 4 practice.
+When you are ready for sleep, [**Relax the body**](/body-scan-meditation/#nighttime-body-release).
 
 When the body has settled, move attention once from the center of one palm through the arm and back.
 
@@ -1040,13 +1040,13 @@ For now, accuracy is more valuable than spectacle.
 
 Think about what we have done so far.
 
-In Chapter 1, we turned attention backward toward dreams that were disappearing.
+We turned attention backward toward dreams that were disappearing.
 
-In Chapter 2, we turned attention toward unusual details.
+We turned attention toward unusual details.
 
-In Chapter 3, we attached attention to recognition.
+We attached attention to recognition.
 
-In Chapter 4, we turned attention inward toward the body.
+We turned attention inward toward the body.
 
 Now we have made attention mobile.
 
@@ -1140,7 +1140,7 @@ Notice sensation without deciding what caused it.
 
 Later, try the same exercises with one foot.
 
-At bedtime, [**Relax the body**](#/feel-the-body#nighttime-body-release).
+At bedtime, [**Relax the body**](/body-scan-meditation/#nighttime-body-release).
 
 When you are settled, move attention through one hand and arm once.
 

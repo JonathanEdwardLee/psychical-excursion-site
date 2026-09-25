@@ -88,7 +88,7 @@ No message saying:
 
 So we need a cue.
 
-Fortunately, Chapter 2 gave us plenty.
+Fortunately, we already have plenty.
 
 Dream signs.
 

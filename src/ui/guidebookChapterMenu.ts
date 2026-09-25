@@ -25,10 +25,10 @@ function menuIcon(): SVGSVGElement {
   svg.setAttribute("class", "guidebook-chapter-icon");
   svg.setAttribute("focusable", "false");
   const diamond = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
-  diamond.setAttribute("points", "12,3 21,12 12,21 3,12");
+  diamond.setAttribute("points", "12,0.4 23.6,12 12,23.6 0.4,12");
   diamond.setAttribute("class", "guidebook-chapter-icon-diamond");
   const square = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
-  square.setAttribute("points", "8,8 16,8 16,16 8,16");
+  square.setAttribute("points", "6.2,6.2 17.8,6.2 17.8,17.8 6.2,17.8");
   square.setAttribute("class", "guidebook-chapter-icon-square");
   const point = document.createElementNS("http://www.w3.org/2000/svg", "circle");
   point.setAttribute("cx", "12");

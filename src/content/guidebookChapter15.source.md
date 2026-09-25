@@ -82,7 +82,7 @@ A smaller goal is easier to remember, and memory is part of the experiment.
 
 ## Exploration is not control
 
-The previous chapter separated lucidity, stability, and control.
+Lucidity, stability, and control are separate.
 
 Now we add another distinction.
 

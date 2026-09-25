@@ -782,7 +782,7 @@ Chasing them is probably the fastest way to become tense again.
 
 ## Two Skills at Once
 
-So Chapter 4 really begins two practices.
+So this chapter really begins two practices.
 
 During the day:
 

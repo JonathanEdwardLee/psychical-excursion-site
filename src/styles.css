@@ -1501,23 +1501,24 @@ audio {
 }
 
 .guidebook-landing-affirmation {
-  margin: 1.4rem 0 0;
+  margin: 2.75rem 0 0;
   max-width: 32rem;
-  font-size: 0.92rem;
+  font-size: 0.82rem;
   letter-spacing: 0.01em;
   line-height: 1.55;
   color: var(--muted);
 }
 
 .guidebook-landing-synopsis {
-  margin: 1.6rem 0 0;
+  margin: 0.45rem 0 0;
   max-width: 32rem;
-  font-size: 1.02rem;
+  font-size: 0.95rem;
   line-height: 1.55;
+  color: var(--muted);
 }
 
 .guidebook-book-entry {
-  margin: 1.1rem 0 0;
+  margin: 2.4rem 0 0;
 }
 
 .guidebook-book-entry-link {
@@ -1982,11 +1983,12 @@ html[data-theme="bedtime"] .theme-switch-track {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  overflow: visible;
 }
 
 .guidebook-chapter-icon {
-  width: 1.15rem;
-  height: 1.15rem;
+  width: 3.35rem;
+  height: 3.35rem;
   overflow: visible;
 }
 
