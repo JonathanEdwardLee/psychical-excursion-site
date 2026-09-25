@@ -816,12 +816,12 @@
       "title": "Closing credits",
       "source_publication_file": "publication/audio/CREDITS.md",
       "session_script": "audio/session-scripts/99-closing-credits.md",
-      "narration_word_count": 37,
+      "narration_word_count": 20,
       "publication_narration_words": null,
       "estimated_duration_minutes": {
-        "wpm_135": 0.3,
-        "wpm_150": 0.2,
-        "wpm_165": 0.2
+        "wpm_135": 0.1,
+        "wpm_150": 0.1,
+        "wpm_165": 0.1
       },
       "pronunciation_flags": [],
       "exercise_pause_flags": [],

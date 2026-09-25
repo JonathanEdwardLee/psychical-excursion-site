@@ -27,7 +27,7 @@ The pilot must not be recorded in this pass.
 
 **Jonathan records the one-chapter pilot himself.**
 
-Reasons: no cash outlay; commercial reuse rights are obvious; pronunciation can be corrected on the next take; the authorial voice is the product. If the pilot is too slow or the room is unusable, stop. Licensed synthetic or a human narrator remains available for later chapters.
+Reasons: no cash outlay; commercial reuse rights are obvious; pronunciation can be corrected on the next take; the authorial voice is the product. If the pilot is too slow or the room is unusable, stop. A hired human narrator remains available for later chapters. Licensed synthetic narration is a separate, non-ACX-default path (see below).
 
 Do not clone Jonathan’s voice unless he later authorizes it in a new work order.
 
@@ -40,15 +40,15 @@ Do not clone Jonathan’s voice unless he later authorizes it in a new work orde
 - Full-book founder time at ~6.5–8 finished hours: **on the order of 30–60 hours**, unknown until the pilot; unknown is not zero.
 - Corrections: re-take the sentence; update the session script if a cue was wrong, not the chapter prose.
 - Rights: his performance.
+- **ACX/Audible:** a human performance is the currently compatible path. ACX’s official audio submission requirements (effective 15 Apr 2026) require human narration unless Audible/ACX explicitly authorizes another workflow for that title.
 
 ### 2. Licensed synthetic narration
 
-- Use only a **paid** plan whose current terms grant commercial rights. ElevenLabs documents commercial use on paid plans and noncommercial-only use on the free plan (terms and billing docs, retrieved 2026-09-25). Re-read the live terms before any signup.
-- **No voice cloning** in this recommendation.
-- Cost model (illustrative, not a quote): on the order of **one credit per character** for TTS; ~63,500 narration words is hundreds of thousands of characters, i.e. a **Creator/Pro monthly credit tier**, not the free tier. Recurring if you regenerate.
-- Platform constraint (unresolved commercially): ACX/Audible and some retailers may limit or label AI narration separately from the TTS vendor’s license. **Do not assume an ElevenLabs (or similar) file can be sold on Audible until founder checks current ACX rules.** That is a stop-condition, not a purchase.
-- Editing: regenerate a sentence, then re-level the chapter. Pronunciation lexicons help; they are not a substitute for listening.
-- Disclosure: some platforms require AI-narration labels. Founder decision.
+Vendor license and retailer acceptance are **not the same thing**.
+
+- **Vendor commercial license (separate):** ElevenLabs documents commercial use on paid plans and noncommercial-only use on the free plan (terms and billing docs, retrieved 2026-09-25). Re-read the live terms before any signup. **No voice cloning** in this recommendation. Cost model (illustrative, not a quote): on the order of **one credit per character** for TTS; ~63,500 narration words is hundreds of thousands of characters, i.e. a **Creator/Pro monthly credit tier**, not the free tier. Recurring if you regenerate. Editing: regenerate a sentence, then re-level the chapter.
+- **ACX/Audible (current planning, Apr 15 2026 rules):** submitted audiobooks must be **narrated by a human unless otherwise authorized**. Unauthorized TTS, AI, or other automated recordings are **prohibited**. Do not treat ACX as a retailer that merely “may label” AI audio. **Do not assume** an ElevenLabs (or similar) file is ACX-eligible. Synthetic remains a separate path for YouTube/podcast or other outlets only if those outlets allow it, and for ACX only if Audible/ACX later explicitly authorizes that title/workflow.
+- Other retailers may have their own AI-disclosure rules. Founder decision; no signup in this pass.
 
 ### 3. Human narrator
 
@@ -56,6 +56,7 @@ Do not clone Jonathan’s voice unless he later authorizes it in a new work orde
 - Money: non-union per-finished-hour quotes commonly land around **low hundreds of USD per finished hour**; union/SAG-AFTRA work is higher. A ~7-hour book is **roughly $1,500–$4,000+** before pickup fees — ranges, not bids.
 - Time: casting, direction, pickups, contracts.
 - Rights: contract must cover **audiobook + YouTube + podcast** explicitly. Do not hire or email talent in this pass.
+- **ACX/Audible:** a contracted human narrator is compatible with the current human-narration requirement, subject to the usual technical specs.
 
 ## Runtime range (planning only, not a promise)
 
@@ -115,7 +116,7 @@ See `PRONUNCIATION.md`. **Founder confirmation still required** for **Tenzin Wan
 1. Approve Chapter 10 as the pilot (or name another).
 2. Approve Jonathan as pilot narrator (or choose TTS/human instead).
 3. Confirm Rinpoche and LaBerge pronunciations.
-4. Re-check ACX/Audible rules if the path is synthetic.
+4. Treat ACX retail as **human narration only** unless Audible/ACX later explicitly authorizes a synthetic workflow for this title.
 5. Hardware/room check if Jonathan records.
 
 No audio generation is authorized until a later work order.

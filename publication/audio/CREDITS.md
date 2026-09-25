@@ -27,12 +27,10 @@ This audiobook uses the Publication Master of Psychical Excursion. Full source n
 
 The website psychicalexcursion.com remains a separate reading copy of the Web Edition. It is not required to listen.
 
+Publisher, ISBN, and publication date stay in planning metadata (`COPYRIGHT.md`, this file’s “Do not invent” list). They are **not** spoken.
+
 ## Closing (spoken)
 
-This has been Psychical Excursion, written by Jonathan Lee.
+You have been listening to Psychical Excursion, written by Jonathan Lee, narrated by — narrator to be confirmed.
 
-Narrated by — narrator to be confirmed.
-
-Full source notes appear in the print and ebook editions.
-
-No publisher, ISBN, or publication date is claimed in this recording.
+The End.

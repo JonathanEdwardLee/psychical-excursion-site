@@ -168,15 +168,11 @@ function closingCreditsScript() {
   return `<!-- PEX session script: closing credits. Not canonical chapter prose. -->
 <!-- output: PEX-AUDIO-99-closing-credits -->
 
-This has been Psychical Excursion, written by Jonathan Lee.
-
-Narrated by — narrator to be confirmed.
+You have been listening to Psychical Excursion, written by Jonathan Lee, narrated by — narrator to be confirmed.
 
 ${CUE_SHORT}
 
-Full source notes appear in the print and ebook editions.
-
-No publisher, ISBN, or publication date is claimed in this recording.
+The End.
 `;
 }
 

@@ -81,6 +81,8 @@ describe("audiobook session scripts", () => {
     expect(opening).toContain("Jonathan Lee");
     expect(opening).toContain("psychicalexcursion.com");
     expect(opening).not.toMatch(/https?:\/\//);
-    expect(closing).toContain("No publisher, ISBN, or publication date");
+    expect(closing).toContain("You have been listening to Psychical Excursion");
+    expect(closing).toMatch(/The End\./);
+    expect(closing).not.toContain("No publisher, ISBN, or publication date");
   });
 });
