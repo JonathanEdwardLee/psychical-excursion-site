@@ -1,11 +1,11 @@
 {
-  "inspected_at": "2026-09-25T16:10:48.360Z",
-  "os": "Linux 6.12.94+",
-  "cpu_count": 4,
-  "cpu_model": "Intel(R) Xeon(R) Processor",
-  "ram_gb": 15.6,
-  "ram_free_gb": 5.2,
-  "disk_free_gb": 245.4,
+  "inspected_at": "2026-09-25T16:21:17.175Z",
+  "os": "Windows_NT 10.0.26200",
+  "cpu_count": 12,
+  "cpu_model": "AMD Ryzen 5 5500U with Radeon Graphics         ",
+  "ram_gb": 15.3,
+  "ram_free_gb": 2,
+  "disk_free_gb": 10.8,
   "python": "python3",
   "gpu": {
     "nvidia": false,

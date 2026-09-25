@@ -4,7 +4,7 @@
   "excerpt": {
     "words": 607,
     "excerpt_sha256": "2eb7f0d978ab0630d04019c2c4364638106cc8ddda30d79dc3180bff5480d71f",
-    "source_script_sha256": "ca12846e77f579ce634c04d1a81b5424e7ba475298449e009b7ca4e4dd93b227",
+    "source_script_sha256": "342c056dd58bb0f87a1ebd8fe0b3f9a1785a411e5a5e49dc67f45f776b872d37",
     "path": "publication/audio/voice-lab/EXCERPT.md"
   },
   "hardware": {
@@ -33,7 +33,7 @@
     "executed": false,
     "request_count": 0,
     "files": [],
-    "api_key": "missing",
+    "api_key": "set",
     "skip": "dry-run (set VOICE_LAB_EXECUTE=1 to call OpenAI)"
   },
   "chatterbox": {
@@ -83,5 +83,24 @@
     "disk_use": "unmeasured",
     "founder_qc_time": "unknown-not-zero; full book is hours of listening",
     "electricity": "unallocated-unknown"
+  },
+  "local_execution_laptop": {
+    "receipt": "publication/audio/voice-lab/LOCAL-EXECUTION-RECEIPT.md",
+    "inspected_at": "2026-09-25T16:21:17.175Z",
+    "baseline_commit": "a8dc3b45e4764d5a3f7bb5246b808179eb2bd0f9",
+    "cedar_attempt": {
+      "executed": false,
+      "http_status": 401,
+      "elapsed_ms": 906,
+      "actual_spend_usd": 0,
+      "wav_files": []
+    },
+    "chatterbox": {
+      "installed": false,
+      "generated": false,
+      "model_identity": "ResembleAI/chatterbox-nano (not downloaded)",
+      "stop": "hardware gate refused; reference WAV absent"
+    },
+    "ffmpeg_compare": "skipped-no-raw-audio"
   }
 }
