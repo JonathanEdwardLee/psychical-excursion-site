@@ -12,7 +12,7 @@ Jonathan accepted the Chapter 12 manuscript on 2026-09-24.
 
 ## Objective
 
-Publish Chapter 12 **Feel the Shift.** as the next guidebook chapter without changing the locked public shell or reopening held product features.
+Publish Chapter 12 **Feel the Shift.** as the next guidebook chapter, and add founder-authorized Google Analytics 4 measurement to the public site without changing the locked public shell or reopening any other held product features.
 
 Central question:
 
@@ -438,7 +438,33 @@ You are learning the sequence of your own experience.
 - Public chapter text must contain no internal **PEx** wording.
 - Do not add approval/disapproval framing.
 - Do not collapse experience, interpretation, tradition, science, or open questions.
-- Do not reopen fixed 60-day framing, Google sign-in, Dream Journal, voice, Drive, Calendar, progress/checkmarks/streaks, Days index, separate Astronomy page, analytics, ads, payments/donations, outreach, credentials, or new recurring cost.
+- Founder explicitly reopens **analytics only** for this pass. Keep fixed 60-day framing, Google sign-in, Dream Journal, voice, Drive, Calendar, progress/checkmarks/streaks, Days index, separate Astronomy page, ads, payments/donations, outreach, credentials, and new recurring cost held.
+
+## Google Analytics 4 scope
+
+Use the existing founder-created GA4 web property and stream:
+
+- Property: **Psychical Excursion**
+- Property ID: `555962302`
+- Measurement ID: `G-297PE2TV2R`
+- Stream ID: `15841198465`
+- Stream URL: `https://psychicalexcursion.com`
+
+Implementation requirements:
+- Add the standard GA4 Google tag for Measurement ID `G-297PE2TV2R` to the production public shell using the repository's existing architecture.
+- Because the guidebook uses hash-based client navigation, ensure page-view measurement reflects chapter/route changes rather than only the first document load.
+- Keep measurement aggregate and content/navigation-focused. Do not send journal content, free text, form values, dream/experience notes, personal identifiers, precise location, or other user-authored/private content to analytics.
+- Do not add advertising tags, remarketing, Google Ads conversion tracking, sign-in, user IDs, demographic enrichment, or cross-venture measurement.
+- Do not require or expose property/stream administrative IDs in client code when the Measurement ID is sufficient.
+- If the site has public privacy/disclosure copy that would become inaccurate once GA4 is active, update only the minimum truthful disclosure needed for this analytics activation.
+- No new recurring cost is authorized.
+
+Analytics verification:
+- Source contains only the intended Measurement ID `G-297PE2TV2R`.
+- Initial public document load can generate the expected page view.
+- Hash-route/chapter navigation produces accurate virtual page views without obvious duplicate counting.
+- Existing chapter navigation, reduced-motion behavior, Sky Clock, theme behavior, Chapter 4 deep link and Chapter 5 instrument remain intact.
+- No held personal-data features or ad-tech integrations are introduced.
 
 ## Verification
 
@@ -451,7 +477,7 @@ Cover at minimum:
 - experiment title and six tracking categories present;
 - references render with stable anchors;
 - no internal “PEx” wording in rendered Chapter 12 text;
-- held features remain absent;
+- held features remain absent except for founder-authorized GA4 analytics;
 - Chapter 4 deep link and Chapter 5 instrument remain intact;
 - all prior chapter routes/navigation remain intact.
 
@@ -474,6 +500,7 @@ CloudDev should open a separate implementation PR and report:
 - manuscript preservation;
 - practice/reference rendering;
 - exact verification results;
-- unresolved issues.
+- unresolved issues;
+- GA4 implementation location, route-page-view behavior, and verification result for `G-297PE2TV2R`.
 
 Do not merge. Do not deploy. Do not modify `pim-control`.
