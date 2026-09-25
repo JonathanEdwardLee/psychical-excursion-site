@@ -20,7 +20,7 @@ Your physical hand remained still, yet some representation of movement occurred.
 
 This difference matters.
 
-[**11**](/mind-awake-body-asleep/) examined what happens when the physical body becomes less dominant during sleep. Now we can ask the next question:
+In [**11**](/mind-awake-body-asleep/), we examined what happens when the physical body becomes less dominant during sleep. Now we can ask the next question:
 
 **What exactly is moving when movement is experienced without overt movement?**
 
@@ -248,7 +248,7 @@ Sleep adds more.
 
 ## Rocking While Still
 
-Think back to [**11**](/mind-awake-body-asleep/).
+Think back to what we examined in [**11**](/mind-awake-body-asleep/).
 
 Near sleep, some people report rocking, floating, sinking, turning, rising, or falling while their physical body remains still.
 

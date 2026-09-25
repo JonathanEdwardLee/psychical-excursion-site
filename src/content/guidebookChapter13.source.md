@@ -390,7 +390,7 @@ That progression is enough.
 
 ## The threshold is a cluster
 
-[**13**](/out-of-body-sensations-sleep/) asked which part of experience shifts first.
+In [**13**](/out-of-body-sensations-sleep/), we asked which part of experience shifts first.
 
 This chapter adds another question:
 
@@ -448,7 +448,7 @@ It is information.
 
 You have just discovered that recognition itself can alter the state you are trying to observe.
 
-[**15**](/lucid-dream-stabilization/) will deal with that problem.
+We will deal with that problem in [**15**](/lucid-dream-stabilization/).
 
 For now, noticing the threshold is enough.
 

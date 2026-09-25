@@ -312,7 +312,7 @@ A dream movement can feel entirely physical even though the physical body did no
 
 A floating sensation can arrive without any deliberate imagery at all.
 
-[**12**](/motor-imagery-lucid-dreaming/) will examine that directly.
+We will examine that directly in [**12**](/motor-imagery-lucid-dreaming/).
 
 ## Conscious Entry Into Sleep
 

@@ -18,7 +18,7 @@ function dump(value: unknown): string {
 }
 
 describe("guidebook chapter cross-references", () => {
-  it("uses linked 01–23 numbers instead of stale Chapter N prose", () => {
+  it("uses linked 01–23 numbers in natural in-NN sentences", () => {
     expect(dump(loadGuidebookChapter03())).toContain("[**03**](/dream-awareness-signs/)");
     expect(dump(loadGuidebookChapter04())).toContain("So this chapter really begins two practices.");
     expect(dump(loadGuidebookChapter04())).not.toMatch(/Chapter 4 really begins/);
@@ -27,15 +27,16 @@ describe("guidebook chapter cross-references", () => {
     expect(dump(loadGuidebookChapter05())).toContain(`[**Relax the body**](${RELAX_THE_BODY_HREF})`);
     expect(dump(loadGuidebookChapter06())).toContain("[**06**](/attention-body-awareness/)");
     expect(dump(loadGuidebookChapter06())).toContain("[**08**](/meditation-for-lucid-dreaming/)");
+    expect(dump(loadGuidebookChapter06())).toContain("In [**05**](/body-scan-meditation/), we began by feeling the body.");
     expect(dump(loadGuidebookChapter07())).toContain("[**07**](/energy-sensations-meditation/)");
     expect(dump(loadGuidebookChapter07())).toContain("because this chapter is ultimately about");
     expect(dump(loadGuidebookChapter09())).toContain("[**09**](/visualization-hypnagogic-imagery/)");
-    expect(dump(loadGuidebookChapter10())).toContain("[**12**](/motor-imagery-lucid-dreaming/)");
-    expect(dump(loadGuidebookChapter11())).toContain("[**11**](/mind-awake-body-asleep/)");
-    expect(dump(loadGuidebookChapter12())).toContain("[**12**](/motor-imagery-lucid-dreaming/)");
-    expect(dump(loadGuidebookChapter13())).toContain("[**13**](/out-of-body-sensations-sleep/)");
-    expect(dump(loadGuidebookChapter13())).toContain("[**15**](/lucid-dream-stabilization/)");
-    expect(dump(loadGuidebookChapter15())).toContain("[**15**](/lucid-dream-stabilization/)");
+    expect(dump(loadGuidebookChapter10())).toContain("We will examine that directly in [**12**](/motor-imagery-lucid-dreaming/).");
+    expect(dump(loadGuidebookChapter11())).toContain("In [**11**](/mind-awake-body-asleep/), we examined");
+    expect(dump(loadGuidebookChapter12())).toContain("In [**12**](/motor-imagery-lucid-dreaming/), we practiced");
+    expect(dump(loadGuidebookChapter13())).toContain("In [**13**](/out-of-body-sensations-sleep/), we asked");
+    expect(dump(loadGuidebookChapter13())).toContain("We will deal with that problem in [**15**](/lucid-dream-stabilization/).");
+    expect(dump(loadGuidebookChapter15())).toContain("In [**15**](/lucid-dream-stabilization/), we separated");
   });
 
   it("leaves no stale Chapter-number book references in audited manuscripts", () => {
@@ -55,5 +56,6 @@ describe("guidebook chapter cross-references", () => {
     ].map(dump).join("\n");
     expect(corpus).not.toMatch(/\bChapter\s+\d+\b/);
     expect(corpus).not.toMatch(/#\/feel-the-body/);
+    expect(corpus).not.toMatch(/\]\([^)]+\) (will |examined|practiced|asked|separated)/);
   });
 });

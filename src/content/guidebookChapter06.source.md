@@ -984,7 +984,7 @@ But if our larger goal is to maximize human potential, better control of attenti
 
 ## From Motion to Stillness
 
-We began [**05**](/body-scan-meditation/) by feeling the body.
+In [**05**](/body-scan-meditation/), we began by feeling the body.
 
 Then we learned to release it.
 
