@@ -162,9 +162,7 @@ Remember how you arrived here.
 
 Ask what happened five minutes ago.
 
-The point is not the ritual.
-
-The point is interrupting automatic acceptance.
+The ritual is not the skill. The skill is interrupting automatic acceptance.
 
 ## Choose one experiment before bed
 

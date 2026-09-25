@@ -188,7 +188,7 @@ The denominator is boring.
 
 The denominator is also where probability lives.
 
-This is why **Test the Experience** insisted on retaining misses.
+This is why [**Test the Experience**](/testing-out-of-body-experiences/) insisted on retaining misses.
 
 Synchronicity deserves the same discipline.
 

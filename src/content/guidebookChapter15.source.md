@@ -90,7 +90,7 @@ Now we add another distinction.
 
 You can explore something without making it obey you.
 
-This matters because dream control is inconsistent. A 2026 review describes deliberate, goal-directed control as only one form of influence and emphasizes that lucid dream control remains poorly understood.[2]
+Dream control is inconsistent. A 2026 review describes deliberate, goal-directed control as only one form of influence and emphasizes that lucid dream control remains poorly understood.[2]
 
 A dream may resist your request.
 
@@ -310,9 +310,7 @@ If you wake up and open the box and find a red key, now you have an interesting 
 
 If the box contains a blue marble, you also have useful information.
 
-The point is not to forbid extraordinary possibilities.
-
-It is to design the observation so extraordinary possibilities can actually be evaluated.
+Extraordinary possibilities are not forbidden. The observation has to be designed so they can actually be evaluated.
 
 Without waking verification, the claim remains:
 
