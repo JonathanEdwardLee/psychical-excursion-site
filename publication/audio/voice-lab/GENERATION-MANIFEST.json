@@ -67,11 +67,14 @@
     "stop": "No GPU; available RAM/CPU is too tight to download Torch + Chatterbox weights in this environment without risking instability. Operator laptop with ≥8 CPU cores may try Chatterbox-Nano later; do not buy hardware."
   },
   "normalize": {
-    "normalized": false,
-    "reason": "no generated audio to normalize in this pass",
+    "normalized": true,
     "tool": "ffmpeg",
-    "rawPath": null,
-    "outPath": null
+    "filter": "loudnorm=I=-16:TP=-1.5:LRA=11",
+    "output_sample_rate_hz": 44100,
+    "rawPath": "local/voice-lab/compare/cedar-excerpt-raw.wav",
+    "outPath": "local/voice-lab/compare/cedar-excerpt-normalized.wav",
+    "gitignored": true,
+    "note": "Recorded on operator laptop after Cedar HTTP 200; compare WAVs not committed"
   },
   "full_book_cedar_estimate": {
     "planning_minutes_at_150wpm": 423.4,

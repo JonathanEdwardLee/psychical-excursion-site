@@ -75,7 +75,29 @@ describe("local AI narration voice lab", () => {
     expect(result.stderr + result.stdout).toMatch(/OPENAI_API_KEY missing/);
     const lab = readFileSync(join(ROOT, "publication/audio/voice-lab/GENERATION-MANIFEST.json"), "utf8");
     expect(lab).not.toMatch(/sk-[A-Za-z0-9]/);
-    expect(lab).toContain("dry-run");
+    const manifest = JSON.parse(lab) as {
+      cedar: {
+        executed?: boolean;
+        request_count?: number;
+        skip?: string;
+        files?: string[];
+        compare_outputs_gitignored?: string[];
+      };
+    };
+    const cedar = manifest.cedar;
+    if (cedar.executed) {
+      expect(cedar.executed).toBe(true);
+      expect(cedar.request_count).toBe(3);
+      for (const file of cedar.files ?? []) {
+        expect(file).toMatch(/^local\//);
+      }
+      for (const file of cedar.compare_outputs_gitignored ?? []) {
+        expect(file).toMatch(/^local\//);
+      }
+    } else {
+      expect(cedar.executed).not.toBe(true);
+      expect(JSON.stringify(cedar)).toMatch(/dry-run/i);
+    }
   });
 
   it("does not network-post local scores (lab HTML stores localStorage only)", () => {

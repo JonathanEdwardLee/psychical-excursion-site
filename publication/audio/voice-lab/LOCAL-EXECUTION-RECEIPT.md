@@ -113,5 +113,6 @@ From `GENERATION-MANIFEST.json` / `ECONOMICS.md` (63,509 narration words):
 
 ## Operator follow-ups (not automated)
 
-1. Export a **valid** `OPENAI_API_KEY` in the shell, then re-run Cedar with `VOICE_LAB_EXECUTE=1` and ceiling `1`.
-2. To retry Chatterbox-Nano: free **≥8 GB RAM**, confirm **≥15 GB** disk headroom for Torch + checkpoint, record `local/voice-lab/reference/jonathan.wav`, then `VOICE_LAB_CHATTERBOX_INSTALL=1` per README.
+Cedar excerpt generation for this pilot is **complete** (HTTP 200, three chunks, founder-approved normalized compare WAV on disk only).
+
+Optional — to retry **Chatterbox-Nano** later: free **≥8 GB RAM**, confirm **≥15 GB** disk headroom for Torch + checkpoint, record `local/voice-lab/reference/jonathan.wav`, then `VOICE_LAB_CHATTERBOX_INSTALL=1` per README.
