@@ -56,18 +56,30 @@ See `CHATTERBOX-GATE.json`.
 
 | Item | Value |
 | --- | --- |
-| `OPENAI_API_KEY` | Present in shell (length 43); **not** written to git or `config.json` |
+| `OPENAI_API_KEY` | Valid in operator shell; **not** written to git or `config.json` |
 | Cost ceiling | **$1** (`VOICE_LAB_COST_CEILING_USD=1`) |
 | Conservative excerpt estimate | **$0.0819** (607 words, 35% buffer; see manifest) |
-| Execute attempt | `VOICE_LAB_EXECUTE=1 npm run voice-lab:cedar` |
-| Outcome | **Failed closed:** HTTP **401** from `https://api.openai.com/v1/audio/speech` (~0.9 s elapsed). No WAV files written under `local/voice-lab/cedar/`. |
-| Actual billed spend | **$0** (no successful API completion) |
+| Execute | `VOICE_LAB_EXECUTE=1 npm run voice-lab:cedar` after **$5** prepaid credit added (2026-09-25) |
+| API requests | **3** chunks (char lengths 1672, 1647, 634) |
+| Raw outputs (gitignored) | `local/voice-lab/cedar/cedar-chunk-01..03.wav` (~10.7 MB total) |
+| Concatenated duration | **223.0 s** (~3m 43s) @ 24 kHz mono |
+| Planning spend (not a bill) | ~223/60 × $0.015 ≈ **$0.056** audio-output rule-of-thumb |
+| Under ceiling? | **Yes** (estimate and duration both well under $1) |
 
-**Fallback status:** Cedar remains the intended cloud narrator once a valid API key is exported in the operator shell.
+Earlier attempts on this laptop: HTTP **401** (stale key in another shell), then **429** `credit_balance_exhausted` until billing credit was added.
+
+Receipt copy (no secrets): `local/voice-lab/cedar/cedar-receipt.json`.
 
 ## FFmpeg normalized comparison
 
-Not produced: no successful Cedar or Chatterbox WAVs to normalize. Planned output (gitignored): `local/voice-lab/compare/*-normalized.wav` via loudnorm when raw files exist.
+Produced (gitignored):
+
+| File | Purpose |
+| --- | --- |
+| `local/voice-lab/compare/cedar-excerpt-raw.wav` | Concat of 3 Cedar chunks |
+| `local/voice-lab/compare/cedar-excerpt-normalized.wav` | `loudnorm=I=-16:TP=-1.5:LRA=11`, 44.1 kHz |
+
+No Chatterbox WAV to pair yet (hardware gate refused; no reference clip).
 
 ## Voice Lab UI
 

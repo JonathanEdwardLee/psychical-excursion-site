@@ -30,11 +30,20 @@
       "note": "Estimate from OpenAI gpt-4o-mini-tts published ~$0.015/min plus 35% buffer. Not a billed receipt."
     },
     "cost_ceiling_usd": 1,
-    "executed": false,
-    "request_count": 0,
-    "files": [],
+    "executed": true,
+    "request_count": 3,
+    "files": [
+      "local/voice-lab/cedar/cedar-chunk-01.wav",
+      "local/voice-lab/cedar/cedar-chunk-02.wav",
+      "local/voice-lab/cedar/cedar-chunk-03.wav"
+    ],
     "api_key": "set",
-    "skip": "dry-run (set VOICE_LAB_EXECUTE=1 to call OpenAI)"
+    "audio_duration_seconds_measured": 223,
+    "compare_outputs_gitignored": [
+      "local/voice-lab/compare/cedar-excerpt-raw.wav",
+      "local/voice-lab/compare/cedar-excerpt-normalized.wav"
+    ],
+    "planning_spend_usd_rule_of_thumb": 0.056
   },
   "chatterbox": {
     "candidate": "official Resemble AI Chatterbox (resemble-ai/chatterbox)",
@@ -89,11 +98,17 @@
     "inspected_at": "2026-09-25T16:21:17.175Z",
     "baseline_commit": "a8dc3b45e4764d5a3f7bb5246b808179eb2bd0f9",
     "cedar_attempt": {
-      "executed": false,
-      "http_status": 401,
-      "elapsed_ms": 906,
-      "actual_spend_usd": 0,
-      "wav_files": []
+      "executed": true,
+      "http_status": 200,
+      "request_count": 3,
+      "audio_duration_seconds": 223,
+      "planning_spend_usd_rule_of_thumb": 0.056,
+      "under_one_dollar_ceiling": true,
+      "wav_files_gitignored": [
+        "local/voice-lab/cedar/cedar-chunk-01.wav",
+        "local/voice-lab/cedar/cedar-chunk-02.wav",
+        "local/voice-lab/cedar/cedar-chunk-03.wav"
+      ]
     },
     "chatterbox": {
       "installed": false,
@@ -101,6 +116,6 @@
       "model_identity": "ResembleAI/chatterbox-nano (not downloaded)",
       "stop": "hardware gate refused; reference WAV absent"
     },
-    "ffmpeg_compare": "skipped-no-raw-audio"
+    "ffmpeg_compare": "cedar-excerpt-normalized.wav (gitignored); chatterbox pending"
   }
 }
