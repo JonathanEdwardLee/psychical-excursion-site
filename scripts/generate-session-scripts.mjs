@@ -18,6 +18,7 @@ const PUB = join(ROOT, "publication");
 const OUT = join(PUB, "audio", "session-scripts");
 
 const CUE_SHORT = "<!-- cue:short-pause -->";
+const CUE_SECTION = "<!-- cue:section-pause -->";
 const CUE_REFLECT = "<!-- cue:reflective-pause -->";
 const CUE_PRACTICE = "<!-- cue:optional-practice-pause -->";
 
@@ -152,15 +153,9 @@ function openingCreditsScript() {
 
 Psychical Excursion.
 
-Written by Jonathan Lee.
+A researched experiment in dreams, attention, and the edge of sleep.
 
-Narrated by — narrator to be confirmed.
-
-${CUE_SHORT}
-
-This audiobook uses the Publication Master of Psychical Excursion. Full source notes appear in the print and ebook editions.
-
-The website psychicalexcursion.com remains a separate reading copy of the Web Edition. It is not required to listen.
+Created by Hoopsnake Designs.
 `;
 }
 
@@ -177,7 +172,8 @@ The End.
 }
 
 function matterScript({ id, sourceRel, spokenTitle, body }) {
-  const cleaned = applyCues(stripUnspokenIdentifiers(stripMarkdownSpeech(stripYaml(body))))
+  const withoutSourceHeading = stripYaml(body).replace(/^#\s+.*\n+/, "");
+  const cleaned = applyCues(stripUnspokenIdentifiers(stripMarkdownSpeech(withoutSourceHeading)))
     .replace(/psychicalexcursion\.com/g, "psychicalexcursion.com")
     .replace(/https:\/\/psychicalexcursion\.com/g, "psychicalexcursion.com");
   return `<!-- PEX session script: front or back matter. Not a chapter rewrite. -->
@@ -260,12 +256,18 @@ export function buildSessionScripts() {
     const title = JSON.parse(
       adapted.match(/^title:\s+(\S.*)$/m)?.[1] ?? JSON.stringify(entry.slug),
     );
-    const script = renderChapterScript({
+    let script = renderChapterScript({
       menu: entry.menu,
       title,
       sourcePath,
       adaptedWithYaml: adapted,
     });
+    if (entry.menu === "01") {
+      script = script.replace(
+        `${CUE_SHORT}\nThe Excursion\n\nRobert Anton Wilson was another major influence`,
+        `${CUE_SHORT}\nThe Excursion\n\n${CUE_SECTION}\n\nRobert Anton Wilson was another major influence`,
+      );
+    }
     const outName = `${entry.slug}.md`;
     writeFileSync(join(OUT, outName), script);
     const words = countWords(script);
