@@ -79,7 +79,7 @@ Others disappear into the background.
 
 Then attention changes the balance.
 
-Laboratory research on somatosensory attention shows that directing attention toward a particular part of the body can alter the processing of touch and bodily sensation associated with that location. Interoception—the sensing of the body's internal condition—is a related, ordinary capacity. It is not a mystical faculty, and it is not proof of a second body. It is simply one of the ways the nervous system keeps track of what is happening inside the organism.
+Laboratory research on somatosensory attention shows that directing attention toward a particular part of the body can alter the processing of touch and bodily sensation associated with that location.[1] Interoception—the sensing of the body's internal condition—is a related, ordinary capacity. It is not a mystical faculty, and it is not proof of a second body. It is simply one of the ways the nervous system keeps track of what is happening inside the organism.[4]
 
 That does not mean attention creates every sensation we feel.
 
@@ -327,7 +327,7 @@ This practice has a name in psychology:
 
 **progressive muscle relaxation**, or PMR.
 
-It grew out of work by physician Edmund Jacobson in the early twentieth century and has since been adapted into many shorter forms.
+It grew out of work by physician Edmund Jacobson in the early twentieth century and has since been adapted into many shorter forms.[3]
 
 The basic principle is beautifully simple.
 
@@ -559,7 +559,7 @@ The practice is preparation for sleep.
 
 Let sleep win.
 
-A growing body of randomized research suggests that progressive muscle relaxation can improve subjective sleep quality in adults. A 2026 systematic review and meta-analysis including thirty-one randomized trials found overall improvement in reported sleep quality, although heterogeneity was high and effects varied substantially across studies and populations. That is a reason to treat PMR as a useful sleep-compatible skill, not as a guaranteed sleep drug.
+A growing body of randomized research suggests that progressive muscle relaxation can improve subjective sleep quality in adults. A 2026 systematic review and meta-analysis including thirty-one randomized trials found overall improvement in reported sleep quality, although heterogeneity was high and effects varied substantially across studies and populations.[2] That is a reason to treat PMR as a useful sleep-compatible skill, not as a guaranteed sleep drug.
 
 So there is legitimate evidence behind this simple practice.
 

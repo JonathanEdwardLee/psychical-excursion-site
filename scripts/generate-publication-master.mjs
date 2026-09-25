@@ -47,8 +47,11 @@ function stripMarkdownLinks(text) {
   return text.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
 }
 
-function stripInlineCitations(text) {
-  return text.replace(/\[(\d+)\]/g, "");
+/** Session-script / word-count view only. Canonical Publication Master keeps [n] markers. */
+export function narrationView(adapted) {
+  const cut = adapted.search(/\n## References\n/);
+  const spoken = cut >= 0 ? adapted.slice(0, cut) : adapted;
+  return spoken.replace(/\[(\d+)\]/g, "");
 }
 
 function spokenRelaxation(text) {
@@ -92,7 +95,6 @@ export function adaptWebChapter(raw) {
 
   body = body.replace(/^pex:attention-instrument\n+/m, `${ATTENTION_OPENING}\n`);
   body = stripMarkdownLinks(body);
-  body = stripInlineCitations(body);
   body = spokenRelaxation(body);
   body = spokenSkyClock(body);
   body = body.replace(/\n{3,}/g, "\n\n");
@@ -111,9 +113,7 @@ function countWords(text) {
 }
 
 function narrationWordCount(adapted) {
-  const cut = adapted.search(/\n## References\n/);
-  const spoken = cut >= 0 ? adapted.slice(0, cut) : adapted;
-  return countWords(spoken);
+  return countWords(narrationView(adapted));
 }
 
 export function buildPublicationMaster() {
@@ -165,13 +165,14 @@ export function buildPublicationMaster() {
       deltas.push("Geometric attention object: print figure optional; spoken still-point alternative.");
     }
     if (raw.includes("](/")) deltas.push("Hyperlinks converted to spoken names; URLs not narrated.");
-    if (/\[\d+\]/.test(raw.split("## References")[0] ?? "")) {
-      deltas.push("Inline citation numbers removed from narrative; full references retained for print/ebook.");
-    }
     if (raw.includes("Sky Clock")) {
       deltas.push("Sky Clock treated as an observational astronomy record, usable without the website UI.");
     }
-    if (deltas.length) adaptationNotes.push({ menu: entry.menu, title, deltas });
+    if (!deltas.length) {
+      deltas.push("No publication-specific prose adaptation beyond format handling.");
+    }
+    deltas.push("Inline [n] citation markers retained in the Publication Master for print/ebook provenance; narration omits them at session-script time.");
+    adaptationNotes.push({ menu: entry.menu, title, deltas });
   }
 
   writeFileSync(
@@ -211,7 +212,7 @@ export function buildPublicationMaster() {
       "",
       `Web Edition baseline: \`${PUBLICATION_BASELINE}\`.`,
       "",
-      "Transforms applied to all chapters: markdown links → visible labels; inline `[n]` citations stripped from narrative; `## References` kept for print/ebook.",
+      "Transforms applied to all chapters: markdown links → visible labels (no URLs in narrative). Inline `[n]` citation markers stay in the Publication Master for print/ebook. Narration omits those markers and `## References` lists at session-script time, not by deleting them from the master.",
       "",
       ...adaptationNotes.flatMap((note) => [
         `## ${note.menu} — ${note.title}`,

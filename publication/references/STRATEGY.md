@@ -1,8 +1,12 @@
 # References and endnotes
 
-Print/ebook: keep each chapter's `## References` block as endnotes for that chapter. Inline `[n]` markers are omitted from Publication Master narrative so the audiobook does not speak “bracket three.”
+**One master, multiple renders.**
 
-Audiobook: do not narrate the reference list. One front- or back-matter sentence may say that full sources are in print/ebook.
+Print/ebook: keep inline `[n]` markers in chapter prose (same claim→source map as the Web Edition) and keep each chapter's `## References` block as endnotes.
+
+Audiobook: do not delete markers from the Publication Master. Suppress `[n]` and do not narrate the reference list at session-script time. One front- or back-matter sentence may say that full sources are in print/ebook.
+
+YouTube/podcast descriptions may reuse the same chapter reference lists.
 
 YouTube/podcast descriptions may reuse the same chapter reference lists.
 

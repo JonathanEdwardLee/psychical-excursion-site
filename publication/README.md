@@ -28,4 +28,6 @@ A later website edit does not silently become the book. A later book edit does n
 
 ## Spoken vs print
 
-Narrative in `chapters/` is written to work on the page and aloud. Inline citation numbers and URLs are omitted from narrative. Full references remain at the end of each chapter for print/ebook. Do not read those lists in the audiobook.
+One canonical Publication Master keeps scholarly provenance: inline `[n]` markers in chapter prose, plus `## References` lists for print/ebook.
+
+Audio does **not** delete those markers from the master. A session-script / word-count view (`narrationView` in `scripts/generate-publication-master.mjs`) omits `[n]` and the reference lists so the narrator never says “bracket three.” URLs never appear in narrative.

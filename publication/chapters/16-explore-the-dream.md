@@ -53,7 +53,7 @@ This chapter is about exploring before explaining.
 
 Lucid dreamers commonly enter dreams intending to perform specific actions.
 
-Survey research involving hundreds of lucid dreamers found that people often plan things such as flying, speaking with dream characters, or carrying out other predetermined goals. They do not always remember those intentions once lucid, and even when they remember them, the dream environment may interfere.
+Survey research involving hundreds of lucid dreamers found that people often plan things such as flying, speaking with dream characters, or carrying out other predetermined goals. They do not always remember those intentions once lucid, and even when they remember them, the dream environment may interfere.[1]
 
 That makes prospective memory part of lucid exploration.
 
@@ -97,7 +97,7 @@ Now we add another distinction.
 
 You can explore something without making it obey you.
 
-Dream control is inconsistent. A 2026 review describes deliberate, goal-directed control as only one form of influence and emphasizes that lucid dream control remains poorly understood.
+Dream control is inconsistent. A 2026 review describes deliberate, goal-directed control as only one form of influence and emphasizes that lucid dream control remains poorly understood.[2]
 
 A dream may resist your request.
 
@@ -163,7 +163,7 @@ They may behave predictably.
 
 They may surprise you.
 
-In a classic small study, experienced lucid dreamers were instructed to give dream characters cognitive tasks. Some dream characters produced rhymes, verses, written responses, and other apparently organized behavior, while arithmetic performance was relatively poor.
+In a classic small study, experienced lucid dreamers were instructed to give dream characters cognitive tasks. Some dream characters produced rhymes, verses, written responses, and other apparently organized behavior, while arithmetic performance was relatively poor.[3]
 
 That is fascinating.
 
@@ -225,7 +225,7 @@ That is something you can actually record.
 
 Lucid dreaming can include access to waking memories, but that access is imperfect.
 
-One experiment asked lucid dreamers to recreate a waking scene they had viewed shortly before sleep. Even when the dreamers succeeded in changing the dream toward the remembered scene, the recreations were often substantially inaccurate. Some dreamers recognized the inaccuracies while still dreaming but could not simply correct them.
+One experiment asked lucid dreamers to recreate a waking scene they had viewed shortly before sleep. Even when the dreamers succeeded in changing the dream toward the remembered scene, the recreations were often substantially inaccurate. Some dreamers recognized the inaccuracies while still dreaming but could not simply correct them.[4]
 
 That finding is extremely useful.
 
@@ -251,9 +251,9 @@ Dreams are not isolated from what happened before sleep.
 
 Learning, recent experiences, emotionally important material, and deliberate cues can influence later dream content.
 
-A 2026 pilot study found that targeted dream incubation at sleep onset could bias later REM dreams toward the incubated theme in some participants.
+A 2026 pilot study found that targeted dream incubation at sleep onset could bias later REM dreams toward the incubated theme in some participants.[5]
 
-Other research using targeted memory reactivation has shown that learned material can be reactivated during REM sleep and that cues can affect later task-related dream content.
+Other research using targeted memory reactivation has shown that learned material can be reactivated during REM sleep and that cues can affect later task-related dream content.[6]
 
 This gives us a scientifically grounded reason to experiment with intention.
 
@@ -271,7 +271,7 @@ People have told stories about creative solutions arriving in dreams for centuri
 
 Research is beginning to test parts of that idea experimentally.
 
-A 2026 study used sound cues associated with unsolved puzzles during REM sleep in frequent lucid dreamers. The cues increased dreams related to the corresponding puzzles. In a post-hoc analysis, participants whose dreams became more related to the cued puzzle also showed improved later puzzle solving.
+A 2026 study used sound cues associated with unsolved puzzles during REM sleep in frequent lucid dreamers. The cues increased dreams related to the corresponding puzzles. In a post-hoc analysis, participants whose dreams became more related to the cued puzzle also showed improved later puzzle solving.[7]
 
 That is promising.
 
@@ -333,7 +333,7 @@ Exploration becomes stronger when it respects that difference.
 
 Psychologists use the term **reality monitoring** for the ability to distinguish information that came from external perception from information generated internally.
 
-Research has reported positive associations between dream lucidity and waking reality-monitoring performance. More recent electrophysiological work likewise found associations between trait lucidity and source-memory accuracy.
+Research has reported positive associations between dream lucidity and waking reality-monitoring performance.[8] More recent electrophysiological work likewise found associations between trait lucidity and source-memory accuracy.[9]
 
 These findings do not mean lucid dreamers are immune to memory error.
 
@@ -365,7 +365,7 @@ Details disappear.
 
 Narratives get reorganized.
 
-In 2021, researchers across four independent laboratories demonstrated two-way communication with lucid dreamers during verified REM sleep. Some sleeping participants correctly perceived questions, held information in working memory, performed simple calculations, and deliberately answered using eye movements or facial signals.
+In 2021, researchers across four independent laboratories demonstrated two-way communication with lucid dreamers during verified REM sleep. Some sleeping participants correctly perceived questions, held information in working memory, performed simple calculations, and deliberately answered using eye movements or facial signals.[10]
 
 This is an important development because it shows that dream experience can sometimes be queried while it is happening.
 
@@ -527,9 +527,9 @@ Exploration is different from control.
 
 A dream that resists your plans may still provide rich material for investigation.
 
-Lucid dreamers often plan actions but do not always remember or successfully execute them. Dream characters can produce surprising and organized responses, but those responses do not establish that the characters are independent minds. Waking memories can be reconstructed inaccurately even when the lucid dreamer recognizes the error.
+Lucid dreamers often plan actions but do not always remember or successfully execute them.[1] Dream characters can produce surprising and organized responses, but those responses do not establish that the characters are independent minds.[3] Waking memories can be reconstructed inaccurately even when the lucid dreamer recognizes the error.[4]
 
-Waking intentions and experimental cues can influence later dream content. Recent work also suggests that REM dreaming can participate in problem-solving processes under controlled conditions.
+Waking intentions and experimental cues can influence later dream content.[5][6] Recent work also suggests that REM dreaming can participate in problem-solving processes under controlled conditions.[7]
 
 None of this turns dream content into automatically verified information about waking reality.
 

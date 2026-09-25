@@ -17,7 +17,7 @@ You wake from a dream that feels more vivid than yesterday. You realize, while d
 
 And then there are the bigger claims.
 
-People have described leaving their bodies. Mystics and occultists have written about subtle bodies and other realms. Tibetan traditions developed practices for becoming aware inside dreams and using that awareness to investigate the mind itself. Modern lucid dreamers have learned to recognize dreams, deliberately change them, and even signal researchers from inside REM sleep.
+People have described leaving their bodies. Mystics and occultists have written about subtle bodies and other realms. Tibetan traditions developed practices for becoming aware inside dreams and using that awareness to investigate the mind itself. Modern lucid dreamers have learned to recognize dreams, deliberately change them, and even signal researchers from inside REM sleep.[2]
 
 So what exactly is going on?
 
@@ -49,7 +49,7 @@ It sounds a little old-fashioned. A little adventurous. Maybe slightly ridiculou
 
 I like all three.
 
-The word *psychical* also has an interesting history. In the late nineteenth century, researchers formed organizations devoted to “psychical research” in an attempt to investigate disputed questions about mind, perception, unusual experiences, and claims that seemed to sit outside ordinary explanations. The Society for Psychical Research, founded in 1882, explicitly framed its work as inquiry rather than required belief.
+The word *psychical* also has an interesting history. In the late nineteenth century, researchers formed organizations devoted to “psychical research” in an attempt to investigate disputed questions about mind, perception, unusual experiences, and claims that seemed to sit outside ordinary explanations. The Society for Psychical Research, founded in 1882, explicitly framed its work as inquiry rather than required belief.[1]
 
 That posture appeals to me.
 
@@ -99,7 +99,7 @@ Lucid dreaming can feel profound.
 
 It can also be extremely funny.
 
-More importantly, we do not have to take lucid dreaming on faith. Researchers have verified lucid awareness during REM sleep by arranging signals with lucid dreamers in advance and recording those signals while the participants remained asleep.
+More importantly, we do not have to take lucid dreaming on faith. Researchers have verified lucid awareness during REM sleep by arranging signals with lucid dreamers in advance and recording those signals while the participants remained asleep.[2]
 
 That doesn't prove astral projection.
 
@@ -145,7 +145,7 @@ Something else?
 
 For now, I don't think we need to decide.
 
-Modern research gives us perfectly ordinary reasons to take body awareness seriously. Interoception is a legitimate area of neuroscience and psychology, and research on mindfulness and related practices suggests that training attention can alter how people report and experience internal bodily signals.
+Modern research gives us perfectly ordinary reasons to take body awareness seriously. Interoception is a legitimate area of neuroscience and psychology, and research on mindfulness and related practices suggests that training attention can alter how people report and experience internal bodily signals.[3][4]
 
 That doesn't mean the traditional idea of an “energy body” has been scientifically proven.
 
@@ -191,7 +191,7 @@ We are allowed to change our minds.
 
 Some traditions go much further than simply becoming lucid.
 
-Tenzin Wangyal Rinpoche's *The Tibetan Yogas of Dream and Sleep* presents dream and sleep practices from the Tibetan Bön tradition in which lucid dreaming becomes a setting for deeper investigation of identity, perception, and the nature of mind.
+Tenzin Wangyal Rinpoche's *The Tibetan Yogas of Dream and Sleep* presents dream and sleep practices from the Tibetan Bön tradition in which lucid dreaming becomes a setting for deeper investigation of identity, perception, and the nature of mind.[5]
 
 What fascinated me when I first encountered this kind of material was how far the experiments could go.
 

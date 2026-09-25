@@ -39,7 +39,7 @@ Your ordinary sense of *having a body right here* depends on that stream of info
 
 Sleep changes the arrangement.
 
-REM sleep provides one of the clearest examples. It combines active brain states and vivid dreaming with a powerful reduction in ordinary skeletal muscle tone. Contemporary neuroscience links this atonia to brainstem circuits that recruit inhibitory pathways descending toward spinal motor neurons.
+REM sleep provides one of the clearest examples. It combines active brain states and vivid dreaming with a powerful reduction in ordinary skeletal muscle tone. Contemporary neuroscience links this atonia to brainstem circuits that recruit inhibitory pathways descending toward spinal motor neurons.[1][2]
 
 You may dream of sprinting down a hallway while your physical legs remain almost completely still.
 
@@ -63,7 +63,7 @@ The eyes make rapid movements.
 
 Yet most postural muscles lose much of their normal tone.
 
-Current models place an important part of this motor suppression in the brainstem. Glutamatergic neurons in the sublaterodorsal region of the pons activate inhibitory neurons farther down in the medulla and spinal pathways, reducing the activity of motor neurons that would otherwise activate skeletal muscles.
+Current models place an important part of this motor suppression in the brainstem. Glutamatergic neurons in the sublaterodorsal region of the pons activate inhibitory neurons farther down in the medulla and spinal pathways, reducing the activity of motor neurons that would otherwise activate skeletal muscles.[1][2]
 
 The system is not absolute.
 
@@ -77,7 +77,7 @@ Some muscles involved in essential functions are regulated differently.
 
 But the general effect is powerful enough that the actions of most dreams remain largely internal.
 
-There is also a useful reverse case. In REM sleep behavior disorder, normal REM atonia is impaired and people can physically enact dream movements. That disorder gives sleep researchers another way to study how important the atonia system normally is.
+There is also a useful reverse case. In REM sleep behavior disorder, normal REM atonia is impaired and people can physically enact dream movements. That disorder gives sleep researchers another way to study how important the atonia system normally is.[3]
 
 In ordinary REM sleep, however, imagined movement is largely separated from overt movement.
 
@@ -101,7 +101,7 @@ You may be able to control your breathing or move the eyes.
 
 But when you try to move an arm or sit up, nothing happens.
 
-Contemporary sleep research generally interprets isolated sleep paralysis as a dissociated sleep-wake state involving REM-related muscle atonia together with waking or partly waking awareness.
+Contemporary sleep research generally interprets isolated sleep paralysis as a dissociated sleep-wake state involving REM-related muscle atonia together with waking or partly waking awareness.[4]
 
 That does not mean every feature of a sleep-paralysis episode is completely explained. The experience can include imagery, sounds, pressure, sensed presence, floating, movement sensations, or other phenomena that deserve their own examination.
 
@@ -157,7 +157,7 @@ The experiment is noticing that the felt body is an active representation rather
 
 One group of sleep-related experiences is particularly relevant here.
 
-Researchers studying sleep paralysis have repeatedly identified a cluster of **vestibular-motor experiences**. These include sensations of floating, flying, spinning, falling, rocking, moving without physical movement, and changes in the apparent location of the self.
+Researchers studying sleep paralysis have repeatedly identified a cluster of **vestibular-motor experiences**. These include sensations of floating, flying, spinning, falling, rocking, moving without physical movement, and changes in the apparent location of the self.[5]
 
 These experiences are interesting because the vestibular system normally helps answer extremely basic questions:
 
@@ -201,11 +201,11 @@ They may feel as though they are standing somewhere else in the room.
 
 Some reports include seeing the physical body from an external perspective; others involve only the strong feeling of being located elsewhere.
 
-Scientific work on OBEs has examined vestibular processing, multisensory body representation, neurological conditions, sleep paralysis, lucid dreaming, and sleep-state transitions. A recent scoping review identified research spanning spontaneous experiences, deliberately attempted experiences, sleep-related episodes, and experimentally or neurologically associated cases.
+Scientific work on OBEs has examined vestibular processing, multisensory body representation, neurological conditions, sleep paralysis, lucid dreaming, and sleep-state transitions. A recent scoping review identified research spanning spontaneous experiences, deliberately attempted experiences, sleep-related episodes, and experimentally or neurologically associated cases.[6]
 
-One proposed family of explanations involves disruption in the normal binding of visual, vestibular, proprioceptive, and body-location information. Sleep-paralysis research is especially interesting because vestibular-motor hallucinations and OBEs tend to cluster together.
+One proposed family of explanations involves disruption in the normal binding of visual, vestibular, proprioceptive, and body-location information. Sleep-paralysis research is especially interesting because vestibular-motor hallucinations and OBEs tend to cluster together.[5]
 
-A 2024 theoretical model proposes another connection: some sleep-related OBEs may occur when awareness is maintained through unusual transitions involving REM sleep. The authors explicitly present this as a model requiring further testing, rather than a settled description of all OBEs.
+A 2024 theoretical model proposes another connection: some sleep-related OBEs may occur when awareness is maintained through unusual transitions involving REM sleep. The authors explicitly present this as a model requiring further testing, rather than a settled description of all OBEs.[7]
 
 That is a good place to leave the question for now.
 
@@ -219,13 +219,13 @@ Sleep paralysis also produces a very different family of experiences.
 
 Instead of feeling that *you* are moving, you may feel that **someone else is present**.
 
-Research has repeatedly distinguished these “intruder” experiences from vestibular-motor experiences. The intruder cluster can include a sensed presence, footsteps, voices, figures, shadows, pressure, fear, or the conviction that another being is nearby.
+Research has repeatedly distinguished these “intruder” experiences from vestibular-motor experiences. The intruder cluster can include a sensed presence, footsteps, voices, figures, shadows, pressure, fear, or the conviction that another being is nearby.[8]
 
 The distinction matters.
 
 Floating and sensed presence can happen during the same episode, but they do not appear to be merely two descriptions of the same sensation.
 
-Studies of their spatial qualities have even found systematic differences. Intruder experiences tend to be perceived nearby, often close to the body, while vestibular-motor experiences can involve movement far beyond the immediate surroundings.
+Studies of their spatial qualities have even found systematic differences. Intruder experiences tend to be perceived nearby, often close to the body, while vestibular-motor experiences can involve movement far beyond the immediate surroundings.[9]
 
 Across history and cultures, people have interpreted sensed-presence experiences in many different ways.
 
@@ -255,7 +255,7 @@ Sleep paralysis can be frightening.
 
 That fact is not incidental.
 
-Older survey research found strong relationships among sensed presence, fear, and the elaboration of additional hallucination-like experiences during sleep paralysis.
+Older survey research found strong relationships among sensed presence, fear, and the elaboration of additional hallucination-like experiences during sleep paralysis.[10]
 
 This makes sense at a basic level.
 
@@ -331,11 +331,11 @@ Modern forms often involve lying still while attention moves through body sensat
 
 The physiological findings are not yet simple.
 
-One polysomnographic investigation reported patterns interpreted as **local sleep** during Yoga Nidra: sleep-like electrophysiological activity occurring in some brain regions while other patterns did not correspond neatly to ordinary global sleep.
+One polysomnographic investigation reported patterns interpreted as **local sleep** during Yoga Nidra: sleep-like electrophysiological activity occurring in some brain regions while other patterns did not correspond neatly to ordinary global sleep.[11]
 
-Other contemporary scholarship has connected Yoga Nidra with the broader Indo-Tibetan and yogic question of whether awareness can remain present through sleep onset or even portions of dreamless sleep. The proposal is scientifically intriguing but remains difficult to establish, especially because subjective reports of awareness must eventually be related to objective sleep-stage measurements.
+Other contemporary scholarship has connected Yoga Nidra with the broader Indo-Tibetan and yogic question of whether awareness can remain present through sleep onset or even portions of dreamless sleep. The proposal is scientifically intriguing but remains difficult to establish, especially because subjective reports of awareness must eventually be related to objective sleep-stage measurements.[12]
 
-Clinical research on Yoga Nidra is also growing, including studies of sleep quality and insomnia, but recent systematic reviews continue to find substantial differences among protocols and methodological limitations in the available evidence.
+Clinical research on Yoga Nidra is also growing, including studies of sleep quality and insomnia, but recent systematic reviews continue to find substantial differences among protocols and methodological limitations in the available evidence.[13]
 
 So there are several questions here rather than one conclusion.
 

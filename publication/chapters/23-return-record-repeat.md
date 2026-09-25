@@ -127,7 +127,7 @@ A few words are enough to preserve a dream that would otherwise disappear.
 
 Dream recall matters because an unremembered lucid dream is functionally lost to the experiment.
 
-In the International Lucid Dream Induction Study, better general dream recall predicted successful lucid-dream induction.
+In the International Lucid Dream Induction Study, better general dream recall predicted successful lucid-dream induction.[1]
 
 So the dream journal is not merely an archive.
 
@@ -211,7 +211,7 @@ A single intention gives prospective memory a cleaner job.
 
 ## MILD gives us the strongest cognitive foundation
 
-The newer systematic review of lucid-dream induction research identifies MILD as the cognitive technique with the strongest current empirical support.
+The newer systematic review of lucid-dream induction research identifies MILD as the cognitive technique with the strongest current empirical support.[2]
 
 The method is built around prospective memory:
 
@@ -295,7 +295,7 @@ Then let sleep come.
 
 ## Do not stack MILD and SSILD automatically
 
-The International Lucid Dream Induction Study compared MILD, SSILD, and a hybrid combining both.
+The International Lucid Dream Induction Study compared MILD, SSILD, and a hybrid combining both.[1]
 
 MILD and SSILD performed similarly.
 
@@ -331,7 +331,7 @@ Move on.
 
 Do not force unusual sensations.
 
-The 2023 systematic review identifies SSILD as promising while noting that replication is still more limited than for MILD.
+The 2023 systematic review identifies SSILD as promising while noting that replication is still more limited than for MILD.[2]
 
 Use SSILD as its own method.
 
@@ -341,11 +341,11 @@ Not as another task piled onto everything else.
 
 Wake Back to Bed can improve the opportunity for lucid-dream induction because later sleep contains more REM.
 
-Laboratory studies combining WBTB and MILD have successfully induced lucid dreams.
+Laboratory studies combining WBTB and MILD have successfully induced lucid dreams.[3]
 
 Timing matters.
 
-A 2022 sleep-laboratory study found that interrupting sleep earlier reduced induction rates compared with later REM-oriented awakenings.
+A 2022 sleep-laboratory study found that interrupting sleep earlier reduced induction rates compared with later REM-oriented awakenings.[4]
 
 So:
 
@@ -367,7 +367,7 @@ remain awake only long enough to recover a dream and perform the chosen inductio
 
 return to sleep promptly.
 
-In the International Lucid Dream Induction Study, being able to fall asleep within about ten minutes after the technique predicted success.
+In the International Lucid Dream Induction Study, being able to fall asleep within about ten minutes after the technique predicted success.[1]
 
 That is another reason not to turn WBTB into a long midnight ceremony.
 
@@ -825,7 +825,7 @@ fear;
 
 or compulsive checking.
 
-Lucid-dream induction is not perfectly reliable even in research settings.
+Lucid-dream induction is not perfectly reliable even in research settings.[2]
 
 Failure on a given night is normal.
 
@@ -933,11 +933,11 @@ A hundred nights can teach you something.
 
 ## Summary
 
-The most evidence-supported lucid-dream induction methods currently include MILD, with SSILD also showing promising results.
+The most evidence-supported lucid-dream induction methods currently include MILD, with SSILD also showing promising results.[1][2]
 
-Dream recall predicts lucid-induction success, and quickly returning to sleep after an induction technique also appears useful.
+Dream recall predicts lucid-induction success, and quickly returning to sleep after an induction technique also appears useful.[1]
 
-Wake Back to Bed can improve lucid-dream opportunities when combined with techniques such as MILD, but timing matters, and earlier or excessive sleep interruption can reduce success.
+Wake Back to Bed can improve lucid-dream opportunities when combined with techniques such as MILD, but timing matters, and earlier or excessive sleep interruption can reduce success.[3][4]
 
 No scientific literature currently establishes a reliable method for literal astral separation.
 

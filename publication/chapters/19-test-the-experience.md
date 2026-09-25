@@ -57,7 +57,7 @@ Most confusion around unusual experiences begins when those levels are blended t
 
 Lucid dreaming gives us one of the best examples of how an unusual private experience can become experimentally accessible.
 
-In 1981, Stephen LaBerge and colleagues demonstrated that lucid dreamers could perform pre-agreed eye-movement signals while remaining in unequivocal REM sleep.
+In 1981, Stephen LaBerge and colleagues demonstrated that lucid dreamers could perform pre-agreed eye-movement signals while remaining in unequivocal REM sleep.[1]
 
 The dreamer experienced lucidity internally.
 
@@ -77,7 +77,7 @@ It needs to test the claim it was designed to test.
 
 ## Real-time dream communication raised the standard further
 
-In 2021, researchers from four independent laboratories showed that some lucid dreamers could receive questions from experimenters and respond while still asleep in REM.
+In 2021, researchers from four independent laboratories showed that some lucid dreamers could receive questions from experimenters and respond while still asleep in REM.[2]
 
 Participants correctly answered some spoken or flashed questions using eye movements or facial signals.
 
@@ -161,13 +161,13 @@ And enough trials are needed to distinguish a real effect from coincidence.
 
 The AWARE studies attempted to investigate awareness during cardiac arrest using prospective methods.
 
-The first AWARE study included objective visual and auditory tests alongside interviews with cardiac-arrest survivors.
+The first AWARE study included objective visual and auditory tests alongside interviews with cardiac-arrest survivors.[3]
 
 A small proportion of survivors reported explicit memories or awareness associated with resuscitation. One case included verifiable auditory and visual details from the resuscitation period.
 
 But the hidden-target problem remained difficult because so few participants survived, remembered an experience, and had been in a location where a target test could meaningfully occur.
 
-AWARE II expanded the effort across multiple hospitals and included audiovisual testing plus EEG and cerebral oxygen monitoring during CPR.
+AWARE II expanded the effort across multiple hospitals and included audiovisual testing plus EEG and cerebral oxygen monitoring during CPR.[4]
 
 Among interviewed survivors, some reported experiences suggestive of consciousness.
 
@@ -463,13 +463,13 @@ Then obey it.
 
 This is another essential distinction.
 
-A lucid dream can be physiologically verified using REM recording and pre-agreed signals.
+A lucid dream can be physiologically verified using REM recording and pre-agreed signals.[1]
 
 That verifies lucidity during sleep.
 
 It does not establish that every dream perception corresponds to something outside the dream.
 
-Likewise, real-time communication can verify that a sleeping lucid dreamer heard a question and answered correctly.
+Likewise, real-time communication can verify that a sleeping lucid dreamer heard a question and answered correctly.[2]
 
 That proves information crossed between the laboratory and the dreamer under those conditions.
 
@@ -599,15 +599,15 @@ It is:
 
 Lucid dreaming provides a clear example of subjective experience becoming objectively testable.
 
-Pre-agreed eye signals verified lucid awareness during REM sleep decades ago.
+Pre-agreed eye signals verified lucid awareness during REM sleep decades ago.[1]
 
-Modern experiments have gone further, demonstrating two-way communication between researchers and some lucid dreamers during polysomnographically verified REM sleep.
+Modern experiments have gone further, demonstrating two-way communication between researchers and some lucid dreamers during polysomnographically verified REM sleep.[2]
 
 Out-of-body and near-death claims are harder to verify because the relevant experiences are unpredictable and external target tests are difficult to implement.
 
-Prospective cardiac-arrest studies such as AWARE and AWARE II have attempted hidden audiovisual testing.
+Prospective cardiac-arrest studies such as AWARE and AWARE II have attempted hidden audiovisual testing.[3][4]
 
-AWARE II reported no identification of the visual image among interviewed survivors and one identification of an auditory stimulus.
+AWARE II reported no identification of the visual image among interviewed survivors and one identification of an auditory stimulus.[4]
 
 These results neither establish literal separation nor close the question.
 

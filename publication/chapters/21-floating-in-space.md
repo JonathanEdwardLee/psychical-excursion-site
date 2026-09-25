@@ -49,7 +49,7 @@ Light.
 
 Human circadian timing is synchronized to the external light-dark cycle.
 
-Light reaching the eyes influences the brain through pathways that include intrinsically photosensitive retinal ganglion cells containing melanopsin. These cells contribute to non-visual responses to light including circadian phase resetting, melatonin regulation, alertness, and sleep-wake timing.
+Light reaching the eyes influences the brain through pathways that include intrinsically photosensitive retinal ganglion cells containing melanopsin. These cells contribute to non-visual responses to light including circadian phase resetting, melatonin regulation, alertness, and sleep-wake timing.[1][2]
 
 The effect depends on more than whether a light is simply on or off.
 
@@ -83,7 +83,7 @@ We may spend much of the day under relatively dim indoor light, then surround ou
 
 That pattern is almost the reverse of the natural contrast between bright day and dark night.
 
-An international expert consensus on light exposure recommends substantially brighter daytime light and much lower light exposure in the evening and during sleep to support circadian physiology, wakefulness, and sleep.
+An international expert consensus on light exposure recommends substantially brighter daytime light and much lower light exposure in the evening and during sleep to support circadian physiology, wakefulness, and sleep.[2]
 
 This is not mystical influence.
 
@@ -117,9 +117,9 @@ At higher latitudes, those seasonal changes become dramatic.
 
 Human sleep and chronotype are shaped by biology, social schedules, artificial light, and the natural light environment.
 
-Research across populations links environmental timing variables such as sunset and photoperiod with differences in morningness-eveningness.
+Research across populations links environmental timing variables such as sunset and photoperiod with differences in morningness-eveningness.[3]
 
-Season may also change sensitivity to evening light because daytime light exposure itself changes how strongly the circadian system responds later.
+Season may also change sensitivity to evening light because daytime light exposure itself changes how strongly the circadian system responds later.[4]
 
 So when you compare your own dream or sleep data across months, do not assume January and June are equivalent backgrounds.
 
@@ -153,7 +153,7 @@ A widely discussed 2013 study reanalyzed sleep-laboratory data according to luna
 
 Participants and researchers had not originally been studying the Moon.
 
-Around the full moon, the analysis reported lower NREM delta activity, longer sleep-onset time, shorter total sleep, lower subjective sleep quality, and lower melatonin levels.
+Around the full moon, the analysis reported lower NREM delta activity, longer sleep-onset time, shorter total sleep, lower subjective sleep quality, and lower melatonin levels.[5]
 
 Because the participants were indoors under controlled laboratory conditions and the lunar analysis was retrospective, ordinary visible moonlight was not an obvious explanation.
 
@@ -165,7 +165,7 @@ It was not the final word.
 
 ## Field research found later and shorter sleep before full moon
 
-In 2021, researchers studied sleep using wrist actimetry in Indigenous Toba/Qom communities in Argentina with different access to electricity, as well as university students in a highly urbanized U.S. setting.
+In 2021, researchers studied sleep using wrist actimetry in Indigenous Toba/Qom communities in Argentina with different access to electricity, as well as university students in a highly urbanized U.S. setting.[6]
 
 Across settings, sleep tended to begin later and become shorter in the nights leading up to the full moon.
 
@@ -179,7 +179,7 @@ So the mechanism is not completely settled.
 
 ## Other sleep studies have also found lunar associations
 
-Some smaller observational and sleep-laboratory studies have reported lower sleep efficiency, less deep sleep, delayed REM onset, or shorter sleep near the full moon.
+Some smaller observational and sleep-laboratory studies have reported lower sleep efficiency, less deep sleep, delayed REM onset, or shorter sleep near the full moon.[7]
 
 Other analyses have failed to reproduce meaningful effects.
 
@@ -199,7 +199,7 @@ It is:
 
 Sleep and dream recall are related but not identical.
 
-A diary study involving 196 participants tracked dreams over many nights and found no association between the full moon and dream recall.
+A diary study involving 196 participants tracked dreams over many nights and found no association between the full moon and dream recall.[8]
 
 That matters because popular belief often bundles together:
 
@@ -239,7 +239,7 @@ Some organisms possess biological rhythms linked to lunar cycles.
 
 Whether humans retain a meaningful endogenous circalunar oscillator is much less clear.
 
-The 2013 laboratory result and some longitudinal observations keep the question open.
+The 2013 laboratory result and some longitudinal observations keep the question open.[5][9]
 
 ### Gravitational or tidal mechanisms
 
@@ -263,7 +263,7 @@ It is another causal pathway.
 
 One reason lunar research is difficult is that averaging can hide individual patterns.
 
-A 2021 review argued that human sleep-wake, menstrual, and mood-related cycles may sometimes synchronize temporarily with lunar cycles in heterogeneous ways rather than producing one uniform population effect.
+A 2021 review argued that human sleep-wake, menstrual, and mood-related cycles may sometimes synchronize temporarily with lunar cycles in heterogeneous ways rather than producing one uniform population effect.[9]
 
 That is an interesting hypothesis.
 
@@ -285,9 +285,9 @@ These events contribute to what is called **space weather**.
 
 Researchers have investigated whether changes in geomagnetic activity correlate with biological variables.
 
-A 2026 review describes reported associations involving cardiovascular and autonomic measures and discusses proposed mechanisms involving melatonin, cryptochrome-related magnetosensitivity, calcium signaling, and other pathways.
+A 2026 review describes reported associations involving cardiovascular and autonomic measures and discusses proposed mechanisms involving melatonin, cryptochrome-related magnetosensitivity, calcium signaling, and other pathways.[10]
 
-But the same review emphasizes that causal pathways are not established and that neurological and psychological associations remain preliminary.
+But the same review emphasizes that causal pathways are not established and that neurological and psychological associations remain preliminary.[10]
 
 That is a useful boundary.
 
@@ -295,7 +295,7 @@ Interesting is not established.
 
 ## Geomagnetism and melatonin have been studied
 
-Human studies have reported associations between geomagnetic disturbance and melatonin patterns, including work at high latitudes where geomagnetic variability is strong.
+Human studies have reported associations between geomagnetic disturbance and melatonin patterns, including work at high latitudes where geomagnetic variability is strong.[11]
 
 These studies are provocative because melatonin is directly relevant to sleep timing.
 
@@ -369,11 +369,11 @@ That is a different question.
 
 One of the best-known controlled tests was published in *Nature* in 1985.
 
-The experiment was designed with input from astrologers and scientists and tested whether natal charts could accurately describe personality traits under double-blind conditions.
+The experiment was designed with input from astrologers and scientists and tested whether natal charts could accurately describe personality traits under double-blind conditions.[12]
 
 The results did not support the tested astrological predictions.
 
-Later double-blind work comparing computer-generated natal-chart personality descriptions with standard psychological profiles likewise found that participants could identify genuine psychological profiles more successfully than astrological ones.
+Later double-blind work comparing computer-generated natal-chart personality descriptions with standard psychological profiles likewise found that participants could identify genuine psychological profiles more successfully than astrological ones.[13]
 
 This does not erase astrology's cultural, symbolic, historical, or personal meaning.
 
@@ -453,7 +453,7 @@ The Sky Clock computes the Sun's geocentric ecliptic longitude and maps that lon
 
 That basic twelve-part geometry has ancient roots.
 
-Babylonian astronomers divided the ecliptic into twelve thirty-degree signs for measurement and prediction of celestial motion.
+Babylonian astronomers divided the ecliptic into twelve thirty-degree signs for measurement and prediction of celestial motion.[14][15]
 
 The system later became one of the foundations of Greek and Roman astrology.
 
@@ -475,7 +475,7 @@ The zodiacal **signs** are equal thirty-degree divisions.
 
 They once corresponded much more closely.
 
-Precession slowly changed the alignment between the seasonal equinox-based zodiac and the background stars.
+Precession slowly changed the alignment between the seasonal equinox-based zodiac and the background stars.[16]
 
 The Sky Clock uses the **tropical** zodiac.
 
@@ -499,9 +499,9 @@ Virgo has accumulated many stories.
 
 Its brightest star, Spica, takes its name from the Latin for an ear of wheat.
 
-Historical images connect the constellation and sign with a maiden, grain, harvest, seasonal transition, and agricultural calendars.
+Historical images connect the constellation and sign with a maiden, grain, harvest, seasonal transition, and agricultural calendars.[17][18]
 
-In some Islamic zodiac imagery, Virgo became **al-sunbula**, “the ear of corn,” and was sometimes represented by a male figure associated with Mercury harvesting grain.
+In some Islamic zodiac imagery, Virgo became **al-sunbula**, “the ear of corn,” and was sometimes represented by a male figure associated with Mercury harvesting grain.[18]
 
 That does not prove that being born under Virgo makes someone analytical.
 
@@ -537,7 +537,7 @@ Late Babylonian traditions connected astronomical observations with omens.
 
 Hellenistic astrology expanded the system toward individual horoscopes.
 
-Ptolemy later tied the tropical zodiac and planetary qualities partly to seasonal reasoning.
+Ptolemy later tied the tropical zodiac and planetary qualities partly to seasonal reasoning.[15][19]
 
 The predictive astronomy became extremely successful.
 
@@ -561,11 +561,11 @@ Those spheres were not merely locations.
 
 They could represent levels of being.
 
-Ancient and late-antique philosophical and religious systems sometimes imagined the soul descending through them into embodiment or ascending back through them toward the divine.
+Ancient and late-antique philosophical and religious systems sometimes imagined the soul descending through them into embodiment or ascending back through them toward the divine.[20]
 
-In accounts associated with Numenius and preserved by Macrobius, the descending soul acquires different capacities while passing through the planetary spheres: Saturn, Jupiter, Mars, the Sun, Venus, Mercury, and finally the Moon.
+In accounts associated with Numenius and preserved by Macrobius, the descending soul acquires different capacities while passing through the planetary spheres: Saturn, Jupiter, Mars, the Sun, Venus, Mercury, and finally the Moon.[20]
 
-Hermetic materials likewise connect cosmic ascent with the seven planetary spheres and their governing powers.
+Hermetic materials likewise connect cosmic ascent with the seven planetary spheres and their governing powers.[21]
 
 So the idea of **traveling through planetary realms** is much older than modern astral-projection books.
 
@@ -581,7 +581,7 @@ When an occult text says **the sphere of Mars**, it may not mean:
 
 It may mean a spiritual, psychic, symbolic, initiatory, or subtle realm associated with Mars.
 
-Theosophical writers later developed elaborate models of astral and mental planes, planetary chains, and nonphysical globes associated with planets.
+Theosophical writers later developed elaborate models of astral and mental planes, planetary chains, and nonphysical globes associated with planets.[22]
 
 Whether we believe those maps or not, they are not simply failed astronomy.
 
@@ -617,9 +617,9 @@ routes;
 
 and entire spatial environments.
 
-Human navigation depends on interacting networks including hippocampal, entorhinal, retrosplenial, parahippocampal, parietal, and frontal systems.
+Human navigation depends on interacting networks including hippocampal, entorhinal, retrosplenial, parahippocampal, parietal, and frontal systems.[23]
 
-Dreaming and imagination can recombine memory, spatial representation, visual construction, emotion, and prediction into internally generated experiences that feel like places.
+Dreaming and imagination can recombine memory, spatial representation, visual construction, emotion, and prediction into internally generated experiences that feel like places.[24][25]
 
 That means the scientific answer to:
 
@@ -701,9 +701,9 @@ The same rule applies.
 
 Lucid-dream and OBE traditions contain claims of distant travel.
 
-Robert Monroe's later writings and the culture that developed around his work describe movement into nonphysical locales rather than treating every journey as ordinary geographic travel.
+Robert Monroe's later writings and the culture that developed around his work describe movement into nonphysical locales rather than treating every journey as ordinary geographic travel.[26]
 
-The Monroe Institute itself says it has no hard data that Moon phase helps produce OBEs, which is a useful reminder that even a tradition enthusiastic about expanded consciousness does not need to claim every celestial correlation.
+The Monroe Institute itself says it has no hard data that Moon phase helps produce OBEs, which is a useful reminder that even a tradition enthusiastic about expanded consciousness does not need to claim every celestial correlation.[27]
 
 A useful experiment would be:
 
@@ -913,21 +913,21 @@ A Saturn transit is not a substitute for sleep hygiene.
 
 The sky contains several different kinds of influence and several different kinds of claim.
 
-**Sunlight** has a strong, well-established biological pathway into human circadian rhythms, melatonin, alertness, and sleep timing through ocular light reception and melanopsin-linked systems.
+**Sunlight** has a strong, well-established biological pathway into human circadian rhythms, melatonin, alertness, and sleep timing through ocular light reception and melanopsin-linked systems.[1][2]
 
-**Seasonal daylight** changes the timing environment and can influence chronotype and sensitivity to evening light.
+**Seasonal daylight** changes the timing environment and can influence chronotype and sensitivity to evening light.[3][4]
 
-**Lunar phase** has been associated with sleep timing and sleep architecture in several laboratory and field studies, including later and shorter sleep before the full moon in a large field study.
+**Lunar phase** has been associated with sleep timing and sleep architecture in several laboratory and field studies, including later and shorter sleep before the full moon in a large field study.[5][6][7]
 
-But lunar findings are inconsistent, mechanisms remain unsettled, and a diary study found no full-moon effect on dream recall.
+But lunar findings are inconsistent, mechanisms remain unsettled, and a diary study found no full-moon effect on dream recall.[8]
 
-**Solar and geomagnetic activity** have emerging associations with some physiological outcomes, but causal mechanisms and neurological or psychological effects remain preliminary.
+**Solar and geomagnetic activity** have emerging associations with some physiological outcomes, but causal mechanisms and neurological or psychological effects remain preliminary.[10][11]
 
-**Planetary astrology** is culturally and symbolically rich, but controlled double-blind studies have not demonstrated reliable personality prediction from natal planetary positions.
+**Planetary astrology** is culturally and symbolically rich, but controlled double-blind studies have not demonstrated reliable personality prediction from natal planetary positions.[12][13]
 
-**The zodiac in the Sky Clock** is an ancient astronomical coordinate tradition: twelve equal thirty-degree sectors along the ecliptic, later layered with astrological symbolism. “Sun in Virgo” is therefore a real coordinate statement inside a tropical-zodiac convention, not an automatic personality prediction.
+**The zodiac in the Sky Clock** is an ancient astronomical coordinate tradition: twelve equal thirty-degree sectors along the ecliptic, later layered with astrological symbolism.[14][15] “Sun in Virgo” is therefore a real coordinate statement inside a tropical-zodiac convention, not an automatic personality prediction.
 
-**Planetary travel** has deep roots in philosophical, Hermetic, and occult traditions that imagined ascent through celestial or nonphysical planetary spheres. Modern consciousness research can explain internally generated spatial worlds and altered self-location, but has not established that lucid dreamers or OBE experiencers literally travel through physical interplanetary space.
+**Planetary travel** has deep roots in philosophical, Hermetic, and occult traditions that imagined ascent through celestial or nonphysical planetary spheres.[20][21][22] Modern consciousness research can explain internally generated spatial worlds and altered self-location, but has not established that lucid dreamers or OBE experiencers literally travel through physical interplanetary space.[23][24][25]
 
 That still leaves a wonderful experiment: deliberately travel to the Moon or a planet as an experience, then distinguish what was experienced from anything claimed about the external world.
 

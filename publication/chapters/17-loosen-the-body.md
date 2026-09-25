@@ -23,7 +23,7 @@ Those facts arrive already assembled.
 
 But the assembly is not as simple as it feels.
 
-Research on bodily self-consciousness increasingly treats the ordinary sense of embodiment as a construction made from several partly separable processes: body ownership, self-location, first-person perspective, agency, proprioception, touch, vision, and vestibular information about movement and gravity.
+Research on bodily self-consciousness increasingly treats the ordinary sense of embodiment as a construction made from several partly separable processes: body ownership, self-location, first-person perspective, agency, proprioception, touch, vision, and vestibular information about movement and gravity.[1]
 
 Those same components often change near lucid dreaming, sleep paralysis, and out-of-body experience.
 
@@ -63,7 +63,7 @@ Experiments can interfere with that integration.
 
 The best-known example is the rubber hand illusion.
 
-A person's real hand is hidden. A visible fake hand is placed nearby. When the real and fake hands are stroked in matching ways, many participants begin to experience some degree of ownership over the artificial hand.
+A person's real hand is hidden. A visible fake hand is placed nearby. When the real and fake hands are stroked in matching ways, many participants begin to experience some degree of ownership over the artificial hand.[2]
 
 The hand did not physically move into the rubber object.
 
@@ -85,7 +85,7 @@ One influential framework distinguishes at least:
 
 **First-person perspective** — the world seems to be perceived from this point.
 
-Research suggests these components can be manipulated separately and may depend on partly distinct neural systems.
+Research suggests these components can be manipulated separately and may depend on partly distinct neural systems.[1]
 
 That distinction becomes useful around unusual states.
 
@@ -105,11 +105,11 @@ The map becomes clearer.
 
 Researchers have extended body-ownership experiments beyond hands.
 
-In full-body illusion studies, participants may view a virtual or filmed body while receiving synchronized visual and tactile stimulation. Under some conditions, people report increased identification with the seen body and changes in where they feel themselves to be located.
+In full-body illusion studies, participants may view a virtual or filmed body while receiving synchronized visual and tactile stimulation. Under some conditions, people report increased identification with the seen body and changes in where they feel themselves to be located.[3]
 
-In a landmark 2007 experiment, participants saw their own bodies from a displaced visual perspective while receiving synchronized touch. Their self-location shifted toward the seen virtual body.
+In a landmark 2007 experiment, participants saw their own bodies from a displaced visual perspective while receiving synchronized touch. Their self-location shifted toward the seen virtual body.[4]
 
-Another 2007 experiment produced an illusion in which participants experienced themselves as located outside their physical bodies while viewing the body from behind.
+Another 2007 experiment produced an illusion in which participants experienced themselves as located outside their physical bodies while viewing the body from behind.[5]
 
 These laboratory illusions are not identical to spontaneous out-of-body experiences.
 
@@ -129,7 +129,7 @@ But they can separate.
 
 A person may feel located in one place while experiencing a visual perspective associated with another location.
 
-Neurological reports and experimental work have repeatedly implicated the temporoparietal junction and nearby multisensory systems in experiences involving altered self-location and perspective.
+Neurological reports and experimental work have repeatedly implicated the temporoparietal junction and nearby multisensory systems in experiences involving altered self-location and perspective.[6]
 
 Again, this is not a final theory of every OBE.
 
@@ -169,7 +169,7 @@ being still;
 
 and moving through space.
 
-A review of vestibular contributions to bodily self-consciousness argues that vestibular information plays an important role in self-location and first-person perspective because it anchors the body to a spatial and gravitational reference frame.
+A review of vestibular contributions to bodily self-consciousness argues that vestibular information plays an important role in self-location and first-person perspective because it anchors the body to a spatial and gravitational reference frame.[7]
 
 That makes several common sleep-edge sensations immediately interesting.
 
@@ -201,9 +201,9 @@ Out-of-body reports sometimes occur during sleep paralysis.
 
 Sleep paralysis is especially interesting because the person may feel aware while voluntary movement remains inhibited and dreamlike perception can intrude into the apparent bedroom.
 
-Research on sleep-paralysis experiences has identified a cluster of vestibular-motor phenomena including floating, flying, falling, spinning, and apparent movement outside the physical body.
+Research on sleep-paralysis experiences has identified a cluster of vestibular-motor phenomena including floating, flying, falling, spinning, and apparent movement outside the physical body.[8]
 
-A 2024 theoretical review examining links among out-of-body experiences, lucid dreaming, and sleep paralysis similarly highlights unusual bodily experiences, vibrations, altered gravity, and vestibular-motor hallucinations as overlapping features.
+A 2024 theoretical review examining links among out-of-body experiences, lucid dreaming, and sleep paralysis similarly highlights unusual bodily experiences, vibrations, altered gravity, and vestibular-motor hallucinations as overlapping features.[9]
 
 These overlaps do not prove that all three states are the same.
 
@@ -235,9 +235,9 @@ and sometimes a feeling of separation or return.
 
 The phrase does not, by itself, settle what caused the experience.
 
-A 2025 scoping review examined 87 publications on OBEs and found that experiences occur in varied contexts: spontaneous episodes, sleep-related states, deliberate induction attempts, neurological conditions, and other situations.
+A 2025 scoping review examined 87 publications on OBEs and found that experiences occur in varied contexts: spontaneous episodes, sleep-related states, deliberate induction attempts, neurological conditions, and other situations.[10]
 
-The review also notes that several explanatory frameworks remain in circulation, including physiological, psychological, and non-local consciousness interpretations.
+The review also notes that several explanatory frameworks remain in circulation, including physiological, psychological, and non-local consciousness interpretations.[10]
 
 That is exactly the kind of uncertainty we want to preserve.
 
@@ -623,13 +623,13 @@ First-person perspective is the location from which the world seems to be percei
 
 Vestibular processing contributes information about movement, orientation, and gravity.
 
-Laboratory experiments using rubber-hand and full-body illusions show that ownership and self-location can be altered through multisensory manipulation.
+Laboratory experiments using rubber-hand and full-body illusions show that ownership and self-location can be altered through multisensory manipulation.[2][3][4][5]
 
-Neurological and experimental research implicates multisensory and vestibular processing, including regions around the temporoparietal junction, in altered self-location and perspective.
+Neurological and experimental research implicates multisensory and vestibular processing, including regions around the temporoparietal junction, in altered self-location and perspective.[6][7]
 
-Sleep paralysis and sleep-related OBE reports frequently include vestibular-motor experiences such as floating, falling, spinning, flying, and apparent movement outside the physical body.
+Sleep paralysis and sleep-related OBE reports frequently include vestibular-motor experiences such as floating, falling, spinning, flying, and apparent movement outside the physical body.[8][9]
 
-The 2025 OBE scoping review concludes that OBEs are heterogeneous and occur across many contexts, while several competing explanatory frameworks remain unresolved.
+The 2025 OBE scoping review concludes that OBEs are heterogeneous and occur across many contexts, while several competing explanatory frameworks remain unresolved.[10]
 
 The practical lesson is simple:
 

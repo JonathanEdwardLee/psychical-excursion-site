@@ -35,15 +35,15 @@ Science is not yet in a position to settle that argument.
 
 What it can do is help us separate the parts.
 
-The research term **out-of-body experience**, or OBE, describes the subjective experience of being located outside the physical body. The traditional phrase **astral projection** usually adds a stronger interpretation: consciousness or an “astral body” is believed to leave the physical body and travel independently.
+The research term **out-of-body experience**, or OBE, describes the subjective experience of being located outside the physical body. The traditional phrase **astral projection** usually adds a stronger interpretation: consciousness or an “astral body” is believed to leave the physical body and travel independently.[1][2]
 
 Lucid dreaming is different again. In a lucid dream, you know you are dreaming while the dream continues.
 
 Yet the boundaries are not perfectly clean.
 
-A 2024 theoretical review argues that sleep-related OBEs, lucid dreams, and sleep paralysis may share aspects of REM-state dissociation and wake-sleep transition processes while remaining phenomenologically distinguishable.
+A 2024 theoretical review argues that sleep-related OBEs, lucid dreams, and sleep paralysis may share aspects of REM-state dissociation and wake-sleep transition processes while remaining phenomenologically distinguishable.[3]
 
-A 2025 scoping review likewise found that OBEs occur in many contexts, may happen spontaneously or be deliberately induced, and can be facilitated by experiences such as lucid dreaming or sleep paralysis.
+A 2025 scoping review likewise found that OBEs occur in many contexts, may happen spontaneously or be deliberately induced, and can be facilitated by experiences such as lucid dreaming or sleep paralysis.[4]
 
 That gives us a useful practical position.
 
@@ -79,7 +79,7 @@ Astral-projection methods often combine several of these skills and then give th
 
 The phrase belongs to occult and psychical-research traditions rather than modern sleep science.
 
-Twentieth-century astral-projection literature described a subtle or astral body that could separate from the physical body, sometimes while remaining connected by a “silver cord.” Writers such as Oliver Fox, Sylvan Muldoon, and Hereward Carrington described deliberate methods involving sleep, visualization, dream awareness, imagined movement, and apparent separation.
+Twentieth-century astral-projection literature described a subtle or astral body that could separate from the physical body, sometimes while remaining connected by a “silver cord.” Writers such as Oliver Fox, Sylvan Muldoon, and Hereward Carrington described deliberate methods involving sleep, visualization, dream awareness, imagined movement, and apparent separation.[2][5]
 
 These sources matter historically because many modern online methods descend from them.
 
@@ -91,7 +91,7 @@ That distinction lets us keep the useful experimental material without silently 
 
 Modern researchers generally use **out-of-body experience** to describe the phenomenology rather than asserting a mechanism.
 
-The 2025 scoping review analyzed 87 publications and found substantial variation in OBE circumstances, phenomenology, precipitating conditions, deliberate induction, and interpretation.
+The 2025 scoping review analyzed 87 publications and found substantial variation in OBE circumstances, phenomenology, precipitating conditions, deliberate induction, and interpretation.[4]
 
 The review includes physiological, psychological, and non-local consciousness hypotheses.
 
@@ -119,13 +119,13 @@ The later explanation remains testable.
 
 If the goal is to maintain awareness while sleep and dreaming develop, lucid-dream research offers the best experimental foundation.
 
-A 2012 systematic review found that no lucid-dream induction technique worked reliably on demand, although several were promising.
+A 2012 systematic review found that no lucid-dream induction technique worked reliably on demand, although several were promising.[6]
 
-A newer systematic review of the following decade found stronger evidence for the Mnemonic Induction of Lucid Dreams, or MILD, while also identifying SSILD and other methods as promising but still in need of replication.
+A newer systematic review of the following decade found stronger evidence for the Mnemonic Induction of Lucid Dreams, or MILD, while also identifying SSILD and other methods as promising but still in need of replication.[7]
 
-The International Lucid Dream Induction Study tested combinations of reality testing, Wake Back to Bed, MILD, SSILD, and a hybrid method in 355 participants. MILD and SSILD performed similarly in that study, and better dream recall and quickly returning to sleep predicted success.
+The International Lucid Dream Induction Study tested combinations of reality testing, Wake Back to Bed, MILD, SSILD, and a hybrid method in 355 participants. MILD and SSILD performed similarly in that study, and better dream recall and quickly returning to sleep predicted success.[8]
 
-Laboratory work combining Wake Back to Bed with MILD has also produced lucid dreams, including signal-verified lucid dreams, although success depends strongly on timing and procedure.
+Laboratory work combining Wake Back to Bed with MILD has also produced lucid dreams, including signal-verified lucid dreams, although success depends strongly on timing and procedure.[9][10]
 
 Why does this matter in a chapter about astral projection?
 
@@ -229,9 +229,9 @@ Climbing.
 
 Modern practitioners add techniques such as an imagined rope.
 
-These methods are plausible as attentional and vestibular-motor exercises because motor imagery can occur without physical movement, and altered visual-vestibular integration can experimentally shift self-location and produce OBE-like sensations.
+These methods are plausible as attentional and vestibular-motor exercises because motor imagery can occur without physical movement, and altered visual-vestibular integration can experimentally shift self-location and produce OBE-like sensations.[11]
 
-A 2024 mixed-reality experiment used combined visual and vestibular stimulation to induce elevated self-location, disembodiment, and lightness in healthy participants.
+A 2024 mixed-reality experiment used combined visual and vestibular stimulation to induce elevated self-location, disembodiment, and lightness in healthy participants.[11]
 
 That does not validate a rope technique.
 
@@ -321,7 +321,7 @@ Imagine the mattress moving downward instead.
 
 Or simply attend to any spontaneous floating sensation that already appears.
 
-This route aligns with the vestibular-motor qualities often reported in OBEs and sleep-related transitions.
+This route aligns with the vestibular-motor qualities often reported in OBEs and sleep-related transitions.[3][11]
 
 Again, the useful event is the change in self-location or motion.
 
@@ -375,7 +375,7 @@ MILD uses prospective memory and intention to recognize a later dream.
 
 SSILD cycles attention among visual, auditory, and bodily sensations before sleep.
 
-Both have empirical support for increasing lucid dreaming in some conditions.
+Both have empirical support for increasing lucid dreaming in some conditions.[7][8]
 
 That makes them useful indirect tools.
 
@@ -397,7 +397,7 @@ The idea is to sleep for several hours, wake briefly, practice an induction meth
 
 Research shows that timing matters.
 
-Laboratory studies combining WBTB with MILD have produced lucid dreams, but earlier interruption can reduce success, and procedures that excessively disturb sleep are not automatically better.
+Laboratory studies combining WBTB with MILD have produced lucid dreams, but earlier interruption can reduce success, and procedures that excessively disturb sleep are not automatically better.[9][10]
 
 So the rule remains:
 
@@ -503,7 +503,7 @@ But overlap exists.
 
 A person might have both at once.
 
-The 2024 review specifically argues that these states may share sleep-state mechanisms while retaining phenomenological differences.
+The 2024 review specifically argues that these states may share sleep-state mechanisms while retaining phenomenological differences.[3]
 
 So record dimensions rather than forcing a label:
 
@@ -555,9 +555,9 @@ Out-of-body experience is a more neutral research term describing the subjective
 
 Lucid dreaming is the awareness that one is dreaming while the dream continues.
 
-These categories overlap in sleep-related reports but should not be treated as identical.
+These categories overlap in sleep-related reports but should not be treated as identical.[3][4]
 
-Scientific evidence is strongest for lucid-dream induction. MILD has the most consistent support among cognitive lucid-dream techniques, while SSILD and combined Wake Back to Bed procedures also have promising evidence under specific conditions.
+Scientific evidence is strongest for lucid-dream induction. MILD has the most consistent support among cognitive lucid-dream techniques, while SSILD and combined Wake Back to Bed procedures also have promising evidence under specific conditions.[6][7][8][9][10]
 
 Evidence for deliberate OBE induction is much thinner.
 

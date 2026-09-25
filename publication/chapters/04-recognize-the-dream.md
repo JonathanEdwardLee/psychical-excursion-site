@@ -69,7 +69,7 @@ The intention returns.
 
 **The letter.**
 
-Psychologists call this **prospective memory**: remembering to perform an intended action when the appropriate moment arrives.
+Psychologists call this **prospective memory**: remembering to perform an intended action when the appropriate moment arrives.[1]
 
 We use it constantly.
 
@@ -187,7 +187,7 @@ One method for strengthening prospective memory is an **implementation intention
 
 When a particular situation occurs, perform a particular action.
 
-A systematic review and meta-analysis found that these cue-and-response intentions improved prospective-memory performance, with combined verbal and imagery rehearsal producing a relatively larger effect than verbal intention alone.
+A systematic review and meta-analysis found that these cue-and-response intentions improved prospective-memory performance, with combined verbal and imagery rehearsal producing a relatively larger effect than verbal intention alone.[1]
 
 That research was not about lucid dreaming.
 
@@ -367,7 +367,7 @@ That may miss the interesting part.
 
 Studies of lucid-dream induction have produced mixed results for repetitive daytime **reality testing**.
 
-In the large International Lucid Dream Induction Study, simply performing more reality tests during the day was not associated with more lucid dreams, and adding daytime reality testing did not significantly improve outcomes for participants using MILD with Wake-Back-to-Bed.
+In the large International Lucid Dream Induction Study, simply performing more reality tests during the day was not associated with more lucid dreams, and adding daytime reality testing did not significantly improve outcomes for participants using MILD with Wake-Back-to-Bed.[2]
 
 That does not prove reality testing is useless.
 
@@ -543,7 +543,7 @@ Remain awake for a period.
 
 Return to bed.
 
-In one sleep-laboratory study, participants were awakened after about six hours of sleep and practiced MILD before returning to sleep. Depending on the experimental condition, substantial numbers reported lucid dreams during the following morning sleep period, although the number confirmed using objective eye-signal criteria was lower.
+In one sleep-laboratory study, participants were awakened after about six hours of sleep and practiced MILD before returning to sleep. Depending on the experimental condition, substantial numbers reported lucid dreams during the following morning sleep period, although the number confirmed using objective eye-signal criteria was lower.[3]
 
 That is promising.
 
@@ -551,7 +551,7 @@ It is also a small study.
 
 No induction method makes lucid dreams appear reliably on command.
 
-A 2023 systematic review of empirical lucid-dream induction research nevertheless found MILD to be the most effective technique among the methods it reviewed.
+A 2023 systematic review of empirical lucid-dream induction research nevertheless found MILD to be the most effective technique among the methods it reviewed.[4]
 
 So MILD deserves our attention. It does not deserve mythology.
 
@@ -579,7 +579,7 @@ Sleep itself matters.
 
 If a technique turns the night into a battle against sleep, something has gone wrong.
 
-The International Lucid Dream Induction Study found an interesting relationship: participants were more likely to report lucid dreams when they returned to sleep relatively quickly after performing the induction technique.
+The International Lucid Dream Induction Study found an interesting relationship: participants were more likely to report lucid dreams when they returned to sleep relatively quickly after performing the induction technique.[2]
 
 So lying awake for an hour desperately attempting to become lucid may be defeating the practical purpose.
 
@@ -617,7 +617,7 @@ Practice recognition.
 
 Then return to bed while you are still able to become sleepy again.
 
-Research protocols have sometimes used awakenings of thirty or sixty minutes.
+Research protocols have sometimes used awakenings of thirty or sixty minutes.[3]
 
 That tells us what researchers tested.
 

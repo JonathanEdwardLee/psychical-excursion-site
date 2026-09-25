@@ -55,7 +55,7 @@ There is substantial evidence for overlap between imagined and executed movement
 
 But newer research suggests that simple equivalence is too strong.
 
-A large meta-analysis comparing hundreds of neuroimaging studies found that motor imagery also relies heavily on frontal and parietal systems associated with working memory and executive processing. Depending on how the comparison was performed, motor imagery overlapped with those cognitive networks at least as strongly as it overlapped with actual movement execution.
+A large meta-analysis comparing hundreds of neuroimaging studies found that motor imagery also relies heavily on frontal and parietal systems associated with working memory and executive processing. Depending on how the comparison was performed, motor imagery overlapped with those cognitive networks at least as strongly as it overlapped with actual movement execution.[1]
 
 Imagining movement therefore appears to be an active construction.
 
@@ -83,7 +83,7 @@ That is closer to **kinesthetic motor imagery**.
 
 The distinction is important because visual and kinesthetic imagery can respond differently to experience.
 
-In one 2025 experiment, researchers trained people either by physically practicing hand-gesture sequences without vision or by watching the movements. Physical practice later improved subjective kinesthetic imagery, while observational practice improved visual imagery.
+In one 2025 experiment, researchers trained people either by physically practicing hand-gesture sequences without vision or by watching the movements. Physical practice later improved subjective kinesthetic imagery, while observational practice improved visual imagery.[2]
 
 What you have actually *done* with your body may therefore shape the kind of movement you can later represent internally.
 
@@ -203,7 +203,7 @@ But the imagining itself still occurred.
 
 It required attention, representation, memory, prediction, and perhaps visual or bodily sensation.
 
-Neuroscience consistently finds that motor imagery recruits organized brain activity rather than doing nothing.
+Neuroscience consistently finds that motor imagery recruits organized brain activity rather than doing nothing.[1]
 
 The important distinction is therefore not:
 
@@ -223,7 +223,7 @@ There is another useful comparison.
 
 You can sometimes feel yourself moving even when you are physically stationary.
 
-Researchers call this **vection**: an illusion of self-motion in the absence of corresponding physical movement through space.
+Researchers call this **vection**: an illusion of self-motion in the absence of corresponding physical movement through space.[3]
 
 A familiar example occurs on a stationary train.
 
@@ -235,9 +235,9 @@ Nothing in your deliberate imagination created that sensation.
 
 Your perceptual system inferred movement from the available sensory evidence.
 
-Vection can be induced in laboratories using moving visual fields and virtual environments. Researchers measure whether it occurs, how long it takes to begin, how long it lasts, and how intense the self-motion feels.
+Vection can be induced in laboratories using moving visual fields and virtual environments. Researchers measure whether it occurs, how long it takes to begin, how long it lasts, and how intense the self-motion feels.[3]
 
-The phenomenon is also multisensory. Visual information is powerful, but auditory, tactile, biomechanical, and vestibular cues can contribute to perceived self-motion.
+The phenomenon is also multisensory. Visual information is powerful, but auditory, tactile, biomechanical, and vestibular cues can contribute to perceived self-motion.[4]
 
 This gives us another important distinction.
 
@@ -301,7 +301,7 @@ What changed was the relationship between intention and experience.
 
 Research on sleep onset gives us evidence that movement imagery becomes increasingly important as reflective waking thought declines.
 
-In one study, researchers awakened participants at different physiologically monitored points during sleep onset and analyzed their reports. As the transition progressed, reflective thinking decreased while **motor imagery increased**. Participants increasingly described interaction with internally generated scenes rather than merely thinking about them.
+In one study, researchers awakened participants at different physiologically monitored points during sleep onset and analyzed their reports. As the transition progressed, reflective thinking decreased while **motor imagery increased**. Participants increasingly described interaction with internally generated scenes rather than merely thinking about them.[5]
 
 This is a remarkable change.
 
@@ -369,7 +369,7 @@ You may turn without any visible room rotating around you.
 
 This is not as strange as it initially sounds.
 
-Ordinary self-motion perception already combines vestibular information, visual motion, proprioception, touch, and expectations about where the body is located.
+Ordinary self-motion perception already combines vestibular information, visual motion, proprioception, touch, and expectations about where the body is located.[4]
 
 A complete visual model of the body is not always necessary for the sensation of motion.
 
@@ -483,7 +483,7 @@ That gives you a much better baseline for noticing later changes near sleep.
 
 Motor imagery is trainable in at least some respects, but the effect depends on the practice and the measure used.
 
-As noted earlier, physical and observational practice appear to strengthen different dimensions of imagery.
+As noted earlier, physical and observational practice appear to strengthen different dimensions of imagery.[2]
 
 That result also warns us against making imagery too abstract.
 

@@ -15,7 +15,7 @@ Maybe an orange ball appears immediately, complete with black channels, pebbled 
 
 Those are not necessarily the same ability.
 
-Casual discussions of visualization often treat mental imagery as a single scale running from weak to vivid. Research on aphantasia—the reported absence or near-absence of voluntary visual imagery—has made that picture much more complicated. People differ not only in how vivid their internal pictures feel, but in the kinds of mental representation available to them. Researchers have found distinctions between object imagery and spatial imagery, between visual and other sensory imagery, and between people who rely heavily on visual experience and people who solve the same tasks through spatial, verbal, or analytic strategies.
+Casual discussions of visualization often treat mental imagery as a single scale running from weak to vivid. Research on aphantasia—the reported absence or near-absence of voluntary visual imagery—has made that picture much more complicated. People differ not only in how vivid their internal pictures feel, but in the kinds of mental representation available to them. Researchers have found distinctions between object imagery and spatial imagery, between visual and other sensory imagery, and between people who rely heavily on visual experience and people who solve the same tasks through spatial, verbal, or analytic strategies.[1][2]
 
 Before trying to improve imagery, then, it helps to find out what you already have.
 
@@ -25,7 +25,7 @@ The word *visualize* is convenient because it compresses several different exper
 
 One person might report something approaching ordinary sight, though usually less stable and less detailed. Another might experience faint imagery that feels more like a memory than a picture. Someone else may have spatial structure without visible surfaces: they know the ball is round and know where it is positioned, but there is no orange sphere floating in an internal visual field.
 
-Aphantasia is usually defined around absent or severely reduced voluntary visual imagery while awake, but even that category appears to contain substantial variation. Research suggests that it is probably not one single phenomenon. People can differ in object imagery, spatial imagery, other sensory modalities, involuntary imagery, memory, face recognition, and the cognitive strategies they use.
+Aphantasia is usually defined around absent or severely reduced voluntary visual imagery while awake, but even that category appears to contain substantial variation. Research suggests that it is probably not one single phenomenon. People can differ in object imagery, spatial imagery, other sensory modalities, involuntary imagery, memory, face recognition, and the cognitive strategies they use.[1][2]
 
 That makes introspection useful here, but introspection needs specific questions.
 
@@ -39,9 +39,9 @@ Researchers have long distinguished between **object imagery** and **spatial ima
 
 The distinction becomes especially interesting in people with very weak visual imagery.
 
-Studies of mental rotation have found that people reporting aphantasia can still solve rotation problems successfully. In a 2024 study using three-dimensional block shapes and rotating human figures, participants with aphantasia were slower but more accurate than control participants. Both groups still showed the familiar increase in response time as the amount of required rotation increased. The groups appeared to differ partly in strategy: typical imagers favored object-based mental rotation more often, while aphantasic participants reported greater use of analytic approaches.
+Studies of mental rotation have found that people reporting aphantasia can still solve rotation problems successfully. In a 2024 study using three-dimensional block shapes and rotating human figures, participants with aphantasia were slower but more accurate than control participants. Both groups still showed the familiar increase in response time as the amount of required rotation increased. The groups appeared to differ partly in strategy: typical imagers favored object-based mental rotation more often, while aphantasic participants reported greater use of analytic approaches.[3]
 
-An earlier study of a person with acquired aphantasia found something similar. Although the participant could no longer consciously generate ordinary voluntary object imagery, he could still perform some spatial transformations during mental-rotation tasks.
+An earlier study of a person with acquired aphantasia found something similar. Although the participant could no longer consciously generate ordinary voluntary object imagery, he could still perform some spatial transformations during mental-rotation tasks.[4]
 
 This creates a useful possibility: you may be manipulating an internal representation without *seeing* it in the way you expected.
 
@@ -81,7 +81,7 @@ Simple solids are useful because they reduce the amount of stored surface detail
 
 If the cube remains easy to manipulate while color and texture imagery are weak, spatial imagery may be doing more of the work. If you can produce richly detailed surfaces but have difficulty rotating the object, your profile may be different.
 
-Research on imagery extremes supports taking these differences seriously. Studies have reported distinct object and spatial imagery profiles rather than one universal imagery ability.
+Research on imagery extremes supports taking these differences seriously. Studies have reported distinct object and spatial imagery profiles rather than one universal imagery ability.[1]
 
 You do not need a diagnosis. You need better questions than one vague score for visualization.
 
@@ -91,7 +91,7 @@ Natural imagination is usually multisensory.
 
 Think again about the basketball. Vision may be only one part of the representation. You may be able to imagine the rough rubber against your hands, the hollow sound of a bounce in a gymnasium, the muscular movement involved in throwing it, or the pressure of catching it.
 
-Research on aphantasia has found substantial variation here as well. Some people with weak visual imagery report relatively preserved imagery in sound, touch, movement, smell, or other modalities, while others report reduced imagery across several sensory systems. Large-sample work has identified both selectively visual and broader multisensory forms of aphantasia.
+Research on aphantasia has found substantial variation here as well. Some people with weak visual imagery report relatively preserved imagery in sound, touch, movement, smell, or other modalities, while others report reduced imagery across several sensory systems. Large-sample work has identified both selectively visual and broader multisensory forms of aphantasia.[2]
 
 So if a visual image remains weak, try the other channels rather than treating them as consolation prizes.
 
@@ -109,11 +109,11 @@ There are many visualization systems that assume repeated practice will make int
 
 Controlled studies give a more complicated answer.
 
-In one experiment, participants practiced imagining colored visual patterns for about an hour a day across five consecutive days. Researchers measured imagery strength partly by how strongly a mental image influenced later binocular-rivalry perception. Training did not produce an overall increase in that measure of imagery strength. What did improve was **metacognition**: participants became better at knowing when their own imagery was relatively strong or weak.
+In one experiment, participants practiced imagining colored visual patterns for about an hour a day across five consecutive days. Researchers measured imagery strength partly by how strongly a mental image influenced later binocular-rivalry perception. Training did not produce an overall increase in that measure of imagery strength. What did improve was **metacognition**: participants became better at knowing when their own imagery was relatively strong or weak.[5]
 
 That finding is more interesting than it may initially sound. Practice may improve your ability to recognize and work with the imagery you actually have even when it does not simply turn up a global vividness knob.
 
-Other training studies have found changes in more specific forms of imagery. For example, four weeks of training involving positive imagined future events increased the reported vividness of positive prospective imagery compared with a control condition in one study of older adults.
+Other training studies have found changes in more specific forms of imagery. For example, four weeks of training involving positive imagined future events increased the reported vividness of positive prospective imagery compared with a control condition in one study of older adults.[6]
 
 These studies are not testing exactly the same thing. Five days imagining colored gratings is not the same intervention as weeks of emotionally meaningful future-event imagery, and neither is the same thing as months or years of informal visualization practice.
 
@@ -125,13 +125,13 @@ That makes experimentation worthwhile without making the outcome a promise.
 
 One visualization practice that became influential outside academic psychology is **Image Streaming**, developed and promoted by Win Wenger.
 
-The basic procedure is unusual in one important way: instead of silently trying harder to produce a picture, the practitioner describes aloud whatever sensory impressions are present. Wenger recommended speaking to another person or into a recorder and describing emerging imagery in rapid, concrete sensory language—colors, shapes, textures, positions, motion, sound, touch, and other details.
+The basic procedure is unusual in one important way: instead of silently trying harder to produce a picture, the practitioner describes aloud whatever sensory impressions are present. Wenger recommended speaking to another person or into a recorder and describing emerging imagery in rapid, concrete sensory language—colors, shapes, textures, positions, motion, sound, touch, and other details.[7]
 
 Weak impressions count. A smear of grey can be described. A line can be described. A texture can be described. An uncertain shape can be described before you know what it is.
 
 The method shifts the job from **make a good picture** to **report what is actually happening**.
 
-Wenger attached much larger theories and claims to Image Streaming, including claims about intelligence, creativity, subconscious processing, and how much of the brain is involved in different modes of thought. Those claims require evidence of their own. They are not necessary in order to experiment with the underlying procedure.
+Wenger attached much larger theories and claims to Image Streaming, including claims about intelligence, creativity, subconscious processing, and how much of the brain is involved in different modes of thought.[7] Those claims require evidence of their own. They are not necessary in order to experiment with the underlying procedure.
 
 The practical exercise is simpler: notice whatever sensory impression is present, describe it before judging it, and see what happens next.
 
@@ -167,7 +167,7 @@ Calling it *blackness* may already be too simple. Look carefully. Is the darknes
 
 None of these answers needs to become something else.
 
-Visual experience with closed eyes can include elementary phenomena generated within the visual system. **Phosphenes**, for example, are perceptions of light without corresponding external light stimulation, and retinal dark noise and afterimages are also studied visual phenomena.
+Visual experience with closed eyes can include elementary phenomena generated within the visual system. **Phosphenes**, for example, are perceptions of light without corresponding external light stimulation, and retinal dark noise and afterimages are also studied visual phenomena.[8]
 
 That does not mean every point, pattern, haze, or internally generated image should be called a phosphene. It simply means that closing the eyes does not necessarily reduce visual experience to a perfectly empty black screen.
 
@@ -197,7 +197,7 @@ Researchers often distinguish voluntary imagery from imagery that arises without
 
 Dream imagery is not necessarily the same thing as spontaneous waking imagery. A visual afterimage is different again. Hypnagogic imagery at the edge of sleep may operate under different conditions from all of them.
 
-This matters in aphantasia research because it has sometimes been assumed that people who lack voluntary imagery nevertheless retain involuntary imagery because many report visual dreams. A 2024 analysis argues that this is too broad and that different involuntary forms should be investigated separately rather than assumed to rise and fall together.
+This matters in aphantasia research because it has sometimes been assumed that people who lack voluntary imagery nevertheless retain involuntary imagery because many report visual dreams. A 2024 analysis argues that this is too broad and that different involuntary forms should be investigated separately rather than assumed to rise and fall together.[9]
 
 The same principle works well as a personal experiment.
 

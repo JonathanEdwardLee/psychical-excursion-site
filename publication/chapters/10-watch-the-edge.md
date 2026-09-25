@@ -9,7 +9,7 @@ edition: publication-master
 
 Every night you cross a boundary that is surprisingly difficult to locate.
 
-At one moment you are awake. Later, you are asleep. It is tempting to imagine a clean dividing line between the two, but sleep research gives us a more complicated picture. Sleep onset is a process in which different parts of waking experience change at different rates. Responsiveness to the outside world declines. Thoughts become less organized. Brain rhythms change. Muscle activity changes. Internally generated sensations and imagery may become more prominent. Yet some awareness can persist through portions of that transition.
+At one moment you are awake. Later, you are asleep. It is tempting to imagine a clean dividing line between the two, but sleep research gives us a more complicated picture. Sleep onset is a process in which different parts of waking experience change at different rates. Responsiveness to the outside world declines. Thoughts become less organized. Brain rhythms change. Muscle activity changes. Internally generated sensations and imagery may become more prominent. Yet some awareness can persist through portions of that transition.[1]
 
 This makes the edge of sleep an unusually useful place to observe consciousness changing in real time.
 
@@ -27,7 +27,7 @@ Sleep laboratories usually classify sleep using physiological measurements such 
 
 That classification is extremely useful, but subjective consciousness does not necessarily obey the boundary as neatly as a chart does.
 
-A large systematic review of sleep onset found substantial variation in how researchers define the transition itself. Physiological, behavioral, and subjective markers do not always occur simultaneously. N1 in particular may behave less like a stable destination than a fluctuating period in which wake-like and sleep-like features coexist.
+A large systematic review of sleep onset found substantial variation in how researchers define the transition itself. Physiological, behavioral, and subjective markers do not always occur simultaneously. N1 in particular may behave less like a stable destination than a fluctuating period in which wake-like and sleep-like features coexist.[1]
 
 That means the question **When did I fall asleep?** can have several answers.
 
@@ -55,7 +55,7 @@ Ordinary waking thought is often goal-directed. You are planning tomorrow, remem
 
 One thought connects to another for no obvious reason. A sentence begins and loses its destination. A memory becomes mixed with something invented. You may briefly accept an absurd connection that would have seemed obviously strange a minute earlier.
 
-Laboratory research on light sleep has found reports becoming more unrealistic and more prone to sudden leaps compared with waking thought. Other sleep-onset research describes a gradual transformation of waking mentation into increasingly perceptual and dream-like experience.
+Laboratory research on light sleep has found reports becoming more unrealistic and more prone to sudden leaps compared with waking thought.[2] Other sleep-onset research describes a gradual transformation of waking mentation into increasingly perceptual and dream-like experience.[3]
 
 This gives you a marker that is easy to miss if you are waiting only for pictures.
 
@@ -73,15 +73,15 @@ It is when thought stops explaining itself.
 
 Earlier, we separated deliberate imagery from imagery that seemed to appear on its own. Sleep onset pushes much further in the second direction.
 
-Researchers have repeatedly awakened people during the transition into sleep and asked what had just been happening in their experience. Reports include simple visual patterns, objects, landscapes, people, movement, sounds, and increasingly dream-like scenes.
+Researchers have repeatedly awakened people during the transition into sleep and asked what had just been happening in their experience. Reports include simple visual patterns, objects, landscapes, people, movement, sounds, and increasingly dream-like scenes.[3]
 
-Fine-grained work by Hori, Hayashi, and colleagues divided the ordinary waking-to-sleep transition into more stages than the broad N1 category used in standard sleep scoring. When participants were awakened during different parts of that progression, the reported imagery changed along with EEG patterns. Certain landscape-like experiences appeared relatively early, while more dream-like images and people became more common later in the transition.
+Fine-grained work by Hori, Hayashi, and colleagues divided the ordinary waking-to-sleep transition into more stages than the broad N1 category used in standard sleep scoring. When participants were awakened during different parts of that progression, the reported imagery changed along with EEG patterns. Certain landscape-like experiences appeared relatively early, while more dream-like images and people became more common later in the transition.[3]
 
 This should not be turned into a rigid sequence that everyone must reproduce. The important observation is that **the character of imagery can change as sleep deepens**.
 
 Something else makes these experiences especially interesting.
 
-In a well-known fMRI study, researchers repeatedly awakened sleeping participants during the sleep-onset period and collected verbal reports of what they had just seen. Machine-learning models trained on brain responses to ordinary waking visual stimuli were able to identify categories of reported sleep imagery from patterns of activity in visual cortical areas.
+In a well-known fMRI study, researchers repeatedly awakened sleeping participants during the sleep-onset period and collected verbal reports of what they had just seen. Machine-learning models trained on brain responses to ordinary waking visual stimuli were able to identify categories of reported sleep imagery from patterns of activity in visual cortical areas.[4]
 
 In other words, imagery arising around sleep onset is not merely a poetic metaphor for thought becoming dreamy. It can involve activity in neural systems that are also involved in waking visual perception.
 
@@ -97,9 +97,9 @@ As internal experience becomes stronger, the external world generally becomes le
 
 Again, this appears to happen progressively.
 
-Studies of behavioral responsiveness during sleep onset find increasing lapses and failures to respond as sleep deepens. Experiments measuring brain responses to external tones also show changes when hypnagogic imagery is occurring.
+Studies of behavioral responsiveness during sleep onset find increasing lapses and failures to respond as sleep deepens.[1] Experiments measuring brain responses to external tones also show changes when hypnagogic imagery is occurring.[5]
 
-At the same time, brain imaging during drowsy eye closures has shown widespread co-activation in visual, auditory, and somatosensory cortices even while responsiveness to external stimulation is declining.
+At the same time, brain imaging during drowsy eye closures has shown widespread co-activation in visual, auditory, and somatosensory cortices even while responsiveness to external stimulation is declining.[6]
 
 That combination is fascinating.
 
@@ -121,7 +121,7 @@ You are simply somewhere.
 
 Some sleep-onset experiences are so brief that calling them full dreams feels excessive.
 
-Researcher Tore Nielsen has used the term **microdreams** for very short dream-like experiences occurring near the boundary between waking and sleep.
+Researcher Tore Nielsen has used the term **microdreams** for very short dream-like experiences occurring near the boundary between waking and sleep.[7]
 
 A microdream might contain an image, movement, action, person, phrase, or miniature scene. It may last only long enough for something to happen before waking awareness returns.
 
@@ -149,13 +149,13 @@ The boundary is not always clear. That uncertainty is part of what makes sleep o
 
 Hypnagogic imagery is not necessarily random.
 
-One of the classic demonstrations came from studies in which people repeatedly played the computer game *Tetris*. Around sleep onset, participants began reporting stereotyped visual imagery related to falling game pieces. Remarkably, similar reports occurred in amnesic patients who could not consciously remember having played the game.
+One of the classic demonstrations came from studies in which people repeatedly played the computer game *Tetris*. Around sleep onset, participants began reporting stereotyped visual imagery related to falling game pieces. Remarkably, similar reports occurred in amnesic patients who could not consciously remember having played the game.[8]
 
-Later experimental work likewise found that recent experience could influence images and sounds reported during daytime sleep onset.
+Later experimental work likewise found that recent experience could influence images and sounds reported during daytime sleep onset.[9]
 
 This phenomenon is sometimes discussed as part of the broader **day residue** of dreaming: material from waking experience reappearing in sleep-related mentation.
 
-More recent work suggests the transformation is not necessarily a simple replay. Visual aspects of a recent experience can persist into hypnagogic imagery while emotional properties may change differently as sleep deepens.
+More recent work suggests the transformation is not necessarily a simple replay. Visual aspects of a recent experience can persist into hypnagogic imagery while emotional properties may change differently as sleep deepens.[10]
 
 So if an image from your day suddenly appears, notice the connection without assuming it is a literal memory.
 
@@ -169,7 +169,7 @@ Hypnagogia is not only visual.
 
 People also report words, voices, music, noises, and other auditory experiences during sleep onset. Some are extremely brief: a name, a knock, a phrase, or a sound that seems clear enough to make you wonder whether it occurred in the room.
 
-Research comparing hypnagogic verbal experiences with later REM dreams has found differences in their form. Sleep-onset verbal experiences can sometimes be short and direct rather than extended conversations.
+Research comparing hypnagogic verbal experiences with later REM dreams has found differences in their form. Sleep-onset verbal experiences can sometimes be short and direct rather than extended conversations.[3]
 
 Again, the goal is not to produce them.
 
@@ -197,7 +197,7 @@ They do not necessarily feel alike.
 
 The body is changing too.
 
-One of the most familiar sleep-onset events is the **hypnic jerk**, also called a sleep start: a sudden involuntary muscle contraction occurring around the transition into sleep. Hypnic jerks are widely described as benign sleep-wake transition phenomena, although their frequency and intensity vary.
+One of the most familiar sleep-onset events is the **hypnic jerk**, also called a sleep start: a sudden involuntary muscle contraction occurring around the transition into sleep. Hypnic jerks are widely described as benign sleep-wake transition phenomena, although their frequency and intensity vary.[11]
 
 Sometimes the movement is accompanied by a sensation of falling or sudden loss of support.
 
@@ -263,7 +263,7 @@ This is where the earlier dream work begins reconnecting with the body-and-atten
 
 Lucid dreaming depends on recognizing a state that normally goes unquestioned. Meditation research uses the related concept of **meta-awareness** for noticing the current condition of one's own mind.
 
-A 2024 study involving 635 participants found associations among frequent lucid dreaming, particular meditation practices, mindfulness characteristics, and meta-awareness. The results do not establish that meditation simply causes lucid dreams, but they strengthen the idea that awareness of one's current mental state is relevant to both practices.
+A 2024 study involving 635 participants found associations among frequent lucid dreaming, particular meditation practices, mindfulness characteristics, and meta-awareness. The results do not establish that meditation simply causes lucid dreams, but they strengthen the idea that awareness of one's current mental state is relevant to both practices.[12]
 
 At the sleep edge, the experiment becomes unusually direct.
 
@@ -295,9 +295,9 @@ Scientific sleep research is not the first system to take an interest in maintai
 
 Indian and Tibetan contemplative traditions contain practices involving sleep, dreams, and continuity of awareness. The terms, goals, and philosophical frameworks differ substantially among traditions, so they should not be collapsed into one modern technique.
 
-**Yoga Nidra**, for example, has multiple historical forms and modern adaptations. Contemporary clinical literature often uses the name for guided practices involving deep physical relaxation and continuing awareness. Modern studies have investigated Yoga Nidra for sleep quality, stress, and related outcomes, although protocols vary considerably and much of the clinical evidence remains methodologically heterogeneous.
+**Yoga Nidra**, for example, has multiple historical forms and modern adaptations. Contemporary clinical literature often uses the name for guided practices involving deep physical relaxation and continuing awareness. Modern studies have investigated Yoga Nidra for sleep quality, stress, and related outcomes, although protocols vary considerably and much of the clinical evidence remains methodologically heterogeneous.[13]
 
-Indo-Tibetan dream and sleep yogas place dream awareness within a much larger contemplative system. In *The Tibetan Yogas of Dream and Sleep*, Tenzin Wangyal Rinpoche describes practices for cultivating awareness through waking, falling asleep, dreaming, and sleep itself. Within that tradition, maintaining awareness during these transitions serves contemplative purposes that go beyond simply producing lucid dreams.
+Indo-Tibetan dream and sleep yogas place dream awareness within a much larger contemplative system. In *The Tibetan Yogas of Dream and Sleep*, Tenzin Wangyal Rinpoche describes practices for cultivating awareness through waking, falling asleep, dreaming, and sleep itself. Within that tradition, maintaining awareness during these transitions serves contemplative purposes that go beyond simply producing lucid dreams.[14]
 
 These traditional maps and modern sleep science ask different kinds of questions.
 

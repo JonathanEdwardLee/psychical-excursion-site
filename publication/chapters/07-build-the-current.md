@@ -177,7 +177,7 @@ That turns a belief into an experiment.
 
 Qigong gives us one of the clearest examples of coordinated attention, breath, posture, and movement.
 
-The National Center for Complementary and Integrative Health describes qigong as a family of practices involving regulation of the mind, breath, and body posture or movement.
+The National Center for Complementary and Integrative Health describes qigong as a family of practices involving regulation of the mind, breath, and body posture or movement.[1]
 
 Some forms are active.
 
@@ -231,7 +231,7 @@ The route matters more than the count.
 
 Slow voluntary breathing has measurable physiological effects of its own.
 
-A systematic review and meta-analysis found that slow breathing changes heart-rate-variability measures associated with cardiac parasympathetic regulation, both during practice and under some conditions afterward.
+A systematic review and meta-analysis found that slow breathing changes heart-rate-variability measures associated with cardiac parasympathetic regulation, both during practice and under some conditions afterward.[2]
 
 That is useful evidence.
 
@@ -339,7 +339,7 @@ Why do so many systems begin with hands and feet?
 
 Traditional systems have their own answers.
 
-Bruce, for example, emphasizes the hands and feet heavily in his **New Energy Ways** practice before larger whole-body work.
+Bruce, for example, emphasizes the hands and feet heavily in his **New Energy Ways** practice before larger whole-body work.[3]
 
 There is also an ordinary practical reason.
 
@@ -453,7 +453,7 @@ But the fields overlap.
 
 And research suggests that body-focused contemplative training can change how people report their internal bodily awareness.
 
-A 2025 meta-analysis of twenty-nine randomized controlled trials found a small-to-medium improvement in self-reported interoception following mindfulness and related interventions.
+A 2025 meta-analysis of twenty-nine randomized controlled trials found a small-to-medium improvement in self-reported interoception following mindfulness and related interventions.[4]
 
 That is worth taking seriously.
 
@@ -523,7 +523,7 @@ Many traditional systems place unusual importance on the lower abdomen.
 
 In qigong traditions, the lower **dantian** is often treated as a central area of cultivation and storage.
 
-Bruce's system also describes a major energy-storage area below the navel.
+Bruce's system also describes a major energy-storage area below the navel.[3]
 
 Those systems developed separately enough that the resemblance is interesting.
 

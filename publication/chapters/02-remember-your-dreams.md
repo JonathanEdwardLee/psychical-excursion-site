@@ -11,7 +11,7 @@ Tonight, you are going to dream.
 
 That sentence is less mystical than it sounds.
 
-Sleep researchers can wake people from REM sleep and often collect vivid dream reports. They can also wake people from non-REM sleep and collect reports of thoughts, images, scenes, and other forms of experience there too. Dreaming is not confined neatly to one little compartment of the night.
+Sleep researchers can wake people from REM sleep and often collect vivid dream reports. They can also wake people from non-REM sleep and collect reports of thoughts, images, scenes, and other forms of experience there too.[1] Dreaming is not confined neatly to one little compartment of the night.
 
 The strange part is what happens next.
 
@@ -51,13 +51,13 @@ Some remember them almost every morning. Others remember a dream once in a while
 
 Research gives us a better reason to stay curious.
 
-Dream reports can be collected after awakenings from several stages of sleep, and modern work suggests that the difference between frequent and infrequent dream recall has a lot to do with what happens around awakening and memory.
+Dream reports can be collected after awakenings from several stages of sleep, and modern work suggests that the difference between frequent and infrequent dream recall has a lot to do with what happens around awakening and memory.[1][2]
 
 One useful model is called the **arousal-retrieval model**.
 
 The basic idea is surprisingly ordinary.
 
-A dream can be occurring during sleep, yet the experience still needs a chance to cross into waking memory. Brief awakenings may help provide that chance. In sleep-laboratory research, frequent dream recallers have shown more and longer awakenings during the night than low recallers, especially from stage N2 sleep.
+A dream can be occurring during sleep, yet the experience still needs a chance to cross into waking memory. Brief awakenings may help provide that chance. In sleep-laboratory research, frequent dream recallers have shown more and longer awakenings during the night than low recallers, especially from stage N2 sleep.[2]
 
 That does not mean you need to wreck your sleep to remember dreams.
 
@@ -67,7 +67,7 @@ It means the doorway matters.
 
 The few moments when sleep becomes waking may be part of the memory process itself.
 
-Sleep itself is also a difficult environment for ordinary waking memory. Dreaming can be richly detailed while it is happening and still leave little behind once the brain shifts into wake-oriented processing. Reviews of dreaming and the sleeping brain treat that disappearance as a memory problem, not as proof that nothing occurred.
+Sleep itself is also a difficult environment for ordinary waking memory. Dreaming can be richly detailed while it is happening and still leave little behind once the brain shifts into wake-oriented processing. Reviews of dreaming and the sleeping brain treat that disappearance as a memory problem, not as proof that nothing occurred.[1]
 
 Think of a dream as a message written in disappearing ink. Morning is when we learn how to read it before the page clears.
 
@@ -75,7 +75,7 @@ Think of a dream as a message written in disappearing ink. Morning is when we le
 
 There is another clue.
 
-In a 2025 prospective study of 217 adults, morning dream recall was associated with several factors, including a person's attitude toward dreams, patterns of sleep, and individual differences in cognition.
+In a 2025 prospective study of 217 adults, morning dream recall was associated with several factors, including a person's attitude toward dreams, patterns of sleep, and individual differences in cognition.[3]
 
 That does not prove that simply believing dreams are important creates dream memories.
 
@@ -165,9 +165,9 @@ Those three words may preserve a dream that would otherwise vanish by breakfast.
 
 They may also pull more material back while you write.
 
-Dream-log research gives us a useful reason to take this seriously. Studies comparing retrospective estimates with prospective logs often find that people report more dreams when they record them as they occur rather than trying to estimate later how often they usually dream.
+Dream-log research gives us a useful reason to take this seriously. Studies comparing retrospective estimates with prospective logs often find that people report more dreams when they record them as they occur rather than trying to estimate later how often they usually dream.[4][5]
 
-One empirical study also found evidence that keeping a logbook can enhance dream recall, although diary format, motivation, and measurement complicate the picture.
+One empirical study also found evidence that keeping a logbook can enhance dream recall, although diary format, motivation, and measurement complicate the picture.[4]
 
 So we keep the claim modest.
 
@@ -235,7 +235,7 @@ You can answer that only by trying it.
 
 Morning habits can either preserve the doorway or fill it immediately.
 
-Dream memory is fragile enough that new input can interfere with retrieval. Recent research on morning dream recall has found that susceptibility to interference helps predict whether people can recover dream content after waking.
+Dream memory is fragile enough that new input can interfere with retrieval. Recent research on morning dream recall has found that susceptibility to interference helps predict whether people can recover dream content after waking.[3]
 
 That gives us another practical reason to make the first few seconds simple.
 
@@ -271,7 +271,7 @@ The more dreams you remember, the more you begin to see recurring places, imposs
 
 Eventually one of those patterns may become useful for lucid dreaming.
 
-Research on lucid-dream induction gives us a concrete reason to care about recall first: stronger general dream recall predicts greater success with techniques such as MILD and SSILD.
+Research on lucid-dream induction gives us a concrete reason to care about recall first: stronger general dream recall predicts greater success with techniques such as MILD and SSILD.[6]
 
 That makes intuitive sense.
 

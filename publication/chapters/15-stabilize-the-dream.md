@@ -27,7 +27,7 @@ This can make lucid dreaming seem fragile, as though lucidity itself is what des
 
 That conclusion is too simple.
 
-Laboratory research has verified lucid awareness during ordinary REM sleep, and lucid dreamers can remain asleep long enough to make planned eye-movement signals, answer questions from researchers, hold information in mind, and perform simple calculations. Lucidity does not automatically equal awakening.
+Laboratory research has verified lucid awareness during ordinary REM sleep, and lucid dreamers can remain asleep long enough to make planned eye-movement signals, answer questions from researchers, hold information in mind, and perform simple calculations.[1] Lucidity does not automatically equal awakening.
 
 But lucidity also does not automatically produce a stable dream.
 
@@ -45,7 +45,7 @@ They do not have to.
 
 A person may know they are dreaming but have very little control. A dream may remain vivid and stable without obeying the dreamer's intentions. Someone may influence a small part of the dream while the larger scene continues doing whatever it wants.
 
-A 2026 review of lucid-dream control makes this distinction explicit. Lucidity does not reliably produce control, and the mechanisms and effectiveness of dream-control strategies remain poorly understood.
+A 2026 review of lucid-dream control makes this distinction explicit. Lucidity does not reliably produce control, and the mechanisms and effectiveness of dream-control strategies remain poorly understood.[2]
 
 That is a useful correction before we start talking about stabilization techniques.
 
@@ -103,7 +103,7 @@ Lucid dreaming is usually defined by insight: while dreaming, you know that you 
 
 Control is something else.
 
-Researchers have measured multiple dimensions of lucid experience rather than treating lucidity as one all-or-nothing property. The Lucidity and Consciousness in Dreams scale, for example, distinguishes insight, control, thought, realism, memory, dissociation, and emotion.
+Researchers have measured multiple dimensions of lucid experience rather than treating lucidity as one all-or-nothing property. The Lucidity and Consciousness in Dreams scale, for example, distinguishes insight, control, thought, realism, memory, dissociation, and emotion.[3]
 
 That matters because dreamers often assume:
 
@@ -111,7 +111,7 @@ That matters because dreamers often assume:
 
 Research does not support that expectation.
 
-A large international study likewise found that awareness of dreaming and the ability to influence dream content do not occur together in everyone.
+A large international study likewise found that awareness of dreaming and the ability to influence dream content do not occur together in everyone.[4]
 
 The dream may be lucid and still resist you.
 
@@ -119,7 +119,7 @@ That is not failed lucidity.
 
 It is a different variable.
 
-The 2026 review on dream control describes both deliberate, goal-directed control and more implicit forms in which expectation may influence what develops without a clear act of command.
+The 2026 review on dream control describes both deliberate, goal-directed control and more implicit forms in which expectation may influence what develops without a clear act of command.[2]
 
 This is useful for stabilization because trying to dominate the scene may not be the same thing as staying in it.
 
@@ -147,7 +147,7 @@ An older Lucidity Institute experiment compared three responses when lucid dream
 - rubbing the dream hands together;
 - continuing the current dream activity.
 
-In that small study, spinning and hand-rubbing were associated with more reports of continued dreaming than simply continuing as before.
+In that small study, spinning and hand-rubbing were associated with more reports of continued dreaming than simply continuing as before.[5]
 
 The result is interesting.
 
@@ -169,7 +169,7 @@ That is a very different claim.
 
 There is a plausible idea behind these techniques.
 
-Lucid dreaming depends on internally generated perception that can feel vivid enough to be experienced as a world. A modern neurocognitive framework proposes that attentional control and multisensory integration help maintain lucid experience by balancing internally generated models against incoming sensory information.
+Lucid dreaming depends on internally generated perception that can feel vivid enough to be experienced as a world. A modern neurocognitive framework proposes that attentional control and multisensory integration help maintain lucid experience by balancing internally generated models against incoming sensory information.[6]
 
 This does not prove that touching dream objects stabilizes dreams.
 
@@ -201,13 +201,13 @@ And it is still a hypothesis.
 
 We do not need to assume that sensory vividness inside dreams is weak.
 
-Dreams commonly include visual, motor, emotional, and bodily experience that is accepted as real while it is happening.
+Dreams commonly include visual, motor, emotional, and bodily experience that is accepted as real while it is happening.[7]
 
-Researchers have also demonstrated that people in lucid REM dreams can perceive some external questions and respond deliberately without fully waking.
+Researchers have also demonstrated that people in lucid REM dreams can perceive some external questions and respond deliberately without fully waking.[1]
 
 This tells us that the sleeping mind can maintain a rich internally generated scene while still processing limited outside information.
 
-A 2024 systematic review of sensory stimulation during sleep found that outside stimuli can sometimes alter dream content, but the results vary widely across methods and studies.
+A 2024 systematic review of sensory stimulation during sleep found that outside stimuli can sometimes alter dream content, but the results vary widely across methods and studies.[8]
 
 That variability is important.
 
@@ -293,7 +293,7 @@ Does nothing happen?
 
 The answer matters more than the technique.
 
-The old hand-rubbing experiment is interesting partly because it asks the dreamer to produce a vivid tactile and motor experience when the scene is fading.
+The old hand-rubbing experiment is interesting partly because it asks the dreamer to produce a vivid tactile and motor experience when the scene is fading.[5]
 
 We can test that without assuming the original explanation is correct.
 
@@ -339,7 +339,7 @@ Reach for an object.
 
 If the scene is already unstable, violent movement may be unnecessary.
 
-Spinning deserves to remain in the experiment because of its historical result, but it should not automatically be the first tool.
+Spinning deserves to remain in the experiment because of its historical result, but it should not automatically be the first tool.[5]
 
 Spinning may also change the scene completely.
 
@@ -391,7 +391,7 @@ One of the most useful stabilization skills may be simply waiting a moment.
 
 A visual scene can disappear without the entire dream ending.
 
-Older lucid-dream reports describe periods of darkness followed by another scene, sometimes after continued movement or spinning.
+Older lucid-dream reports describe periods of darkness followed by another scene, sometimes after continued movement or spinning.[5]
 
 False awakenings create another complication.
 
@@ -419,7 +419,7 @@ It is a practical response to a documented dream phenomenon.
 
 Dream control has limits.
 
-In one study, lucid dreamers were asked to recreate a recently viewed waking scene inside a dream. Even when dreamers knew their recreated scene was inaccurate, they often could not simply correct the dream imagery to match memory.
+In one study, lucid dreamers were asked to recreate a recently viewed waking scene inside a dream. Even when dreamers knew their recreated scene was inaccurate, they often could not simply correct the dream imagery to match memory.[9]
 
 That is a useful lesson.
 
@@ -427,7 +427,7 @@ The dream is not necessarily a graphics program waiting for commands.
 
 You may possess insight and intention while the environment still behaves autonomously.
 
-The 2026 review emphasizes this variability and the need for much better standardized research on dream-control strategies.
+The 2026 review emphasizes this variability and the need for much better standardized research on dream-control strategies.[2]
 
 This suggests a healthier approach to stabilization:
 
@@ -447,7 +447,7 @@ Reasonable.
 
 But we should be careful not to turn another common report into a universal law.
 
-Lucid dreaming occurs during activated REM sleep, and physiological studies do not support the simple idea that lucidity is merely waking intrusion that must be kept at the lowest possible arousal level.
+Lucid dreaming occurs during activated REM sleep, and physiological studies do not support the simple idea that lucidity is merely waking intrusion that must be kept at the lowest possible arousal level.[6]
 
 The practical issue may be abrupt shifts of attention rather than emotion itself.
 
@@ -535,9 +535,9 @@ Lucidity, stability, and control are different properties of dream experience.
 
 Knowing that you are dreaming does not guarantee that the dream will remain stable, and a stable lucid dream does not guarantee control over its content.
 
-Research on lucid-dream control remains limited. A 2026 review concludes that control strategies are still poorly understood and need systematic testing. An older small experiment found that spinning and hand-rubbing were associated with greater dream continuation than simply continuing the previous activity, but the evidence is preliminary.
+Research on lucid-dream control remains limited. A 2026 review concludes that control strategies are still poorly understood and need systematic testing.[2] An older small experiment found that spinning and hand-rubbing were associated with greater dream continuation than simply continuing the previous activity, but the evidence is preliminary.[5]
 
-A plausible framework emphasizes attentional control and multisensory integration in maintaining lucid experience. This gives sensory engagement a reasonable scientific hypothesis without proving any single technique.
+A plausible framework emphasizes attentional control and multisensory integration in maintaining lucid experience.[6] This gives sensory engagement a reasonable scientific hypothesis without proving any single technique.
 
 When a lucid dream begins changing, first identify what is actually unstable: the scene, lucidity, the dream body, memory for your goal, or the dream itself.
 

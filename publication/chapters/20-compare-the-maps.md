@@ -71,7 +71,7 @@ It does not require vividness.
 
 It does not require seeing the sleeping body.
 
-Lucid dreams have been objectively verified during REM sleep using pre-agreed eye signals, and modern laboratory work has demonstrated real-time communication with some lucid dreamers during verified REM.
+Lucid dreams have been objectively verified during REM sleep using pre-agreed eye signals, and modern laboratory work has demonstrated real-time communication with some lucid dreamers during verified REM.[1][2]
 
 The important variable is metacognitive awareness.
 
@@ -103,7 +103,7 @@ A bizarre dream may trigger suspicion.
 
 A perfect imitation of your bedroom may not.
 
-Sleep-laboratory evidence suggests false awakenings can occupy a state with electrophysiological features intermediate between ordinary REM sleep and wakefulness, similar in some respects to sleep paralysis.
+Sleep-laboratory evidence suggests false awakenings can occupy a state with electrophysiological features intermediate between ordinary REM sleep and wakefulness, similar in some respects to sleep paralysis.[3]
 
 Phenomenologically, however, the important point is straightforward:
 
@@ -141,7 +141,7 @@ floating;
 
 or the apparent bedroom.
 
-A 2023 review found a consistent positive relationship between lucid dreaming and sleep paralysis across much of the available literature, while emphasizing important differences in emotional tone and perceived control.
+A 2023 review found a consistent positive relationship between lucid dreaming and sleep paralysis across much of the available literature, while emphasizing important differences in emotional tone and perceived control.[4]
 
 Sleep paralysis is often frightening.
 
@@ -169,7 +169,7 @@ being located near the ceiling;
 
 or simply feeling displaced without seeing the physical body.
 
-A 2024 theoretical review of sleep-related OBEs argues that they may be facilitated by maintaining consciousness during transitions into REM sleep and examines their relationship to lucid dreaming and sleep paralysis.
+A 2024 theoretical review of sleep-related OBEs argues that they may be facilitated by maintaining consciousness during transitions into REM sleep and examines their relationship to lucid dreaming and sleep paralysis.[5]
 
 The same review also emphasizes phenomenological differences.
 
@@ -271,7 +271,7 @@ The sequence does not have to choose one box.
 
 ## Research also finds the experiences correlated
 
-A survey study of 974 people found that lucid dreaming, sleep paralysis, false awakenings and OBE reports were positively correlated in frequency.
+A survey study of 974 people found that lucid dreaming, sleep paralysis, false awakenings and OBE reports were positively correlated in frequency.[6]
 
 People who experienced one were more likely to report others.
 
@@ -279,7 +279,7 @@ That does not prove they are one state.
 
 It suggests shared vulnerability, shared sleep architecture, shared recall factors, or transitions among related states may be involved.
 
-A 2025 scoping review of 87 OBE publications likewise found that sleep paralysis and lucid dreaming can facilitate OBEs in some reports and induction contexts.
+A 2025 scoping review of 87 OBE publications likewise found that sleep paralysis and lucid dreaming can facilitate OBEs in some reports and induction contexts.[7]
 
 Think of neighboring countries.
 
@@ -303,7 +303,7 @@ Real physiology is messier.
 
 Features associated with wakefulness and sleep can coexist.
 
-A 2023 review of sleep-related dissociative states describes mixed or dissociated states in which components of ordinary wakefulness, NREM sleep and REM sleep can appear together.
+A 2023 review of sleep-related dissociative states describes mixed or dissociated states in which components of ordinary wakefulness, NREM sleep and REM sleep can appear together.[8]
 
 That provides a useful framework for:
 
@@ -343,7 +343,7 @@ Or:
 
 Those claims go beyond the evidence.
 
-The 2024 OBE review was specifically designed to examine both overlap and phenomenological differences among sleep-related OBEs, lucid dreaming and sleep paralysis.
+The 2024 OBE review was specifically designed to examine both overlap and phenomenological differences among sleep-related OBEs, lucid dreaming and sleep paralysis.[5]
 
 The experiences share features.
 
@@ -473,7 +473,7 @@ Sleep paralysis is often associated with fear.
 
 Lucid dreaming is often associated with positive emotion and perceived control.
 
-That contrast appears in the review literature.
+That contrast appears in the review literature.[4]
 
 But emotion does not define the state.
 
@@ -567,7 +567,7 @@ Both descriptions can coexist without being identical claims.
 
 Research also finds associations between sleep variables and ostensibly paranormal experiences and beliefs.
 
-A preregistered scoping review of 44 studies found positive associations among factors such as sleep paralysis, lucid dreaming, nightmares and hypnagogic hallucinations and reports or beliefs involving ghosts, spirits and near-death experiences.
+A preregistered scoping review of 44 studies found positive associations among factors such as sleep paralysis, lucid dreaming, nightmares and hypnagogic hallucinations and reports or beliefs involving ghosts, spirits and near-death experiences.[9]
 
 This does not show that sleep causes every paranormal belief.
 
@@ -645,9 +645,9 @@ Lucid dreaming, false awakening, sleep paralysis, out-of-body experience and ast
 
 **Astral projection** usually adds the interpretation that a nonphysical aspect of the person has actually separated and traveled.
 
-Research finds correlations and transitions among lucid dreaming, sleep paralysis, false awakenings and OBE reports.
+Research finds correlations and transitions among lucid dreaming, sleep paralysis, false awakenings and OBE reports.[4][5][6][7]
 
-Sleep physiology also supports the broader idea that mixed or dissociated sleep-wake states can occur rather than every component switching together.
+Sleep physiology also supports the broader idea that mixed or dissociated sleep-wake states can occur rather than every component switching together.[3][8]
 
 Overlap does not mean identity.
 

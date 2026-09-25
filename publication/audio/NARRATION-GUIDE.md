@@ -21,6 +21,7 @@ Preserve Jonathan's humor and short punch lines. Do not add audiobook filler or 
 ## Do not read aloud
 
 - YAML front matter in chapter files
+- Inline `[n]` citation markers (leave them in the master; skip them while speaking)
 - `## References` lists, DOIs, PMIDs, URLs
 - This audio folder
 - Production notes below

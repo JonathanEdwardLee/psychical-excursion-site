@@ -11,15 +11,15 @@ In the last few chapters, attention has been something you deliberately moved. Y
 
 This is one of the basic problems meditation has been exploring for a very long time. It is also surprisingly difficult. Choose something simple—the sensation of breathing at the nose, the weight of one hand, a quiet sound, or a particular point in the body—and decide to keep your attention there. Before long, you will probably discover that you have been thinking about something completely different. The interesting moment is not the distraction itself. It is the instant when you realize that your attention has wandered.
 
-Researchers studying mind-wandering sometimes call that recognition **meta-awareness**: awareness of what your own mind is currently doing. Experiments distinguish between periods when people are absorbed in mind-wandering without realizing it and moments when they catch themselves doing it. That distinction matters here because the ability to notice the drift gives you an opportunity to redirect attention deliberately.
+Researchers studying mind-wandering sometimes call that recognition **meta-awareness**: awareness of what your own mind is currently doing. Experiments distinguish between periods when people are absorbed in mind-wandering without realizing it and moments when they catch themselves doing it. That distinction matters here because the ability to notice the drift gives you an opportunity to redirect attention deliberately.[1]
 
 The practical skill in this chapter is therefore not “having no thoughts.” It is becoming increasingly familiar with the cycle of **remaining, wandering, recognizing, and returning**.
 
 ## Training Attention Rather Than Eliminating Thought
 
-Focused-attention meditation is one of the clearest research models for this process. A practitioner selects an object—often the breath—and attempts to maintain attention on it. When another thought, sensation, memory, or sound captures attention, the task is to recognize the distraction and return to the intended object. Reviews of meditation research suggest that this kind of practice can improve aspects of sustained attention, although studies vary considerably in their methods, populations, and effect sizes.
+Focused-attention meditation is one of the clearest research models for this process. A practitioner selects an object—often the breath—and attempts to maintain attention on it. When another thought, sensation, memory, or sound captures attention, the task is to recognize the distraction and return to the intended object. Reviews of meditation research suggest that this kind of practice can improve aspects of sustained attention, although studies vary considerably in their methods, populations, and effect sizes.[2]
 
-That qualification is worth keeping. Meditation is sometimes presented as if the scientific question has already been settled and a few minutes of daily practice will reliably transform attention, memory, mood, stress, and brain structure all at once. The evidence is more modest. Some controlled studies and reviews report improvements in sustained attention and reductions in mind-wandering, while results vary according to the kind of meditation, duration of training, participant experience, and the task used to measure attention.
+That qualification is worth keeping. Meditation is sometimes presented as if the scientific question has already been settled and a few minutes of daily practice will reliably transform attention, memory, mood, stress, and brain structure all at once. The evidence is more modest. Some controlled studies and reviews report improvements in sustained attention and reductions in mind-wandering, while results vary according to the kind of meditation, duration of training, participant experience, and the task used to measure attention.[2]
 
 For our purposes, we do not need a sweeping claim. The smaller observation is enough: deliberately maintaining attention is a trainable task, and repeatedly recognizing distraction is part of that training.
 
@@ -29,7 +29,7 @@ That is more useful than trying to manufacture an empty mind.
 
 ## Why Fighting Thoughts Usually Does Not Help
 
-When people first attempt mental quiet, an obvious strategy is to suppress thoughts: *I am going to stop thinking.* The problem is that monitoring whether a forbidden thought has returned requires keeping some representation of that thought active. Research on thought suppression has repeatedly found what are sometimes called ironic or rebound effects. Meta-analyses suggest that after people deliberately suppress a thought, the thought can become more accessible afterward, although the magnitude of the effect depends on the experimental conditions.
+When people first attempt mental quiet, an obvious strategy is to suppress thoughts: *I am going to stop thinking.* The problem is that monitoring whether a forbidden thought has returned requires keeping some representation of that thought active. Research on thought suppression has repeatedly found what are sometimes called ironic or rebound effects. Meta-analyses suggest that after people deliberately suppress a thought, the thought can become more accessible afterward, although the magnitude of the effect depends on the experimental conditions.[3]
 
 Meditation does not require you to accept every thought as meaningful, nor does it require you to follow it. It simply gives you another option besides following or fighting.
 
@@ -55,9 +55,9 @@ The experiment becomes: **how stable can attention remain when its target stays 
 
 ## Focused Attention and Open Monitoring
 
-Meditation research often distinguishes **focused-attention meditation** from **open-monitoring meditation**. In focused attention, one object is deliberately selected and competing stimuli are repeatedly allowed to pass without becoming the new target. In open monitoring, attention is less narrowly attached to one object. The practitioner instead observes changing sensations, thoughts, emotions, and sounds as they enter and leave awareness.
+Meditation research often distinguishes **focused-attention meditation** from **open-monitoring meditation**. In focused attention, one object is deliberately selected and competing stimuli are repeatedly allowed to pass without becoming the new target. In open monitoring, attention is less narrowly attached to one object. The practitioner instead observes changing sensations, thoughts, emotions, and sounds as they enter and leave awareness.[4]
 
-The two approaches should not simply be treated as beginner and advanced versions of the same thing. They place different demands on attention and appear to produce partly different cognitive effects. Experimental comparisons have found differences in how focused-attention and open-monitoring practices influence attentional processing, and recent work continues to investigate whether the sequence in which novices learn them matters.
+The two approaches should not simply be treated as beginner and advanced versions of the same thing. They place different demands on attention and appear to produce partly different cognitive effects. Experimental comparisons have found differences in how focused-attention and open-monitoring practices influence attentional processing, and recent work continues to investigate whether the sequence in which novices learn them matters.[4][5]
 
 For this guidebook, focused attention comes first for a practical reason: it gives us something concrete to train. Choose an object and learn to recognize when attention has left it. Once that becomes familiar, briefly remove the fixed object and observe the larger field.
 
@@ -99,7 +99,7 @@ Meditation is frequently explained online using a simple brainwave ladder. Beta 
 
 The actual neuroscience does not support such a clean hierarchy.
 
-EEG studies measure oscillatory activity occurring across several frequency ranges at the same time. Reviews of meditation research have reported changes involving alpha, theta, beta, gamma, and other measures, but the pattern depends on the meditation technique, participant experience, task, recording method, comparison condition, and analysis being used. A 2025 systematic review of focused-attention meditation specifically emphasized substantial heterogeneity across the EEG and MEG literature rather than identifying one universal electrophysiological signature.
+EEG studies measure oscillatory activity occurring across several frequency ranges at the same time. Reviews of meditation research have reported changes involving alpha, theta, beta, gamma, and other measures, but the pattern depends on the meditation technique, participant experience, task, recording method, comparison condition, and analysis being used. A 2025 systematic review of focused-attention meditation specifically emphasized substantial heterogeneity across the EEG and MEG literature rather than identifying one universal electrophysiological signature.[6]
 
 That is why an interesting measurement should not become a spiritual thermometer. An increase in a particular EEG frequency does not by itself tell us how “deep” someone's meditation was. Even meditation categories that sound similar can involve different attentional strategies.
 
@@ -149,7 +149,7 @@ That practice belongs naturally beside meditation because this chapter is ultima
 
 The goal of mental quiet is not to eliminate every thought. A more useful skill is attentional stability: selecting an object, recognizing when attention has wandered, and returning deliberately.
 
-Focused-attention meditation trains this cycle directly. Open monitoring changes the task by removing the single assigned object and observing whatever becomes prominent. Research treats these as related but distinguishable meditation approaches, and evidence suggests meditation can improve aspects of sustained attention, though results vary and should not be exaggerated.
+Focused-attention meditation trains this cycle directly. Open monitoring changes the task by removing the single assigned object and observing whatever becomes prominent. Research treats these as related but distinguishable meditation approaches, and evidence suggests meditation can improve aspects of sustained attention, though results vary and should not be exaggerated.[2][4]
 
 Thoughts, sensations, and sounds will continue to occur. Their appearance does not require following them or suppressing them. The experiment is discovering how much choice exists between something appearing in awareness and attention becoming absorbed by it.
 

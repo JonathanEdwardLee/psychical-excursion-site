@@ -139,7 +139,7 @@ And then:
 
 This is not just poetic language.
 
-The nervous system maintains organized representations of the body, including maps in somatosensory cortex that preserve relationships between different regions of the body.
+The nervous system maintains organized representations of the body, including maps in somatosensory cortex that preserve relationships between different regions of the body.[1]
 
 Your brain does not treat a touch on your thumb as interchangeable with a touch on your ankle.
 
@@ -147,7 +147,7 @@ Location matters.
 
 Attention matters too.
 
-A large body of tactile-attention research shows that touch presented at an attended body location tends to be detected more quickly and accurately than touch at an unattended location.
+A large body of tactile-attention research shows that touch presented at an attended body location tends to be detected more quickly and accurately than touch at an unattended location.[1]
 
 So if you deliberately put your attention into one hand, that is not merely a metaphor for thinking about hands.
 
@@ -183,7 +183,7 @@ How is the limb arranged?
 
 Where is the body in external space?
 
-Researchers studying spatial touch describe this as the integration of multiple location codes rather than one simple internal map.
+Researchers studying spatial touch describe this as the integration of multiple location codes rather than one simple internal map.[2]
 
 That becomes interesting very quickly.
 
@@ -295,7 +295,7 @@ Some people with visual aphantasia also report reduced imagery in touch, movemen
 
 Others appear to retain some forms of imagery while lacking others.
 
-Researchers now describe aphantasia as heterogeneous rather than a single identical experience shared by everyone who has it.
+Researchers now describe aphantasia as heterogeneous rather than a single identical experience shared by everyone who has it.[3]
 
 That matters for this book.
 
@@ -339,7 +339,7 @@ This becomes even more interesting when we stop treating tactile imagination as 
 
 In a 2023 fMRI study, participants either experienced or imagined different vibrotactile sensations.
 
-During imagined touch, researchers found activity in primary somatosensory cortex, including patterns that contained information about which type of tactile stimulus the participant was imagining.
+During imagined touch, researchers found activity in primary somatosensory cortex, including patterns that contained information about which type of tactile stimulus the participant was imagining.[4]
 
 The imagined and actually perceived stimuli were not identical experiences.
 
@@ -445,7 +445,7 @@ This idea appears prominently in Robert Bruce's **New Energy Ways** system.
 
 Bruce developed what he calls **tactile imaging** as an alternative to heavily visual energy-work instructions.
 
-His exercises emphasize mobile body awareness and imagined tactile actions such as brushing, stirring, sponging and bouncing awareness through parts of the body.
+His exercises emphasize mobile body awareness and imagined tactile actions such as brushing, stirring, sponging and bouncing awareness through parts of the body.[5]
 
 Bruce interprets these practices through an energy-body model.
 
@@ -555,7 +555,7 @@ Then compare the right foot with the left.
 
 This is also a place where traditional energy-work systems often begin.
 
-Bruce's system places substantial emphasis on stimulating the feet and legs before progressing into broader energy raising.
+Bruce's system places substantial emphasis on stimulating the feet and legs before progressing into broader energy raising.[5]
 
 His explanation is energetic.
 
@@ -743,7 +743,7 @@ For some people they do.
 
 For others, not really.
 
-Research on aphantasia suggests that reduced imagery can extend across more than one sensory modality, while other people show more selective patterns.
+Research on aphantasia suggests that reduced imagery can extend across more than one sensory modality, while other people show more selective patterns.[3]
 
 There is no reason to turn one person's imagery style into the definition of mental skill.
 
@@ -785,7 +785,7 @@ If someone naturally experiences weak visual imagery, can practice make it stron
 
 The answer is not yet as simple as I would like.
 
-Imagery vividness varies tremendously among people, and aphantasia itself appears heterogeneous.
+Imagery vividness varies tremendously among people, and aphantasia itself appears heterogeneous.[3]
 
 Some visualization exercises may improve task performance, attention to visual detail, memory strategies, or the ability to manipulate spatial information without necessarily creating vivid picture-like experience.
 
@@ -843,7 +843,7 @@ Feet.
 
 Hands.
 
-Bruce calls related practices **energy bouncing**, using awareness to move repeatedly through or between body regions.
+Bruce calls related practices **energy bouncing**, using awareness to move repeatedly through or between body regions.[5]
 
 Again, we will keep his energetic interpretation separate from what we directly observe.
 

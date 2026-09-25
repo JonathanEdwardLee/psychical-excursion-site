@@ -119,7 +119,7 @@ Meaning can arise from the relationship between an event and the person experien
 
 This is close to what Carl Jung meant by **synchronicity**: meaningful coincidence that is experienced as connected without an obvious ordinary causal link.
 
-Modern Jungian writing still treats synchronicity primarily as a concept about meaningful coincidence and subjective significance, not as a simple laboratory law that every striking coincidence proves.
+Modern Jungian writing still treats synchronicity primarily as a concept about meaningful coincidence and subjective significance, not as a simple laboratory law that every striking coincidence proves.[1]
 
 That distinction is useful.
 
@@ -205,7 +205,7 @@ Recurring dreams do not require paranormal explanation.
 
 Research defines recurrent dreams as dreams that repeat over time while preserving a similar theme or even substantial content.
 
-Studies find recurring themes such as pursuit, threat, falling, aggression, confrontation, and other emotionally loaded situations.
+Studies find recurring themes such as pursuit, threat, falling, aggression, confrontation, and other emotionally loaded situations.[2]
 
 The important word is **repeat**.
 
@@ -217,7 +217,7 @@ That alone makes recurring dream characters and places worth tracking.
 
 Research generally supports some form of continuity between waking life and dream life.
 
-Activities, concerns, emotional relationships, and personally important material can be incorporated into dreams.
+Activities, concerns, emotional relationships, and personally important material can be incorporated into dreams.[3]
 
 Not perfectly.
 
@@ -261,7 +261,7 @@ Dream characters can transform in bizarre ways.
 
 Yet research suggests those transformations are not completely arbitrary.
 
-Character and object changes often follow associative constraints rather than becoming absolutely anything at random.
+Character and object changes often follow associative constraints rather than becoming absolutely anything at random.[4]
 
 That gives recurring characters an interesting status.
 
@@ -341,9 +341,9 @@ That feeling deserves to be recorded carefully.
 
 ## Dreams can maintain identifiable continuity
 
-Research on dream coherence has found that characters, objects, locations, and emotions can provide enough continuity for judges to distinguish intact dream narratives from artificially spliced ones.
+Research on dream coherence has found that characters, objects, locations, and emotions can provide enough continuity for judges to distinguish intact dream narratives from artificially spliced ones.[5]
 
-Other newer work shows that coherence is not universal and that some dreams contain scene changes so complete that judges cannot reliably tell whether different segments belonged together.
+Other newer work shows that coherence is not universal and that some dreams contain scene changes so complete that judges cannot reliably tell whether different segments belonged together.[6]
 
 That combination is useful.
 
@@ -393,7 +393,7 @@ All three are interesting.
 
 People do report experiences they describe as **mutual** or **shared dreams**.
 
-A peer-reviewed descriptive study analyzed 102 reports of mutual dreaming while explicitly bracketing the question of whether the dreams were objectively shared.
+A peer-reviewed descriptive study analyzed 102 reports of mutual dreaming while explicitly bracketing the question of whether the dreams were objectively shared.[7]
 
 Most involved two people.
 
@@ -483,7 +483,7 @@ They also became controversial.
 
 ## Replication did not always succeed
 
-A later attempt by Edward Belvedere and David Foulkes to replicate one of the Maimonides procedures failed to reproduce the original result.
+A later attempt by Edward Belvedere and David Foulkes to replicate one of the Maimonides procedures failed to reproduce the original result.[8]
 
 That matters.
 
@@ -653,19 +653,19 @@ The answer may teach you something whether the cause was cosmic or computational
 
 Coincidences become powerful when events feel connected by meaning rather than obvious causation.
 
-Jung called this synchronicity.
+Jung called this synchronicity.[1]
 
 Selective attention, salience, memory, expectation, probability, and confirmation processes can all increase how often patterns seem to appear once we begin looking for them.
 
-Recurring dreams are established phenomena, and dream research shows continuity with waking concerns as well as recurring or constrained characters, objects, locations, and emotions.
+Recurring dreams are established phenomena, and dream research shows continuity with waking concerns as well as recurring or constrained characters, objects, locations, and emotions.[2][3][4][5]
 
 Recurring dream places can feel persistent enough to map, but stable dream geography has not been established as an external world.
 
-Reports of mutual/shared dreams exist and have been studied descriptively, especially among emotionally connected people.
+Reports of mutual/shared dreams exist and have been studied descriptively, especially among emotionally connected people.[7]
 
 That research does not establish that two people literally entered one objective dream space.
 
-Dream-telepathy experiments have a long and controversial history, including positive findings and failed replications.
+Dream-telepathy experiments have a long and controversial history, including positive findings and failed replications.[8]
 
 So the practical rule is:
 

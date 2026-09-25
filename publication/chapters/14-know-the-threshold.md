@@ -45,11 +45,11 @@ It would be convenient if entering N1 produced a recognizable internal bell.
 
 It does not.
 
-A recent review of the sleep-onset period emphasizes that the descent into sleep involves changing electrophysiology, cognition, sensory processing, and responsiveness that do not necessarily transform at the same instant.
+A recent review of the sleep-onset period emphasizes that the descent into sleep involves changing electrophysiology, cognition, sensory processing, and responsiveness that do not necessarily transform at the same instant.[1]
 
 Even the simple question **Am I asleep?** can become unreliable.
 
-Research on subjective sleep perception has found that healthy sleepers commonly report feeling awake around sleep onset even when polysomnography indicates that sleep has already begun. That feeling can continue into the first non-REM sleep cycle.
+Research on subjective sleep perception has found that healthy sleepers commonly report feeling awake around sleep onset even when polysomnography indicates that sleep has already begun. That feeling can continue into the first non-REM sleep cycle.[2]
 
 This is worth remembering whenever you think:
 
@@ -69,7 +69,7 @@ One useful part of the transition is not that external sensation instantly disap
 
 Sleep does not simply turn the senses off.
 
-The sleeping brain continues processing some information from the environment, especially salient or meaningful signals, while reducing the degree to which ordinary incoming information reaches conscious awareness.
+The sleeping brain continues processing some information from the environment, especially salient or meaningful signals, while reducing the degree to which ordinary incoming information reaches conscious awareness.[3]
 
 That helps explain a familiar experience.
 
@@ -117,7 +117,7 @@ A thought begins logically and ends somewhere absurd.
 
 You briefly accept something that would have seemed obviously strange thirty seconds earlier.
 
-Research on hypnagogia has documented these changes in sleep-onset cognition. Sleep-onset imagery can include visual scenes, sounds, bodily experiences, fragments of memory, and increasingly dreamlike combinations. Researchers sometimes use the term **microdream** for very short dreamlike experiences occurring around this boundary.
+Research on hypnagogia has documented these changes in sleep-onset cognition. Sleep-onset imagery can include visual scenes, sounds, bodily experiences, fragments of memory, and increasingly dreamlike combinations. Researchers sometimes use the term **microdream** for very short dreamlike experiences occurring around this boundary.[4]
 
 The useful feature is not merely that imagery appeared.
 
@@ -225,7 +225,7 @@ This deserves emphasis because it can prevent a great deal of unnecessary frustr
 
 The subjective conviction **I was awake** is not always a perfect measurement of physiological state.
 
-Research reviewing subjective-objective sleep differences found that even good sleepers frequently experience periods of objectively measured sleep as wakefulness near sleep onset.
+Research reviewing subjective-objective sleep differences found that even good sleepers frequently experience periods of objectively measured sleep as wakefulness near sleep onset.[2]
 
 The reverse problem is possible too.
 
@@ -255,7 +255,7 @@ Because consciousness feels clear, the natural conclusion can be:
 
 That description may be phenomenologically accurate—it captures what the event felt like—but it should not automatically be turned into a precise physiological claim.
 
-In a small laboratory study that captured episodes of sleep paralysis and false awakening, their EEG characteristics were closer to dreaming sleep than ordinary waking and showed features intermediate between REM sleep and wakefulness.
+In a small laboratory study that captured episodes of sleep paralysis and false awakening, their EEG characteristics were closer to dreaming sleep than ordinary waking and showed features intermediate between REM sleep and wakefulness.[5]
 
 The study was tiny, so it should not become a universal theory.
 
@@ -275,7 +275,7 @@ That is not identical to noticing sleep onset.
 
 Some lucid dreams begin after the dream is already well established. The person may have no memory of crossing into sleep at all.
 
-Modern electrophysiological research continues to associate lucid dreaming predominantly with REM sleep, while finding specific changes in brain-network activity and connectivity compared with ordinary REM dreaming.
+Modern electrophysiological research continues to associate lucid dreaming predominantly with REM sleep, while finding specific changes in brain-network activity and connectivity compared with ordinary REM dreaming.[6]
 
 So several thresholds may exist in one night.
 
@@ -303,9 +303,9 @@ You are learning several transitions.
 
 Sleep and wakefulness are useful categories, but biology is not always obligated to respect our neat labels.
 
-Research increasingly recognizes that features associated with waking and sleeping can coexist in unusual configurations. Reviews of sleep-related dissociative states discuss phenomena such as lucid dreaming, false awakening, sleep paralysis, and parasomnias partly in terms of mixed or dissociated features of ordinary sleep and wake states.
+Research increasingly recognizes that features associated with waking and sleeping can coexist in unusual configurations. Reviews of sleep-related dissociative states discuss phenomena such as lucid dreaming, false awakening, sleep paralysis, and parasomnias partly in terms of mixed or dissociated features of ordinary sleep and wake states.[7]
 
-A 2025 exploratory sleep-laboratory study recorded a very small number of lucid dreams, sleep paralysis episodes, out-of-body experiences, and false awakenings. Those events showed electrophysiological characteristics distinct from ordinary waking while sharing features with both N1 and REM sleep.
+A 2025 exploratory sleep-laboratory study recorded a very small number of lucid dreams, sleep paralysis episodes, out-of-body experiences, and false awakenings. Those events showed electrophysiological characteristics distinct from ordinary waking while sharing features with both N1 and REM sleep.[8]
 
 Again, the sample was much too small to create a universal map.
 
