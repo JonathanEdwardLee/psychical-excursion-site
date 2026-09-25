@@ -19,7 +19,8 @@
     "verify:brand": "bash scripts/verify-brand-pwa.sh",
     "verify:privacy": "node scripts/verify-runtime-privacy.mjs",
     "test:publish": "bash scripts/test-publish-hostinger-deploy.sh",
-    "report:release": "node scripts/report-release-tree.mjs"
+    "report:release": "node scripts/report-release-tree.mjs",
+    "generate:publication": "node scripts/generate-publication-master.mjs"
   },
   "engines": {
     "node": ">=22.0.0"

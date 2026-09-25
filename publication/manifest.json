@@ -1,0 +1,193 @@
+{
+  "edition": "publication-master",
+  "web_edition_baseline": "c969ebb5650e4f854b3d1a1284458a818eb71cfb",
+  "chapter_count": 23,
+  "total_words": 68080,
+  "narration_words_excluding_references": 63509,
+  "chapters": [
+    {
+      "menu": "01",
+      "title": "What Is a Psychical Excursion?",
+      "path": "chapters/01-what-is-a-psychical-excursion.md",
+      "source_web_file": "src/content/guidebookManuscript.source.md",
+      "words": 2436,
+      "narration_words_excluding_references": 2328
+    },
+    {
+      "menu": "02",
+      "title": "Remember Your Dreams: Dream Recall Techniques and Research",
+      "path": "chapters/02-remember-your-dreams.md",
+      "source_web_file": "src/content/guidebookChapter01.source.md",
+      "words": 1742,
+      "narration_words_excluding_references": 1588
+    },
+    {
+      "menu": "03",
+      "title": "Notice Your Dreams: Dream Awareness, Patterns and Dream Signs",
+      "path": "chapters/03-notice-your-dreams.md",
+      "source_web_file": "src/content/guidebookChapter02.source.md",
+      "words": 2384,
+      "narration_words_excluding_references": 2245
+    },
+    {
+      "menu": "04",
+      "title": "Recognize the Dream: Lucid Dreaming, Reality Checks and Dream Signs",
+      "path": "chapters/04-recognize-the-dream.md",
+      "source_web_file": "src/content/guidebookChapter03.source.md",
+      "words": 2761,
+      "narration_words_excluding_references": 2640
+    },
+    {
+      "menu": "05",
+      "title": "Feel the Body: Body Scan Meditation and Deep Relaxation",
+      "path": "chapters/05-feel-the-body.md",
+      "source_web_file": "src/content/guidebookChapter04.source.md",
+      "words": 2825,
+      "narration_words_excluding_references": 2725
+    },
+    {
+      "menu": "06",
+      "title": "Move Your Attention: Focused Attention and Body Awareness Meditation",
+      "path": "chapters/06-move-your-attention.md",
+      "source_web_file": "src/content/guidebookChapter05.source.md",
+      "words": 3859,
+      "narration_words_excluding_references": 3723
+    },
+    {
+      "menu": "07",
+      "title": "Build the Current: Tingling, Energy Sensations and Focused Attention",
+      "path": "chapters/07-build-the-current.md",
+      "source_web_file": "src/content/guidebookChapter06.source.md",
+      "words": 3267,
+      "narration_words_excluding_references": 3122
+    },
+    {
+      "menu": "08",
+      "title": "Quiet the Mind: Meditation Techniques for Sleep and Dream Awareness",
+      "path": "chapters/08-quiet-the-mind.md",
+      "source_web_file": "src/content/guidebookChapter07.source.md",
+      "words": 2596,
+      "narration_words_excluding_references": 2424
+    },
+    {
+      "menu": "09",
+      "title": "See the Image: Visualization, Mental Imagery and Hypnagogic Imagery",
+      "path": "chapters/09-see-the-image.md",
+      "source_web_file": "src/content/guidebookChapter08.source.md",
+      "words": 3430,
+      "narration_words_excluding_references": 3179
+    },
+    {
+      "menu": "10",
+      "title": "Watch the Edge: Hypnagogia and the Transition Into Lucid Dreaming",
+      "path": "chapters/10-watch-the-edge.md",
+      "source_web_file": "src/content/guidebookChapter09.source.md",
+      "words": 3070,
+      "narration_words_excluding_references": 2776
+    },
+    {
+      "menu": "11",
+      "title": "Let the Body Sleep: The “Mind Awake, Body Asleep” Route to Lucid Dreaming",
+      "path": "chapters/11-let-the-body-sleep.md",
+      "source_web_file": "src/content/guidebookChapter10.source.md",
+      "words": 3110,
+      "narration_words_excluding_references": 2882
+    },
+    {
+      "menu": "12",
+      "title": "Move Without Moving: Motor Imagery, Dream Movement and Sleep-Onset Practice",
+      "path": "chapters/12-move-without-moving.md",
+      "source_web_file": "src/content/guidebookChapter11.source.md",
+      "words": 2847,
+      "narration_words_excluding_references": 2707
+    },
+    {
+      "menu": "13",
+      "title": "Feel the Shift: Vibrations, Floating and Out-of-Body Sensations Near Sleep",
+      "path": "chapters/13-feel-the-shift.md",
+      "source_web_file": "src/content/guidebookChapter12.source.md",
+      "words": 2879,
+      "narration_words_excluding_references": 2759
+    },
+    {
+      "menu": "14",
+      "title": "Know the Threshold: How to Recognize When Waking Imagery Becomes a Dream",
+      "path": "chapters/14-know-the-threshold.md",
+      "source_web_file": "src/content/guidebookChapter13.source.md",
+      "words": 2845,
+      "narration_words_excluding_references": 2688
+    },
+    {
+      "menu": "15",
+      "title": "Stabilize the Dream: Lucid Dream Stabilization Techniques and Research",
+      "path": "chapters/15-stabilize-the-dream.md",
+      "source_web_file": "src/content/guidebookChapter14.source.md",
+      "words": 2987,
+      "narration_words_excluding_references": 2832
+    },
+    {
+      "menu": "16",
+      "title": "Explore the Dream: Lucid Dream Experiments, Dream Control and Research",
+      "path": "chapters/16-explore-the-dream.md",
+      "source_web_file": "src/content/guidebookChapter15.source.md",
+      "words": 2750,
+      "narration_words_excluding_references": 2530
+    },
+    {
+      "menu": "17",
+      "title": "Loosen the Body: Body Ownership, Self-Location and Out-of-Body Experience",
+      "path": "chapters/17-loosen-the-body.md",
+      "source_web_file": "src/content/guidebookChapter16.source.md",
+      "words": 2805,
+      "narration_words_excluding_references": 2589
+    },
+    {
+      "menu": "18",
+      "title": "Cross the Threshold: Astral Projection, OBE Techniques and Lucid Dreaming",
+      "path": "chapters/18-cross-the-threshold.md",
+      "source_web_file": "src/content/guidebookChapter17.source.md",
+      "words": 2911,
+      "narration_words_excluding_references": 2656
+    },
+    {
+      "menu": "19",
+      "title": "Test the Experience: Can Lucid Dreams and Out-of-Body Experiences Be Verified?",
+      "path": "chapters/19-test-the-experience.md",
+      "source_web_file": "src/content/guidebookChapter18.source.md",
+      "words": 2678,
+      "narration_words_excluding_references": 2544
+    },
+    {
+      "menu": "20",
+      "title": "Compare the Maps: Lucid Dreaming vs. Astral Projection, OBE and Sleep Paralysis",
+      "path": "chapters/20-compare-the-maps.md",
+      "source_web_file": "src/content/guidebookChapter19.source.md",
+      "words": 2748,
+      "narration_words_excluding_references": 2518
+    },
+    {
+      "menu": "21",
+      "title": "Floating in Space: Sun, Moon, Planets and the Science of Sleep & Dreams",
+      "path": "chapters/21-floating-in-space.md",
+      "source_web_file": "src/content/guidebookChapter20.source.md",
+      "words": 5336,
+      "narration_words_excluding_references": 4615
+    },
+    {
+      "menu": "22",
+      "title": "Notice the Coincidence: Synchronicity, Recurring Dreams, Shared Dreams and Pattern Recognition",
+      "path": "chapters/22-notice-the-coincidence.md",
+      "source_web_file": "src/content/guidebookChapter21.source.md",
+      "words": 2883,
+      "narration_words_excluding_references": 2665
+    },
+    {
+      "menu": "23",
+      "title": "Return. Record. Repeat: The Best Bedtime Routine for Lucid Dreaming and Astral Projection",
+      "path": "chapters/23-return-record-repeat.md",
+      "source_web_file": "src/content/guidebookChapter22.source.md",
+      "words": 2931,
+      "narration_words_excluding_references": 2774
+    }
+  ]
+}
