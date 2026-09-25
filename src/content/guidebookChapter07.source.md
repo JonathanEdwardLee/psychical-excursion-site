@@ -30,7 +30,7 @@ Suppose you are attending to the feeling of your hand and suddenly remember an e
 
 This distinction—between **having a thought** and **continuing the thought**—is one of the most practical things meditation can teach.
 
-The same principle applies to sensations. An itch does not automatically require scratching. A sound does not automatically require identifying its source. A sensation elsewhere in the body does not automatically require moving attention toward it. Sometimes you will move, scratch, investigate, or stop the exercise because something genuinely needs attention. The point is not immobility for its own sake. The experiment is noticing the usually automatic transition from stimulus to attention to reaction.
+The same principle applies to sensations. An itch does not automatically require scratching. A sound does not automatically require identifying its source. A sensation elsewhere in the body does not automatically require moving attention toward it. Sometimes you will move, scratch, investigate, or stop the exercise because something genuinely needs attention. Immobility is not the prize. The experiment is noticing the usually automatic transition from stimulus to attention to reaction.
 
 ## From Moving Attention to Holding It
 
@@ -94,7 +94,7 @@ The actual neuroscience does not support such a clean hierarchy.
 
 EEG studies measure oscillatory activity occurring across several frequency ranges at the same time. Reviews of meditation research have reported changes involving alpha, theta, beta, gamma, and other measures, but the pattern depends on the meditation technique, participant experience, task, recording method, comparison condition, and analysis being used. A 2025 systematic review of focused-attention meditation specifically emphasized substantial heterogeneity across the EEG and MEG literature rather than identifying one universal electrophysiological signature.[6]
 
-This is important because it prevents us from turning an interesting measurement into a spiritual thermometer. An increase in a particular EEG frequency does not by itself tell us how “deep” someone's meditation was. Even meditation categories that sound similar can involve different attentional strategies.
+That is why an interesting measurement should not become a spiritual thermometer. An increase in a particular EEG frequency does not by itself tell us how “deep” someone's meditation was. Even meditation categories that sound similar can involve different attentional strategies.
 
 The better measurements for this chapter remain behavioral and experiential: how long can you maintain the intended target, how quickly do you recognize mind-wandering, how easily can you return, and what differences do you notice between focused attention and open observation?
 
@@ -150,7 +150,7 @@ This chapter also establishes a skill we will need shortly: remaining relaxed an
 
 ## Experiment
 
-If you are practicing near bedtime, begin with [**Relax the body**](/body-scan-meditation/#nighttime-body-release). Then perform one slow circuit from **Build the Current** and allow the movement of attention to stop.
+If you are practicing near bedtime, begin with [**Relax the body**](/body-scan-meditation/#nighttime-body-release). Then perform one slow circuit from [**Build the Current**](/energy-sensations-meditation/) and allow the movement of attention to stop.
 
 Choose a single object of attention. The physical sensation of natural breathing is useful, but a body point, steady sound, or simple repeated word also works. Spend several minutes remaining with that object. Each time you notice that attention has moved elsewhere, briefly recognize what captured it and return.
 

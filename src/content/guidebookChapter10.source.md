@@ -74,7 +74,7 @@ There is also a useful reverse case. In REM sleep behavior disorder, normal REM 
 
 In ordinary REM sleep, however, imagined movement is largely separated from overt movement.
 
-This separation will become very important when we try to move without moving.
+That separation is the next comparison: movement that is felt without matching physical action.
 
 ## When Awareness Returns Before Movement
 
@@ -312,7 +312,7 @@ A dream movement can feel entirely physical even though the physical body did no
 
 A floating sensation can arrive without any deliberate imagery at all.
 
-We will examine those movement experiences more closely.
+Those experiences deserve their own look rather than being forced into one label tonight.
 
 ## Conscious Entry Into Sleep
 

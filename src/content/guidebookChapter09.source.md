@@ -346,7 +346,7 @@ You are watching what consciousness does while waking organization begins to loo
 
 ## Experiment
 
-Practice this when you would ordinarily be going to sleep.
+Practice this when you would ordinarily be going to sleep. If you start fighting sleep, let sleep win.
 
 Begin with [**Relax the body**](/body-scan-meditation/#nighttime-body-release) if that is useful, then allow your breathing to continue naturally.
 

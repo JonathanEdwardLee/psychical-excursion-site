@@ -544,6 +544,8 @@ Move.
 
 Speak.
 
+Explore the dream as it is before trying to explain what it is.
+
 Continue interacting with the dream.
 
 And record what happens.

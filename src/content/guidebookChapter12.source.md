@@ -338,7 +338,7 @@ The useful question is simpler:
 
 ### Map the Shift
 
-For several nights, continue the relaxation, attention, sleep-edge observation, and nonphysical movement practices from the preceding chapters. Do not try to manufacture every sensation described here. Your experiment is to discover what actually happens in your experience.
+For several nights, continue the relaxation, attention, sleep-edge observation, and nonphysical movement practices you already have. Do not try to manufacture every sensation described here, and do not stay up to hunt for a spectacular one. Your experiment is to discover what actually happens in your experience. Sleep still comes first.
 
 When something begins to change, notice it without immediately naming what the whole event means.
 
