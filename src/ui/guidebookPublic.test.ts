@@ -29,6 +29,7 @@ import { CHAPTER_18_HASH, CHAPTER_18_TITLE, loadGuidebookChapter18 } from "../co
 import { CHAPTER_19_HASH, CHAPTER_19_TITLE, loadGuidebookChapter19 } from "../content/guidebookChapter19.ts";
 import { CHAPTER_20_HASH, CHAPTER_20_TITLE, loadGuidebookChapter20 } from "../content/guidebookChapter20.ts";
 import { CHAPTER_21_HASH, CHAPTER_21_TITLE, loadGuidebookChapter21 } from "../content/guidebookChapter21.ts";
+import { CHAPTER_22_HASH, CHAPTER_22_TITLE, loadGuidebookChapter22 } from "../content/guidebookChapter22.ts";
 import { INTRODUCTION_PATH } from "../content/guidebookCatalog.ts";
 import { NIGHTTIME_BODY_RELEASE_ID, RELAX_THE_BODY_HREF } from "../content/guidebookAnchors.ts";
 import { loadGuidebookManuscript } from "../content/guidebookManuscript.ts";
@@ -382,6 +383,11 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     await renderApp(root);
     expect(document.documentElement.scrollTop).toBe(0);
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_21_TITLE);
+    document.documentElement.scrollTop = 10;
+    setPublicRoute(CHAPTER_22_HASH);
+    await renderApp(root);
+    expect(document.documentElement.scrollTop).toBe(0);
+    expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_22_TITLE);
   });
 
   it("renders Chapter 3 with a Chapter 4 next-reading line and one practice card", async () => {
@@ -1036,7 +1042,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector(".guidebook-practice")?.closest(".guidebook-section.pex-reveal")).toBeTruthy();
   });
 
-  it("renders Chapter 21 Notice the Coincidence without a next-page link or attention instrument", async () => {
+  it("renders Chapter 21 Notice the Coincidence with a Chapter 22 next-reading line", async () => {
     const chapter = loadGuidebookChapter21();
     expect(chapter.title).toBe(CHAPTER_21_TITLE);
     const root = await mount(CHAPTER_21_HASH);
@@ -1061,7 +1067,8 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector("#guidebook-prev-chapter-20")?.getAttribute("href")).toBe(CHAPTER_20_HASH);
     expect(root.querySelector("#guidebook-prev-chapter-20")?.textContent).toContain(CHAPTER_20_TITLE);
     expect(root.querySelector("#guidebook-next-chapter-21")).toBeNull();
-    expect(root.querySelector("#guidebook-next-chapter-22")).toBeNull();
+    expect(root.querySelector("#guidebook-next-chapter-22")?.getAttribute("href")).toBe(CHAPTER_22_HASH);
+    expect(root.querySelector("#guidebook-next-chapter-22")?.textContent).toContain(CHAPTER_22_TITLE);
     expectPublicHeader(root);
     expectHeldFeaturesAbsent(root);
     expect(root.textContent).not.toMatch(/\bPEx\b/);
@@ -1075,6 +1082,66 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     const root = await mount(CHAPTER_21_HASH);
     expect(root.querySelector(".guidebook-section.pex-reveal")).toBeTruthy();
     expect(root.querySelector(".guidebook-practice")?.closest(".guidebook-section.pex-reveal")).toBeTruthy();
+  });
+
+  it("renders Chapter 22 Return Record Repeat without a next-page link, with exact affirmation and loop headings", async () => {
+    const chapter = loadGuidebookChapter22();
+    expect(chapter.title).toBe(CHAPTER_22_TITLE);
+    const root = await mount(CHAPTER_22_HASH);
+    expect(window.location.pathname).toBe(CHAPTER_22_HASH);
+    expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_22_TITLE);
+    expect(root.querySelector(".pex-attention-instrument")).toBeNull();
+    expect(root.textContent).toMatch(/We have spent this book learning individual skills/);
+    expect(root.textContent).toMatch(/My body sleeps\. I remain aware\. I recognize the transition and calmly enter\./);
+    expect(root.textContent).toMatch(/I stay with the experience and explore before I explain\./);
+    expect([...root.querySelectorAll("h3.guidebook-section-subheading")].map((node) => node.textContent)).toEqual([
+      "Morning",
+      "Day",
+      "Before bed",
+      "In bed",
+      "At the threshold",
+      "Inside",
+      "On return",
+    ]);
+    expect([...root.querySelectorAll("h3.guidebook-practice-subheading")].map((node) => node.textContent)).toEqual([
+      "The Thirty-Night Practice",
+      "Keep the core stable",
+      "Record five outcomes",
+      "Use WBTB selectively",
+      "Keep one affirmation",
+      "Keep one inside-state instruction",
+      "Review weekly",
+      "End honestly",
+    ]);
+    expect(practiceLabels(root)).toEqual(["Summary", "Experiment", "Intention"]);
+    expect(root.querySelectorAll(".guidebook-practice").length).toBe(1);
+    expect(root.querySelector("#ref-1")).toBeTruthy();
+    expect(root.querySelector("#ref-6")).toBeTruthy();
+    expect(root.querySelector("#guidebook-prev-chapter-21")?.getAttribute("href")).toBe(CHAPTER_21_HASH);
+    expect(root.querySelector("#guidebook-prev-chapter-21")?.textContent).toContain(CHAPTER_21_TITLE);
+    expect(root.querySelector("#guidebook-next-chapter-22")).toBeNull();
+    expect(root.querySelector("#guidebook-next-chapter-23")).toBeNull();
+    expectPublicHeader(root);
+    expectHeldFeaturesAbsent(root);
+    expect(root.textContent).not.toMatch(/\bPEx\b/);
+    expect(root.textContent).not.toMatch(/Chapter\s+22/i);
+    expect(root.textContent).not.toMatch(/sleep paralysis is required/i);
+    expect(document.title).toMatch(CHAPTER_22_TITLE);
+  });
+
+  it("keeps reduced-motion readers able to see Chapter 22 sections", async () => {
+    const root = await mount(CHAPTER_22_HASH);
+    expect(root.querySelector(".guidebook-section.pex-reveal")).toBeTruthy();
+    expect(root.querySelector(".guidebook-practice")?.closest(".guidebook-section.pex-reveal")).toBeTruthy();
+  });
+
+  it("preserves Floating in Space as the Chapter 20 public title", async () => {
+    expect(CHAPTER_20_TITLE).toBe(
+      "Floating in Space: Sun, Moon, Planets and the Science of Sleep & Dreams",
+    );
+    const root = await mount(CHAPTER_20_HASH);
+    expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_20_TITLE);
+    expect(root.querySelector("h1")?.textContent).not.toMatch(/Watch the Sky/);
   });
 
   it("records GA4 page views for public hash routes without duplicates or private content", async () => {
@@ -1091,9 +1158,10 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     await mount(CHAPTER_19_HASH);
     await mount(CHAPTER_20_HASH);
     await mount(CHAPTER_21_HASH);
+    await mount(CHAPTER_22_HASH);
     await mount(RELAX_THE_BODY_HREF);
     const views = gtag.mock.calls.filter((call) => call[0] === "event" && call[1] === "page_view");
-    expect(views).toHaveLength(12);
+    expect(views).toHaveLength(13);
     expect(views.map((call) => (call[2] as { page_path: string }).page_path)).toEqual([
       INTRODUCTION_PATH,
       CHAPTER_12_HASH,
@@ -1106,6 +1174,7 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
       CHAPTER_19_HASH,
       CHAPTER_20_HASH,
       CHAPTER_21_HASH,
+      CHAPTER_22_HASH,
       CHAPTER_04_HASH,
     ]);
     expect(JSON.stringify(views)).not.toMatch(/555962302|15841198465/);
