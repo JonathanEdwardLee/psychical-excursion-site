@@ -999,12 +999,15 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
       "Add the Moon",
       "Add solar or geomagnetic conditions only later",
       "Add one planetary claim",
+      "Read the Sky Clock historically",
+      "Travel somewhere impossible",
       "Compare",
     ]);
     expect(practiceLabels(root)).toEqual(["Summary", "Experiment", "Intention"]);
     expect(root.querySelectorAll(".guidebook-practice").length).toBe(1);
     expect(root.querySelector("#ref-1")).toBeTruthy();
     expect(root.querySelector("#ref-13")).toBeTruthy();
+    expect(root.querySelector("#ref-27")).toBeTruthy();
     expect(root.querySelector("#guidebook-prev-chapter-19")?.getAttribute("href")).toBe(CHAPTER_19_HASH);
     expect(root.querySelector("#guidebook-prev-chapter-19")?.textContent).toContain(CHAPTER_19_TITLE);
     expect(root.querySelector("#guidebook-next-chapter-20")).toBeNull();
@@ -1015,6 +1018,8 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.textContent).not.toMatch(/Chapter\s+20/i);
     expect(root.textContent).not.toMatch(/astrology is scientifically validated/i);
     expect(root.textContent).not.toMatch(/lunar sleep effects are settled/i);
+    expect(root.textContent).toMatch(/tropical/);
+    expect(root.textContent).toMatch(/Virgo|Spica/);
     expect(document.title).toMatch(CHAPTER_20_TITLE);
   });
 

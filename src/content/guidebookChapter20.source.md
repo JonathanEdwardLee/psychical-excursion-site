@@ -428,6 +428,338 @@ A cleaner instrument says:
 
 Then you compare later.
 
+## Why does the Sky Clock say “Sun in Virgo”?
+
+Our header already contains a small historical puzzle.
+
+It shows the Sun and Moon beside zodiac signs.
+
+If the Sun falls inside the Virgo sector, the tooltip says:
+
+**Sun in Virgo.**
+
+That phrase sounds astrological.
+
+The calculation underneath it is astronomical.
+
+The Sky Clock computes the Sun's geocentric ecliptic longitude and maps that longitude onto the **tropical zodiac**: twelve equal sectors of thirty degrees each.
+
+That basic twelve-part geometry has ancient roots.
+
+Babylonian astronomers divided the ecliptic into twelve thirty-degree signs for measurement and prediction of celestial motion.[14][15]
+
+The system later became one of the foundations of Greek and Roman astrology.
+
+So the same grid became two things at once:
+
+a coordinate system;
+
+and a symbolic language.
+
+That is why a modern astronomy engine can truthfully compute a zodiacal sign without making an astrological prediction.
+
+## Sign is not exactly the same thing as constellation
+
+This is where the history gets fun.
+
+The astronomical constellations are irregular patches of sky.
+
+The zodiacal **signs** are equal thirty-degree divisions.
+
+They once corresponded much more closely.
+
+Precession slowly changed the alignment between the seasonal equinox-based zodiac and the background stars.[16]
+
+Our Sky Clock uses the **tropical** zodiac.
+
+Its zero point is tied to the vernal equinox and the seasonal year rather than attempting to make the sign boundaries follow the modern constellation boundaries.
+
+So:
+
+**Sun in Virgo**
+
+means:
+
+**the Sun's tropical ecliptic longitude currently lies in the thirty-degree sector traditionally named Virgo.**
+
+It does not necessarily mean the Sun is physically inside the modern IAU boundaries of the constellation Virgo.
+
+That single phrase carries Babylonian mathematics, Greek astronomy, seasonal timekeeping, and centuries of astrology in its pocket.
+
+## Virgo used to say “harvest” before it said “personality type”
+
+Virgo has accumulated many stories.
+
+Its brightest star, Spica, takes its name from the Latin for an ear of wheat.
+
+Historical images connect the constellation and sign with a maiden, grain, harvest, seasonal transition, and agricultural calendars.[17][18]
+
+In some Islamic zodiac imagery, Virgo became **al-sunbula**, “the ear of corn,” and was sometimes represented by a male figure associated with Mercury harvesting grain.[18]
+
+That does not prove that being born under Virgo makes someone analytical.
+
+It does show that zodiac symbolism originally grew in a world where watching the sky helped organize seasons, agriculture, ritual, and time.
+
+The symbolism was attached to actual observations.
+
+The interpretation kept growing.
+
+## Astrology inherited an astronomical machine
+
+This may be the most generous way to approach astrology historically.
+
+The ancient sky-watchers were not staring at imaginary objects.
+
+They were measuring real celestial cycles.
+
+The zodiac provided a repeatable coordinate system.
+
+The planets genuinely moved through it.
+
+Retrograde motion genuinely appeared.
+
+The Moon genuinely changed phase.
+
+Seasons genuinely changed.
+
+Astrology added another question:
+
+**What do those movements mean for life below?**
+
+Late Babylonian traditions connected astronomical observations with omens.
+
+Hellenistic astrology expanded the system toward individual horoscopes.
+
+Ptolemy later tied the tropical zodiac and planetary qualities partly to seasonal reasoning.[15][19]
+
+The predictive astronomy became extremely successful.
+
+The predictive astrology did not acquire the same modern evidential support.
+
+But historically they grew together.
+
+The Sky Clock lets us look directly at the point before those paths completely separated.
+
+## The old universe was built in planetary layers
+
+Modern astronomy imagines planets as worlds moving through physical space.
+
+Many older cosmologies imagined the heavens as **spheres**.
+
+Earth occupied the center.
+
+The Moon, Mercury, Venus, Sun, Mars, Jupiter, and Saturn formed successive celestial regions.
+
+Those spheres were not merely locations.
+
+They could represent levels of being.
+
+Ancient and late-antique philosophical and religious systems sometimes imagined the soul descending through them into embodiment or ascending back through them toward the divine.[20]
+
+In accounts associated with Numenius and preserved by Macrobius, the descending soul acquires different capacities while passing through the planetary spheres: Saturn, Jupiter, Mars, the Sun, Venus, Mercury, and finally the Moon.[20]
+
+Hermetic materials likewise connect cosmic ascent with the seven planetary spheres and their governing powers.[21]
+
+So the idea of **traveling through planetary realms** is much older than modern astral-projection books.
+
+It sits near the roots of Western esotericism.
+
+## Occult planets are not always physical planets
+
+This distinction becomes essential.
+
+When an occult text says **the sphere of Mars**, it may not mean:
+
+**fly 225 million kilometers and land next to Olympus Mons.**
+
+It may mean a spiritual, psychic, symbolic, initiatory, or subtle realm associated with Mars.
+
+Theosophical writers later developed elaborate models of astral and mental planes, planetary chains, and nonphysical globes associated with planets.[22]
+
+Whether we believe those maps or not, they are not simply failed astronomy.
+
+They are claims about a different kind of geography.
+
+That gives us two radically different questions:
+
+**Can consciousness experience a realm symbolized as Mars?**
+
+and:
+
+**Can consciousness acquire verifiable information from the physical planet Mars without ordinary sensory contact?**
+
+Those are not the same experiment.
+
+## So where does consciousness go when we travel?
+
+Science does not currently have evidence that consciousness literally detaches from the nervous system and moves through external space during dreams or OBEs.
+
+What it does have is a growing understanding of how the brain represents:
+
+self-location;
+
+perspective;
+
+distance;
+
+direction;
+
+landmarks;
+
+routes;
+
+and entire spatial environments.
+
+Human navigation depends on interacting networks including hippocampal, entorhinal, retrosplenial, parahippocampal, parietal, and frontal systems.[23]
+
+Dreaming and imagination can recombine memory, spatial representation, visual construction, emotion, and prediction into internally generated experiences that feel like places.[24][25]
+
+That means the scientific answer to:
+
+**Where did I go?**
+
+may sometimes be:
+
+**into a spatial world generated by consciousness.**
+
+That sounds less disappointing to me than people sometimes make it sound.
+
+A world does not become psychologically trivial because it was generated.
+
+Dream cities can have distance.
+
+Dream rooms can have geometry.
+
+You can get lost.
+
+You can fly over terrain.
+
+You can remember where a door was.
+
+The mind can make an **elsewhere**.
+
+## Can you travel to the Moon?
+
+As an experience?
+
+Absolutely worth trying.
+
+A lucid dream can contain the Moon.
+
+An OBE-like state can contain the experience of moving toward the Moon.
+
+You can set the intention:
+
+**Take me to the Moon.**
+
+Then observe what happens.
+
+Do you rocket through black space?
+
+Arrive instantly?
+
+See a scientifically familiar lunar surface?
+
+Find an impossible city?
+
+Meet someone?
+
+Become the Moon?
+
+Wake up?
+
+Nothing?
+
+All of those are legitimate phenomenological results.
+
+But if you later say:
+
+**I literally visited the physical Moon,**
+
+the evidence standard changes.
+
+Now we need information that could not reasonably have come from prior knowledge, expectation, inference, media exposure, or chance.
+
+That is the lesson from **Test the Experience**.
+
+Adventure first.
+
+Ontology second.
+
+Verification when possible.
+
+## Can you travel to another planet?
+
+The same rule applies.
+
+Lucid-dream and OBE traditions contain claims of distant travel.
+
+Robert Monroe's later writings and the culture that developed around his work describe movement into nonphysical locales rather than treating every journey as ordinary geographic travel.[26]
+
+The Monroe Institute itself says it has no hard data that Moon phase helps produce OBEs, which is a useful reminder that even a tradition enthusiastic about expanded consciousness does not need to claim every celestial correlation.[27]
+
+A useful experiment would be:
+
+**Go to Jupiter.**
+
+Not because you expect to stand physically on a gas giant.
+
+Because the request tests what the experience does with an impossible destination.
+
+Does “Jupiter” become:
+
+clouds;
+
+a mythological god;
+
+a giant planet;
+
+a city;
+
+a color;
+
+a feeling;
+
+a completely unexpected environment?
+
+That tells us something about the construction of internal worlds.
+
+A stronger remote-perception experiment would require a hidden target associated with a real spacecraft image, coordinate, or astronomical fact that you do not know in advance.
+
+That would be much harder.
+
+And much more interesting if it worked.
+
+## The superpower question
+
+This book began with a childish-sounding desire that I do not think is childish at all.
+
+**Can I learn to do something that feels impossible?**
+
+Remember dreams.
+
+Become lucid.
+
+Stay aware while the body falls asleep.
+
+Move without moving.
+
+Change self-location.
+
+Enter an internally generated world deliberately.
+
+Test information.
+
+Those are already strange abilities.
+
+Maybe the mistake is demanding that every superpower become supernatural before we allow ourselves to be impressed.
+
+If you learn to close your eyes in bed and later find yourself consciously standing on the Moon in a stable, explorable world, something extraordinary happened.
+
+The open question is **what kind of extraordinary thing it was**.
+
+That is enough reason to keep exploring.
+
 ## The most interesting experiment is partly blind
 
 Suppose you want to know whether your dream life changes with lunar phase.
@@ -586,6 +918,12 @@ But lunar findings are inconsistent, mechanisms remain unsettled, and a diary st
 
 **Planetary astrology** is culturally and symbolically rich, but controlled double-blind studies have not demonstrated reliable personality prediction from natal planetary positions.[12][13]
 
+**The zodiac in the Sky Clock** is an ancient astronomical coordinate tradition: twelve equal thirty-degree sectors along the ecliptic, later layered with astrological symbolism.[14][15] “Sun in Virgo” is therefore a real coordinate statement inside a tropical-zodiac convention, not an automatic personality prediction.
+
+**Planetary travel** has deep roots in philosophical, Hermetic, and occult traditions that imagined ascent through celestial or nonphysical planetary spheres.[20][21][22] Modern consciousness research can explain internally generated spatial worlds and altered self-location, but has not established that lucid dreamers or OBE experiencers literally travel through physical interplanetary space.[23][24][25]
+
+That still leaves a wonderful experiment: deliberately travel to the Moon or a planet as an experience, then distinguish what was experienced from anything claimed about the external world.
+
 So:
 
 **observe the sky;**
@@ -690,6 +1028,58 @@ Then record nights without changing the rule.
 
 If possible, score the dream feature before revealing whether the planetary condition was present.
 
+### Read the Sky Clock historically
+
+On several nights, look at the compact header only after you have recorded the night.
+
+Note:
+
+**Sun sign shown**
+
+**Moon sign shown**
+
+**next full moon**
+
+Remember that the Sun/Moon signs are tropical thirty-degree ecliptic sectors, not personality verdicts.
+
+Choose one sign occasionally and look up its historical astronomical or occult associations **after** recording your dream.
+
+Ask whether knowing the symbolism beforehand changes what you notice.
+
+### Travel somewhere impossible
+
+On a lucid-dream or sleep-edge attempt, choose one destination:
+
+**the Moon**
+
+**Mars**
+
+**Jupiter**
+
+or another celestial target.
+
+Use a simple intention:
+
+**Take me to the Moon.**
+
+Do not pre-write the expected scenery.
+
+If a stable experience develops, explore before interpreting.
+
+Record:
+
+**how travel happened**
+
+**what the destination looked like**
+
+**whether it resembled known astronomy**
+
+**what was surprising**
+
+**what could actually be checked later**
+
+Treat the journey as phenomenology unless independent information can be verified.
+
 ### Compare
 
 At the end of the chosen period, ask:
@@ -739,3 +1129,31 @@ Do not rescue a failed prediction by inventing a new rule afterward.
 **[12]** Carlson, S. “A double-blind test of astrology.” *Nature* 318 (1985): 419–425. DOI: 10.1038/318419a0.
 
 **[13]** Wyman, A. J., & Vyse, S. “Science versus the stars: a double-blind test of the validity of the NEO Five-Factor Inventory and computer-generated astrological natal charts.” *Journal of General Psychology* 135 (2008): 287–300. DOI: 10.3200/GENP.135.3.287-300.
+
+**[14]** Leverington, D. *Babylon to Voyager and Beyond: A History of Planetary Astronomy.* Cambridge University Press. Discussion of Babylonian ecliptic longitude and the twelve thirty-degree zodiacal signs.
+
+**[15]** Rochberg, F. “Science and Ancient Mesopotamia.” In *The Cambridge History of Science*. Discussion of the fixed twelve-sign, thirty-degree zodiac and its use in Late Babylonian astronomical and astrological practice.
+
+**[16]** Longair, M. S. “From Ptolemy to Kepler—the Copernican revolution.” In *Theoretical Concepts in Physics*. Cambridge University Press. Discussion of Hipparchus and precession of the equinoxes.
+
+**[17]** Ridpath, I. *Stars and Planets Guide.* Cambridge University Press. Historical note on Spica, the brightest star of Virgo, whose name refers to an ear of wheat.
+
+**[18]** Carboni, S. *Following the Stars: Images of the Zodiac in Islamic Art.* Metropolitan Museum of Art. Historical discussion of Virgo/al-sunbula, the ear of corn, and Mercury-associated harvest imagery.
+
+**[19]** Ribeiro, L. C. “Is astrology universal? Early modern globalization and the disruption of traditional knowledge.” *British Journal for the History of Science* 58 (2025): 425–445. Discussion of Ptolemaic tropical-zodiac and seasonal reasoning.
+
+**[20]** Stanford Encyclopedia of Philosophy. “Numenius.” Discussion of Macrobius' account of the soul's descent through the seven planetary spheres and the capacities associated with them.
+
+**[21]** Burns, D. and related scholarship on *The Discourse on the Eighth and Ninth*, discussed in *The Nag Hammadi Codices and their Ancient Readers*. Cambridge University Press. Discussion of Hermetic cosmic ascent, seven spheres, planets, and archons.
+
+**[22]** Leadbeater, C. W. *The Inner Life.* Historical Theosophical primary source describing planetary chains and nonphysical globes. Use as evidence of occult belief history, not scientific evidence.
+
+**[23]** Ekstrom, A. D., Huffman, D. J., & Starrett, M. “Interacting networks of brain regions underlie human spatial navigation: a review and novel synthesis of the literature.” *Journal of Neurophysiology* 118 (2017): 3328–3344. DOI: 10.1152/jn.00531.2017.
+
+**[24]** Arbib, M. A. “From spatial navigation via visual construction to episodic memory and imagination.” *Biological Cybernetics* 114 (2020): 139–167. DOI: 10.1007/s00422-020-00829-7.
+
+**[25]** de Perrois, N., et al. “Learning beyond sensations: How dreams organize neuronal representations.” *Neuroscience & Biobehavioral Reviews* (2023): 105508. DOI: 10.1016/j.neubiorev.2023.105508.
+
+**[26]** Monroe, R. A. *Journeys Out of the Body* (1971), *Far Journeys* (1985), and *Ultimate Journey* (1994). Primary-source practitioner accounts of OBEs and nonphysical locales; not controlled evidence of literal travel.
+
+**[27]** The Monroe Institute. “FAQs.” The Institute states it has no hard data that weather or Moon phase significantly affects OBE induction.

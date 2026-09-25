@@ -18,10 +18,10 @@ describe("Chapter 20 Watch the Sky manuscript", () => {
     expect(parseGuidebookPublicPage("#/watch-the-sky")).toBe("chapter20");
   });
 
-  it("parses the approved manuscript with Track the Sky Without Cheating, six subheadings, and thirteen references", () => {
+  it("parses the approved manuscript with Track the Sky Without Cheating, eight experiment subheadings, and twenty-seven references", () => {
     const chapter = loadGuidebookChapter20();
     expect(chapter.title).toBe(CHAPTER_20_TITLE);
-    expect(chapter.references).toHaveLength(13);
+    expect(chapter.references).toHaveLength(27);
     const practice = chapter.blocks.filter((block) => block.kind === "practice");
     expect(practice).toHaveLength(1);
     const parts = practice[0]?.kind === "practice" ? practice[0].parts : [];
@@ -35,6 +35,8 @@ describe("Chapter 20 Watch the Sky manuscript", () => {
       "Add the Moon",
       "Add solar or geomagnetic conditions only later",
       "Add one planetary claim",
+      "Read the Sky Clock historically",
+      "Travel somewhere impossible",
       "Compare",
     ]);
     expect(chapter.blocks.some((block) => block.kind === "subheading" && block.text === "Moonlight")).toBe(true);
@@ -43,5 +45,7 @@ describe("Chapter 20 Watch the Sky manuscript", () => {
     expect(JSON.stringify(chapter)).not.toMatch(/\bPEx\b/);
     expect(JSON.stringify(chapter)).not.toMatch(/astrology is scientifically validated/i);
     expect(JSON.stringify(chapter)).not.toMatch(/lunar sleep effects are settled/i);
+    expect(JSON.stringify(chapter)).toMatch(/tropical/);
+    expect(JSON.stringify(chapter)).toMatch(/Virgo|Spica/);
   });
 });
