@@ -18,7 +18,7 @@ But the assembly is not as simple as it feels.
 
 Research on bodily self-consciousness increasingly treats the ordinary sense of embodiment as a construction made from several partly separable processes: body ownership, self-location, first-person perspective, agency, proprioception, touch, vision, and vestibular information about movement and gravity.[1]
 
-That matters for this project because many experiences described near lucid dreaming, sleep paralysis, and out-of-body experience involve one or more of those components changing.
+Those same components often change near lucid dreaming, sleep paralysis, and out-of-body experience.
 
 A person may feel that the body is distant.
 
