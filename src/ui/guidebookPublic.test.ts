@@ -165,11 +165,11 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(trigger.getAttribute("aria-expanded")).toBe("false");
     expect(links).toHaveLength(23);
     expect(links[0]?.querySelector(".guidebook-chapter-number")?.textContent).toBe("01");
-    expect(links[0]?.querySelector(".guidebook-chapter-title")?.textContent).toBe("What Is a Psychical Excursion?");
+    expect(links[0]?.querySelector(".guidebook-chapter-menu-title")?.textContent).toBe("What Is a Psychical Excursion?");
     expect(links[0]?.getAttribute("href")).toBe(INTRODUCTION_PATH);
     expect(links[0]?.getAttribute("aria-current")).toBe("page");
     expect(links[22]?.querySelector(".guidebook-chapter-number")?.textContent).toBe("23");
-    expect(links[22]?.querySelector(".guidebook-chapter-title")?.textContent).toBe(CHAPTER_22_TITLE);
+    expect(links[22]?.querySelector(".guidebook-chapter-menu-title")?.textContent).toBe(CHAPTER_22_TITLE);
     expect(links[22]?.getAttribute("href")).toBe(CHAPTER_22_HASH);
     expect(root.textContent).not.toMatch(/Chapter 0/i);
     expect(root.textContent).not.toMatch(/Start Day 1/i);
@@ -332,7 +332,11 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector("#guidebook-next-chapter-2")?.getAttribute("href")).toBe(CHAPTER_02_HASH);
     expect(root.querySelector("#guidebook-next-chapter-2")?.textContent).toContain(CHAPTER_02_TITLE);
     expect(root.querySelector("h1")?.textContent).not.toMatch(/^\s*02\b/);
+    expect(root.querySelector("h1")?.classList.contains("guidebook-chapter-title")).toBe(true);
+    expect(root.querySelector("h1")?.classList.contains("guidebook-chapter-menu-title")).toBe(false);
     const current = root.querySelector(".guidebook-chapter-link[aria-current='page']");
+    expect(current?.querySelector(".guidebook-chapter-menu-title")).toBeTruthy();
+    expect(current?.querySelector(".guidebook-chapter-title")).toBeNull();
     expect(current?.querySelector(".guidebook-chapter-number")?.textContent).toBe("02");
     expect(current?.getAttribute("href")).toBe(CHAPTER_01_HASH);
     expectPublicHeader(root);

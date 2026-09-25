@@ -74,7 +74,7 @@ export function renderGuidebookChapterMenu(page: GuidebookPublicPage): HTMLEleme
       ...(isCurrent ? { "aria-current": "page" } : {}),
     }, [
       el("span", { class: "guidebook-chapter-number" }, [chapter.number]),
-      el("span", { class: "guidebook-chapter-title" }, [chapter.title]),
+      el("span", { class: "guidebook-chapter-menu-title" }, [chapter.title]),
     ]);
     list.append(el("li", { class: "guidebook-chapter-item" }, [link]));
   }
