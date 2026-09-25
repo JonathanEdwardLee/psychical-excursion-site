@@ -680,7 +680,7 @@ the evidence standard changes.
 
 Now we need information that could not reasonably have come from prior knowledge, expectation, inference, media exposure, or chance.
 
-That is the lesson from [**Test the Experience**](/testing-out-of-body-experiences/).
+That is the lesson from **Test the Experience**.
 
 Adventure first.
 
