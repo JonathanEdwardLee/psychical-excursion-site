@@ -108,10 +108,12 @@ export async function synthesizeCedar({
         const detail = redactSecrets(errText.trim().slice(0, 800), key) || "(empty body)";
         throw new Error(`OpenAI speech HTTP ${res.status}: ${detail}`);
       }
-      if (res.status === 429 && attempt < maxAttempts) {
+      if ((res.status === 429 || res.status === 503) && attempt < maxAttempts) {
         const retryAfter = Number(res.headers.get("retry-after"));
         const waitMs = Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter * 1000 : 15000 * attempt;
-        process.stdout.write(`Cedar: HTTP 429, retry ${attempt}/${maxAttempts - 1} in ${Math.round(waitMs / 1000)}s…\n`);
+        process.stdout.write(
+          `Cedar: HTTP ${res.status}, retry ${attempt}/${maxAttempts - 1} in ${Math.round(waitMs / 1000)}s…\n`,
+        );
         await sleep(waitMs);
         continue;
       }
