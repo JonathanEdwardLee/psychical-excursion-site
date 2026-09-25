@@ -81,6 +81,16 @@ Produced (gitignored):
 
 No Chatterbox WAV to pair yet (hardware gate refused; no reference clip).
 
+## Founder listen / QC (Cedar pilot)
+
+| Field | Value |
+| --- | --- |
+| Date | 2026-09-25 |
+| Approved asset | `local/voice-lab/compare/cedar-excerpt-normalized.wav` |
+| Model / voice | OpenAI `gpt-4o-mini-tts`, voice **cedar** |
+| Founder decision | **Approved** for Chapter 10 pilot quality (“sounds good”) |
+| Scope | Pilot excerpt only; **not** authorization to generate or sell the full audiobook in this pass |
+
 ## Voice Lab UI
 
 Loopback server: `npm run voice-lab:serve` → http://127.0.0.1:4177/  

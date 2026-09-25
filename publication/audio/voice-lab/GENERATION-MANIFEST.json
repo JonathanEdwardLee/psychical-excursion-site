@@ -116,6 +116,12 @@
       "model_identity": "ResembleAI/chatterbox-nano (not downloaded)",
       "stop": "hardware gate refused; reference WAV absent"
     },
-    "ffmpeg_compare": "cedar-excerpt-normalized.wav (gitignored); chatterbox pending"
+    "ffmpeg_compare": "cedar-excerpt-normalized.wav (gitignored); chatterbox pending",
+    "founder_cedar_pilot": {
+      "approved_at": "2026-09-25",
+      "approved_asset_gitignored": "local/voice-lab/compare/cedar-excerpt-normalized.wav",
+      "decision": "approved",
+      "note": "Founder QC on normalized Cedar excerpt; pilot scope only"
+    }
   }
 }
