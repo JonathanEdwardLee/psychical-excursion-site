@@ -24,6 +24,7 @@ import { NIGHTTIME_BODY_RELEASE_ID, RELAX_THE_BODY_HREF } from "../content/guide
 import { loadGuidebookManuscript } from "../content/guidebookManuscript.ts";
 import { TROPICAL_ZODIAC_SIGNS } from "../astronomy/zodiac.ts";
 import { renderApp } from "./app.ts";
+import { resetGa4PublicPageViews } from "../analytics/ga4.ts";
 import { resetGuidebookPageTracking } from "./guidebookRoute.ts";
 
 async function mount(hash: string): Promise<HTMLElement> {
@@ -62,6 +63,8 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     localStorage.clear();
     sessionStorage.clear();
     resetGuidebookPageTracking();
+    resetGa4PublicPageViews();
+    window.gtag = vi.fn();
   });
 
   it("loads the approved manuscript with the correct opening heading", () => {
@@ -634,6 +637,23 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     const root = await mount(CHAPTER_12_HASH);
     expect(root.querySelector(".guidebook-section.pex-reveal")).toBeTruthy();
     expect(root.querySelector(".guidebook-practice")?.closest(".guidebook-section.pex-reveal")).toBeTruthy();
+  });
+
+  it("records GA4 page views for public hash routes without duplicates or private content", async () => {
+    const gtag = window.gtag as ReturnType<typeof vi.fn>;
+    await mount("#/");
+    await mount("#/");
+    await mount(CHAPTER_12_HASH);
+    await mount(RELAX_THE_BODY_HREF);
+    const views = gtag.mock.calls.filter((call) => call[0] === "event" && call[1] === "page_view");
+    expect(views).toHaveLength(3);
+    expect(views.map((call) => (call[2] as { page_path: string }).page_path)).toEqual([
+      expect.stringMatching(/#\/$/),
+      expect.stringMatching(/#\/feel-the-shift$/),
+      expect.stringMatching(/#\/feel-the-body$/),
+    ]);
+    expect(JSON.stringify(views)).not.toMatch(/555962302|15841198465/);
+    expect(JSON.stringify(views)).not.toMatch(/journal note|dream text|fixture/i);
   });
 
   it("opens a Chapter 4 relaxation deep link at A Nighttime Body Release", async () => {

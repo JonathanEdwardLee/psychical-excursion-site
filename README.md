@@ -16,6 +16,7 @@ The project is designed to be useful without requiring a spiritual belief system
 - Installable PWA with application-shell offline behavior after a successful load
 - Founder-approved PEx mark in the header (restrained); bedtime uses the reverse lockup on dark surfaces
 - Private journal text and audio are not transmitted to a server, analytics service, or external API
+- Public guidebook pages send aggregate Google Analytics 4 page views (`G-297PE2TV2R`); journal content is not included
 - No AI, Google identity/Drive/Docs, astronomy, donations, payments, or backend services
 - Production hosting is a static Hostinger document root published from the `hostinger-deploy` artifact branch (see [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md))
 

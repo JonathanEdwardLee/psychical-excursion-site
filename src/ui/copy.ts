@@ -10,7 +10,7 @@ export const METHOD_PARAGRAPHS = [
 
 export const ABOUT_PARAGRAPHS = [
   "Psychical Excursion is a quiet reading surface plus a Dream Journal that stays in this browser on this device.",
-  "There is no built-in cloud backup until you optionally connect Google Drive. No analytics, ads, or payments. Export your Dream Journal if you want a file you keep.",
+  "There is no built-in cloud backup until you optionally connect Google Drive. Public pages use aggregate Google Analytics. Ads and payments are not used. Journal text is not sent to analytics. Export your Dream Journal if you want a file you keep.",
   "The site is not affiliated with Google. There is no AI feature.",
   "Day text ships with the app as a fixed guide packet — not fetched from a lesson server.",
 ];

@@ -34,7 +34,7 @@ CloudDev must not invent or rewrite canonical curriculum. Days 1–60 are loaded
 | Export | Store-only ZIP (no compression lib) | Multi-file recovery without a paid service |
 | PWA | Web App Manifest + generated `sw.js` | Install + application-shell cache |
 
-There is no backend, no analytics, no cookies, and no account system.
+There is no backend and no account system on the public guidebook. Public pages send aggregate Google Analytics 4 page views only.
 
 ## Local development, build, tests
 
@@ -194,9 +194,11 @@ Private journal material (text, audio blobs) is written only to IndexedDB and, o
 The app does not:
 
 - send journal contents to a URL, query string, or API
-- include analytics, ads, or trackers
+- include ads, remarketing, or journal contents in analytics
 - attach journal contents to the service worker
 - use Google identity, Drive, or Docs
+
+Public guidebook pages send aggregate Google Analytics 4 page views (`G-297PE2TV2R`) using the document title and hash-route path only.
 
 Static asset requests (JS/CSS/HTML/icons/manifest/sw) during load are not journal-content transmission.
 

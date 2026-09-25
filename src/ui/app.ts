@@ -1,3 +1,4 @@
+import { trackPublicGuidebookPageView } from "../analytics/ga4.ts";
 import { AudioCapture } from "../audio/recorder.ts";
 import { localStore } from "../db/store.ts";
 import { AppError, ENTRY_TYPE_LABEL } from "../domain/types.ts";
@@ -240,6 +241,7 @@ export async function renderApp(root: HTMLElement): Promise<void> {
     }
     bindGuidebookReveals(main);
     finalizeGuidebookPage(root);
+    trackPublicGuidebookPageView();
     if (fragment) {
       scrollGuidebookSection(root, fragment);
     } else if (pageChanged) {

@@ -4,9 +4,10 @@ import path from "node:path";
 
 const releaseDir = path.join(process.cwd(), "release");
 
+const ga4MeasurementId = "G-297PE2TV2R";
+const allowedGa4TagSrc = `https://www.googletagmanager.com/gtag/js?id=${ga4MeasurementId}`;
+
 const forbiddenNetwork = [
-  "google-analytics.com",
-  "googletagmanager.com",
   "googleadservices.com",
   "doubleclick.net",
   "facebook.net",
@@ -24,8 +25,7 @@ const forbiddenNetwork = [
   "patreon.com",
   "googlesyndication",
   "adsense",
-  "gtag(",
-    "fbq(",
+  "fbq(",
 ];
 
 const forbiddenPrivate = [
@@ -75,6 +75,22 @@ for (const file of textFiles) {
       console.error(`${rel} contains unexpected network/product token: ${token}`);
       failed = true;
     }
+  }
+  if (text.includes("googletagmanager.com") || text.includes("google-analytics.com") || /\bG-[A-Z0-9]+\b/.test(text)) {
+    const ids = [...text.matchAll(/\bG-[A-Z0-9]+\b/g)].map((m) => m[0]);
+    const hasAdsTag = /googleadservices|googlesyndication|\bGTM-/i.test(text);
+    if (hasAdsTag || !text.includes(ga4MeasurementId) || ids.some((id) => id !== ga4MeasurementId)) {
+      console.error(`${rel} contains analytics/tag hosts without the authorized Measurement ID ${ga4MeasurementId}.`);
+      failed = true;
+    }
+    if (text.includes("googletagmanager.com") && !text.includes(allowedGa4TagSrc) && rel.endsWith(".html")) {
+      console.error(`${rel} is missing the authorized GA4 tag URL.`);
+      failed = true;
+    }
+  }
+  if (text.includes("555962302") || text.includes("15841198465")) {
+    console.error(`${rel} exposes GA4 property/stream administrative IDs.`);
+    failed = true;
   }
   for (const token of forbiddenPrivate) {
     if (text.includes(token)) {
