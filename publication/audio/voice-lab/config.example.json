@@ -1,0 +1,11 @@
+{
+  "cost_ceiling_usd": 1,
+  "execute": false,
+  "openai_model": "gpt-4o-mini-tts",
+  "openai_voice": "cedar",
+  "optional_marin": false,
+  "chatterbox_variant_preference": ["nano-cpu", "turbo-gpu", "english-500m-gpu"],
+  "reference_wav": "local/voice-lab/reference/jonathan.wav",
+  "output_dir": "local/voice-lab",
+  "notes": "Copy to local/voice-lab/config.json. Do not store OPENAI_API_KEY here."
+}

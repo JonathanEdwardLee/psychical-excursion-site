@@ -1,0 +1,87 @@
+{
+  "pass": "local-ai-narration-pilot",
+  "publication_baseline": "c2de1bdd95fcdd0d85ab38195f2bd0c9121e427f",
+  "excerpt": {
+    "words": 607,
+    "excerpt_sha256": "2eb7f0d978ab0630d04019c2c4364638106cc8ddda30d79dc3180bff5480d71f",
+    "source_script_sha256": "ca12846e77f579ce634c04d1a81b5424e7ba475298449e009b7ca4e4dd93b227",
+    "path": "publication/audio/voice-lab/EXCERPT.md"
+  },
+  "hardware": {
+    "chatterbox_variant": "none",
+    "install": "refused",
+    "reason": "No GPU; available RAM/CPU is too tight to download Torch + Chatterbox weights in this environment without risking instability. Operator laptop with ≥8 CPU cores may try Chatterbox-Nano later; do not buy hardware."
+  },
+  "cedar": {
+    "provider": "openai",
+    "model": "gpt-4o-mini-tts",
+    "voice": "cedar",
+    "instructions": "Conversational researched nonfiction. Curious rather than mystical. Warm but not a meditation-app whisper. Preserve mild humor and short punch lines. Pronounce technical terms clearly (EEG, N1, hypnagogia, REM). Moderate pace. Exercises slightly calmer, not whispered. Read the text exactly. Do not add commentary or invented words.",
+    "chunk_count": 3,
+    "chunk_char_lengths": [
+      1672,
+      1647,
+      634
+    ],
+    "estimate": {
+      "planning_minutes_at_150wpm": 4,
+      "conservative_usd_per_pass": 0.0819,
+      "conservative_usd_this_run": 0.0819,
+      "note": "Estimate from OpenAI gpt-4o-mini-tts published ~$0.015/min plus 35% buffer. Not a billed receipt."
+    },
+    "cost_ceiling_usd": 1,
+    "executed": false,
+    "request_count": 0,
+    "files": [],
+    "api_key": "missing",
+    "skip": "dry-run (set VOICE_LAB_EXECUTE=1 to call OpenAI)"
+  },
+  "chatterbox": {
+    "candidate": "official Resemble AI Chatterbox (resemble-ai/chatterbox)",
+    "wrapper_license": "MIT (GitHub LICENSE, Copyright (c) 2025 Resemble AI, retrieved 2026-09-25)",
+    "weights_license_claimed": "Hugging Face ResembleAI/chatterbox and chatterbox-nano model cards list license: mit (re-verify after any download)",
+    "commercial_claim": "Resemble states Chatterbox family is MIT and may be used commercially; this is not a substitute for the LICENSE file inside the exact checkpoint tarball the operator downloads.",
+    "do_not_use": [
+      "Coqui XTTS-v2 (CPML non-commercial)",
+      "F5-TTS public weights (CC-BY-NC)",
+      "Fish Speech public weights (separate commercial agreement)"
+    ],
+    "hardware": {
+      "chatterbox_variant": "none",
+      "install": "refused",
+      "reason": "No GPU; available RAM/CPU is too tight to download Torch + Chatterbox weights in this environment without risking instability. Operator laptop with ≥8 CPU cores may try Chatterbox-Nano later; do not buy hardware."
+    },
+    "reference_wav_present": false,
+    "cloud_upload": false,
+    "installed": false,
+    "generated": false,
+    "stop": "No GPU; available RAM/CPU is too tight to download Torch + Chatterbox weights in this environment without risking instability. Operator laptop with ≥8 CPU cores may try Chatterbox-Nano later; do not buy hardware."
+  },
+  "normalize": {
+    "normalized": false,
+    "reason": "no generated audio to normalize in this pass",
+    "tool": "ffmpeg",
+    "rawPath": null,
+    "outPath": null
+  },
+  "full_book_cedar_estimate": {
+    "planning_minutes_at_150wpm": 423.4,
+    "conservative_usd_per_pass": 8.5737,
+    "conservative_usd_this_run": 8.5737,
+    "note": "Estimate from OpenAI gpt-4o-mini-tts published ~$0.015/min plus 35% buffer. Not a billed receipt.",
+    "qc_and_regen_usd": 10.72,
+    "label": "estimate-only-not-a-quote"
+  },
+  "local_clone_economics": {
+    "software_cash_usd": 0,
+    "generation_time": "unmeasured-this-environment-did-not-run-weights",
+    "hardware_utilization": {
+      "chatterbox_variant": "none",
+      "install": "refused",
+      "reason": "No GPU; available RAM/CPU is too tight to download Torch + Chatterbox weights in this environment without risking instability. Operator laptop with ≥8 CPU cores may try Chatterbox-Nano later; do not buy hardware."
+    },
+    "disk_use": "unmeasured",
+    "founder_qc_time": "unknown-not-zero; full book is hours of listening",
+    "electricity": "unallocated-unknown"
+  }
+}

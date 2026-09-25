@@ -7,3 +7,6 @@ coverage
 .vite
 .env
 .env.*
+local/voice-lab/**
+!local/voice-lab/README.md
+
