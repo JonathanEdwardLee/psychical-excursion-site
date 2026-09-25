@@ -8775,7 +8775,7 @@ Now we add another distinction.
 
 You can explore something without making it obey you.
 
-This matters because dream control is inconsistent. A 2026 review describes deliberate, goal-directed control as only one form of influence and emphasizes that lucid dream control remains poorly understood.[2]
+Dream control is inconsistent. A 2026 review describes deliberate, goal-directed control as only one form of influence and emphasizes that lucid dream control remains poorly understood.[2]
 
 A dream may resist your request.
 
@@ -8995,9 +8995,7 @@ If you wake up and open the box and find a red key, now you have an interesting 
 
 If the box contains a blue marble, you also have useful information.
 
-The point is not to forbid extraordinary possibilities.
-
-It is to design the observation so extraordinary possibilities can actually be evaluated.
+Extraordinary possibilities are not forbidden. The observation has to be designed so they can actually be evaluated.
 
 Without waking verification, the claim remains:
 
@@ -9385,7 +9383,7 @@ But the assembly is not as simple as it feels.
 
 Research on bodily self-consciousness increasingly treats the ordinary sense of embodiment as a construction made from several partly separable processes: body ownership, self-location, first-person perspective, agency, proprioception, touch, vision, and vestibular information about movement and gravity.[1]
 
-That matters for this project because many experiences described near lucid dreaming, sleep paralysis, and out-of-body experience involve one or more of those components changing.
+Those same components often change near lucid dreaming, sleep paralysis, and out-of-body experience.
 
 A person may feel that the body is distant.
 
@@ -13752,7 +13750,7 @@ The denominator is boring.
 
 The denominator is also where probability lives.
 
-This is why **Test the Experience** insisted on retaining misses.
+This is why [**Test the Experience**](/testing-out-of-body-experiences/) insisted on retaining misses.
 
 Synchronicity deserves the same discipline.
 
@@ -14585,9 +14583,7 @@ Remember how you arrived here.
 
 Ask what happened five minutes ago.
 
-The point is not the ritual.
-
-The point is interrupting automatic acceptance.
+The ritual is not the skill. The skill is interrupting automatic acceptance.
 
 ## Choose one experiment before bed
 
