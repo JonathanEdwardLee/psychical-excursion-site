@@ -195,7 +195,7 @@ Extremely small?
 
 Can you become something other than yourself?
 
-Can you become multiple versions of yourself?
+What do you see when you're looking through the eyes of multiple copies of yourself at the same time?
 
 We spend our waking lives inside an apparently stable body and identity. Dreams may give us a laboratory where some of those assumptions become surprisingly flexible.
 
@@ -237,11 +237,7 @@ But subjectively, I experienced myself as awake while my body was asleep deeply 
 
 That was enough to make me want to keep investigating.
 
-I've also been in a serious car wreck in which the vehicle rolled completely over. During the event, time seemed to slow.
-
-Why? What does extreme stress do to our perception of time? What happens to consciousness around sleep, trauma, anesthesia, meditation, and death? Are extraordinary experiences entirely products of the brain, and is that distinction even as simple as it sounds? Could consciousness ever exist or operate independently of the physical body?
-
-Those questions are much larger than this guide can settle. They are still excellent reasons to explore.
+That experience does not settle the out-of-body question. It does give me a concrete reason to keep asking what consciousness can feel like when the body is asleep, and how far those experiences can be tested.
 
 ## What This Book Actually Does
 
