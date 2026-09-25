@@ -6,9 +6,6 @@ Sleep and safety.
 
 <!-- cue:short-pause -->
 
-<!-- cue:short-pause -->
-Sleep and safety
-
 Sleep comes first.
 
 Do not treat sleep loss, forced sleep paralysis, or stacked nightly interruption as commitment. Wake-back-to-bed is optional. Vibrations are not required. Sleep paralysis is not required.
