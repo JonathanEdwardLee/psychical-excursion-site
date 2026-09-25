@@ -121,7 +121,7 @@ export async function synthesizeCedar({
     const buf = Buffer.from(await res.arrayBuffer());
     writeFileSync(file, buf);
     process.stdout.write(`Cedar: wrote ${file} (${buf.length} bytes)\n`);
-    receipt.files.push(file);
+    receipt.files.push(basename(file));
     if (i < chunks.length - 1) await sleep(2000);
   }
   receipt.executed = true;
