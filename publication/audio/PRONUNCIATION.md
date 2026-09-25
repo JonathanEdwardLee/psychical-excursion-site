@@ -15,8 +15,8 @@ Standard or common forms. Uncertain proper names are flagged, not invented.
 | qi / chi | chee |
 | prana | PRAH-nuh |
 | Bön | bon (open o; Tibetan Bön) |
-| Tenzin Wangyal Rinpoche | TEN-zin wang-GYAL RIN-po-chay — *confirm with a Tibetan speaker before locking audio* |
-| LaBerge | luh-BERZH — *confirm; Stephen LaBerge's own usage preferred* |
+| Tenzin Wangyal Rinpoche | TEN-zin wang-GYAL RIN-po-chay — *founder / Tibetan-speaker confirmation still required before locking audio*. English-language Buddhist usage commonly says RIN-po-chay for the honorific *rin po che* (“precious one”); that is a working form, not a native-speaker lock. |
+| LaBerge | luh-BERZH — *founder confirmation still required; Stephen LaBerge's own usage preferred*. French-origin surname; US lucid-dream talks usually stress the second syllable. No transcript in this pass quotes him spelling it phonetically. |
 | Falkor | FAL-kor |
 | dantian | DAHN-tyen |
 | aphantasia | ay-fan-TAY-zhuh |

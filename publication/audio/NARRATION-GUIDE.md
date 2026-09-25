@@ -32,7 +32,7 @@ A single standard line may be read once in front or back matter:
 
 ## Production cues (not in book prose)
 
-Keep cues in a session script, not in `chapters/`.
+Keep cues in generated session scripts under `audio/session-scripts/`, not in `chapters/`. See `PAUSE-POLICY.md`. Regenerator: `npm run generate:session-scripts`.
 
 | Cue | Use |
 | --- | --- |

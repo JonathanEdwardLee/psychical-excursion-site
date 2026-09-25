@@ -22,7 +22,7 @@ A later website edit does not silently become the book. A later book edit does n
 - `manifest.json` — provenance, word counts
 - `front-matter/` — title, evidence, sleep/safety
 - `back-matter/` — acknowledgments placeholder, about the author, continue the experiment
-- `audio/` — narration rules, pronunciation, acronyms
+- `audio/` — narration rules, pronunciation, session scripts, production plan, track manifest
 - `references/` — how print vs audio treat sources
 - `ADAPTATION-LOG.md` — bounded deltas from the Web Edition
 
