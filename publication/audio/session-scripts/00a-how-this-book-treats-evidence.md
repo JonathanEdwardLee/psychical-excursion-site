@@ -6,9 +6,6 @@ How this book treats evidence.
 
 <!-- cue:short-pause -->
 
-<!-- cue:short-pause -->
-How this book treats evidence
-
 This is a nonfiction experiment, not a conversion manual.
 
 Some chapters report laboratory findings. Some report history and tradition. Some report Jonathan's own experience. Those are not the same kind of claim.
