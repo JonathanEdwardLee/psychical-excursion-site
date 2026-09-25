@@ -558,13 +558,7 @@ You began by learning to deliberately move attention.
 
 Then you learned to hold it still.
 
-You learned to distinguish an image you constructed from an image that appeared.
-
-You watched waking thought begin turning into sleep.
-
-You observed the felt body becoming less dominant.
-
-Now notice what happens when **movement itself stops requiring physical motion**.
+By now you can tell a constructed image from one that appears, and you have watched thought and the felt body loosen near sleep. The next comparison is simpler: **movement itself no longer requiring physical motion**.
 
 ## Summary
 

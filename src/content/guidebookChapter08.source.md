@@ -76,7 +76,7 @@ If the cube remains easy to manipulate while color and texture imagery are weak,
 
 Research on imagery extremes supports taking these differences seriously. Studies have reported distinct object and spatial imagery profiles rather than one universal imagery ability.[1]
 
-The point is not to diagnose yourself. The point is to stop asking one vague question when several better questions are available.
+You do not need a diagnosis. You need better questions than one vague score for visualization.
 
 ## Imagination Is Not Only Visual
 
@@ -220,11 +220,7 @@ Eventually another variable begins changing everything: sleep.
 
 As wakefulness gives way to sleep, imagery can become more spontaneous, thought can lose its ordinary logical structure, bodily sensation can change, and brief scenes or perceptual fragments may arise without deliberate construction.
 
-That transition has its own name and its own research literature.
-
-We will get there next.
-
-For now, it is enough to distinguish two things:
+That transition has its own name and its own research literature. Distinguishing two things is enough for tonight:
 
 **the image you build**
 

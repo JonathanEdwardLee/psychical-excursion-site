@@ -720,9 +720,7 @@ Head.
 
 One field.
 
-You may discover that moving attention is easier than holding broad attention.
-
-That will become important when we ask attention to remain still.
+You may discover that moving attention is easier than holding broad attention. That difference is useful when attention is later asked to remain still.
 
 ## What Is the Current?
 

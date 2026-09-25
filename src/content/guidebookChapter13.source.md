@@ -286,7 +286,7 @@ Lucidity begins.
 
 These events do not have to occur at once.
 
-That distinction matters for what comes next in this guidebook.
+Recognition can be of sleep onset, of a dream, or of both. They are not the same event.
 
 You are not trying to locate one mystical gate.
 
