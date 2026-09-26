@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * LaptopDev pass: regenerate Chapter 1 (section-heading pacing) and Chapter 4 only;
- * reuse other delivery MP3s; rebuild 27-track package (no 00a/00b).
+ * reuse other delivery MP3s; rebuild listening-edition package (see TRACK-MANIFEST).
  */
 import { createHash } from "node:crypto";
 import { createReadStream, readFileSync, writeFileSync } from "node:fs";
@@ -18,6 +18,7 @@ import { estimateCedarUsd, FULL_BOOK_COST_CEILING_USD } from "../core.mjs";
 import { assembleTrack } from "./assemble.mjs";
 import { masterTrack } from "./master.mjs";
 import { assertLedgerHeadroom, readLedger, writeLedger } from "./ledger.mjs";
+import { LISTENING_EDITION_TRACK_COUNT } from "../../generate-session-scripts.mjs";
 import { loadTrackManifest, loadTrackSpokenText } from "./tracks.mjs";
 import { generateTrackRaw, planTrackChunks } from "./track-generate.mjs";
 
@@ -112,8 +113,10 @@ export async function runCh1Ch4Pass({ env = process.env } = {}) {
 
   const ceiling = ceilingUsd(env);
   const manifest = loadTrackManifest(ROOT);
-  if (manifest.tracks.length !== 27) {
-    throw new Error(`Expected 27 tracks in TRACK-MANIFEST; got ${manifest.tracks.length}`);
+  if (manifest.tracks.length !== LISTENING_EDITION_TRACK_COUNT) {
+    throw new Error(
+      `Expected ${LISTENING_EDITION_TRACK_COUNT} tracks in TRACK-MANIFEST; got ${manifest.tracks.length}`,
+    );
   }
   for (const removed of REMOVED_TRACKS) {
     if (manifest.tracks.some((t) => t.output_basename === removed)) {
@@ -122,8 +125,9 @@ export async function runCh1Ch4Pass({ env = process.env } = {}) {
   }
 
   const reusedIds = manifest.tracks.map((t) => t.output_basename).filter((id) => !REGEN_TRACKS.includes(id));
-  if (reusedIds.length !== 25) {
-    throw new Error(`Expected 25 reused tracks; got ${reusedIds.length}`);
+  const expectedReused = LISTENING_EDITION_TRACK_COUNT - REGEN_TRACKS.length;
+  if (reusedIds.length !== expectedReused) {
+    throw new Error(`Expected ${expectedReused} reused tracks; got ${reusedIds.length}`);
   }
 
   const deliveryBaseline = {};
@@ -242,7 +246,7 @@ export async function runCh1Ch4Pass({ env = process.env } = {}) {
   pass.reused_hashes_unchanged = mismatches.length === 0;
   pass.reused_hash_mismatches = mismatches;
 
-  process.stdout.write("\nRebuilding 27-track package zip…\n");
+  process.stdout.write(`\nRebuilding ${LISTENING_EDITION_TRACK_COUNT}-track package zip…\n`);
   const pack = spawnSync(process.execPath, [join(ROOT, "scripts/voice-lab/full-book/package.mjs")], {
     stdio: "inherit",
     env,
@@ -275,7 +279,7 @@ export async function runCh1Ch4Pass({ env = process.env } = {}) {
 
   pass.verified =
     pass.reused_hashes_unchanged &&
-    pass.package_mp3_count === 27 &&
+    pass.package_mp3_count === LISTENING_EDITION_TRACK_COUNT &&
     !mp3InPackage.some((n) => n.includes("00a") || n.includes("00b")) &&
     pass.chapter1_heading_pause_verified &&
     pauseFiles.length >= 17;

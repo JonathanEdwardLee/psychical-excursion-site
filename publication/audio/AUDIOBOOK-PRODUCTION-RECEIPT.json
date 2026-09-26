@@ -1,18 +1,18 @@
 {
   "status": "package-complete",
-  "updated_at": "2026-09-26T01:34:27.046Z",
+  "updated_at": "2026-09-26T19:30:35.029Z",
   "work_order": "docs/work-orders/PEX-FULL-CEDAR-AUDIOBOOK.md",
   "model": "gpt-4o-mini-tts",
   "voice": "cedar",
   "cost_ceiling_usd": 15,
   "conservative_usd_estimated": 8.4092,
   "api_request_count": 296,
-  "track_count_planned": 27,
-  "tracks_completed": 27,
-  "total_duration_seconds_measured": 23509.25,
-  "planning_spend_usd_rule_of_thumb": 5.88,
-  "package_zip_sha256": "9678a911c9c140c94db1ed85fb095b2f853a471dba7c1379bb31689c45ce373e",
-  "package_zip_bytes": 534513171,
+  "track_count_planned": 24,
+  "tracks_completed": 24,
+  "total_duration_seconds_measured": 23393.65,
+  "planning_spend_usd_rule_of_thumb": 5.85,
+  "package_zip_sha256": "e3d262d1ced05ad58c68f630f991500d93e4edac21e6837c088c465398faab8c",
+  "package_zip_bytes": 533240805,
   "ch1_ch4_pass": {
     "started_at": "2026-09-26T01:21:26.164Z",
     "accepted_main_sha": "4e370202039dff603836170b836383800b1e580c",
@@ -256,7 +256,8 @@
     "chapter1_wilson_section_pause_ms": 1750,
     "chapter1_heading_pause_verified": true,
     "verified": true,
-    "completed_at": "2026-09-26T01:27:11.895Z"
+    "completed_at": "2026-09-26T01:27:11.895Z",
+    "historical_note": "27-track Ch1/Ch4 Cedar pass; listening edition is now 24 tracks (opening + ch 01–23)."
   },
   "tracks": {
     "PEX-AUDIO-00-opening-credits": {
@@ -267,22 +268,6 @@
       "conservative_usd": 0.0023,
       "correction_regenerated_at": "2026-09-25T22:56:05.352Z"
     },
-    "PEX-AUDIO-00a-evidence-and-belief": {
-      "sequence": 1,
-      "status": "mastered",
-      "words": 86,
-      "duration_seconds": 34.9,
-      "conservative_usd": 0.0116,
-      "correction_regenerated_at": "2026-09-25T22:56:12.779Z"
-    },
-    "PEX-AUDIO-00b-sleep-and-safety": {
-      "sequence": 2,
-      "status": "mastered",
-      "words": 62,
-      "duration_seconds": 25.5,
-      "conservative_usd": 0.0084,
-      "correction_regenerated_at": "2026-09-25T22:56:17.536Z"
-    },
     "PEX-AUDIO-01-what-is-a-psychical-excursion": {
       "sequence": 1,
       "status": "mastered",
@@ -292,14 +277,14 @@
       "ch1_ch4_regenerated_at": "2026-09-26T01:24:08.248Z"
     },
     "PEX-AUDIO-02-remember-your-dreams": {
-      "sequence": 4,
+      "sequence": 2,
       "status": "mastered",
       "words": 1573,
       "duration_seconds": 565.85,
       "conservative_usd": 0.2124
     },
     "PEX-AUDIO-03-notice-your-dreams": {
-      "sequence": 5,
+      "sequence": 3,
       "status": "mastered",
       "words": 2227,
       "duration_seconds": 803.05,
@@ -314,159 +299,208 @@
       "ch1_ch4_regenerated_at": "2026-09-26T01:26:07.351Z"
     },
     "PEX-AUDIO-05-feel-the-body": {
-      "sequence": 7,
+      "sequence": 5,
       "status": "mastered",
       "words": 2701,
       "duration_seconds": 972.05,
       "conservative_usd": 0.3646
     },
     "PEX-AUDIO-06-move-your-attention": {
-      "sequence": 8,
+      "sequence": 6,
       "status": "mastered",
       "words": 3697,
       "duration_seconds": 1339,
       "conservative_usd": 0.4991
     },
     "PEX-AUDIO-07-build-the-current": {
-      "sequence": 9,
+      "sequence": 7,
       "status": "mastered",
       "words": 3095,
       "duration_seconds": 1130.25,
       "conservative_usd": 0.4178
     },
     "PEX-AUDIO-08-quiet-the-mind": {
-      "sequence": 10,
+      "sequence": 8,
       "status": "mastered",
       "words": 2414,
       "duration_seconds": 918,
       "conservative_usd": 0.3259
     },
     "PEX-AUDIO-09-see-the-image": {
-      "sequence": 11,
+      "sequence": 9,
       "status": "mastered",
       "words": 3162,
       "duration_seconds": 1117.05,
       "conservative_usd": 0.4269
     },
     "PEX-AUDIO-10-watch-the-edge": {
-      "sequence": 12,
+      "sequence": 10,
       "status": "mastered",
       "words": 2762,
       "duration_seconds": 1039.35,
       "conservative_usd": 0.3729
     },
     "PEX-AUDIO-11-let-the-body-sleep": {
-      "sequence": 13,
+      "sequence": 11,
       "status": "mastered",
       "words": 2867,
       "duration_seconds": 1092.85,
       "conservative_usd": 0.387
     },
     "PEX-AUDIO-12-move-without-moving": {
-      "sequence": 14,
+      "sequence": 12,
       "status": "mastered",
       "words": 2687,
       "duration_seconds": 1016.05,
       "conservative_usd": 0.3627
     },
     "PEX-AUDIO-13-feel-the-shift": {
-      "sequence": 15,
+      "sequence": 13,
       "status": "mastered",
       "words": 2747,
       "duration_seconds": 1064.95,
       "conservative_usd": 0.3708
     },
     "PEX-AUDIO-14-know-the-threshold": {
-      "sequence": 16,
+      "sequence": 14,
       "status": "mastered",
       "words": 2669,
       "duration_seconds": 1008.65,
       "conservative_usd": 0.3603
     },
     "PEX-AUDIO-15-stabilize-the-dream": {
-      "sequence": 17,
+      "sequence": 15,
       "status": "mastered",
       "words": 2809,
       "duration_seconds": 1048.8,
       "conservative_usd": 0.3792
     },
     "PEX-AUDIO-16-explore-the-dream": {
-      "sequence": 18,
+      "sequence": 16,
       "status": "mastered",
       "words": 2505,
       "duration_seconds": 954.3,
       "conservative_usd": 0.3382
     },
     "PEX-AUDIO-17-loosen-the-body": {
-      "sequence": 19,
+      "sequence": 17,
       "status": "mastered",
       "words": 2562,
       "duration_seconds": 1004.55,
       "conservative_usd": 0.3459
     },
     "PEX-AUDIO-18-cross-the-threshold": {
-      "sequence": 20,
+      "sequence": 18,
       "status": "mastered",
       "words": 2629,
       "duration_seconds": 1075.95,
       "conservative_usd": 0.3549
     },
     "PEX-AUDIO-19-test-the-experience": {
-      "sequence": 21,
+      "sequence": 19,
       "status": "mastered",
       "words": 2513,
       "duration_seconds": 961.5,
       "conservative_usd": 0.3393
     },
     "PEX-AUDIO-20-compare-the-maps": {
-      "sequence": 22,
+      "sequence": 20,
       "status": "mastered",
       "words": 2487,
       "duration_seconds": 975.65,
       "conservative_usd": 0.3357
     },
     "PEX-AUDIO-21-floating-in-space": {
-      "sequence": 23,
+      "sequence": 21,
       "status": "mastered",
       "words": 4567,
       "duration_seconds": 1719.95,
       "conservative_usd": 0.6165
     },
     "PEX-AUDIO-22-notice-the-coincidence": {
-      "sequence": 24,
+      "sequence": 22,
       "status": "mastered",
       "words": 2632,
       "duration_seconds": 1019.65,
       "conservative_usd": 0.3553
     },
     "PEX-AUDIO-23-return-record-repeat": {
-      "sequence": 25,
+      "sequence": 23,
       "status": "mastered",
       "words": 2726,
       "duration_seconds": 1107.5,
       "conservative_usd": 0.368
+    }
+  },
+  "note": "Audio binaries gitignored under local/voice-lab/full-book/",
+  "listening_edition": {
+    "track_count": 24,
+    "omitted_output_basenames": [
+      "PEX-AUDIO-00a-evidence-and-belief",
+      "PEX-AUDIO-00b-sleep-and-safety",
+      "PEX-AUDIO-24-about-the-author",
+      "PEX-AUDIO-25-continue-the-experiment",
+      "PEX-AUDIO-99-closing-credits"
+    ],
+    "audio_regenerated": false,
+    "repackaged_at": "2026-09-26T19:30:35.030Z"
+  },
+  "historical_ledger_tracks": {
+    "PEX-AUDIO-00a-evidence-and-belief": {
+      "sequence": 1,
+      "status": "mastered",
+      "words": 86,
+      "duration_seconds": 34.9,
+      "conservative_usd": 0.0116,
+      "correction_regenerated_at": "2026-09-25T22:56:12.779Z",
+      "historical_reason": "omitted-from-listening-edition-24"
+    },
+    "PEX-AUDIO-00b-sleep-and-safety": {
+      "sequence": 2,
+      "status": "mastered",
+      "words": 62,
+      "duration_seconds": 25.5,
+      "conservative_usd": 0.0084,
+      "correction_regenerated_at": "2026-09-25T22:56:17.536Z",
+      "historical_reason": "omitted-from-listening-edition-24"
     },
     "PEX-AUDIO-24-about-the-author": {
       "sequence": 26,
       "status": "mastered",
       "words": 71,
       "duration_seconds": 27.4,
-      "conservative_usd": 0.0096
+      "conservative_usd": 0.0096,
+      "historical_reason": "omitted-from-listening-edition-24"
     },
     "PEX-AUDIO-25-continue-the-experiment": {
       "sequence": 27,
       "status": "mastered",
       "words": 58,
       "duration_seconds": 20.2,
-      "conservative_usd": 0.0078
+      "conservative_usd": 0.0078,
+      "historical_reason": "omitted-from-listening-edition-24"
     },
     "PEX-AUDIO-99-closing-credits": {
       "sequence": 28,
       "status": "mastered",
       "words": 20,
       "duration_seconds": 7.6,
-      "conservative_usd": 0.0027
+      "conservative_usd": 0.0027,
+      "historical_reason": "omitted-from-listening-edition-24"
     }
   },
-  "note": "Audio binaries gitignored under local/voice-lab/full-book/"
+  "superseded_packages": [
+    {
+      "zip_sha256": "9678a911c9c140c94db1ed85fb095b2f853a471dba7c1379bb31689c45ce373e",
+      "zip_bytes": 534513171,
+      "note": "PR #96 founder-approved 27-track package (includes back matter + closing).",
+      "track_count": 27
+    },
+    {
+      "zip_sha256": "9678a911c9c140c94db1ed85fb095b2f853a471dba7c1379bb31689c45ce373e",
+      "zip_bytes": 534513171,
+      "note": "PR #96 founder-approved 27-track package (includes back matter + closing).",
+      "track_count": 27
+    }
+  ]
 }

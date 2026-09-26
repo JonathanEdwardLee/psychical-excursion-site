@@ -5,6 +5,7 @@ import { join } from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
+import { LISTENING_EDITION_TRACK_COUNT } from "../../generate-session-scripts.mjs";
 import { loadTrackManifest } from "./tracks.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../../..");
@@ -40,6 +41,12 @@ const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.arg
 if (isMain) {
   await (async () => {
   const manifest = loadTrackManifest(ROOT);
+  if (manifest.tracks.length !== LISTENING_EDITION_TRACK_COUNT) {
+    process.stderr.write(
+      `TRACK-MANIFEST must list exactly ${LISTENING_EDITION_TRACK_COUNT} listening-edition tracks; got ${manifest.tracks.length}\n`,
+    );
+    process.exit(1);
+  }
   rmSync(STAGING, { recursive: true, force: true });
   mkdirSync(STAGING, { recursive: true });
   const entries = [];
@@ -62,11 +69,16 @@ if (isMain) {
   );
 
   const hashes = {};
-  for (const name of readdirSync(STAGING)) {
-    hashes[name] = await sha256File(join(STAGING, name));
+  for (const { file } of entries) {
+    hashes[file] = await sha256File(join(STAGING, file));
+  }
+  for (const doc of ["README.txt", "AI-NARRATION-DISCLOSURE.txt", "SOURCE-NOTES.txt"]) {
+    hashes[doc] = await sha256File(join(STAGING, doc));
   }
   const packageMeta = {
     created_at: new Date().toISOString(),
+    edition: "listening-24",
+    listening_track_count: LISTENING_EDITION_TRACK_COUNT,
     zip_name: "Psychical-Excursion-Audiobook-v1.zip",
     files: entries,
     sha256: hashes,

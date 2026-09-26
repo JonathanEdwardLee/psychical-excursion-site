@@ -17,6 +17,25 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const PUB = join(ROOT, "publication");
 const OUT = join(PUB, "audio", "session-scripts");
 
+/** Sellable/listening edition: opening + chapters 01–23 only (see TRACK-MANIFEST). */
+export const LISTENING_EDITION_TRACK_COUNT = 24;
+
+export const OMITTED_LISTENING_OUTPUT_BASENAMES = [
+  "PEX-AUDIO-00a-evidence-and-belief",
+  "PEX-AUDIO-00b-sleep-and-safety",
+  "PEX-AUDIO-24-about-the-author",
+  "PEX-AUDIO-25-continue-the-experiment",
+  "PEX-AUDIO-99-closing-credits",
+];
+
+const RETIRED_SESSION_SCRIPTS = [
+  "00a-how-this-book-treats-evidence.md",
+  "00b-sleep-and-safety.md",
+  "24-about-the-author.md",
+  "25-continue-the-experiment.md",
+  "99-closing-credits.md",
+];
+
 const CUE_SHORT = "<!-- cue:short-pause -->";
 const CUE_SECTION = "<!-- cue:section-pause -->";
 const CUE_REFLECT = "<!-- cue:reflective-pause -->";
@@ -210,8 +229,7 @@ export function buildSessionScripts() {
     kind: "credits",
   }));
 
-  // Evidence/safety front matter remains in print/ebook only — not separate audiobook tracks.
-  for (const retired of ["00a-how-this-book-treats-evidence.md", "00b-sleep-and-safety.md"]) {
+  for (const retired of RETIRED_SESSION_SCRIPTS) {
     try {
       unlinkSync(join(OUT, retired));
     } catch {
@@ -268,65 +286,11 @@ export function buildSessionScripts() {
     seq += 1;
   }
 
-  const about = readFileSync(join(PUB, "back-matter/ABOUT-THE-AUTHOR.md"), "utf8");
-  const aboutScript = matterScript({
-    id: "PEX-AUDIO-24-about-the-author",
-    sourceRel: "back-matter/ABOUT-THE-AUTHOR.md",
-    spokenTitle: "About the author.",
-    body: about.replace(/https:\/\/psychicalexcursion\.com/g, "psychicalexcursion.com")
-      .replace(/This note uses only facts already authorized in `knowledge\/authorvoice.md` and the accepted manuscript. It does not add new autobiography.\n?/g, ""),
-  });
-  writeFileSync(join(OUT, "24-about-the-author.md"), aboutScript);
-  tracks.push(trackRecord({
-    sequence: seq,
-    menu: null,
-    title: "About the author",
-    source: "back-matter/ABOUT-THE-AUTHOR.md",
-    script: "audio/session-scripts/24-about-the-author.md",
-    basename: "PEX-AUDIO-24-about-the-author",
-    words: countWords(aboutScript),
-    pronunciation: pronunciationFlags(about),
-    exercise: [],
-    kind: "back-matter",
-  }));
-  seq += 1;
-
-  const cont = readFileSync(join(PUB, "back-matter/CONTINUE.md"), "utf8");
-  const contScript = matterScript({
-    id: "PEX-AUDIO-25-continue-the-experiment",
-    sourceRel: "back-matter/CONTINUE.md",
-    spokenTitle: "Continue the experiment.",
-    body: cont.replace(/https:\/\/psychicalexcursion\.com/g, "psychicalexcursion.com"),
-  });
-  writeFileSync(join(OUT, "25-continue-the-experiment.md"), contScript);
-  tracks.push(trackRecord({
-    sequence: seq,
-    menu: null,
-    title: "Continue the experiment",
-    source: "back-matter/CONTINUE.md",
-    script: "audio/session-scripts/25-continue-the-experiment.md",
-    basename: "PEX-AUDIO-25-continue-the-experiment",
-    words: countWords(contScript),
-    pronunciation: [],
-    exercise: [],
-    kind: "back-matter",
-  }));
-  seq += 1;
-
-  const closing = closingCreditsScript();
-  writeFileSync(join(OUT, "99-closing-credits.md"), closing);
-  tracks.push(trackRecord({
-    sequence: seq,
-    menu: null,
-    title: "Closing credits",
-    source: "publication/audio/CREDITS.md",
-    script: "audio/session-scripts/99-closing-credits.md",
-    basename: "PEX-AUDIO-99-closing-credits",
-    words: countWords(closing),
-    pronunciation: [],
-    exercise: [],
-    kind: "credits",
-  }));
+  if (tracks.length !== LISTENING_EDITION_TRACK_COUNT) {
+    throw new Error(
+      `Listening edition must be ${LISTENING_EDITION_TRACK_COUNT} tracks (opening + ch 01–23); got ${tracks.length}`,
+    );
+  }
 
   const chapterTracks = tracks.filter((t) => t.kind === "chapter");
   const totals = {
@@ -355,6 +319,11 @@ export function buildSessionScripts() {
     longest_chapter: { menu: longest.chapter_number, title: longest.title, publication_narration_words: longest.publication_narration_words },
     shortest_chapter: { menu: shortest.chapter_number, title: shortest.title, publication_narration_words: shortest.publication_narration_words },
     session_split_rule: "Default one chapter equals one final track. Optional internal recording segments only if a chapter exceeds about 4000 narration words (currently menu 21).",
+    listening_edition: {
+      track_count: LISTENING_EDITION_TRACK_COUNT,
+      description: "Opening intro + chapters 01–23 (direct-sale / listening package).",
+      omitted_output_basenames: OMITTED_LISTENING_OUTPUT_BASENAMES,
+    },
     tracks,
   };
 

@@ -31,6 +31,17 @@
     "publication_narration_words": 1588
   },
   "session_split_rule": "Default one chapter equals one final track. Optional internal recording segments only if a chapter exceeds about 4000 narration words (currently menu 21).",
+  "listening_edition": {
+    "track_count": 24,
+    "description": "Opening intro + chapters 01–23 (direct-sale / listening package).",
+    "omitted_output_basenames": [
+      "PEX-AUDIO-00a-evidence-and-belief",
+      "PEX-AUDIO-00b-sleep-and-safety",
+      "PEX-AUDIO-24-about-the-author",
+      "PEX-AUDIO-25-continue-the-experiment",
+      "PEX-AUDIO-99-closing-credits"
+    ]
+  },
   "tracks": [
     {
       "sequence": 0,
@@ -719,71 +730,6 @@
       "recording_session": "single-session",
       "status": "script-only",
       "output_basename": "PEX-AUDIO-23-return-record-repeat",
-      "audio_hash": null
-    },
-    {
-      "sequence": 24,
-      "kind": "back-matter",
-      "chapter_number": null,
-      "title": "About the author",
-      "source_publication_file": "back-matter/ABOUT-THE-AUTHOR.md",
-      "session_script": "audio/session-scripts/24-about-the-author.md",
-      "narration_word_count": 68,
-      "publication_narration_words": null,
-      "estimated_duration_minutes": {
-        "wpm_135": 0.5,
-        "wpm_150": 0.5,
-        "wpm_165": 0.4
-      },
-      "pronunciation_flags": [
-        "qigong"
-      ],
-      "exercise_pause_flags": [],
-      "recording_session": "single-session",
-      "status": "script-only",
-      "output_basename": "PEX-AUDIO-24-about-the-author",
-      "audio_hash": null
-    },
-    {
-      "sequence": 25,
-      "kind": "back-matter",
-      "chapter_number": null,
-      "title": "Continue the experiment",
-      "source_publication_file": "back-matter/CONTINUE.md",
-      "session_script": "audio/session-scripts/25-continue-the-experiment.md",
-      "narration_word_count": 55,
-      "publication_narration_words": null,
-      "estimated_duration_minutes": {
-        "wpm_135": 0.4,
-        "wpm_150": 0.4,
-        "wpm_165": 0.3
-      },
-      "pronunciation_flags": [],
-      "exercise_pause_flags": [],
-      "recording_session": "single-session",
-      "status": "script-only",
-      "output_basename": "PEX-AUDIO-25-continue-the-experiment",
-      "audio_hash": null
-    },
-    {
-      "sequence": 26,
-      "kind": "credits",
-      "chapter_number": null,
-      "title": "Closing credits",
-      "source_publication_file": "publication/audio/CREDITS.md",
-      "session_script": "audio/session-scripts/99-closing-credits.md",
-      "narration_word_count": 20,
-      "publication_narration_words": null,
-      "estimated_duration_minutes": {
-        "wpm_135": 0.1,
-        "wpm_150": 0.1,
-        "wpm_165": 0.1
-      },
-      "pronunciation_flags": [],
-      "exercise_pause_flags": [],
-      "recording_session": "single-session",
-      "status": "script-only",
-      "output_basename": "PEX-AUDIO-99-closing-credits",
       "audio_hash": null
     }
   ]

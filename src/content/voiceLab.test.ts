@@ -119,6 +119,24 @@ describe("local AI narration voice lab", () => {
     expect(result.stderr).toBe("");
   });
 
+  it("listening edition track manifest is opening plus chapters 01–23 only", () => {
+    const manifest = JSON.parse(
+      readFileSync(join(ROOT, "publication/audio/TRACK-MANIFEST.json"), "utf8"),
+    ) as {
+      tracks: { output_basename: string; sequence: number; chapter_number: number | null }[];
+      listening_edition?: { track_count: number };
+    };
+    expect(manifest.listening_edition?.track_count).toBe(24);
+    expect(manifest.tracks).toHaveLength(24);
+    expect(manifest.tracks[0]?.output_basename).toBe("PEX-AUDIO-00-opening-credits");
+    expect(manifest.tracks[1]?.output_basename).toBe("PEX-AUDIO-01-what-is-a-psychical-excursion");
+    expect(manifest.tracks[23]?.output_basename).toBe("PEX-AUDIO-23-return-record-repeat");
+    const banned = ["00a", "00b", "24-about", "25-continue", "99-closing"];
+    for (const track of manifest.tracks) {
+      expect(banned.some((b) => track.output_basename.includes(b))).toBe(false);
+    }
+  });
+
   it("turns section-pause cues into assembly silence segments, not Cedar speech", () => {
     const script =
       "The Excursion\n\n<!-- cue:section-pause -->\n\nRobert Anton Wilson was another major influence.";

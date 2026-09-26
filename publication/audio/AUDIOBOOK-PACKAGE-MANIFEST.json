@@ -1,5 +1,7 @@
 {
-  "created_at": "2026-09-26T01:33:35.855Z",
+  "created_at": "2026-09-26T19:28:57.088Z",
+  "edition": "listening-24",
+  "listening_track_count": 24,
   "zip_name": "Psychical-Excursion-Audiobook-v1.zip",
   "files": [
     {
@@ -97,18 +99,6 @@
     {
       "file": "23-PEX-AUDIO-23-return-record-repeat.mp3",
       "track": "PEX-AUDIO-23-return-record-repeat"
-    },
-    {
-      "file": "24-PEX-AUDIO-24-about-the-author.mp3",
-      "track": "PEX-AUDIO-24-about-the-author"
-    },
-    {
-      "file": "25-PEX-AUDIO-25-continue-the-experiment.mp3",
-      "track": "PEX-AUDIO-25-continue-the-experiment"
-    },
-    {
-      "file": "26-PEX-AUDIO-99-closing-credits.mp3",
-      "track": "PEX-AUDIO-99-closing-credits"
     }
   ],
   "sha256": {
@@ -136,14 +126,25 @@
     "21-PEX-AUDIO-21-floating-in-space.mp3": "7a3284c5859963e0e473dbe2303d708e4c1376d65bd15d7d8bc2bc316a717cdb",
     "22-PEX-AUDIO-22-notice-the-coincidence.mp3": "731196f50dbbeabf22644e3f6b8b20b501aa137727dd46466ae686d87f8d69b7",
     "23-PEX-AUDIO-23-return-record-repeat.mp3": "334a37150b5ae13683e45d14d515348941e88b20dd3e89ae70ff658d882a4209",
-    "24-PEX-AUDIO-24-about-the-author.mp3": "767be6cc7f82e0b2f60000cdb979e39e0c4adc36ca358ddbf1c1d527bcc862bc",
-    "25-PEX-AUDIO-25-continue-the-experiment.mp3": "b9cc2173c40504d8ae8cf301eb4d51d256a0ce36faa76a8a57db94f942f9c4cd",
-    "26-PEX-AUDIO-99-closing-credits.mp3": "5f9bce1f587c924b0795864b734156831e607d4b5e3ca386f850e1440feb5ed4",
-    "AI-NARRATION-DISCLOSURE.txt": "52e56145acae28aac2c0a3b05a31a88d111f5aa729730e328efb1e854f5b612e",
     "README.txt": "64775ff0a95d9dbadf93cded4efaef215e971411502d2ef8eeefbdef052d0103",
+    "AI-NARRATION-DISCLOSURE.txt": "52e56145acae28aac2c0a3b05a31a88d111f5aa729730e328efb1e854f5b612e",
     "SOURCE-NOTES.txt": "8e8f79c204cc2131170a921d4cdbbbd7a10f8b2befd840e40d874710403881c9"
   },
-  "zip_sha256": "9678a911c9c140c94db1ed85fb095b2f853a471dba7c1379bb31689c45ce373e",
-  "zip_bytes": 534513171,
-  "zip_path_gitignored": "local/voice-lab/full-book/Psychical-Excursion-Audiobook-v1.zip"
+  "zip_sha256": "e3d262d1ced05ad58c68f630f991500d93e4edac21e6837c088c465398faab8c",
+  "zip_bytes": 533240805,
+  "zip_path_gitignored": "local/voice-lab/full-book/Psychical-Excursion-Audiobook-v1.zip",
+  "superseded_packages": [
+    {
+      "edition": "listening-27",
+      "zip_sha256": "9678a911c9c140c94db1ed85fb095b2f853a471dba7c1379bb31689c45ce373e",
+      "zip_bytes": 534513171,
+      "note": "PR #96 founder-approved 27-track package (includes back matter + closing)."
+    },
+    {
+      "edition": "listening-27",
+      "zip_sha256": "9678a911c9c140c94db1ed85fb095b2f853a471dba7c1379bb31689c45ce373e",
+      "zip_bytes": 534513171,
+      "note": "PR #96 founder-approved 27-track package (includes back matter + closing)."
+    }
+  ]
 }
