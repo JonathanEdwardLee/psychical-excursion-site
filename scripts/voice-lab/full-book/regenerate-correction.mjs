@@ -20,9 +20,8 @@ const RECEIPTS = join(BOOK, "receipts");
 
 const CORRECTION_TRACKS = [
   "PEX-AUDIO-00-opening-credits",
-  "PEX-AUDIO-00a-evidence-and-belief",
-  "PEX-AUDIO-00b-sleep-and-safety",
   "PEX-AUDIO-01-what-is-a-psychical-excursion",
+  "PEX-AUDIO-04-recognize-the-dream",
 ];
 
 function envExecute(env) {

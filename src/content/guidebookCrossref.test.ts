@@ -19,7 +19,7 @@ function dump(value: unknown): string {
 
 describe("guidebook chapter cross-references", () => {
   it("keeps this-chapter cleanup and canonical Relax the body links", () => {
-    expect(dump(loadGuidebookChapter03())).toContain("Fortunately, we already have plenty.");
+    expect(dump(loadGuidebookChapter03())).toContain("In the last chapter, we learned to notice the clues dreams give us");
     expect(dump(loadGuidebookChapter04())).toContain("So this chapter really begins two practices.");
     expect(dump(loadGuidebookChapter07())).toContain("because this chapter is ultimately about");
     expect(dump(loadGuidebookChapter05())).toContain(`[**Relax the body**](${RELAX_THE_BODY_HREF})`);

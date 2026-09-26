@@ -2,7 +2,7 @@
 
 ## Automated (generator)
 
-- [ ] All 29 tracks in `TRACK-MANIFEST.json` have delivery MP3s
+- [ ] All **27** tracks in `TRACK-MANIFEST.json` have delivery MP3s (opening → chapters 1–23 → back matter → closing; no 00a/00b front-matter tracks)
 - [ ] No zero-byte WAV/MP3 under `local/voice-lab/full-book/`
 - [ ] Per-track receipts include `script_sha256` and `spoken_sha256`
 - [ ] `PRODUCTION-LEDGER.json` conservative total ≤ **$15**

@@ -28,6 +28,15 @@ describe("audiobook session scripts", () => {
   const chapterScripts = readdirSync(SCRIPTS)
     .filter((name) => /^\d{2}-.+\.md$/.test(name) && !name.startsWith("00") && !name.startsWith("24") && !name.startsWith("25") && !name.startsWith("99"));
 
+  it("plans 27 audiobook tracks without evidence or sleep front-matter", () => {
+    expect(manifest.tracks).toHaveLength(27);
+    expect(manifest.tracks.some((t: { output_basename: string }) => t.output_basename.includes("00a"))).toBe(false);
+    expect(manifest.tracks.some((t: { output_basename: string }) => t.output_basename.includes("00b"))).toBe(false);
+    expect(manifest.tracks[0].output_basename).toBe("PEX-AUDIO-00-opening-credits");
+    expect(manifest.tracks[1].chapter_number).toBe(1);
+    expect(manifest.tracks[1].output_basename).toBe("PEX-AUDIO-01-what-is-a-psychical-excursion");
+  });
+
   it("maps 23 generated chapter scripts to publication chapters", () => {
     expect(manifest.publication_master_baseline).toBe(AUDIO_PRODUCTION_BASELINE);
     expect(manifest.recommended_pilot_menu).toBe(Number(PILOT_MENU));
@@ -75,11 +84,13 @@ describe("audiobook session scripts", () => {
     }
   });
 
-  it("does not invent publisher facts in credits", () => {
+  it("keeps opening credits to title, subtitle, and Hoopsnake Designs", () => {
     const opening = readFileSync(join(SCRIPTS, "00-opening-credits.md"), "utf8");
     const closing = readFileSync(join(SCRIPTS, "99-closing-credits.md"), "utf8");
-    expect(opening).toContain("Jonathan Lee");
-    expect(opening).toContain("psychicalexcursion.com");
+    expect(opening).toContain("Psychical Excursion");
+    expect(opening).toContain("Hoopsnake Designs");
+    expect(opening).not.toContain("Jonathan Lee");
+    expect(opening).not.toContain("psychicalexcursion.com");
     expect(opening).not.toMatch(/https?:\/\//);
     expect(closing).toContain("You have been listening to Psychical Excursion");
     expect(closing).toMatch(/The End\./);

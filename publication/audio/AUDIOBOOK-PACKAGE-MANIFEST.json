@@ -155,5 +155,168 @@
   },
   "zip_sha256": "d612ae97e3e6847a1c951ded371c8b61128a19427bbe63fbe5956b4dac95d4ca",
   "zip_bytes": 542919884,
-  "zip_path_gitignored": "local/voice-lab/full-book/Psychical-Excursion-Audiobook-v1.zip"
+  "zip_path_gitignored": "local/voice-lab/full-book/Psychical-Excursion-Audiobook-v1.zip",
+  "status": "superseded-pending-operator-regeneration",
+  "superseded_at": "2026-09-26T00:14:43.529Z",
+  "superseded_reason": "Editorial polish: Chapter 4 rewrite and audiobook plan without 00a/00b front-matter tracks. Rebuild ZIP locally.",
+  "track_count_planned": 27,
+  "prior_complete_package": {
+    "created_at": "2026-09-25T22:58:50.603Z",
+    "zip_name": "Psychical-Excursion-Audiobook-v1.zip",
+    "files": [
+      {
+        "file": "00-PEX-AUDIO-00-opening-credits.mp3",
+        "track": "PEX-AUDIO-00-opening-credits"
+      },
+      {
+        "file": "01-PEX-AUDIO-00a-evidence-and-belief.mp3",
+        "track": "PEX-AUDIO-00a-evidence-and-belief"
+      },
+      {
+        "file": "02-PEX-AUDIO-00b-sleep-and-safety.mp3",
+        "track": "PEX-AUDIO-00b-sleep-and-safety"
+      },
+      {
+        "file": "03-PEX-AUDIO-01-what-is-a-psychical-excursion.mp3",
+        "track": "PEX-AUDIO-01-what-is-a-psychical-excursion"
+      },
+      {
+        "file": "04-PEX-AUDIO-02-remember-your-dreams.mp3",
+        "track": "PEX-AUDIO-02-remember-your-dreams"
+      },
+      {
+        "file": "05-PEX-AUDIO-03-notice-your-dreams.mp3",
+        "track": "PEX-AUDIO-03-notice-your-dreams"
+      },
+      {
+        "file": "06-PEX-AUDIO-04-recognize-the-dream.mp3",
+        "track": "PEX-AUDIO-04-recognize-the-dream"
+      },
+      {
+        "file": "07-PEX-AUDIO-05-feel-the-body.mp3",
+        "track": "PEX-AUDIO-05-feel-the-body"
+      },
+      {
+        "file": "08-PEX-AUDIO-06-move-your-attention.mp3",
+        "track": "PEX-AUDIO-06-move-your-attention"
+      },
+      {
+        "file": "09-PEX-AUDIO-07-build-the-current.mp3",
+        "track": "PEX-AUDIO-07-build-the-current"
+      },
+      {
+        "file": "10-PEX-AUDIO-08-quiet-the-mind.mp3",
+        "track": "PEX-AUDIO-08-quiet-the-mind"
+      },
+      {
+        "file": "11-PEX-AUDIO-09-see-the-image.mp3",
+        "track": "PEX-AUDIO-09-see-the-image"
+      },
+      {
+        "file": "12-PEX-AUDIO-10-watch-the-edge.mp3",
+        "track": "PEX-AUDIO-10-watch-the-edge"
+      },
+      {
+        "file": "13-PEX-AUDIO-11-let-the-body-sleep.mp3",
+        "track": "PEX-AUDIO-11-let-the-body-sleep"
+      },
+      {
+        "file": "14-PEX-AUDIO-12-move-without-moving.mp3",
+        "track": "PEX-AUDIO-12-move-without-moving"
+      },
+      {
+        "file": "15-PEX-AUDIO-13-feel-the-shift.mp3",
+        "track": "PEX-AUDIO-13-feel-the-shift"
+      },
+      {
+        "file": "16-PEX-AUDIO-14-know-the-threshold.mp3",
+        "track": "PEX-AUDIO-14-know-the-threshold"
+      },
+      {
+        "file": "17-PEX-AUDIO-15-stabilize-the-dream.mp3",
+        "track": "PEX-AUDIO-15-stabilize-the-dream"
+      },
+      {
+        "file": "18-PEX-AUDIO-16-explore-the-dream.mp3",
+        "track": "PEX-AUDIO-16-explore-the-dream"
+      },
+      {
+        "file": "19-PEX-AUDIO-17-loosen-the-body.mp3",
+        "track": "PEX-AUDIO-17-loosen-the-body"
+      },
+      {
+        "file": "20-PEX-AUDIO-18-cross-the-threshold.mp3",
+        "track": "PEX-AUDIO-18-cross-the-threshold"
+      },
+      {
+        "file": "21-PEX-AUDIO-19-test-the-experience.mp3",
+        "track": "PEX-AUDIO-19-test-the-experience"
+      },
+      {
+        "file": "22-PEX-AUDIO-20-compare-the-maps.mp3",
+        "track": "PEX-AUDIO-20-compare-the-maps"
+      },
+      {
+        "file": "23-PEX-AUDIO-21-floating-in-space.mp3",
+        "track": "PEX-AUDIO-21-floating-in-space"
+      },
+      {
+        "file": "24-PEX-AUDIO-22-notice-the-coincidence.mp3",
+        "track": "PEX-AUDIO-22-notice-the-coincidence"
+      },
+      {
+        "file": "25-PEX-AUDIO-23-return-record-repeat.mp3",
+        "track": "PEX-AUDIO-23-return-record-repeat"
+      },
+      {
+        "file": "26-PEX-AUDIO-24-about-the-author.mp3",
+        "track": "PEX-AUDIO-24-about-the-author"
+      },
+      {
+        "file": "27-PEX-AUDIO-25-continue-the-experiment.mp3",
+        "track": "PEX-AUDIO-25-continue-the-experiment"
+      },
+      {
+        "file": "28-PEX-AUDIO-99-closing-credits.mp3",
+        "track": "PEX-AUDIO-99-closing-credits"
+      }
+    ],
+    "sha256": {
+      "00-PEX-AUDIO-00-opening-credits.mp3": "177d49773a06f861f5de76107654179b5159e3b3f9a194af32449f3ee0c9cbc0",
+      "01-PEX-AUDIO-00a-evidence-and-belief.mp3": "2338f64d8c54a084fe33690791546d8beca22468f2461e8cb895bff912d46c3e",
+      "02-PEX-AUDIO-00b-sleep-and-safety.mp3": "cc04ace4e3046ccf30ce4fc8a71568cba6d0463a3907af6b6cf06bf05dfa90d5",
+      "03-PEX-AUDIO-01-what-is-a-psychical-excursion.mp3": "042b0450458f542c24c4475b994fa356696b68742cc7d0e2c47f1287eb2f69ef",
+      "04-PEX-AUDIO-02-remember-your-dreams.mp3": "21c2c4bde84eb720755cf7017dd870b43d6b4129ca7b3fca1368c5406b89e3da",
+      "05-PEX-AUDIO-03-notice-your-dreams.mp3": "99dc14fa329f41f0521db0cad61e2c2d72b6990d08bd97d227ee0466cd735db1",
+      "06-PEX-AUDIO-04-recognize-the-dream.mp3": "9facfa1bf767094082af2c49c9ccff21671f43afb66cba1804dd09e7d207d2d3",
+      "07-PEX-AUDIO-05-feel-the-body.mp3": "0d8a4bb874d4a90c6b203fa817e2cf0d8b1d621dee0d723adcc37cc693571ac8",
+      "08-PEX-AUDIO-06-move-your-attention.mp3": "f101ba488ddf05e01e04098e3956cedb24e9e646d85096fd6323db6519f670f2",
+      "09-PEX-AUDIO-07-build-the-current.mp3": "5480927bded25897e7d5074be0cafe5dd239b7ce11d5f528a6427f6b7bf0ecc4",
+      "10-PEX-AUDIO-08-quiet-the-mind.mp3": "62c60e751aa5535f5c9ed1edd3847c4a8f94ad26e59b3d5049f485e702f59e7a",
+      "11-PEX-AUDIO-09-see-the-image.mp3": "159f834904e169578c906ef8f78fd0ea70f376c12fd423b83e5076c5f5ed6f9c",
+      "12-PEX-AUDIO-10-watch-the-edge.mp3": "aa6d80a4c91ff325d3a7d5a374c61829f3261d263f2a6b8e808d46ca6b5c50c9",
+      "13-PEX-AUDIO-11-let-the-body-sleep.mp3": "9536ebf3fb013cf84519b5f991d77cab9b9279d7c87ed42380530284a27a57fc",
+      "14-PEX-AUDIO-12-move-without-moving.mp3": "b78c7537d812785b5c23a816ffeb16353df72f9934674fa909878646fd7d3084",
+      "15-PEX-AUDIO-13-feel-the-shift.mp3": "d1cf583aad6cf998349c95a04c71b0409f1c177cbe7e07cb297faee23521fe90",
+      "16-PEX-AUDIO-14-know-the-threshold.mp3": "735c0f88918376fcb9ebde3d33a913c68ad058f5b94f55a6527f46d82fbf23a7",
+      "17-PEX-AUDIO-15-stabilize-the-dream.mp3": "9658580a6e0b1094a2f0d8c6c9182724e1f72fe33c39825a77051e9f57d7b888",
+      "18-PEX-AUDIO-16-explore-the-dream.mp3": "7b0084fc711b4a394b47922a91711dde92a109d71037c15586ed51bba5400148",
+      "19-PEX-AUDIO-17-loosen-the-body.mp3": "aaf3ec5d21defb223b49871f706e158de18e10e9b36ba6b5a70f279852db8440",
+      "20-PEX-AUDIO-18-cross-the-threshold.mp3": "e2af5ffccbef3a9b9f2fe13c840cb465bd785ae8dd711b3f924e30a367e44b5a",
+      "21-PEX-AUDIO-19-test-the-experience.mp3": "40e74d729a191abce66cb34c2029bc7e5168a166b10b0686c9cd85c640a54477",
+      "22-PEX-AUDIO-20-compare-the-maps.mp3": "6fa21a00c579b01895ac38ef40b2bdb8cfbfe9ae9334a7fe5505de646ecc7cb6",
+      "23-PEX-AUDIO-21-floating-in-space.mp3": "7a3284c5859963e0e473dbe2303d708e4c1376d65bd15d7d8bc2bc316a717cdb",
+      "24-PEX-AUDIO-22-notice-the-coincidence.mp3": "731196f50dbbeabf22644e3f6b8b20b501aa137727dd46466ae686d87f8d69b7",
+      "25-PEX-AUDIO-23-return-record-repeat.mp3": "334a37150b5ae13683e45d14d515348941e88b20dd3e89ae70ff658d882a4209",
+      "26-PEX-AUDIO-24-about-the-author.mp3": "767be6cc7f82e0b2f60000cdb979e39e0c4adc36ca358ddbf1c1d527bcc862bc",
+      "27-PEX-AUDIO-25-continue-the-experiment.mp3": "b9cc2173c40504d8ae8cf301eb4d51d256a0ce36faa76a8a57db94f942f9c4cd",
+      "28-PEX-AUDIO-99-closing-credits.mp3": "5f9bce1f587c924b0795864b734156831e607d4b5e3ca386f850e1440feb5ed4",
+      "AI-NARRATION-DISCLOSURE.txt": "52e56145acae28aac2c0a3b05a31a88d111f5aa729730e328efb1e854f5b612e",
+      "README.txt": "64775ff0a95d9dbadf93cded4efaef215e971411502d2ef8eeefbdef052d0103",
+      "SOURCE-NOTES.txt": "8e8f79c204cc2131170a921d4cdbbbd7a10f8b2befd840e40d874710403881c9"
+    },
+    "zip_sha256": "d612ae97e3e6847a1c951ded371c8b61128a19427bbe63fbe5956b4dac95d4ca",
+    "zip_bytes": 542919884,
+    "zip_path_gitignored": "local/voice-lab/full-book/Psychical-Excursion-Audiobook-v1.zip"
+  }
 }

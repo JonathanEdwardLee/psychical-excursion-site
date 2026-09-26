@@ -6,6 +6,11 @@ import {
   loadGuidebookChapter03,
 } from "./guidebookChapter03.ts";
 import { parseGuidebookPublicPage } from "../ui/guidebookRoute.ts";
+import { loadGuidebookChapter02 } from "./guidebookChapter02.ts";
+
+function dump(value: unknown): string {
+  return JSON.stringify(value);
+}
 
 describe("Chapter 3 Recognize manuscript", () => {
   it("locks title and public hash", () => {
@@ -15,8 +20,9 @@ describe("Chapter 3 Recognize manuscript", () => {
     expect(parseGuidebookPublicPage(CHAPTER_03_HASH)).toBe("chapter03");
   });
 
-  it("parses one practice component and keeps the dream-sign list", () => {
+  it("advances into MILD and recognition rehearsal without re-teaching Chapter 3 dream-sign lists", () => {
     const chapter = loadGuidebookChapter03();
+    const chapter2 = loadGuidebookChapter02();
     expect(chapter.title).toBe(CHAPTER_03_TITLE);
     expect(chapter.references).toHaveLength(4);
     const practice = chapter.blocks.filter((block) => block.kind === "practice");
@@ -27,20 +33,14 @@ describe("Chapter 3 Recognize manuscript", () => {
       "Intention",
     ]);
     expect(chapter.blocks.some((block) => block.kind === "heading" && block.text === "Try This")).toBe(false);
-    const bullets = chapter.blocks.find((block) => block.kind === "list" && !block.ordered);
-    expect(bullets?.kind === "list" ? bullets.items : []).toEqual([
-      "your childhood home;",
-      "school;",
-      "someone who has died;",
-      "impossible architecture;",
-      "malfunctioning phones;",
-      "strange animals;",
-      "floating;",
-      "driving;",
-      "being lost;",
-      "missing an appointment;",
-      "an unusual emotional state.",
-    ]);
-    expect(chapter.blocks.some((block) => block.kind === "quote" && block.text === "DREAM MODE ENABLED")).toBe(true);
+    expect(chapter.blocks.some((block) => block.kind === "heading" && block.text === "MILD")).toBe(true);
+    expect(chapter.blocks.some((block) => block.kind === "heading" && block.text === "Reality Checks Are Not the Skill")).toBe(
+      true,
+    );
+    expect(dump(chapter)).toContain("prospective memory");
+    expect(dump(chapter)).toContain("In the last chapter, we learned to notice the clues dreams give us");
+    expect(dump(chapter)).not.toContain("DREAM MODE ENABLED");
+    expect(dump(chapter)).not.toContain("your childhood home;");
+    expect(dump(chapter2)).toContain("childhood home");
   });
 });
