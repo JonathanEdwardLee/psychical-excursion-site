@@ -1,11 +1,11 @@
 import { readFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { join } from "node:path";
+import { pathToFileURL } from "node:url";
 import { describe, expect, it } from "vitest";
 // Production speech helpers live in JS modules under scripts/.
 // @ts-expect-error — no .d.ts for core.mjs
 import { parseSpokenSegments, SECTION_PAUSE_MARKER, spokenOnly } from "../../scripts/voice-lab/core.mjs";
-
 const ROOT = join(import.meta.dirname, "../..");
 
 describe("local AI narration voice lab", () => {
@@ -27,13 +27,14 @@ describe("local AI narration voice lab", () => {
   });
 
   it("chunks under the speech API input limit and enforces the cost ceiling", () => {
+    const coreUrl = pathToFileURL(join(ROOT, "scripts/voice-lab/core.mjs")).href;
     const result = spawnSync(
       process.execPath,
       [
         "--input-type=module",
         "-e",
         `
-        import { chunkForSpeechApi, assertCostCeiling, MAX_SPEECH_INPUT_CHARS } from ${JSON.stringify(join(ROOT, "scripts/voice-lab/core.mjs"))};
+        import { chunkForSpeechApi, assertCostCeiling, MAX_SPEECH_INPUT_CHARS } from "${coreUrl}";
         const chunks = chunkForSpeechApi("Hello.\\n\\n".repeat(50) + "World.", 40);
         if (chunks.some((c) => c.length > 40)) throw new Error("chunk too big");
         if (MAX_SPEECH_INPUT_CHARS > 2000) throw new Error("unsafe chunk default");
@@ -49,13 +50,14 @@ describe("local AI narration voice lab", () => {
   });
 
   it("fail-closes without an API key and never writes secrets into the repo lab folder", () => {
+    const cedarUrl = pathToFileURL(join(ROOT, "scripts/voice-lab/cedar.mjs")).href;
     const result = spawnSync(
       process.execPath,
       [
         "--input-type=module",
         "-e",
         `
-        import { synthesizeCedar } from ${JSON.stringify(join(ROOT, "scripts/voice-lab/cedar.mjs"))};
+        import { synthesizeCedar } from "${cedarUrl}";
         await synthesizeCedar({
           text: "Hello from the edge of sleep.",
           words: 6,
@@ -97,6 +99,26 @@ describe("local AI narration voice lab", () => {
     }
   });
 
+  it("strips publication YAML when chapter files use CRLF line endings", () => {
+    const genUrl = pathToFileURL(join(ROOT, "scripts/generate-session-scripts.mjs")).href;
+    const result = spawnSync(
+      process.execPath,
+      [
+        "--input-type=module",
+        "-e",
+        `
+        import { stripYaml } from "${genUrl}";
+        const crlf = "---\\r\\nmenu: \\"01\\"\\r\\n---\\r\\n# Title\\r\\nBody.\\r\\n";
+        const out = stripYaml(crlf);
+        if (out !== "# Title\\nBody.\\n") throw new Error("stripYaml failed: " + JSON.stringify(out));
+        `,
+      ],
+      { encoding: "utf8" },
+    );
+    expect(result.status).toBe(0);
+    expect(result.stderr).toBe("");
+  });
+
   it("turns section-pause cues into assembly silence segments, not Cedar speech", () => {
     const script =
       "The Excursion\n\n<!-- cue:section-pause -->\n\nRobert Anton Wilson was another major influence.";
@@ -104,7 +126,7 @@ describe("local AI narration voice lab", () => {
     expect(spoken).toContain(SECTION_PAUSE_MARKER);
     const segments = parseSpokenSegments(spoken);
     expect(segments).toHaveLength(3);
-    expect(segments[1]).toEqual({ type: "pause", ms: 1750 });
+    expect(segments[1]).toMatchObject({ type: "pause", ms: 1750 });
     expect(segments[2].text).toContain("Robert Anton Wilson");
   });
 

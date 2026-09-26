@@ -2,7 +2,7 @@
 
 **Production completed:** 2026-09-25 (operator laptop).  
 **Correction pass completed:** 2026-09-25 (4 tracks regenerated, 25 reused).  
-**Editorial polish (repo):** 2026-09-26 — Chapter 4 rewrite synced; audiobook plan is **27 tracks** (no `00a`/`00b` front matter). Local ZIP/audio from the 29-track package is **stale** until the operator regenerates Chapter 4 (and rebuilds the package).  
+**Ch1/Ch4 pacing pass (in progress):** branch `primary/pex-audiobook-ch1-ch4-pacing-20260925` — regenerate **only** Chapter 1 (section-heading silence) and Chapter 4 (accepted rewrite); **27-track** listening edition (no `00a`/`00b`). Local ZIP/audio remains **stale** until `npm run audiobook:ch1-ch4` completes on LaptopDev with a valid `OPENAI_API_KEY`.  
 **Work order:** `docs/work-orders/PEX-FULL-CEDAR-AUDIOBOOK.md`  
 **Voice:** OpenAI `gpt-4o-mini-tts`, **cedar**
 
