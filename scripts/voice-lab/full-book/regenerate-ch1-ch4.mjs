@@ -71,7 +71,7 @@ function syncPublicationReceipt(ledger, pass) {
     conservative_usd_estimated: ledger.conservative_usd_estimated,
     api_request_count: ledger.api_request_count,
     track_count_planned: manifest.tracks.length,
-    tracks_completed: Object.values(ledger.tracks).filter((t) => t.status === "mastered").length,
+    tracks_completed: manifest.tracks.filter((t) => ledger.tracks[t.output_basename]?.status === "mastered").length,
     total_duration_seconds_measured: Math.round(totalDuration * 100) / 100,
     planning_spend_usd_rule_of_thumb: Math.round((totalDuration / 60) * 0.015 * 100) / 100,
     package_zip_sha256: packageMeta.zip_sha256 ?? null,
@@ -250,9 +250,9 @@ export async function runCh1Ch4Pass({ env = process.env } = {}) {
   if (pack.status !== 0) throw new Error("audiobook package failed");
 
   const packageMeta = JSON.parse(readFileSync(join(ROOT, "publication/audio/AUDIOBOOK-PACKAGE-MANIFEST.json"), "utf8"));
-  const mp3InZip = Object.keys(packageMeta.sha256).filter((n) => n.endsWith(".mp3"));
+  const mp3InPackage = packageMeta.files.map((f) => f.file);
   pass.track_count = manifest.tracks.length;
-  pass.package_mp3_count = mp3InZip.length;
+  pass.package_mp3_count = mp3InPackage.length;
   pass.package_zip_sha256 = packageMeta.zip_sha256;
   pass.package_zip_bytes = packageMeta.zip_bytes;
   pass.package_zip_path = join(BOOK, "Psychical-Excursion-Audiobook-v1.zip");
@@ -276,7 +276,7 @@ export async function runCh1Ch4Pass({ env = process.env } = {}) {
   pass.verified =
     pass.reused_hashes_unchanged &&
     pass.package_mp3_count === 27 &&
-    !mp3InZip.some((n) => n.includes("00a") || n.includes("00b")) &&
+    !mp3InPackage.some((n) => n.includes("00a") || n.includes("00b")) &&
     pass.chapter1_heading_pause_verified &&
     pauseFiles.length >= 17;
 

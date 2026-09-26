@@ -1,8 +1,8 @@
-# Direct-sale handoff (superseded — editorial polish pending operator rebuild)
+# Direct-sale handoff
 
 **Production completed:** 2026-09-25 (operator laptop).  
-**Correction pass completed:** 2026-09-25 (4 tracks regenerated, 25 reused).  
-**Ch1/Ch4 pacing pass (in progress):** branch `primary/pex-audiobook-ch1-ch4-pacing-20260925` — regenerate **only** Chapter 1 (section-heading silence) and Chapter 4 (accepted rewrite); **27-track** listening edition (no `00a`/`00b`). Local ZIP/audio remains **stale** until `npm run audiobook:ch1-ch4` completes on LaptopDev with a valid `OPENAI_API_KEY`.  
+**Ch1/Ch4 pacing pass completed:** 2026-09-26 — Chapter 1 section-heading silence + Chapter 4 accepted rewrite; **27-track** listening edition (no `00a`/`00b`).  
+**Branch / PR:** `primary/pex-audiobook-ch1-ch4-pacing-20260925` — [PR #96](https://github.com/JonathanEdwardLee/psychical-excursion-site/pull/96) (not merged).  
 **Work order:** `docs/work-orders/PEX-FULL-CEDAR-AUDIOBOOK.md`  
 **Voice:** OpenAI `gpt-4o-mini-tts`, **cedar**
 
@@ -11,12 +11,24 @@
 | Field | Value |
 | --- | --- |
 | Path | `local/voice-lab/full-book/Psychical-Excursion-Audiobook-v1.zip` |
-| Status | **Superseded** — do not sell until operator rebuild after editorial polish |
-| Prior SHA-256 (29-track package) | `d612ae97e3e6847a1c951ded371c8b61128a19427bbe63fbe5956b4dac95d4ca` |
-| Prior size | **542,919,884 bytes** (~518 MB) |
-| Planned MP3 tracks (listening edition) | **27** (opening → chapters 1–23 → back matter → closing) |
-| Per-file hashes | `publication/audio/AUDIOBOOK-PACKAGE-MANIFEST.json` (`prior_complete_package` retains old zip metadata) |
-| Chapter 1 section pause | **1.75 s** silence after “The Excursion” (verified in prior assembly) |
+| Status | **Current** — founder QC on LaptopDev |
+| SHA-256 | `9678a911c9c140c94db1ed85fb095b2f853a471dba7c1379bb31689c45ce373e` |
+| Size | **534,513,171 bytes** (~510 MB) |
+| MP3 tracks | **27** + README + AI disclosure + source notes |
+| Measured total runtime | **23,509.25 s** (~391.8 min) |
+| Per-file hashes | `publication/audio/AUDIOBOOK-PACKAGE-MANIFEST.json` |
+| Prior 29-track package (superseded) | SHA `d612ae97…`, 542,919,884 bytes — retained in manifest history if present |
+
+### Chapter 1 section pauses (deterministic assembly)
+
+| Target | ms |
+| --- | ---: |
+| Before each spoken section title | 1250 |
+| After each title (except Excursion) | 1750 |
+| After “The Excursion” | 1250 |
+| Section pause before “Robert Anton Wilson…” | 1750 |
+
+Full log: `publication/audio/AUDIOBOOK-QC-CH1-CH4-20260925.json`
 
 **Future sample (handoff only):** founder wants **Chapter 1 playable free on the website** as an audiobook sample — not implemented in this pass.
 
@@ -24,11 +36,11 @@
 
 | Metric | Value |
 | --- | --- |
-| API requests (total) | **269** |
-| Correction pass additional requests | **12** |
-| Conservative planning total | **$8.538** (under **$15** ceiling) |
-| Correction pass additional (conservative) | **$0.3298** |
-| Rule-of-thumb audio spend | ~396 min × $0.015/min ≈ **$5.94** (not a billed export) |
+| API requests (cumulative) | **296** |
+| Ch1/Ch4 pass additional requests | **27** |
+| Conservative planning total | **$8.4092** (under **$15** ceiling) |
+| Ch1/Ch4 pass additional (conservative) | **$0.5328** |
+| Rule-of-thumb audio spend | ~392 min × $0.015/min ≈ **$5.88** (not a billed export) |
 | Founder QC time | Not measured |
 
 ## AI disclosure (buyer-facing)
