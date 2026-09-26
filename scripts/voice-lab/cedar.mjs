@@ -5,8 +5,8 @@
  * and the conservative estimate is under the hard ceiling.
  * Never logs the key.
  */
-import { mkdirSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { existsSync, mkdirSync, statSync, writeFileSync } from "node:fs";
+import { basename, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
   CEDAR_MODEL,
@@ -16,6 +16,7 @@ import {
   MARIN_VOICE,
   assertCostCeiling,
   assertNoSecretLeak,
+  redactSecrets,
   chunkForSpeechApi,
   estimateCedarUsd,
 } from "./core.mjs";
@@ -35,6 +36,8 @@ export async function synthesizeCedar({
   ceilingUsd = Number(env.VOICE_LAB_COST_CEILING_USD ?? DEFAULT_COST_CEILING_USD),
   execute = env.VOICE_LAB_EXECUTE === "1",
   words,
+  resume = false,
+  chunkName = "cedar",
 }) {
   const key = env.OPENAI_API_KEY;
   const chunks = chunkForSpeechApi(text);
@@ -51,6 +54,7 @@ export async function synthesizeCedar({
     cost_ceiling_usd: ceilingUsd,
     executed: false,
     request_count: 0,
+    skipped_chunks: 0,
     files: [],
     api_key: key ? "set" : "missing",
   };
@@ -66,6 +70,17 @@ export async function synthesizeCedar({
   mkdirSync(outDir, { recursive: true });
   process.stdout.write(`Cedar: ${chunks.length} chunk(s), voice=${voice}, ceiling=$${ceilingUsd}\n`);
   for (let i = 0; i < chunks.length; i += 1) {
+    const chunkFile =
+      chunkName === "cedar"
+        ? `${voice}-chunk-${String(i + 1).padStart(2, "0")}.wav`
+        : `chunk-${String(i + 1).padStart(3, "0")}.wav`;
+    const file = join(outDir, chunkFile);
+    if (resume && existsSync(file) && statSync(file).size > 2048) {
+      process.stdout.write(`Cedar: chunk ${i + 1}/${chunks.length} skipped (exists)\n`);
+      receipt.skipped_chunks += 1;
+      receipt.files.push(basename(file));
+      continue;
+    }
     process.stdout.write(`Cedar: chunk ${i + 1}/${chunks.length}…\n`);
     const body = {
       model: CEDAR_MODEL,
@@ -89,31 +104,32 @@ export async function synthesizeCedar({
       receipt.request_count += 1;
       if (res.ok) break;
       errText = await res.text();
-      assertNoSecretLeak(errText, key);
       if (/credit_balance_exhausted|insufficient_quota/i.test(errText)) {
-        const detail = errText.trim().slice(0, 800) || "(empty body)";
+        const detail = redactSecrets(errText.trim().slice(0, 800), key) || "(empty body)";
         throw new Error(`OpenAI speech HTTP ${res.status}: ${detail}`);
       }
-      if (res.status === 429 && attempt < maxAttempts) {
+      if ((res.status === 429 || res.status === 503) && attempt < maxAttempts) {
         const retryAfter = Number(res.headers.get("retry-after"));
         const waitMs = Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter * 1000 : 15000 * attempt;
-        process.stdout.write(`Cedar: HTTP 429, retry ${attempt}/${maxAttempts - 1} in ${Math.round(waitMs / 1000)}s…\n`);
+        process.stdout.write(
+          `Cedar: HTTP ${res.status}, retry ${attempt}/${maxAttempts - 1} in ${Math.round(waitMs / 1000)}s…\n`,
+        );
         await sleep(waitMs);
         continue;
       }
-      const detail = errText.trim().slice(0, 800) || "(empty body)";
+      const detail = redactSecrets(errText.trim().slice(0, 800), key) || "(empty body)";
       throw new Error(`OpenAI speech HTTP ${res.status}: ${detail}`);
     }
     const buf = Buffer.from(await res.arrayBuffer());
-    const file = join(outDir, `${voice}-chunk-${String(i + 1).padStart(2, "0")}.wav`);
     writeFileSync(file, buf);
     process.stdout.write(`Cedar: wrote ${file} (${buf.length} bytes)\n`);
-    receipt.files.push(file);
-    assertNoSecretLeak(file, key);
+    receipt.files.push(basename(file));
     if (i < chunks.length - 1) await sleep(2000);
   }
   receipt.executed = true;
-  writeFileSync(join(outDir, `${voice}-receipt.json`), `${JSON.stringify(receipt, null, 2)}\n`);
+  const receiptJson = `${JSON.stringify(receipt, null, 2)}\n`;
+  assertNoSecretLeak(receiptJson, key);
+  writeFileSync(join(outDir, `${voice}-receipt.json`), receiptJson);
   return receipt;
 }
 

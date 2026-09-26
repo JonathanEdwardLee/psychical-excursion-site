@@ -3,12 +3,6 @@
 
 Psychical Excursion.
 
-Written by Jonathan Lee.
+A researched experiment in dreams, attention, and the edge of sleep.
 
-Narrated by — narrator to be confirmed.
-
-<!-- cue:short-pause -->
-
-This audiobook uses the Publication Master of Psychical Excursion. Full source notes appear in the print and ebook editions.
-
-The website psychicalexcursion.com remains a separate reading copy of the Web Edition. It is not required to listen.
+Created by Hoopsnake Designs.

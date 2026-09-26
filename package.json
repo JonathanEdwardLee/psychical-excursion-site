@@ -27,7 +27,13 @@
     "voice-lab:pilot": "node scripts/voice-lab/write-excerpt.mjs && node scripts/voice-lab/generate-pilot.mjs",
     "voice-lab:cedar": "node scripts/voice-lab/cedar.mjs",
     "voice-lab:chatterbox": "node scripts/voice-lab/chatterbox.mjs",
-    "voice-lab:serve": "node scripts/voice-lab/serve.mjs"
+    "voice-lab:serve": "node scripts/voice-lab/serve.mjs",
+    "audiobook:plan": "node scripts/voice-lab/full-book/generate.mjs --dry-run",
+    "audiobook:generate": "node scripts/voice-lab/full-book/generate.mjs",
+    "audiobook:assemble": "node scripts/voice-lab/full-book/assemble.mjs",
+    "audiobook:master": "node scripts/voice-lab/full-book/master.mjs",
+    "audiobook:package": "node scripts/voice-lab/full-book/package.mjs",
+    "audiobook:correct": "node scripts/voice-lab/full-book/regenerate-correction.mjs"
   },
   "engines": {
     "node": ">=22.0.0"

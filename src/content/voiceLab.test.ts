@@ -2,15 +2,11 @@ import { readFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+// Production speech helpers live in JS modules under scripts/.
+// @ts-expect-error — no .d.ts for core.mjs
+import { parseSpokenSegments, SECTION_PAUSE_MARKER, spokenOnly } from "../../scripts/voice-lab/core.mjs";
 
 const ROOT = join(import.meta.dirname, "../..");
-
-function spokenOnly(script: string): string {
-  return script
-    .replace(/<!--[\s\S]*?-->/g, "\n")
-    .replace(/\n{3,}/g, "\n\n")
-    .trim();
-}
 
 describe("local AI narration voice lab", () => {
   it("keeps the Chapter 10 excerpt verbatim from the session script", () => {
@@ -19,7 +15,8 @@ describe("local AI narration voice lab", () => {
       "utf8",
     );
     const excerpt = readFileSync(join(ROOT, "publication/audio/voice-lab/EXCERPT.md"), "utf8").trim();
-    expect(spokenOnly(script)).toContain(excerpt);
+    const normalize = (t: string) => t.replace(/\r\n/g, "\n");
+    expect(normalize(spokenOnly(script))).toContain(normalize(excerpt));
     expect(excerpt).toContain("Let yourself fall asleep");
     expect(excerpt).toContain("EEG");
     expect(excerpt).toMatch(/Hypnagogia/);
@@ -98,6 +95,17 @@ describe("local AI narration voice lab", () => {
       expect(cedar.executed).not.toBe(true);
       expect(JSON.stringify(cedar)).toMatch(/dry-run/i);
     }
+  });
+
+  it("turns section-pause cues into assembly silence segments, not Cedar speech", () => {
+    const script =
+      "The Excursion\n\n<!-- cue:section-pause -->\n\nRobert Anton Wilson was another major influence.";
+    const spoken = spokenOnly(script);
+    expect(spoken).toContain(SECTION_PAUSE_MARKER);
+    const segments = parseSpokenSegments(spoken);
+    expect(segments).toHaveLength(3);
+    expect(segments[1]).toEqual({ type: "pause", ms: 1750 });
+    expect(segments[2].text).toContain("Robert Anton Wilson");
   });
 
   it("does not network-post local scores (lab HTML stores localStorage only)", () => {

@@ -9,4 +9,5 @@ coverage
 .env.*
 local/voice-lab/**
 !local/voice-lab/README.md
+!local/voice-lab/full-book/README.md
 

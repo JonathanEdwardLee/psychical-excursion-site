@@ -496,9 +496,10 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector("h1")?.textContent).toBe(CHAPTER_03_TITLE);
     expect(root.textContent).toMatch(/Mnemonic Induction of Lucid Dreams/);
     expect(root.textContent).toMatch(/Wake-Back-to-Bed/);
-    expect(root.querySelector("blockquote.guidebook-pull")?.textContent).toMatch(/DREAM MODE ENABLED/);
-    expect(root.querySelector("ul.guidebook-steps")?.querySelectorAll("li").length).toBe(11);
-    expect(root.querySelector("ol.guidebook-steps")).toBeNull();
+    expect(root.textContent).toMatch(/In the last chapter, we learned to notice the clues dreams give us/);
+    expect(root.textContent).toMatch(/Reality Checks Are Not the Skill/);
+    expect(root.textContent).not.toMatch(/DREAM MODE ENABLED/);
+    expect(root.querySelector("ul.guidebook-steps")).toBeNull();
     expect([...root.querySelectorAll("h2.guidebook-section-title")].map((node) => node.textContent)).not.toContain("Try This");
     expect(root.textContent?.split("Choose a dream you remember").length).toBe(2);
     expect(practiceLabels(root)).toEqual(["Summary", "Experiment", "Intention"]);
@@ -506,7 +507,6 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector("#ref-1")).toBeTruthy();
     expect(root.querySelector("#ref-4")).toBeTruthy();
     expect(root.querySelector(".pex-ambient-recognize")).toBeTruthy();
-    expect(root.textContent).toMatch(/Fortunately, we already have plenty/);
     expect(root.querySelector("#guidebook-prev-chapter-2")?.getAttribute("href")).toBe(CHAPTER_02_HASH);
     expect(root.querySelector("#guidebook-next-chapter-4")?.getAttribute("href")).toBe(CHAPTER_04_HASH);
     expect(root.querySelector("#guidebook-next-chapter-4")?.textContent).toContain(CHAPTER_04_TITLE);

@@ -12,12 +12,12 @@
   "recommended_pilot_path": "jonathan-narrates-one-chapter-pilot",
   "no_audio_files": true,
   "totals": {
-    "publication_narration_words": 63509,
-    "session_script_chapter_words": 62974,
+    "publication_narration_words": 62507,
+    "session_script_chapter_words": 61978,
     "estimates_minutes": {
-      "wpm_135": 470.4,
-      "wpm_150": 423.4,
-      "wpm_165": 384.9
+      "wpm_135": 463,
+      "wpm_150": 416.7,
+      "wpm_165": 378.8
     }
   },
   "longest_chapter": {
@@ -39,12 +39,12 @@
       "title": "Opening credits",
       "source_publication_file": "publication/audio/CREDITS.md",
       "session_script": "audio/session-scripts/00-opening-credits.md",
-      "narration_word_count": 50,
+      "narration_word_count": 17,
       "publication_narration_words": null,
       "estimated_duration_minutes": {
-        "wpm_135": 0.4,
-        "wpm_150": 0.3,
-        "wpm_165": 0.3
+        "wpm_135": 0.1,
+        "wpm_150": 0.1,
+        "wpm_165": 0.1
       },
       "pronunciation_flags": [],
       "exercise_pause_flags": [],
@@ -55,61 +55,17 @@
     },
     {
       "sequence": 1,
-      "kind": "front-matter",
-      "chapter_number": null,
-      "title": "How this book treats evidence",
-      "source_publication_file": "front-matter/EVIDENCE-AND-BELIEF.md",
-      "session_script": "audio/session-scripts/00a-how-this-book-treats-evidence.md",
-      "narration_word_count": 91,
-      "publication_narration_words": null,
-      "estimated_duration_minutes": {
-        "wpm_135": 0.7,
-        "wpm_150": 0.6,
-        "wpm_165": 0.6
-      },
-      "pronunciation_flags": [],
-      "exercise_pause_flags": [],
-      "recording_session": "single-session",
-      "status": "script-only",
-      "output_basename": "PEX-AUDIO-00a-evidence-and-belief",
-      "audio_hash": null
-    },
-    {
-      "sequence": 2,
-      "kind": "front-matter",
-      "chapter_number": null,
-      "title": "Sleep and safety",
-      "source_publication_file": "front-matter/SLEEP-AND-SAFETY.md",
-      "session_script": "audio/session-scripts/00b-sleep-and-safety.md",
-      "narration_word_count": 65,
-      "publication_narration_words": null,
-      "estimated_duration_minutes": {
-        "wpm_135": 0.5,
-        "wpm_150": 0.4,
-        "wpm_165": 0.4
-      },
-      "pronunciation_flags": [
-        "wbtb"
-      ],
-      "exercise_pause_flags": [],
-      "recording_session": "single-session",
-      "status": "script-only",
-      "output_basename": "PEX-AUDIO-00b-sleep-and-safety",
-      "audio_hash": null
-    },
-    {
-      "sequence": 3,
       "kind": "chapter",
       "chapter_number": 1,
       "title": "What Is a Psychical Excursion?",
       "source_publication_file": "chapters/01-what-is-a-psychical-excursion.md",
       "session_script": "audio/session-scripts/01-what-is-a-psychical-excursion.md",
-      "narration_word_count": 2320,
-      "publication_narration_words": 2328,
+      "narration_word_count": 2278,
+      "publication_narration_words": 2286,
       "estimated_duration_minutes": {
-        "wpm_135": 17.2,
-        "wpm_150": 15.5,
-        "wpm_165": 14.1
+        "wpm_135": 16.9,
+        "wpm_150": 15.2,
+        "wpm_165": 13.9
       },
       "pronunciation_flags": [
         "rinpoche",
@@ -127,7 +83,7 @@
       "audio_hash": null
     },
     {
-      "sequence": 4,
+      "sequence": 2,
       "kind": "chapter",
       "chapter_number": 2,
       "title": "Remember Your Dreams: Dream Recall Techniques and Research",
@@ -155,7 +111,7 @@
       "audio_hash": null
     },
     {
-      "sequence": 5,
+      "sequence": 3,
       "kind": "chapter",
       "chapter_number": 3,
       "title": "Notice Your Dreams: Dream Awareness, Patterns and Dream Signs",
@@ -185,18 +141,18 @@
       "audio_hash": null
     },
     {
-      "sequence": 6,
+      "sequence": 4,
       "kind": "chapter",
       "chapter_number": 4,
       "title": "Recognize the Dream: Lucid Dreaming, Reality Checks and Dream Signs",
       "source_publication_file": "chapters/04-recognize-the-dream.md",
       "session_script": "audio/session-scripts/04-recognize-the-dream.md",
-      "narration_word_count": 2623,
-      "publication_narration_words": 2640,
+      "narration_word_count": 1669,
+      "publication_narration_words": 1680,
       "estimated_duration_minutes": {
-        "wpm_135": 19.6,
-        "wpm_150": 17.6,
-        "wpm_165": 16
+        "wpm_135": 12.4,
+        "wpm_150": 11.2,
+        "wpm_165": 10.2
       },
       "pronunciation_flags": [
         "laberge",
@@ -214,7 +170,7 @@
       "audio_hash": null
     },
     {
-      "sequence": 7,
+      "sequence": 5,
       "kind": "chapter",
       "chapter_number": 5,
       "title": "Feel the Body: Body Scan Meditation and Deep Relaxation",
@@ -242,7 +198,7 @@
       "audio_hash": null
     },
     {
-      "sequence": 8,
+      "sequence": 6,
       "kind": "chapter",
       "chapter_number": 6,
       "title": "Move Your Attention: Focused Attention and Body Awareness Meditation",
@@ -269,7 +225,7 @@
       "audio_hash": null
     },
     {
-      "sequence": 9,
+      "sequence": 7,
       "kind": "chapter",
       "chapter_number": 7,
       "title": "Build the Current: Tingling, Energy Sensations and Focused Attention",
@@ -300,7 +256,7 @@
       "audio_hash": null
     },
     {
-      "sequence": 10,
+      "sequence": 8,
       "kind": "chapter",
       "chapter_number": 8,
       "title": "Quiet the Mind: Meditation Techniques for Sleep and Dream Awareness",
@@ -327,7 +283,7 @@
       "audio_hash": null
     },
     {
-      "sequence": 11,
+      "sequence": 9,
       "kind": "chapter",
       "chapter_number": 9,
       "title": "See the Image: Visualization, Mental Imagery and Hypnagogic Imagery",
@@ -353,7 +309,7 @@
       "audio_hash": null
     },
     {
-      "sequence": 12,
+      "sequence": 10,
       "kind": "chapter",
       "chapter_number": 10,
       "title": "Watch the Edge: Hypnagogia and the Transition Into Lucid Dreaming",
@@ -384,7 +340,7 @@
       "audio_hash": null
     },
     {
-      "sequence": 13,
+      "sequence": 11,
       "kind": "chapter",
       "chapter_number": 11,
       "title": "Let the Body Sleep: The “Mind Awake, Body Asleep” Route to Lucid Dreaming",
@@ -416,7 +372,7 @@
       "audio_hash": null
     },
     {
-      "sequence": 14,
+      "sequence": 12,
       "kind": "chapter",
       "chapter_number": 12,
       "title": "Move Without Moving: Motor Imagery, Dream Movement and Sleep-Onset Practice",
@@ -443,7 +399,7 @@
       "audio_hash": null
     },
     {
-      "sequence": 15,
+      "sequence": 13,
       "kind": "chapter",
       "chapter_number": 13,
       "title": "Feel the Shift: Vibrations, Floating and Out-of-Body Sensations Near Sleep",
@@ -472,7 +428,7 @@
       "audio_hash": null
     },
     {
-      "sequence": 16,
+      "sequence": 14,
       "kind": "chapter",
       "chapter_number": 14,
       "title": "Know the Threshold: How to Recognize When Waking Imagery Becomes a Dream",
@@ -501,7 +457,7 @@
       "audio_hash": null
     },
     {
-      "sequence": 17,
+      "sequence": 15,
       "kind": "chapter",
       "chapter_number": 15,
       "title": "Stabilize the Dream: Lucid Dream Stabilization Techniques and Research",
@@ -529,7 +485,7 @@
       "audio_hash": null
     },
     {
-      "sequence": 18,
+      "sequence": 16,
       "kind": "chapter",
       "chapter_number": 16,
       "title": "Explore the Dream: Lucid Dream Experiments, Dream Control and Research",
@@ -556,7 +512,7 @@
       "audio_hash": null
     },
     {
-      "sequence": 19,
+      "sequence": 17,
       "kind": "chapter",
       "chapter_number": 17,
       "title": "Loosen the Body: Body Ownership, Self-Location and Out-of-Body Experience",
@@ -584,7 +540,7 @@
       "audio_hash": null
     },
     {
-      "sequence": 20,
+      "sequence": 18,
       "kind": "chapter",
       "chapter_number": 18,
       "title": "Cross the Threshold: Astral Projection, OBE Techniques and Lucid Dreaming",
@@ -617,7 +573,7 @@
       "audio_hash": null
     },
     {
-      "sequence": 21,
+      "sequence": 19,
       "kind": "chapter",
       "chapter_number": 19,
       "title": "Test the Experience: Can Lucid Dreams and Out-of-Body Experiences Be Verified?",
@@ -649,7 +605,7 @@
       "audio_hash": null
     },
     {
-      "sequence": 22,
+      "sequence": 20,
       "kind": "chapter",
       "chapter_number": 20,
       "title": "Compare the Maps: Lucid Dreaming vs. Astral Projection, OBE and Sleep Paralysis",
@@ -679,7 +635,7 @@
       "audio_hash": null
     },
     {
-      "sequence": 23,
+      "sequence": 21,
       "kind": "chapter",
       "chapter_number": 21,
       "title": "Floating in Space: Sun, Moon, Planets and the Science of Sleep & Dreams",
@@ -706,7 +662,7 @@
       "audio_hash": null
     },
     {
-      "sequence": 24,
+      "sequence": 22,
       "kind": "chapter",
       "chapter_number": 22,
       "title": "Notice the Coincidence: Synchronicity, Recurring Dreams, Shared Dreams and Pattern Recognition",
@@ -732,7 +688,7 @@
       "audio_hash": null
     },
     {
-      "sequence": 25,
+      "sequence": 23,
       "kind": "chapter",
       "chapter_number": 23,
       "title": "Return. Record. Repeat: The Best Bedtime Routine for Lucid Dreaming and Astral Projection",
@@ -766,13 +722,13 @@
       "audio_hash": null
     },
     {
-      "sequence": 26,
+      "sequence": 24,
       "kind": "back-matter",
       "chapter_number": null,
       "title": "About the author",
       "source_publication_file": "back-matter/ABOUT-THE-AUTHOR.md",
       "session_script": "audio/session-scripts/24-about-the-author.md",
-      "narration_word_count": 71,
+      "narration_word_count": 68,
       "publication_narration_words": null,
       "estimated_duration_minutes": {
         "wpm_135": 0.5,
@@ -789,18 +745,18 @@
       "audio_hash": null
     },
     {
-      "sequence": 27,
+      "sequence": 25,
       "kind": "back-matter",
       "chapter_number": null,
       "title": "Continue the experiment",
       "source_publication_file": "back-matter/CONTINUE.md",
       "session_script": "audio/session-scripts/25-continue-the-experiment.md",
-      "narration_word_count": 58,
+      "narration_word_count": 55,
       "publication_narration_words": null,
       "estimated_duration_minutes": {
         "wpm_135": 0.4,
         "wpm_150": 0.4,
-        "wpm_165": 0.4
+        "wpm_165": 0.3
       },
       "pronunciation_flags": [],
       "exercise_pause_flags": [],
@@ -810,7 +766,7 @@
       "audio_hash": null
     },
     {
-      "sequence": 28,
+      "sequence": 26,
       "kind": "credits",
       "chapter_number": null,
       "title": "Closing credits",

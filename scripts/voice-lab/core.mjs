@@ -6,6 +6,8 @@ import { readFileSync } from "node:fs";
 
 export const CHAPTER10_SCRIPT = "publication/audio/session-scripts/10-watch-the-edge.md";
 export const DEFAULT_COST_CEILING_USD = 1;
+/** Full audiobook production pass (work order PEX-FULL-CEDAR-AUDIOBOOK). */
+export const FULL_BOOK_COST_CEILING_USD = 15;
 export const CEDAR_MODEL = "gpt-4o-mini-tts";
 export const CEDAR_VOICE = "cedar";
 export const MARIN_VOICE = "marin";
@@ -27,8 +29,45 @@ export const DEFAULT_INSTRUCTIONS = [
   "Read the text exactly. Do not add commentary or invented words.",
 ].join(" ");
 
+/** Inserted by spokenOnly when session script contains <!-- cue:section-pause -->. */
+export const SECTION_PAUSE_MARKER = "[[PEX_SECTION_PAUSE_MS_1750]]";
+export const SECTION_PAUSE_MS = 1750;
+
+function normalizeSpokenNewlines(text) {
+  return text.replace(/\r\n/g, "\n").replace(/\n{3,}/g, "\n\n").trim();
+}
+
 export function spokenOnly(script) {
-  return script.replace(/<!--[\s\S]*?-->/g, "\n").replace(/\r\n/g, "\n").replace(/\n{3,}/g, "\n\n").trim();
+  let text = script.replace(/<!--\s*cue:section-pause\s*-->/gi, `\n${SECTION_PAUSE_MARKER}\n`);
+  text = text.replace(/<!--[\s\S]*?-->/g, "\n");
+  const parts = text.split(SECTION_PAUSE_MARKER);
+  return parts
+    .map((part) => normalizeSpokenNewlines(part))
+    .join(`\n${SECTION_PAUSE_MARKER}\n`)
+    .trim();
+}
+
+/** Speech segments and deterministic silence gaps for assembly (not sent to Cedar). */
+export function parseSpokenSegments(spoken) {
+  const parts = spoken.split(SECTION_PAUSE_MARKER);
+  const segments = [];
+  parts.forEach((part, index) => {
+    const text = part.trim();
+    if (text) segments.push({ type: "speech", text });
+    if (index < parts.length - 1) {
+      segments.push({ type: "pause", ms: SECTION_PAUSE_MS });
+    }
+  });
+  if (!segments.length && spoken.trim()) {
+    segments.push({ type: "speech", text: spoken.trim() });
+  }
+  return segments;
+}
+
+export function countWordsInSegments(segments) {
+  return segments
+    .filter((s) => s.type === "speech")
+    .reduce((sum, s) => sum + countWords(s.text), 0);
 }
 
 export function sha256(text) {
@@ -114,8 +153,19 @@ export function assertCostCeiling(estimateUsd, ceilingUsd) {
   }
 }
 
+export function redactSecrets(text, key) {
+  let out = text;
+  if (key && key.length >= 8) {
+    out = out.split(key).join("[REDACTED_API_KEY]");
+  }
+  out = out.replace(/Bearer\s+sk-[A-Za-z0-9_-]+/gi, "Bearer [REDACTED_API_KEY]");
+  out = out.replace(/sk-[A-Za-z0-9_-]{8,}/g, "sk-[REDACTED]");
+  return out;
+}
+
+/** Fail closed before persisting API error text that contains the live key. */
 export function assertNoSecretLeak(haystack, key) {
-  if (key && haystack.includes(key)) {
+  if (key && key.length >= 8 && haystack.includes(key)) {
     throw new Error("secret would be persisted or logged");
   }
 }

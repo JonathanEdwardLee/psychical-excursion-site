@@ -3,7 +3,7 @@
  * Deterministic session scripts from Publication Master chapters.
  * Does not mutate chapters/ or Web Edition. Does not generate audio.
  */
-import { mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, readdirSync, unlinkSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { narrationView, PUBLICATION_CHAPTERS } from "./generate-publication-master.mjs";
@@ -18,6 +18,7 @@ const PUB = join(ROOT, "publication");
 const OUT = join(PUB, "audio", "session-scripts");
 
 const CUE_SHORT = "<!-- cue:short-pause -->";
+const CUE_SECTION = "<!-- cue:section-pause -->";
 const CUE_REFLECT = "<!-- cue:reflective-pause -->";
 const CUE_PRACTICE = "<!-- cue:optional-practice-pause -->";
 
@@ -152,15 +153,9 @@ function openingCreditsScript() {
 
 Psychical Excursion.
 
-Written by Jonathan Lee.
+A researched experiment in dreams, attention, and the edge of sleep.
 
-Narrated by — narrator to be confirmed.
-
-${CUE_SHORT}
-
-This audiobook uses the Publication Master of Psychical Excursion. Full source notes appear in the print and ebook editions.
-
-The website psychicalexcursion.com remains a separate reading copy of the Web Edition. It is not required to listen.
+Created by Hoopsnake Designs.
 `;
 }
 
@@ -177,7 +172,8 @@ The End.
 }
 
 function matterScript({ id, sourceRel, spokenTitle, body }) {
-  const cleaned = applyCues(stripUnspokenIdentifiers(stripMarkdownSpeech(stripYaml(body))))
+  const withoutSourceHeading = stripYaml(body).replace(/^#\s+.*\n+/, "");
+  const cleaned = applyCues(stripUnspokenIdentifiers(stripMarkdownSpeech(withoutSourceHeading)))
     .replace(/psychicalexcursion\.com/g, "psychicalexcursion.com")
     .replace(/https:\/\/psychicalexcursion\.com/g, "psychicalexcursion.com");
   return `<!-- PEX session script: front or back matter. Not a chapter rewrite. -->
@@ -213,46 +209,16 @@ export function buildSessionScripts() {
     kind: "credits",
   }));
 
-  const matter = [
-    {
-      file: "00a-how-this-book-treats-evidence.md",
-      source: "front-matter/EVIDENCE-AND-BELIEF.md",
-      id: "PEX-AUDIO-00a-evidence-and-belief",
-      title: "How this book treats evidence",
-      spokenTitle: "How this book treats evidence.",
-    },
-    {
-      file: "00b-sleep-and-safety.md",
-      source: "front-matter/SLEEP-AND-SAFETY.md",
-      id: "PEX-AUDIO-00b-sleep-and-safety",
-      title: "Sleep and safety",
-      spokenTitle: "Sleep and safety.",
-    },
-  ];
-  let seq = 1;
-  for (const item of matter) {
-    const raw = readFileSync(join(PUB, item.source), "utf8");
-    const script = matterScript({
-      id: item.id,
-      sourceRel: item.source,
-      spokenTitle: item.spokenTitle,
-      body: raw,
-    });
-    writeFileSync(join(OUT, item.file), script);
-    tracks.push(trackRecord({
-      sequence: seq,
-      menu: null,
-      title: item.title,
-      source: item.source,
-      script: `audio/session-scripts/${item.file}`,
-      basename: item.id,
-      words: countWords(script),
-      pronunciation: pronunciationFlags(raw),
-      exercise: [],
-      kind: "front-matter",
-    }));
-    seq += 1;
+  // Evidence/safety front matter remains in print/ebook only — not separate audiobook tracks.
+  for (const retired of ["00a-how-this-book-treats-evidence.md", "00b-sleep-and-safety.md"]) {
+    try {
+      unlinkSync(join(OUT, retired));
+    } catch {
+      /* already absent */
+    }
   }
+
+  let seq = 1;
 
   for (const entry of PUBLICATION_CHAPTERS) {
     const sourcePath = `chapters/${entry.slug}.md`;
@@ -260,12 +226,18 @@ export function buildSessionScripts() {
     const title = JSON.parse(
       adapted.match(/^title:\s+(\S.*)$/m)?.[1] ?? JSON.stringify(entry.slug),
     );
-    const script = renderChapterScript({
+    let script = renderChapterScript({
       menu: entry.menu,
       title,
       sourcePath,
       adaptedWithYaml: adapted,
     });
+    if (entry.menu === "01") {
+      script = script.replace(
+        `${CUE_SHORT}\nThe Excursion\n\nRobert Anton Wilson was another major influence`,
+        `${CUE_SHORT}\nThe Excursion\n\n${CUE_SECTION}\n\nRobert Anton Wilson was another major influence`,
+      );
+    }
     const outName = `${entry.slug}.md`;
     writeFileSync(join(OUT, outName), script);
     const words = countWords(script);

@@ -2,16 +2,16 @@
   "edition": "publication-master",
   "web_edition_baseline": "c969ebb5650e4f854b3d1a1284458a818eb71cfb",
   "chapter_count": 23,
-  "total_words": 68080,
-  "narration_words_excluding_references": 63509,
+  "total_words": 67078,
+  "narration_words_excluding_references": 62507,
   "chapters": [
     {
       "menu": "01",
       "title": "What Is a Psychical Excursion?",
       "path": "chapters/01-what-is-a-psychical-excursion.md",
       "source_web_file": "src/content/guidebookManuscript.source.md",
-      "words": 2436,
-      "narration_words_excluding_references": 2328
+      "words": 2394,
+      "narration_words_excluding_references": 2286
     },
     {
       "menu": "02",
@@ -34,8 +34,8 @@
       "title": "Recognize the Dream: Lucid Dreaming, Reality Checks and Dream Signs",
       "path": "chapters/04-recognize-the-dream.md",
       "source_web_file": "src/content/guidebookChapter03.source.md",
-      "words": 2761,
-      "narration_words_excluding_references": 2640
+      "words": 1801,
+      "narration_words_excluding_references": 1680
     },
     {
       "menu": "05",
