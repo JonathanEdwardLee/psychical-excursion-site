@@ -33,7 +33,8 @@
     "audiobook:assemble": "node scripts/voice-lab/full-book/assemble.mjs",
     "audiobook:master": "node scripts/voice-lab/full-book/master.mjs",
     "audiobook:package": "node scripts/voice-lab/full-book/package.mjs",
-    "audiobook:correct": "node scripts/voice-lab/full-book/regenerate-correction.mjs"
+    "audiobook:correct": "node scripts/voice-lab/full-book/regenerate-correction.mjs",
+    "audiobook:ch1-ch4": "node scripts/voice-lab/full-book/regenerate-ch1-ch4.mjs"
   },
   "engines": {
     "node": ">=22.0.0"

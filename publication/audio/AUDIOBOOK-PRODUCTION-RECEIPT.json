@@ -1,30 +1,29 @@
 {
-  "status": "superseded-pending-operator-regeneration",
-  "updated_at": "2026-09-26T00:14:43.529Z",
+  "status": "package-complete",
+  "updated_at": "2026-09-26T01:34:27.046Z",
   "work_order": "docs/work-orders/PEX-FULL-CEDAR-AUDIOBOOK.md",
   "model": "gpt-4o-mini-tts",
   "voice": "cedar",
   "cost_ceiling_usd": 15,
-  "conservative_usd_estimated": 8.538,
-  "api_request_count": 269,
+  "conservative_usd_estimated": 8.4092,
+  "api_request_count": 296,
   "track_count_planned": 27,
   "tracks_completed": 27,
-  "total_duration_seconds_measured": 23770.4,
-  "planning_spend_usd_rule_of_thumb": 5.94,
-  "package_zip_sha256": null,
-  "package_zip_bytes": null,
-  "correction_pass": {
-    "started_at": "2026-09-25T22:56:00.243Z",
+  "total_duration_seconds_measured": 23509.25,
+  "planning_spend_usd_rule_of_thumb": 5.88,
+  "package_zip_sha256": "9678a911c9c140c94db1ed85fb095b2f853a471dba7c1379bb31689c45ce373e",
+  "package_zip_bytes": 534513171,
+  "ch1_ch4_pass": {
+    "started_at": "2026-09-26T01:21:26.164Z",
+    "accepted_main_sha": "4e370202039dff603836170b836383800b1e580c",
     "tracks_regenerated": [
-      "PEX-AUDIO-00-opening-credits",
-      "PEX-AUDIO-00a-evidence-and-belief",
-      "PEX-AUDIO-00b-sleep-and-safety",
-      "PEX-AUDIO-01-what-is-a-psychical-excursion"
+      "PEX-AUDIO-01-what-is-a-psychical-excursion",
+      "PEX-AUDIO-04-recognize-the-dream"
     ],
     "tracks_reused_unchanged": [
+      "PEX-AUDIO-00-opening-credits",
       "PEX-AUDIO-02-remember-your-dreams",
       "PEX-AUDIO-03-notice-your-dreams",
-      "PEX-AUDIO-04-recognize-the-dream",
       "PEX-AUDIO-05-feel-the-body",
       "PEX-AUDIO-06-move-your-attention",
       "PEX-AUDIO-07-build-the-current",
@@ -48,18 +47,216 @@
       "PEX-AUDIO-25-continue-the-experiment",
       "PEX-AUDIO-99-closing-credits"
     ],
-    "additional_api_requests": 12,
-    "additional_conservative_usd": 0.3298,
-    "section_pause_ms": 1750,
-    "chapter1_pause_verified": true,
-    "chapter1_pause_in_assembly": true,
-    "chapter1_speech_segments": 2,
-    "chapter1_delivery_duration_seconds": 776.881633,
-    "chapter1_assembly_has_pause_wav": true,
-    "completed_at": "2026-09-25T22:59:15.332Z",
+    "tracks_removed_permanently": [
+      "PEX-AUDIO-00a-evidence-and-belief",
+      "PEX-AUDIO-00b-sleep-and-safety"
+    ],
+    "chapter1_pause_targets_ms": {
+      "before_heading": 1250,
+      "after_heading": 1750,
+      "after_excursion_before_wilson": 1250,
+      "section_pause_before_wilson": 1750
+    },
+    "additional_api_requests": 27,
+    "additional_conservative_usd": 0.5328,
+    "delivery_baseline_sha256": {
+      "PEX-AUDIO-00-opening-credits": "177d49773a06f861f5de76107654179b5159e3b3f9a194af32449f3ee0c9cbc0",
+      "PEX-AUDIO-02-remember-your-dreams": "21c2c4bde84eb720755cf7017dd870b43d6b4129ca7b3fca1368c5406b89e3da",
+      "PEX-AUDIO-03-notice-your-dreams": "99dc14fa329f41f0521db0cad61e2c2d72b6990d08bd97d227ee0466cd735db1",
+      "PEX-AUDIO-05-feel-the-body": "0d8a4bb874d4a90c6b203fa817e2cf0d8b1d621dee0d723adcc37cc693571ac8",
+      "PEX-AUDIO-06-move-your-attention": "f101ba488ddf05e01e04098e3956cedb24e9e646d85096fd6323db6519f670f2",
+      "PEX-AUDIO-07-build-the-current": "5480927bded25897e7d5074be0cafe5dd239b7ce11d5f528a6427f6b7bf0ecc4",
+      "PEX-AUDIO-08-quiet-the-mind": "62c60e751aa5535f5c9ed1edd3847c4a8f94ad26e59b3d5049f485e702f59e7a",
+      "PEX-AUDIO-09-see-the-image": "159f834904e169578c906ef8f78fd0ea70f376c12fd423b83e5076c5f5ed6f9c",
+      "PEX-AUDIO-10-watch-the-edge": "aa6d80a4c91ff325d3a7d5a374c61829f3261d263f2a6b8e808d46ca6b5c50c9",
+      "PEX-AUDIO-11-let-the-body-sleep": "9536ebf3fb013cf84519b5f991d77cab9b9279d7c87ed42380530284a27a57fc",
+      "PEX-AUDIO-12-move-without-moving": "b78c7537d812785b5c23a816ffeb16353df72f9934674fa909878646fd7d3084",
+      "PEX-AUDIO-13-feel-the-shift": "d1cf583aad6cf998349c95a04c71b0409f1c177cbe7e07cb297faee23521fe90",
+      "PEX-AUDIO-14-know-the-threshold": "735c0f88918376fcb9ebde3d33a913c68ad058f5b94f55a6527f46d82fbf23a7",
+      "PEX-AUDIO-15-stabilize-the-dream": "9658580a6e0b1094a2f0d8c6c9182724e1f72fe33c39825a77051e9f57d7b888",
+      "PEX-AUDIO-16-explore-the-dream": "7b0084fc711b4a394b47922a91711dde92a109d71037c15586ed51bba5400148",
+      "PEX-AUDIO-17-loosen-the-body": "aaf3ec5d21defb223b49871f706e158de18e10e9b36ba6b5a70f279852db8440",
+      "PEX-AUDIO-18-cross-the-threshold": "e2af5ffccbef3a9b9f2fe13c840cb465bd785ae8dd711b3f924e30a367e44b5a",
+      "PEX-AUDIO-19-test-the-experience": "40e74d729a191abce66cb34c2029bc7e5168a166b10b0686c9cd85c640a54477",
+      "PEX-AUDIO-20-compare-the-maps": "6fa21a00c579b01895ac38ef40b2bdb8cfbfe9ae9334a7fe5505de646ecc7cb6",
+      "PEX-AUDIO-21-floating-in-space": "7a3284c5859963e0e473dbe2303d708e4c1376d65bd15d7d8bc2bc316a717cdb",
+      "PEX-AUDIO-22-notice-the-coincidence": "731196f50dbbeabf22644e3f6b8b20b501aa137727dd46466ae686d87f8d69b7",
+      "PEX-AUDIO-23-return-record-repeat": "334a37150b5ae13683e45d14d515348941e88b20dd3e89ae70ff658d882a4209",
+      "PEX-AUDIO-24-about-the-author": "767be6cc7f82e0b2f60000cdb979e39e0c4adc36ca358ddbf1c1d527bcc862bc",
+      "PEX-AUDIO-25-continue-the-experiment": "b9cc2173c40504d8ae8cf301eb4d51d256a0ce36faa76a8a57db94f942f9c4cd",
+      "PEX-AUDIO-99-closing-credits": "5f9bce1f587c924b0795864b734156831e607d4b5e3ca386f850e1440feb5ed4"
+    },
+    "reused_hashes_unchanged": true,
+    "chapter1_section_pause_durations": [
+      {
+        "heading": "Why “Psychical”?",
+        "position": "before",
+        "ms": 1250
+      },
+      {
+        "heading": "Why “Psychical”?",
+        "position": "after",
+        "ms": 1750
+      },
+      {
+        "heading": "I Want Psychic Super Powers",
+        "position": "before",
+        "ms": 1250
+      },
+      {
+        "heading": "I Want Psychic Super Powers",
+        "position": "after",
+        "ms": 1750
+      },
+      {
+        "heading": "The Body Is Part of the Experiment",
+        "position": "before",
+        "ms": 1250
+      },
+      {
+        "heading": "The Body Is Part of the Experiment",
+        "position": "after",
+        "ms": 1750
+      },
+      {
+        "heading": "The Dreaming Mind",
+        "position": "before",
+        "ms": 1250
+      },
+      {
+        "heading": "The Dreaming Mind",
+        "position": "after",
+        "ms": 1750
+      },
+      {
+        "heading": "Out of Body",
+        "position": "before",
+        "ms": 1250
+      },
+      {
+        "heading": "Out of Body",
+        "position": "after",
+        "ms": 1750
+      },
+      {
+        "heading": "What This Book Actually Does",
+        "position": "before",
+        "ms": 1250
+      },
+      {
+        "heading": "What This Book Actually Does",
+        "position": "after",
+        "ms": 1750
+      },
+      {
+        "heading": "No Grades, No Gurus",
+        "position": "before",
+        "ms": 1250
+      },
+      {
+        "heading": "No Grades, No Gurus",
+        "position": "after",
+        "ms": 1750
+      },
+      {
+        "heading": "The Excursion",
+        "position": "before",
+        "ms": 1250
+      },
+      {
+        "heading": "The Excursion",
+        "position": "after",
+        "ms": 1250
+      }
+    ],
+    "chapter1_spoken_sha256": "a588258c53cc2abdb293136af6b0ef344df1b779af8c8a4bb9b2492ae8e33154",
+    "chapter4_spoken_sha256": "55c84dc6cdc7bb9357983e93ce1ed7cbb0aed7cef9033331616d5a95a43aaed9",
+    "reused_hash_mismatches": [],
+    "track_count": 27,
+    "package_mp3_count": 27,
+    "package_zip_sha256": "9678a911c9c140c94db1ed85fb095b2f853a471dba7c1379bb31689c45ce373e",
+    "package_zip_bytes": 534513171,
+    "package_rebuilt_at": "2026-09-26T01:35:00.000Z",
+    "package_rebuild_note": "Staging cleared before zip (removed stale 29-track MP3s from package-staging).",
+    "package_zip_path": "C:\\Users\\joned\\Projects\\psychical-excursion-site\\local\\voice-lab\\full-book\\Psychical-Excursion-Audiobook-v1.zip",
+    "cumulative_api_request_count": 296,
+    "cumulative_conservative_usd": 8.4092,
+    "total_duration_seconds_measured": 23509.25,
+    "chapter1_assembly_pause_wav_count": 17,
+    "chapter1_assembly_pause_durations_ms": [
+      {
+        "ms": 1250,
+        "label": "before:Why “Psychical”?"
+      },
+      {
+        "ms": 1750,
+        "label": "after:Why “Psychical”?"
+      },
+      {
+        "ms": 1250,
+        "label": "before:I Want Psychic Super Powers"
+      },
+      {
+        "ms": 1750,
+        "label": "after:I Want Psychic Super Powers"
+      },
+      {
+        "ms": 1250,
+        "label": "before:The Body Is Part of the Experiment"
+      },
+      {
+        "ms": 1750,
+        "label": "after:The Body Is Part of the Experiment"
+      },
+      {
+        "ms": 1250,
+        "label": "before:The Dreaming Mind"
+      },
+      {
+        "ms": 1750,
+        "label": "after:The Dreaming Mind"
+      },
+      {
+        "ms": 1250,
+        "label": "before:Out of Body"
+      },
+      {
+        "ms": 1750,
+        "label": "after:Out of Body"
+      },
+      {
+        "ms": 1250,
+        "label": "before:What This Book Actually Does"
+      },
+      {
+        "ms": 1750,
+        "label": "after:What This Book Actually Does"
+      },
+      {
+        "ms": 1250,
+        "label": "before:No Grades, No Gurus"
+      },
+      {
+        "ms": 1750,
+        "label": "after:No Grades, No Gurus"
+      },
+      {
+        "ms": 1250,
+        "label": "before:The Excursion"
+      },
+      {
+        "ms": 1250,
+        "label": "after:The Excursion"
+      },
+      {
+        "ms": 1750,
+        "label": "section-pause"
+      }
+    ],
+    "chapter1_wilson_section_pause_ms": 1750,
+    "chapter1_heading_pause_verified": true,
     "verified": true,
-    "package_zip_sha256": "d612ae97e3e6847a1c951ded371c8b61128a19427bbe63fbe5956b4dac95d4ca",
-    "package_zip_bytes": 542919884
+    "completed_at": "2026-09-26T01:27:11.895Z"
   },
   "tracks": {
     "PEX-AUDIO-00-opening-credits": {
@@ -70,13 +267,29 @@
       "conservative_usd": 0.0023,
       "correction_regenerated_at": "2026-09-25T22:56:05.352Z"
     },
+    "PEX-AUDIO-00a-evidence-and-belief": {
+      "sequence": 1,
+      "status": "mastered",
+      "words": 86,
+      "duration_seconds": 34.9,
+      "conservative_usd": 0.0116,
+      "correction_regenerated_at": "2026-09-25T22:56:12.779Z"
+    },
+    "PEX-AUDIO-00b-sleep-and-safety": {
+      "sequence": 2,
+      "status": "mastered",
+      "words": 62,
+      "duration_seconds": 25.5,
+      "conservative_usd": 0.0084,
+      "correction_regenerated_at": "2026-09-25T22:56:17.536Z"
+    },
     "PEX-AUDIO-01-what-is-a-psychical-excursion": {
-      "sequence": 3,
+      "sequence": 1,
       "status": "mastered",
       "words": 2278,
-      "duration_seconds": 776.85,
+      "duration_seconds": 840.75,
       "conservative_usd": 0.3075,
-      "correction_regenerated_at": "2026-09-25T22:58:47.679Z"
+      "ch1_ch4_regenerated_at": "2026-09-26T01:24:08.248Z"
     },
     "PEX-AUDIO-02-remember-your-dreams": {
       "sequence": 4,
@@ -93,11 +306,12 @@
       "conservative_usd": 0.3006
     },
     "PEX-AUDIO-04-recognize-the-dream": {
-      "sequence": 6,
+      "sequence": 4,
       "status": "mastered",
-      "words": 2623,
-      "duration_seconds": 934.9,
-      "conservative_usd": 0.3541
+      "words": 1669,
+      "duration_seconds": 609.85,
+      "conservative_usd": 0.2253,
+      "ch1_ch4_regenerated_at": "2026-09-26T01:26:07.351Z"
     },
     "PEX-AUDIO-05-feel-the-body": {
       "sequence": 7,
@@ -254,78 +468,5 @@
       "conservative_usd": 0.0027
     }
   },
-  "note": "Audio binaries gitignored under local/voice-lab/full-book/",
-  "editorial_polish_pass": {
-    "applied_at": "2026-09-26T00:14:43.529Z",
-    "source_changes": [
-      "Chapter 4 (Recognize the Dream) founder rewrite in guidebookChapter03.source.md",
-      "Audiobook plan drops PEX-AUDIO-00a-evidence-and-belief and PEX-AUDIO-00b-sleep-and-safety"
-    ],
-    "tracks_removed_from_listening_edition": [
-      "PEX-AUDIO-00a-evidence-and-belief",
-      "PEX-AUDIO-00b-sleep-and-safety"
-    ],
-    "tracks_pending_operator_regeneration": [
-      "PEX-AUDIO-04-recognize-the-dream"
-    ],
-    "tracks_reuse_without_regeneration": "remaining 25 planned tracks after editorial sync (operator rebuilds package)",
-    "prior_complete_package": {
-      "status": "package-complete",
-      "package_zip_sha256": "d612ae97e3e6847a1c951ded371c8b61128a19427bbe63fbe5956b4dac95d4ca",
-      "package_zip_bytes": 542919884,
-      "track_count_planned": 29,
-      "tracks_completed": 29,
-      "correction_pass": {
-        "started_at": "2026-09-25T22:56:00.243Z",
-        "tracks_regenerated": [
-          "PEX-AUDIO-00-opening-credits",
-          "PEX-AUDIO-00a-evidence-and-belief",
-          "PEX-AUDIO-00b-sleep-and-safety",
-          "PEX-AUDIO-01-what-is-a-psychical-excursion"
-        ],
-        "tracks_reused_unchanged": [
-          "PEX-AUDIO-02-remember-your-dreams",
-          "PEX-AUDIO-03-notice-your-dreams",
-          "PEX-AUDIO-04-recognize-the-dream",
-          "PEX-AUDIO-05-feel-the-body",
-          "PEX-AUDIO-06-move-your-attention",
-          "PEX-AUDIO-07-build-the-current",
-          "PEX-AUDIO-08-quiet-the-mind",
-          "PEX-AUDIO-09-see-the-image",
-          "PEX-AUDIO-10-watch-the-edge",
-          "PEX-AUDIO-11-let-the-body-sleep",
-          "PEX-AUDIO-12-move-without-moving",
-          "PEX-AUDIO-13-feel-the-shift",
-          "PEX-AUDIO-14-know-the-threshold",
-          "PEX-AUDIO-15-stabilize-the-dream",
-          "PEX-AUDIO-16-explore-the-dream",
-          "PEX-AUDIO-17-loosen-the-body",
-          "PEX-AUDIO-18-cross-the-threshold",
-          "PEX-AUDIO-19-test-the-experience",
-          "PEX-AUDIO-20-compare-the-maps",
-          "PEX-AUDIO-21-floating-in-space",
-          "PEX-AUDIO-22-notice-the-coincidence",
-          "PEX-AUDIO-23-return-record-repeat",
-          "PEX-AUDIO-24-about-the-author",
-          "PEX-AUDIO-25-continue-the-experiment",
-          "PEX-AUDIO-99-closing-credits"
-        ],
-        "additional_api_requests": 12,
-        "additional_conservative_usd": 0.3298,
-        "section_pause_ms": 1750,
-        "chapter1_pause_verified": true,
-        "chapter1_pause_in_assembly": true,
-        "chapter1_speech_segments": 2,
-        "chapter1_delivery_duration_seconds": 776.881633,
-        "chapter1_assembly_has_pause_wav": true,
-        "completed_at": "2026-09-25T22:59:15.332Z",
-        "verified": true,
-        "package_zip_sha256": "d612ae97e3e6847a1c951ded371c8b61128a19427bbe63fbe5956b4dac95d4ca",
-        "package_zip_bytes": 542919884
-      }
-    },
-    "package_zip_sha256": null,
-    "package_zip_bytes": null,
-    "note": "Committed scripts/manifests only; local ZIP and mastered audio are stale until operator rebuild."
-  }
+  "note": "Audio binaries gitignored under local/voice-lab/full-book/"
 }

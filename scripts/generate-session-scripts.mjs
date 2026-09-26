@@ -50,10 +50,11 @@ const CARDINALS = [
 ];
 
 export function stripYaml(text) {
-  if (!text.startsWith("---\n")) return text;
-  const end = text.indexOf("\n---\n", 4);
-  if (end < 0) return text;
-  return text.slice(end + 5);
+  const normalized = text.replace(/\r\n/g, "\n");
+  if (!normalized.startsWith("---\n")) return normalized;
+  const end = normalized.indexOf("\n---\n", 4);
+  if (end < 0) return normalized;
+  return normalized.slice(end + 5);
 }
 
 export function stripUnspokenIdentifiers(text) {
@@ -234,8 +235,8 @@ export function buildSessionScripts() {
     });
     if (entry.menu === "01") {
       script = script.replace(
-        `${CUE_SHORT}\nThe Excursion\n\nRobert Anton Wilson was another major influence`,
-        `${CUE_SHORT}\nThe Excursion\n\n${CUE_SECTION}\n\nRobert Anton Wilson was another major influence`,
+        /(<!-- cue:short-pause -->\s*\nThe Excursion\s*\n)\s*(Robert Anton Wilson was another major influence)/,
+        `$1\n${CUE_SECTION}\n\n$2`,
       );
     }
     const outName = `${entry.slug}.md`;
