@@ -139,12 +139,6 @@
       "zip_sha256": "9678a911c9c140c94db1ed85fb095b2f853a471dba7c1379bb31689c45ce373e",
       "zip_bytes": 534513171,
       "note": "PR #96 founder-approved 27-track package (includes back matter + closing)."
-    },
-    {
-      "edition": "listening-27",
-      "zip_sha256": "9678a911c9c140c94db1ed85fb095b2f853a471dba7c1379bb31689c45ce373e",
-      "zip_bytes": 534513171,
-      "note": "PR #96 founder-approved 27-track package (includes back matter + closing)."
     }
   ]
 }
