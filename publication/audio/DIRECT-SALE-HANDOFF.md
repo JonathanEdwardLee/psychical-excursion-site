@@ -1,8 +1,9 @@
-# Direct-sale handoff (superseded — editorial polish pending operator rebuild)
+# Direct-sale handoff
 
-**Production completed:** 2026-09-25 (operator laptop).  
-**Correction pass completed:** 2026-09-25 (4 tracks regenerated, 25 reused).  
-**Editorial polish (repo):** 2026-09-26 — Chapter 4 rewrite synced; audiobook plan is **27 tracks** (no `00a`/`00b` front matter). Local ZIP/audio from the 29-track package is **stale** until the operator regenerates Chapter 4 (and rebuilds the package).  
+**Listening edition (sellable):** opening intro + **chapters 01–23** = **24 MP3s** (no back matter, no closing credits).  
+**Ch1/Ch4 audio:** founder-approved on PR #96 (no further Cedar regen).  
+**24-track repackage:** 2026-09-26 — metadata + ZIP rebuild only (`audio_regenerated: false`).  
+**Branch / PR:** `primary/pex-audiobook-ch1-ch4-pacing-20260925` — [PR #96](https://github.com/JonathanEdwardLee/psychical-excursion-site/pull/96) (not merged).  
 **Work order:** `docs/work-orders/PEX-FULL-CEDAR-AUDIOBOOK.md`  
 **Voice:** OpenAI `gpt-4o-mini-tts`, **cedar**
 
@@ -11,45 +12,42 @@
 | Field | Value |
 | --- | --- |
 | Path | `local/voice-lab/full-book/Psychical-Excursion-Audiobook-v1.zip` |
-| Status | **Superseded** — do not sell until operator rebuild after editorial polish |
-| Prior SHA-256 (29-track package) | `d612ae97e3e6847a1c951ded371c8b61128a19427bbe63fbe5956b4dac95d4ca` |
-| Prior size | **542,919,884 bytes** (~518 MB) |
-| Planned MP3 tracks (listening edition) | **27** (opening → chapters 1–23 → back matter → closing) |
-| Per-file hashes | `publication/audio/AUDIOBOOK-PACKAGE-MANIFEST.json` (`prior_complete_package` retains old zip metadata) |
-| Chapter 1 section pause | **1.75 s** silence after “The Excursion” (verified in prior assembly) |
+| Edition | **listening-24** |
+| SHA-256 | See `publication/audio/AUDIOBOOK-PACKAGE-MANIFEST.json` (`zip_sha256`) |
+| MP3 tracks | **24** + README + AI disclosure + source notes |
+| Measured total runtime | See `AUDIOBOOK-PRODUCTION-RECEIPT.json` (`total_duration_seconds_measured`) |
+| Per-file hashes | `publication/audio/AUDIOBOOK-PACKAGE-MANIFEST.json` |
+| QC | `publication/audio/AUDIOBOOK-QC-LISTENING-24-20260926.json` |
 
-**Future sample (handoff only):** founder wants **Chapter 1 playable free on the website** as an audiobook sample — not implemented in this pass.
+### Omitted from listening / direct-sale package (permanent)
+
+- `PEX-AUDIO-00a-evidence-and-belief`
+- `PEX-AUDIO-00b-sleep-and-safety`
+- `PEX-AUDIO-24-about-the-author`
+- `PEX-AUDIO-25-continue-the-experiment`
+- `PEX-AUDIO-99-closing-credits`
+
+Historical 27-track package metadata is under `superseded_packages` in the package manifest / production receipt.
+
+### Chapter 1 section pauses (unchanged)
+
+1250 ms before each section title; 1750 ms after (1250 ms after “The Excursion” + 1750 ms before Wilson). See `AUDIOBOOK-QC-CH1-CH4-20260925.json` (historical Ch1/Ch4 pass).
+
+**Future sample (handoff only):** Chapter 1 free on the website — not implemented.
 
 ## Production economics (ledger)
 
-| Metric | Value |
-| --- | --- |
-| API requests (total) | **269** |
-| Correction pass additional requests | **12** |
-| Conservative planning total | **$8.538** (under **$15** ceiling) |
-| Correction pass additional (conservative) | **$0.3298** |
-| Rule-of-thumb audio spend | ~396 min × $0.015/min ≈ **$5.94** (not a billed export) |
-| Founder QC time | Not measured |
+Cumulative Cedar API usage unchanged by repackage. See `AUDIOBOOK-PRODUCTION-RECEIPT.json` (`api_request_count`, `conservative_usd_estimated`).
 
 ## AI disclosure (buyer-facing)
 
-Use `AI-NARRATION-DISCLOSURE.txt` inside the zip. Summary:
-
-- Narration is **AI-generated** (OpenAI Cedar).
-- Written by **Jonathan Lee**.
-- **Not** a recording of Jonathan's natural voice.
-- **Not** positioned for Audible/ACX.
-
-## Product SKUs (next pass)
-
-- Audiobook-only download (this zip)
-- Optional later: ebook-only, audiobook+ebook bundle
+Use `AI-NARRATION-DISCLOSURE.txt` inside the zip.
 
 ## Next pass (not in production PR)
 
-- Upload zip to **private** authenticated storage (not git)
-- Stripe product + payment link + post-purchase delivery
-- Homepage **Read** placement, refund/support copy
-- GA4 pathname events only (no PII, no audio payloads)
+- Private storage upload (not git)
+- Stripe + delivery
+- Homepage sample player
+- GA4 pathname events only
 
-**Do not merge production PR until founder accepts package QC.**
+**Do not merge until founder accepts package QC.**

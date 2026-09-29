@@ -30,34 +30,36 @@ export const DEFAULT_INSTRUCTIONS = [
 ].join(" ");
 
 /** Inserted by spokenOnly when session script contains <!-- cue:section-pause -->. */
-export const SECTION_PAUSE_MARKER = "[[PEX_SECTION_PAUSE_MS_1750]]";
+export const SECTION_PAUSE_MARKER = "[[PEX_PAUSE_MS_1750]]";
 export const SECTION_PAUSE_MS = 1750;
+
+export function pauseMarkerMs(ms) {
+  return `[[PEX_PAUSE_MS_${ms}]]`;
+}
 
 function normalizeSpokenNewlines(text) {
   return text.replace(/\r\n/g, "\n").replace(/\n{3,}/g, "\n\n").trim();
 }
 
 export function spokenOnly(script) {
-  let text = script.replace(/<!--\s*cue:section-pause\s*-->/gi, `\n${SECTION_PAUSE_MARKER}\n`);
+  let text = script.replace(/<!--\s*cue:section-pause\s*-->/gi, `\n${pauseMarkerMs(SECTION_PAUSE_MS)}\n`);
   text = text.replace(/<!--[\s\S]*?-->/g, "\n");
-  const parts = text.split(SECTION_PAUSE_MARKER);
-  return parts
-    .map((part) => normalizeSpokenNewlines(part))
-    .join(`\n${SECTION_PAUSE_MARKER}\n`)
-    .trim();
+  return normalizeSpokenNewlines(text);
 }
 
 /** Speech segments and deterministic silence gaps for assembly (not sent to Cedar). */
 export function parseSpokenSegments(spoken) {
-  const parts = spoken.split(SECTION_PAUSE_MARKER);
   const segments = [];
-  parts.forEach((part, index) => {
-    const text = part.trim();
+  const re = /\[\[PEX_PAUSE_MS_(\d+)\]\]/g;
+  let last = 0;
+  for (const match of spoken.matchAll(re)) {
+    const text = spoken.slice(last, match.index).trim();
     if (text) segments.push({ type: "speech", text });
-    if (index < parts.length - 1) {
-      segments.push({ type: "pause", ms: SECTION_PAUSE_MS });
-    }
-  });
+    segments.push({ type: "pause", ms: Number(match[1]), label: "section-pause" });
+    last = match.index + match[0].length;
+  }
+  const tail = spoken.slice(last).trim();
+  if (tail) segments.push({ type: "speech", text: tail });
   if (!segments.length && spoken.trim()) {
     segments.push({ type: "speech", text: spoken.trim() });
   }

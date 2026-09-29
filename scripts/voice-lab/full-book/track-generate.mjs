@@ -53,6 +53,15 @@ export async function generateTrackRaw({
     }
   }
 
+  const pauseDurations = [];
+  for (const segment of textInfo.segments) {
+    if (segment.type === "pause") {
+      pauseDurations.push({
+        ms: segment.ms,
+        label: segment.label ?? "pause",
+      });
+    }
+  }
   writeFileSync(join(rawDir, "assembly-order.json"), `${JSON.stringify(assemblyOrder, null, 2)}\n`);
   return {
     request_count: requestCount,
@@ -60,6 +69,7 @@ export async function generateTrackRaw({
     assembly_order: assemblyOrder,
     chunk_count: assemblyOrder.filter((f) => f.includes("chunk-")).length,
     pause_count: assemblyOrder.filter((f) => f.startsWith("_pause-")).length,
+    pause_durations_ms: pauseDurations,
     speech_segments: speechIndex,
   };
 }
