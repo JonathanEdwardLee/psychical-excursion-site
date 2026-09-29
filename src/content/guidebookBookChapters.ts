@@ -9,7 +9,9 @@ export type GuidebookBookChapter = {
 };
 
 export function guidebookBookChapters(): GuidebookBookChapter[] {
-  return GUIDEBOOK_CATALOG_PAGES.filter((page) => page.id !== "landing").map((page, index) => ({
+  return GUIDEBOOK_CATALOG_PAGES.filter(
+    (page) => page.id !== "landing" && page.id !== "audiobook",
+  ).map((page, index) => ({
     number: String(index + 1).padStart(2, "0"),
     title: page.id === "home" ? loadGuidebookManuscript().openingHeading : page.title,
     path: page.path,

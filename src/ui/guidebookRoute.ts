@@ -97,6 +97,7 @@ import {
 
 export type GuidebookPublicPage =
   | "landing"
+  | "audiobook"
   | "home"
   | "chapter01"
   | "chapter02"
@@ -164,6 +165,7 @@ export function parseGuidebookPublicPage(input?: string): GuidebookPublicPage {
   const page = catalogPageByPath(path);
   if (!page) return "home";
   if (page.id === "landing") return "landing";
+  if (page.id === "audiobook") return "audiobook";
   if (page.id === "home") return "home";
   if (page.id === "chapter05" && !isGuidebookChapter05Ready()) return "home";
   return page.id as GuidebookPublicPage;

@@ -15,8 +15,22 @@ Options -Indexes
 
   RewriteRule ^(src|node_modules|tests|scripts|coverage)(/|$) - [F,L]
   RewriteRule \.map$ - [F,L]
+
+  # Block direct HTTP access to private audiobook storage if ever copied under the site tree.
+  RewriteRule ^private(/|$) - [F,L]
 </IfModule>
 
-<FilesMatch "\.(?:env|pem|key|php|ts|tsx)$">
+# Deny source-like extensions except the audiobook checkout API (Hostinger PHP).
+<FilesMatch "\.(?:env|pem|key|ts|tsx)$">
   Require all denied
 </FilesMatch>
+
+<FilesMatch "\.php$">
+  Require all denied
+</FilesMatch>
+
+<DirectoryMatch "^.*/api/audiobook">
+  <FilesMatch "\.php$">
+    Require all granted
+  </FilesMatch>
+</DirectoryMatch>

@@ -9,6 +9,13 @@
       "description": "A free researched guidebook for dream recall, attention, lucid dreaming, and out-of-body practice. Public pages use aggregate analytics. Journal entries stay on this device."
     },
     {
+      "id": "audiobook",
+      "title": "First Edition Audiobook — Psychical Excursion",
+      "path": "/audiobook/",
+      "legacyHashes": [],
+      "description": "First-edition AI-narrated audiobook ($11.11): free Chapter 1 sample, Stripe checkout, and protected download after payment."
+    },
+    {
       "id": "home",
       "title": "Psychical Excursion: Lucid Dreaming, Meditation, Visualization & OBE Research",
       "path": "/psychical-excursion/",
