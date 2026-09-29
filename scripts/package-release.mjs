@@ -7,6 +7,7 @@ const root = process.cwd();
 const distDir = path.join(root, "dist");
 const releaseDir = path.join(root, "release");
 const htaccess = path.join(root, "deploy", ".htaccess");
+const apiDir = path.join(root, "deploy", "api");
 
 if (!existsSync(path.join(distDir, "index.html"))) {
   console.error("Missing Vite build output at dist/. Run npm run build first.");
@@ -40,6 +41,9 @@ function copyWithoutMaps(from, to) {
 rmSync(releaseDir, { recursive: true, force: true });
 copyWithoutMaps(distDir, releaseDir);
 cpSync(htaccess, path.join(releaseDir, ".htaccess"));
+if (existsSync(apiDir)) {
+  cpSync(apiDir, path.join(releaseDir, "api"), { recursive: true });
+}
 
 const sha = sourceSha();
 writeFileSync(
