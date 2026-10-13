@@ -31,7 +31,7 @@ try {
     if (!is_readable($zipPath)) {
         http_response_code(503);
         header('Content-Type: text/plain; charset=utf-8');
-        echo 'Audiobook file is not available. Contact support@psychicalexcursion.com.';
+        echo 'Audiobook file is not available yet. Please try again later.';
         exit;
     }
 

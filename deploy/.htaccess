@@ -28,9 +28,3 @@ Options -Indexes
 <FilesMatch "\.php$">
   Require all denied
 </FilesMatch>
-
-<DirectoryMatch "^.*/api/audiobook">
-  <FilesMatch "\.php$">
-    Require all granted
-  </FilesMatch>
-</DirectoryMatch>

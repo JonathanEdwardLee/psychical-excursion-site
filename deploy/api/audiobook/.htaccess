@@ -1,0 +1,6 @@
+# Allow only this directory's PHP runtime endpoints (parent document root denies *.php).
+<IfModule mod_authz_core.c>
+  <FilesMatch "\.php$">
+    Require all granted
+  </FilesMatch>
+</IfModule>

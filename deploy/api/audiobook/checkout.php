@@ -28,6 +28,6 @@ try {
 } catch (Throwable $e) {
     http_response_code(503);
     header('Content-Type: text/plain; charset=utf-8');
-    echo 'Checkout is not available yet. Please try again later or contact support@psychicalexcursion.com.';
+    echo 'Checkout is not available yet. Please try again later.';
     exit;
 }

@@ -108,20 +108,35 @@ function pex_verify_download_token(string $secret, string $token): ?array
     return $payload;
 }
 
-function pex_store_grant(array $config, string $sessionId): string
+/**
+ * @return array{token: string, emit_purchase_analytics: bool}
+ */
+function pex_store_grant(array $config, string $sessionId): array
 {
     $grantsDir = pex_grants_dir($config);
     $tokenSecret = pex_audiobook_config_value($config, 'download_token_secret');
     $expiresAt = time() + PEX_DOWNLOAD_TTL_SECONDS;
     $token = pex_issue_download_token($tokenSecret, $sessionId, $expiresAt);
-    $grantPath = $grantsDir . '/' . hash('sha256', $sessionId) . '.json';
+    $sessionHash = hash('sha256', $sessionId);
+    $grantPath = $grantsDir . '/' . $sessionHash . '.json';
+    $emitPurchaseAnalytics = true;
+    if (is_readable($grantPath)) {
+        $existing = json_decode((string) file_get_contents($grantPath), true);
+        if (is_array($existing) && !empty($existing['purchase_analytics_recorded'])) {
+            $emitPurchaseAnalytics = false;
+        }
+    }
     $grant = [
-        'session_id_hash' => hash('sha256', $sessionId),
+        'session_id_hash' => $sessionHash,
         'paid_at' => time(),
         'expires_at' => $expiresAt,
+        'purchase_analytics_recorded' => true,
     ];
     file_put_contents($grantPath, json_encode($grant, JSON_THROW_ON_ERROR), LOCK_EX);
-    return $token;
+    return [
+        'token' => $token,
+        'emit_purchase_analytics' => $emitPurchaseAnalytics,
+    ];
 }
 
 function pex_grant_exists(array $config, string $sessionIdHash): bool
@@ -138,16 +153,42 @@ function pex_grant_exists(array $config, string $sessionIdHash): bool
     return (int) $grant['expires_at'] >= time();
 }
 
+function pex_session_line_item_price_id(array $lineItem): string
+{
+    if (isset($lineItem['price']) && is_array($lineItem['price']) && isset($lineItem['price']['id'])) {
+        return (string) $lineItem['price']['id'];
+    }
+    if (isset($lineItem['price']) && is_string($lineItem['price'])) {
+        return $lineItem['price'];
+    }
+    return '';
+}
+
 function pex_verify_paid_session(array $config, string $sessionId): bool
 {
     $secretKey = pex_audiobook_config_value($config, 'stripe_secret_key');
-    $session = pex_stripe_request($secretKey, 'GET', '/checkout/sessions/' . rawurlencode($sessionId), []);
+    $expectedPriceId = pex_audiobook_config_value($config, 'stripe_price_id');
+    $path = '/checkout/sessions/' . rawurlencode($sessionId) . '?expand[]=line_items.data.price';
+    $session = pex_stripe_request($secretKey, 'GET', $path, []);
     if (($session['payment_status'] ?? '') !== 'paid') {
         return false;
     }
     $amount = isset($session['amount_total']) ? (int) $session['amount_total'] : -1;
     $currency = isset($session['currency']) ? (string) $session['currency'] : '';
-    return $amount === PEX_AUDIOBOOK_PRICE_CENTS && $currency === PEX_AUDIOBOOK_CURRENCY;
+    if ($amount !== PEX_AUDIOBOOK_PRICE_CENTS || $currency !== PEX_AUDIOBOOK_CURRENCY) {
+        return false;
+    }
+    $lineItems = $session['line_items']['data'] ?? null;
+    if (!is_array($lineItems) || count($lineItems) !== 1) {
+        return false;
+    }
+    $lineItem = $lineItems[0];
+    if (!is_array($lineItem)) {
+        return false;
+    }
+    $quantity = isset($lineItem['quantity']) ? (int) $lineItem['quantity'] : 0;
+    $priceId = pex_session_line_item_price_id($lineItem);
+    return $quantity === 1 && $priceId !== '' && hash_equals($expectedPriceId, $priceId);
 }
 
 function pex_site_origin(array $config): string

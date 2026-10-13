@@ -29,8 +29,18 @@ Copy `deploy/api/audiobook/config.example.php` to a path **outside** `public_htm
 2. Upload accepted ZIP to private storage (not Git, not a public URL).
 3. Copy Chapter 1 MP3 to `public/audiobook/sample/chapter-01.mp3` per `public/audiobook/sample/README.md` and deploy.
 4. Deploy PHP config + enable Hostinger PHP for `public_html/api/audiobook/`.
-5. Confirm final refund/support wording (placeholder flagged on storefront).
+5. **Founder activation — support & refunds:** publish a verified support mailbox (or ticket route) and final refund/delivery policy on the storefront and success page. Until then, the site uses neutral delivery-only copy (no operational support email).
 6. Smoke-test checkout → success → download → expired token.
+
+## Apache / Hostinger verification (not fully exercised in CI)
+
+CI checks the **release artifact** for:
+
+- root `deploy/.htaccess` denying `*.php` globally;
+- `api/audiobook/.htaccess` granting only that directory’s PHP endpoints;
+- generated `sw.js` bypassing `/api/audiobook/` (no service-worker interception).
+
+**Still required on Hostinger after deploy:** confirm PHP executes for `https://psychicalexcursion.com/api/audiobook/checkout.php` while other `.php` paths remain denied, and confirm checkout/success/download are not served from the offline shell cache.
 
 ## Recurring cost
 

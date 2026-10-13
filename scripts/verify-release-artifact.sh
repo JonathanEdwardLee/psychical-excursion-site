@@ -12,7 +12,9 @@ required=(
   "robots.txt"
   "audiobook/index.html"
   "api/audiobook/checkout.php"
+  "api/audiobook/success.php"
   "api/audiobook/download.php"
+  "api/audiobook/.htaccess"
   "psychical-excursion/index.html"
   "dream-recall/index.html"
   "lucid-dream-experiments/index.html"
@@ -100,6 +102,26 @@ fi
 
 if grep -q 'RewriteRule ^$ /psychical-excursion/' "$RELEASE/.htaccess"; then
   echo "Root must not 301 to the introduction." >&2
+  exit 1
+fi
+
+if grep -q 'DirectoryMatch' "$RELEASE/.htaccess"; then
+  echo "Root .htaccess must not use DirectoryMatch (use api/audiobook/.htaccess for PHP allow)." >&2
+  exit 1
+fi
+
+if ! grep -q 'Require all denied' "$RELEASE/.htaccess"; then
+  echo "Root .htaccess must deny PHP by default." >&2
+  exit 1
+fi
+
+if ! grep -q 'Require all granted' "$RELEASE/api/audiobook/.htaccess"; then
+  echo "api/audiobook/.htaccess must grant PHP endpoints only in that directory." >&2
+  exit 1
+fi
+
+if ! grep -q '/api/audiobook/' "$RELEASE/sw.js"; then
+  echo "sw.js must bypass /api/audiobook/ (no service-worker interception)." >&2
   exit 1
 fi
 

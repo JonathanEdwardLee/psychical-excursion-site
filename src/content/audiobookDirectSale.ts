@@ -35,8 +35,8 @@ export const AUDIOBOOK_FOUNDER_NOTE_PARAGRAPHS: readonly string[] = [
 export const AUDIOBOOK_BUYER_SUPPORT_LINES: readonly string[] = [
   "Digital audiobook download (ZIP with MP3 tracks).",
   "After successful payment, your download link appears on the confirmation page.",
-  "If delivery fails, email support@psychicalexcursion.com with your receipt from Stripe.",
-  "Refund policy: contact support@psychicalexcursion.com before public launch — founder must confirm final refund wording.",
+  "Download links are time-limited. Keep your Stripe payment receipt.",
+  "Refund and customer-support details will be published here before the offer goes live.",
 ];
 
 /** Operator contract when the Chapter 1 MP3 is not committed (large binary). */
