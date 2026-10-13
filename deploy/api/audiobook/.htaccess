@@ -1,0 +1,12 @@
+# Public runtime endpoints only (parent document root denies other *.php).
+<IfModule mod_authz_core.c>
+  <Files "checkout.php">
+    Require all granted
+  </Files>
+  <Files "success.php">
+    Require all granted
+  </Files>
+  <Files "download.php">
+    Require all granted
+  </Files>
+</IfModule>

@@ -2,7 +2,7 @@ import { readPublicGuidebookPathname } from "../ui/guidebookRoute.ts";
 
 export const GA4_MEASUREMENT_ID = "G-297PE2TV2R";
 
-type GtagFn = (...args: unknown[]) => void;
+export type GtagFn = (...args: unknown[]) => void;
 
 declare global {
   interface Window {

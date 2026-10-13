@@ -67,6 +67,8 @@ self.addEventListener("fetch", (event) => {
   if (request.method !== "GET") return;
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
+  // Paid audiobook API must bypass the shell cache (checkout, success, download).
+  if (url.pathname.startsWith("/api/audiobook/")) return;
 
       if (request.mode === "navigate") {
         event.respondWith(

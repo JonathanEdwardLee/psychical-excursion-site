@@ -1517,6 +1517,75 @@ audio {
   color: var(--muted);
 }
 
+.guidebook-landing-audiobook {
+  margin: 2rem 0 0;
+  max-width: 32rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--muted) 28%, transparent);
+}
+
+.guidebook-landing-audiobook-title {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.guidebook-landing-audiobook-copy {
+  margin: 0.65rem 0 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.guidebook-landing-audiobook-cta {
+  margin: 0.85rem 0 0;
+}
+
+.audiobook-sale {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 0.5rem 0 2.5rem;
+}
+
+.audiobook-lede {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.audiobook-sample-player {
+  width: 100%;
+  margin-top: 0.75rem;
+}
+
+.audiobook-buy-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+}
+
+.audiobook-ai-label {
+  font-weight: 600;
+}
+
+.audiobook-founder-note p {
+  line-height: 1.55;
+}
+
+.audiobook-support-list {
+  padding-left: 1.2rem;
+  line-height: 1.5;
+}
+
+.audiobook-free-book {
+  margin-top: 2rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
 .guidebook-book-entry {
   margin: 2.4rem 0 0;
 }

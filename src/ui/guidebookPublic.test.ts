@@ -30,6 +30,7 @@ import { CHAPTER_19_HASH, CHAPTER_19_TITLE, loadGuidebookChapter19 } from "../co
 import { CHAPTER_20_HASH, CHAPTER_20_TITLE, loadGuidebookChapter20 } from "../content/guidebookChapter20.ts";
 import { CHAPTER_21_HASH, CHAPTER_21_TITLE, loadGuidebookChapter21 } from "../content/guidebookChapter21.ts";
 import { CHAPTER_22_HASH, CHAPTER_22_TITLE, loadGuidebookChapter22 } from "../content/guidebookChapter22.ts";
+import { AUDIOBOOK_PATH, AUDIOBOOK_PRICE_USD, AUDIOBOOK_TITLE } from "../content/audiobookDirectSale.ts";
 import { INTRODUCTION_PATH, LANDING_PATH } from "../content/guidebookCatalog.ts";
 import { NIGHTTIME_BODY_RELEASE_ID, RELAX_THE_BODY_HREF } from "../content/guidebookAnchors.ts";
 import { loadGuidebookManuscript } from "../content/guidebookManuscript.ts";
@@ -113,7 +114,8 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expect(root.querySelector(".guidebook-landing-affirmation")?.textContent).toBe(LANDING_AFFIRMATION);
     expect(root.querySelector(".guidebook-landing-mandala + .guidebook-landing-affirmation")).toBeTruthy();
     expect(root.querySelector(".guidebook-landing-affirmation + .guidebook-book-entry")).toBeTruthy();
-    expect(root.querySelector(".guidebook-book-entry + .guidebook-landing-synopsis")).toBeTruthy();
+    expect(root.querySelector(".guidebook-book-entry + .guidebook-landing-audiobook")).toBeTruthy();
+    expect(root.querySelector(".guidebook-landing-audiobook + .guidebook-landing-synopsis")).toBeTruthy();
     expect(root.querySelector(".guidebook-landing-synopsis")?.textContent).toBe(LANDING_SYNOPSIS);
     const enter = root.querySelector("#guidebook-enter-book") as HTMLAnchorElement;
     expect(enter?.getAttribute("href")).toBe(INTRODUCTION_PATH);
@@ -124,6 +126,20 @@ describe("guidebook public surface (PEX-GUIDEBOOK-HOME-014)", () => {
     expectPublicHeader(root);
     expectHeldFeaturesAbsent(root);
     expect(root.querySelector(".brand-link")?.getAttribute("href")).toBe(LANDING_PATH);
+    expect(root.querySelector(".guidebook-chapter-nav")).toBeNull();
+  });
+
+  it("renders the audiobook direct-sale page with sample and checkout link", async () => {
+    const root = await mount(AUDIOBOOK_PATH);
+    expect(window.location.pathname).toBe(AUDIOBOOK_PATH);
+    expect(root.textContent).toContain(AUDIOBOOK_TITLE);
+    expect(root.textContent).toContain(`$${AUDIOBOOK_PRICE_USD.toFixed(2)}`);
+    const audio = root.querySelector("audio.audiobook-sample-player");
+    expect(audio?.hasAttribute("autoplay")).toBe(false);
+    expect((audio as HTMLAudioElement | null)?.src).toMatch(/chapter-01\.mp3$/);
+    const checkout = root.querySelector("#audiobook-checkout") as HTMLAnchorElement;
+    expect(checkout?.getAttribute("href")).toBe("/api/audiobook/checkout.php");
+    expectPublicHeader(root);
     expect(root.querySelector(".guidebook-chapter-nav")).toBeNull();
   });
 

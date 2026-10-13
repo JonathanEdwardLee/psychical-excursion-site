@@ -8,10 +8,10 @@ import {
 } from "./guidebookCatalog.ts";
 
 describe("guidebook SEO catalog", () => {
-  it("publishes 24 unique canonical paths without chapter numbers", () => {
-    expect(GUIDEBOOK_CATALOG_PAGES).toHaveLength(24);
+  it("publishes 25 unique canonical paths without chapter numbers", () => {
+    expect(GUIDEBOOK_CATALOG_PAGES).toHaveLength(25);
     const paths = GUIDEBOOK_CATALOG_PAGES.map((page) => page.path);
-    expect(new Set(paths).size).toBe(24);
+    expect(new Set(paths).size).toBe(25);
     for (const page of GUIDEBOOK_CATALOG_PAGES) {
       expect(page.path.startsWith("/")).toBe(true);
       expect(page.path.endsWith("/")).toBe(true);

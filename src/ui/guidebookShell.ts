@@ -73,7 +73,7 @@ export function renderGuidebookChrome(
   const frame = el("div", {
     class: "app-frame guidebook-frame",
     "data-ambient": ambientMode satisfies AmbientMode,
-  }, page === "landing"
+  }, page === "landing" || page === "audiobook"
     ? [header, live, main, footer]
     : [header, live, main, footer, renderGuidebookChapterMenu(page)]);
   root.append(skip, ambient, frame);

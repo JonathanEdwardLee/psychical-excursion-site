@@ -10,6 +10,11 @@ required=(
   "SOURCE_SHA.txt"
   "sitemap.xml"
   "robots.txt"
+  "audiobook/index.html"
+  "api/audiobook/checkout.php"
+  "api/audiobook/success.php"
+  "api/audiobook/download.php"
+  "api/audiobook/.htaccess"
   "psychical-excursion/index.html"
   "dream-recall/index.html"
   "lucid-dream-experiments/index.html"
@@ -66,6 +71,11 @@ if ! find "$RELEASE/assets" -type f \( -name '*.js' -o -name '*.css' \) | grep -
   exit 1
 fi
 
+if grep -R -E 'sk_live_|sk_test_' "$RELEASE/assets" >/dev/null 2>&1; then
+  echo "Stripe secret key material must not appear in release JS/CSS." >&2
+  exit 1
+fi
+
 for path in "${forbidden[@]}"; do
   if [[ -e "$RELEASE/$path" ]]; then
     echo "Forbidden path present in release artifact: $path" >&2
@@ -95,9 +105,43 @@ if grep -q 'RewriteRule ^$ /psychical-excursion/' "$RELEASE/.htaccess"; then
   exit 1
 fi
 
+if grep -q 'DirectoryMatch' "$RELEASE/.htaccess"; then
+  echo "Root .htaccess must not use DirectoryMatch (use api/audiobook/.htaccess for PHP allow)." >&2
+  exit 1
+fi
+
+if ! grep -q 'Require all denied' "$RELEASE/.htaccess"; then
+  echo "Root .htaccess must deny PHP by default." >&2
+  exit 1
+fi
+
+api_audiobook_htaccess="$RELEASE/api/audiobook/.htaccess"
+if grep -qE '<FilesMatch[[:space:]]+"\\\.php\$">' "$api_audiobook_htaccess" \
+  && grep -A2 -E '<FilesMatch[[:space:]]+"\\\.php\$">' "$api_audiobook_htaccess" | grep -q 'Require all granted'; then
+  echo "api/audiobook/.htaccess must not broadly grant all PHP files." >&2
+  exit 1
+fi
+for endpoint in checkout.php success.php download.php; do
+  if ! grep -q "<Files \"${endpoint}\">" "$api_audiobook_htaccess"; then
+    echo "api/audiobook/.htaccess must grant ${endpoint}." >&2
+    exit 1
+  fi
+done
+for blocked in lib.php config.example.php; do
+  if grep -q "<Files \"${blocked}\">" "$api_audiobook_htaccess"; then
+    echo "api/audiobook/.htaccess must not grant ${blocked}." >&2
+    exit 1
+  fi
+done
+
+if ! grep -q '/api/audiobook/' "$RELEASE/sw.js"; then
+  echo "sw.js must bypass /api/audiobook/ (no service-worker interception)." >&2
+  exit 1
+fi
+
 sitemap_count="$(grep -c '<loc>' "$RELEASE/sitemap.xml" || true)"
-if [[ "$sitemap_count" != "24" ]]; then
-  echo "sitemap.xml must contain 24 canonical URLs, found ${sitemap_count}." >&2
+if [[ "$sitemap_count" != "25" ]]; then
+  echo "sitemap.xml must contain 25 canonical URLs, found ${sitemap_count}." >&2
   exit 1
 fi
 if grep -q '#' "$RELEASE/sitemap.xml"; then
