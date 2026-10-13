@@ -126,7 +126,7 @@ describe("PEX-DIRECT-SALE-001 implementation guards", () => {
     expect(AUDIOBOOK_BUYER_SUPPORT_LINES.join(" ")).not.toMatch(/Refund policy: contact/);
   });
 
-  it("blocks direct web access to private storage and allows audiobook PHP via nested htaccess", () => {
+  it("blocks direct web access to private storage and allowlists only audiobook runtime PHP", () => {
     const htaccess = readFileSync(path.join(process.cwd(), "deploy", ".htaccess"), "utf8");
     expect(htaccess).toMatch(/private/);
     expect(htaccess).not.toMatch(/DirectoryMatch/);
@@ -135,7 +135,14 @@ describe("PEX-DIRECT-SALE-001 implementation guards", () => {
       path.join(process.cwd(), "deploy", "api", "audiobook", ".htaccess"),
       "utf8",
     );
-    expect(apiHtaccess).toMatch(/Require all granted/);
+    expect(apiHtaccess).not.toMatch(/<FilesMatch\s+"\\\.php\$">/);
+    for (const endpoint of ["checkout.php", "success.php", "download.php"]) {
+      expect(apiHtaccess).toMatch(new RegExp(`<Files "${endpoint}">`));
+    }
+    for (const blocked of ["lib.php", "config.example.php"]) {
+      expect(apiHtaccess).not.toMatch(new RegExp(`<Files "${blocked}">`));
+      expect(apiHtaccess).not.toMatch(new RegExp(`${blocked}[\\s\\S]*Require all granted`));
+    }
   });
 
   it("bypasses paid audiobook API paths in the generated service worker", () => {

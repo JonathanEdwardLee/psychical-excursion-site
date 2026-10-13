@@ -1,6 +1,12 @@
-# Allow only this directory's PHP runtime endpoints (parent document root denies *.php).
+# Public runtime endpoints only (parent document root denies other *.php).
 <IfModule mod_authz_core.c>
-  <FilesMatch "\.php$">
+  <Files "checkout.php">
     Require all granted
-  </FilesMatch>
+  </Files>
+  <Files "success.php">
+    Require all granted
+  </Files>
+  <Files "download.php">
+    Require all granted
+  </Files>
 </IfModule>

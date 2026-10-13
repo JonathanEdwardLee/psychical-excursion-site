@@ -115,10 +115,24 @@ if ! grep -q 'Require all denied' "$RELEASE/.htaccess"; then
   exit 1
 fi
 
-if ! grep -q 'Require all granted' "$RELEASE/api/audiobook/.htaccess"; then
-  echo "api/audiobook/.htaccess must grant PHP endpoints only in that directory." >&2
+api_audiobook_htaccess="$RELEASE/api/audiobook/.htaccess"
+if grep -qE '<FilesMatch[[:space:]]+"\\\.php\$">' "$api_audiobook_htaccess" \
+  && grep -A2 -E '<FilesMatch[[:space:]]+"\\\.php\$">' "$api_audiobook_htaccess" | grep -q 'Require all granted'; then
+  echo "api/audiobook/.htaccess must not broadly grant all PHP files." >&2
   exit 1
 fi
+for endpoint in checkout.php success.php download.php; do
+  if ! grep -q "<Files \"${endpoint}\">" "$api_audiobook_htaccess"; then
+    echo "api/audiobook/.htaccess must grant ${endpoint}." >&2
+    exit 1
+  fi
+done
+for blocked in lib.php config.example.php; do
+  if grep -q "<Files \"${blocked}\">" "$api_audiobook_htaccess"; then
+    echo "api/audiobook/.htaccess must not grant ${blocked}." >&2
+    exit 1
+  fi
+done
 
 if ! grep -q '/api/audiobook/' "$RELEASE/sw.js"; then
   echo "sw.js must bypass /api/audiobook/ (no service-worker interception)." >&2
